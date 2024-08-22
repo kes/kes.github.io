@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Lisp on My New Hugo Site</title>
+    <link>https://example.org/tags/lisp/</link>
+    <description>Recent content in Lisp on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 20 Aug 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://example.org/tags/lisp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Project Euler - Number 5</title>
+      <link>https://example.org/posts/project-euler-num-5/</link>
+      <pubDate>Tue, 20 Aug 2024 00:00:00 +0000</pubDate>
+      <guid>https://example.org/posts/project-euler-num-5/</guid>
+      <description>Problem number five can be found here: https://projecteuler.net/problem=5&#xA;Problem statement:&#xA;2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.&#xA;What is the smallest positive number that is evenly divisible by all the numbers 1 to 20?&#xA;What&amp;rsquo;s wanted is the least common multiple of all numbers 2-20.&#xA;We need to factor all the number from 2 to 20. So, let&amp;rsquo;s do some prime factoring!</description>
+    </item>
+  </channel>
+</rss>

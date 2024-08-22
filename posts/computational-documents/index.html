@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en-us"
+      dir="ltr">
+<head>
+  <link rel="stylesheet" href="/common.css" type="text/css" media="screen, projection">
+  <link rel="stylesheet" href="/style.css" type="text/css" media="screen, projection">
+  <title>Karl Stump's Blog</title>
+
+
+</head>
+<body>
+  <div class="site">
+  <header>
+    <div class="title">
+  <a href="/">Karl Stump </a>
+  <a class="extra" href="/">home</a>
+</header>
+
+  </header>
+  <main>
+    
+<div id="post">Computational Documents<p class="meta"> Aug 4, 2024</p>
+  <p>Not all the documents that I create are computational — but when they are I use
+<a href="https://www.gnu.org/software/emacs/">Emacs</a>, <a href="https://orgmode.org/">Org Mode</a>, and <a href="https://orgmode.org/worg/org-contrib/babel/">Babel</a></p>
+<p>Computational documents are a mixture of text and executable code. And the process of creating them,
+bringing together the text and code is called &ldquo;weaving.&rdquo; But sometimes, you want to separate the
+text and code. This is called &ldquo;tangling.&rdquo; For more see, <a href="https://orgmode.org/manual/Extracting-Source-Code.html">extracting source code</a>.</p>
+<p>This turns out that tangling is pretty useful when you want to maintain one source of code for
+display and for processing, maintaining the DRY principle</p>
+<h2 id="tangle">Tangle</h2>
+<p>Lots of Emacs users write <code>init</code> files in Org Mode, using code blocks. The idea is that in an Org Mode
+file initialization code can be organized, along with literate comments. Later, at an appropriate
+moment the actual initialization code is extracted and executed.</p>
+<p>I suppose it might be asked if code comments aren&rsquo;t already mixed in with code. And, yes, that&rsquo;s true,
+but literate code can be executed, and it&rsquo;s ready to be turned into a printable and readable document.</p>
+<p>Here&rsquo;s an example from my Org Mode configuration file – you can see that text and code is mixed
+together.</p>
+<figure><img src="/ox-hugo/configuration.png"/>
+</figure>
+
+<p>And then, when tangled the code is extracted:</p>
+<figure><img src="/ox-hugo/untangled-config.png"/>
+</figure>
+
+<h2 id="the-tangle-solution">The Tangle Solution</h2>
+<p>I found myself needing to tangle a code block in a computational document that I was creating.</p>
+<p>That is, I needed to save the code in the block to file.</p>
+<p>Why did I need to do this?</p>
+<p>It gets down to <strong>DRY</strong>.</p>
+<p>Let me explain.</p>
+<p>Suppose I have code that I want to display, and so I make a code block like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-org" data-lang="org"><span style="display:flex;"><span><span style="color:#75715e">#+NAME</span><span style="color:#75715e">: hello-example</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#+begin_src </span><span style="color:#75715e">C</span><span style="color:#75715e">   :main no :eval never :exports code
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;hello world</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#+end_src</span></span></span></code></pre></div>
+<p>I don&rsquo;t want to execute this code at this point in my document. And I don&rsquo;t want to capture its
+output.</p>
+<p>I mean I could evaluate it.  Org Mode and Org Babel are able to do that, and in that case I&rsquo;d get
+the expected output, &ldquo;hello world&rdquo; – but that&rsquo;s not the point of displaying the code.</p>
+<p>By the way, here&rsquo;s what displaying the displayed code will look like.</p>
+<p><a id="code-snippet--hello-example"></a>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;hello world</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div></p>
+<p>And I&rsquo;ll have text, lots of text, before the code, after the code — sorta like now, in fact.</p>
+<p>So, the point of the code block is simply to display the code.</p>
+<p>Later, I&rsquo;ll want to compile the code. And, then, I&rsquo;ll show my readers how to do that with another
+code block. And then later, I&rsquo;ll want to execute the executable by invoking the <code>./a.out</code> file.</p>
+<p>So, pretty clear, I want to show the code, then compile the code, then execute the code.</p>
+<p>That sounds like three code blocks to me. The first has already been shown, while the third is just
+a bash code block that invokes the <code>./a.out</code>. So, really, with the first and third code blocks out of
+the way, I just need to create the second one.</p>
+<p>And, yeah, I mean it sounds easily enough, and it is easy…. except ….</p>
+<p>Well, I need to <em>compile</em> the <em>code</em>.</p>
+<p>And that means something like <code>cc &lt;filename&gt;</code>. And that can easily be done in a bash code
+block. What&rsquo;s the problem?</p>
+<p>The problem is, where&rsquo;s <code>&lt;filename&gt;</code> and what&rsquo;s in it?</p>
+<p>Well, <code>&lt;filename&gt;</code> must be on the disk somewhere! Pick someplace, create the file, and put the code
+into it. Problem solved!</p>
+<p>But no, it&rsquo;s not solved.</p>
+<p>Oh, sure, I <em>can</em> create <code>&lt;filename&gt;</code> outside the document, and yes, I <em>can</em> create a
+code block that runs <code>cc &lt;filename&gt;</code> – all of that can clearly be done. But what happens when the
+code in the first code block changes. You know, when someone decides to update it, you know, to
+something like, <code>Howdy World! How ya doin?'</code> And then they&rsquo;d have to remember to change the file on
+the disk, which they&rsquo;ll either forget about, or won&rsquo;t know about at all – and even if you do know,
+and if you do remember, it&rsquo;s just a pain to have to make code changes in two place — and oh, yeah,
+by the way, we&rsquo;ve just lost DRY.</p>
+<p>Okay, okay, let&rsquo;s think this through.</p>
+<p>My first idea, was to put the file creation in a code block! And while, I&rsquo;m thinking how brilliant this is, and that
+I&rsquo;m clearly in the presence of genius it begins to occur to me that I have to have a way to create
+the file and its contents. No problem I think. I&rsquo;ll just echo string with file redirection. It
+doesn&rsquo;t take long to realize that this is a stupid idea. Not only is painful to echo those strings
+correctly, it does nothing to address the problem of having code in two places. Now, if you change
+the code displayed, you also have to change the echoed text. We are still not DRY.</p>
+<p>We&rsquo;re stuck!</p>
+<p>Nah! Tangling makes this problem trivial. Look at this code block. It&rsquo;s still both the code that we
+want to display in the document, and that we want saved for later processing. But, I&rsquo;ve added a
+<code>tangle</code> header argument.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-org" data-lang="org"><span style="display:flex;"><span><span style="color:#75715e">#+NAME</span><span style="color:#75715e">: hello-example</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#+begin_src </span><span style="color:#75715e">C</span><span style="color:#75715e">   :main no :tangle computational-documents/hello.c  :eval never :exports code
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;hello world</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#+end_src</span></span></span></code></pre></div>
+<p>The tangle header says that this code can be extracted.</p>
+<p>All we need to do is run <code>(org-babel-tangle)</code> on the code block. The documentation explains
+very well what this does:</p>
+<blockquote>
+<p>Write code blocks to source-specific files.  Extract the bodies of all source code blocks from the
+current file into their own source-specific files.</p>
+</blockquote>
+<p>And where will the code be written? The file is show in the tangle header. <code>:tangle computational-documents/hello.c</code></p>
+<p>Given that the block has now been tangled, I can now run the code block that compiles the file, and the code block that executes it.</p>
+<p>Here are the code blocks:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-org" data-lang="org"><span style="display:flex;"><span><span style="color:#75715e">#+NAME</span><span style="color:#75715e">: compile-example</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#+begin_src </span><span style="color:#75715e">bash</span><span style="color:#75715e"> :results none :exports both :dir ./computational-documents
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  cc hello.c
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#+end_src</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#+NAME</span><span style="color:#75715e">: run-example</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#+begin_src </span><span style="color:#75715e">bash</span><span style="color:#75715e"> :results output verbatim :exports both :dir ./computational-documents
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  ./a.out
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#+end_src</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#+RESULTS</span><span style="color:#75715e">: run-example</span>
+</span></span><span style="display:flex;"><span>: hello world</span></span></code></pre></div>
+<p>Which will display, with output, like this:</p>
+<p><a id="code-snippet--compile-example"></a>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cc hello.c</span></span></code></pre></div></p>
+<p><a id="code-snippet--run-example"></a>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>./a.out</span></span></code></pre></div></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>what test Now? hello world -- now, test the tangle!No, really, now!
+</span></span></code></pre></div><p>Easy!</p>
+
+</div>
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts"><li><span>Aug 10, 2024</span> &raquo;
+<a href="/posts/this-is-now/">The C Programming Language</a>
+
+</li><li><span>Sep 14, 2021</span> &raquo;
+<a href="/posts/whatisalambda/">What&#39;s a Lambda?</a>
+
+</li></ul>
+</div>
+  </main>
+  <footer>
+    <div class="footer">
+  <div class="contact">
+    <pr><br><a href="https://www.linkedin.com/in/karl-s-9a705398/">linkedIn</a>
+      <br>
+      <pr><a href="https://github.com/kes">github.com</a>
+
+  </div>
+</div>
+
+  </footer>
+  </div>
+</body>
+</html>
+
