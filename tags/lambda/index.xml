@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Lambda on My New Hugo Site</title>
-    <link>https://example.org/tags/lambda/</link>
+    <link>http://localhost:1313/tags/lambda/</link>
     <description>Recent content in Lambda on My New Hugo Site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 14 Sep 2021 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://example.org/tags/lambda/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/lambda/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>What&#39;s a Lambda?</title>
-      <link>https://example.org/posts/whatisalambda/</link>
+      <link>http://localhost:1313/posts/whatisalambda/</link>
       <pubDate>Tue, 14 Sep 2021 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/whatisalambda/</guid>
+      <guid>http://localhost:1313/posts/whatisalambda/</guid>
       <description>This document is a brief investigation into the question:&#xA;What is a lambda?&#xA;And, in our context, more specifically, what is lambda in computer languages, and even more specifically, what is lambda in Java.&#xA;Java added lambda expressions in 2014 (see Java SE 8).&#xA;Caveat: Nothing in this document is meant to be exhaustive. It&amp;rsquo;s not the final word on anything. And there most likely are errors in it – in fact, most definitely.</description>
     </item>
   </channel>
