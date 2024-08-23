@@ -104,6 +104,7 @@ primes set the value at that index to 0. This procedure is called the Sieve of E
 description of which is easily findable. For example, here:
 <a href="https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes">https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes</a></p>
 <p>If I follow the given algorithm, then I get the following:</p>
+<p><a id="code-snippet--soe"></a>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
@@ -124,50 +125,44 @@ description of which is easily findable. For example, here:
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span>(defun generate-primes (n)
 </span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;Returns a list of primes from 2 to n&#34;</span>
-</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">let</span> ((numbers (<span style="color:#a6e22e">make-array</span> n <span style="color:#e6db74">:initial-element</span> <span style="color:#ae81ff">1</span>)))
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">;;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">;; note: the index of the array, is the number of</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">;; interest, while the value at array[index] is whether</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">;; it&#39;s prime or not</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">;;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">;; starting at the prime number 2 (that is, we consider 2 to be</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">;; the first prime number)</span>
-</span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">;; Sieve of Eratosthenes</span>
-</span></span><span style="display:flex;"><span>    (loop for i from <span style="color:#ae81ff">2</span> below (<span style="color:#a6e22e">sqrt</span> n)
-</span></span><span style="display:flex;"><span>      while (<span style="color:#a6e22e">&lt;</span> i (<span style="color:#a6e22e">sqrt</span> n))
-</span></span><span style="display:flex;"><span>      when (<span style="color:#a6e22e">=</span> <span style="color:#ae81ff">1</span> (<span style="color:#a6e22e">aref</span> numbers i))
-</span></span><span style="display:flex;"><span>        do
-</span></span><span style="display:flex;"><span>           <span style="color:#75715e">;; now we&#39;ll iterate over every (i^2 + i*x) number</span>
-</span></span><span style="display:flex;"><span>           (loop for x from <span style="color:#ae81ff">0</span>
-</span></span><span style="display:flex;"><span>             with j <span style="color:#a6e22e">=</span> <span style="color:#ae81ff">0</span>
-</span></span><span style="display:flex;"><span>             while (<span style="color:#a6e22e">&lt;</span> (setf j (<span style="color:#a6e22e">+</span> (<span style="color:#a6e22e">expt</span> i <span style="color:#ae81ff">2</span>) (<span style="color:#a6e22e">*</span> i x))) n)
-</span></span><span style="display:flex;"><span>             do
-</span></span><span style="display:flex;"><span>                (setf (<span style="color:#a6e22e">aref</span> numbers j) <span style="color:#ae81ff">0</span>)))
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">;; generate the list of prime numbers from the array.</span>
-</span></span><span style="display:flex;"><span>    (loop for x from <span style="color:#ae81ff">2</span> to (<span style="color:#a6e22e">1-</span> n)
-</span></span><span style="display:flex;"><span>          when (<span style="color:#a6e22e">=</span> (<span style="color:#a6e22e">aref</span> numbers x) <span style="color:#ae81ff">1</span>)
-</span></span><span style="display:flex;"><span>            collect x)))</span></span></code></pre></td></tr></table>
+</span></span><span style="display:flex;"><span>  (loop for i from <span style="color:#ae81ff">2</span> to (<span style="color:#a6e22e">floor</span> (<span style="color:#a6e22e">sqrt</span> n))
+</span></span><span style="display:flex;"><span>        with numbers <span style="color:#a6e22e">=</span> (<span style="color:#a6e22e">make-array</span> (<span style="color:#a6e22e">1+</span> n) <span style="color:#e6db74">:initial-element</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>        when (<span style="color:#a6e22e">=</span> <span style="color:#ae81ff">1</span> (<span style="color:#a6e22e">aref</span> numbers i))
+</span></span><span style="display:flex;"><span>          do
+</span></span><span style="display:flex;"><span>             <span style="color:#75715e">;; now we&#39;ll iterate over every (i^2 + i*x) number</span>
+</span></span><span style="display:flex;"><span>             (loop for x from <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>                   with j <span style="color:#a6e22e">=</span> <span style="color:#ae81ff">0</span> and i-squared <span style="color:#a6e22e">=</span> (<span style="color:#a6e22e">expt</span> i <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>                   while (<span style="color:#a6e22e">&lt;=</span> (setf j (<span style="color:#a6e22e">+</span> i-squared (<span style="color:#a6e22e">*</span> i x))) n)
+</span></span><span style="display:flex;"><span>                   do
+</span></span><span style="display:flex;"><span>                      (setf (<span style="color:#a6e22e">aref</span> numbers j) <span style="color:#ae81ff">0</span>))
+</span></span><span style="display:flex;"><span>        finally
+</span></span><span style="display:flex;"><span>           <span style="color:#75715e">;; generate the list of prime numbers from the array.</span>
+</span></span><span style="display:flex;"><span>           (return (loop for x from <span style="color:#ae81ff">2</span> to n
+</span></span><span style="display:flex;"><span>                         when (<span style="color:#a6e22e">=</span> (<span style="color:#a6e22e">aref</span> numbers x) <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>                           collect x))))</span></span></code></pre></td></tr></table>
 </div>
-</div>
+</div></p>
+<p>Starting with 2, we will eliminate all the multiples up to number n. When we get to the next number,
+3, we start eliminating at <img src="/ltximg/whatisalambda_5ec6d7143c6e95384245a168511257bdbd234268.png" alt="\( 3^2 \)" />. Why? Because the previous iteration using the number 2 will
+have eliminated all of the numbers less than <img src="/ltximg/whatisalambda_5ec6d7143c6e95384245a168511257bdbd234268.png" alt="\( 3^2 \)" /> that have 3 as a factor, which is <img src="/ltximg/whatisalambda_89d3c24d1b5a621566e114d5fe5fe9a94cee18bd.png" alt="\( 3 * 2
+\)" />. When we move to 4, we don&rsquo;t process it at all because it&rsquo;s not a prime and has been eliminated
+(by placing a 0 at that index). Then we come to 5, again we start looking for multiples at <img src="/ltximg/whatisalambda_a560a4b02a74b0d85270b2cb52ea898db5a4f67f.png" alt="\( 5^2
+\)" />. Why?  Because the previous iterations on 2 and 3 will have eliminated <img src="/ltximg/whatisalambda_7027c3b7e30b2e65c834bbbabcc8947fcebbc573.png" alt="\(5 * 2\)" /> and <img src="/ltximg/whatisalambda_f057377a4eb848b16a89ba0865376aa89b2e9425.png" alt="\(5 *
+3\)" />. The same will be true for each prime.</p>
 <p>I&rsquo;ve always been a bit ambivalent about using <code>loop</code> in Common Lisp. Perhaps I should be using scheme?
 But that attitude has also caused me not to study <code>loop</code> syntax as I should.</p>
 <p>But once you study loop at <a href="https://www.lispworks.com/documentation/HyperSpec/Front/index.htm">CLHS</a> you&rsquo;re confronted with a really powerful <a href="https://en.wikipedia.org/wiki/Domain-specific_language">DSL</a>. And one gets the feeling
-that it is both understandable and yet inexhaustible.</p>
-<p>As can be seen, this is a concise expression of the sieve.</p>
-<p>So what&rsquo;s returned is a list of primes. But I want the 10001th prime.</p>
+that it is both understandable and yet inexhaustible. I know I&rsquo;ve spent more time looking at the
+documentation for <code>loop</code> in order to write the sieve. I think the result is concise and to the point.</p>
+<p>Does it work? Let&rsquo;s test it.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span>(generate-primes <span style="color:#ae81ff">20</span>)</span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>(2 3 5 7 11 13 17 19)
+</span></span></code></pre></div><p>Perfect! A list of primes. But I want the 10001th prime.</p>
 <p>I can just turn the list into an array, and then index to the 10001th prime.</p>
 <p><code>coerce</code> is the answer for this.</p>
 <p><a id="code-snippet--get-prime"></a>
