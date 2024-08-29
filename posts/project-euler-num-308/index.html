@@ -872,7 +872,7 @@ that, and so, we decrement a 3 (3<sup>1</sup> becomes 3<sup>0</sup>), we decreme
 <p>I decided to call the list holding the exponents and the number of primes, etc, the register. and so, I prefixed
 the various fields with an &ldquo;r&rdquo;.</p>
 <p>I also defined a few convenience macros that made setting the exponents and changing state much easier.</p>
-<p>So, in the following code I simply whatever state the register says I&rsquo;m in.</p>
+<p>So, in the following code I simply go to whatever state the register says I&rsquo;m in.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span>(defun fractran (reg)
 </span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;Calls the required state with the register. returns a list of state and register.&#34;</span>
 </span></span><span style="display:flex;"><span>(cond ((<span style="color:#a6e22e">=</span> (r s) <span style="color:#ae81ff">1</span>) (s1 reg))
@@ -891,7 +891,7 @@ the various fields with an &ldquo;r&rdquo;.</p>
 <li>No. Can I decrement 7?
 <ol>
 <li>Yes. Decrement 7, and stay in <code>S1</code></li>
-<li>No. Increment 5 and move to <code>S1</code></li>
+<li>No. Increment 5 and move to <code>S11</code></li>
 </ol>
 </li>
 </ol>
