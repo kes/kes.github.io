@@ -6,15 +6,8 @@
     <description>Recent content in C on My New Hugo Site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 28 Aug 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 10 Aug 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/c/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Project Euler - Number 308</title>
-      <link>http://localhost:1313/posts/project-euler-num-308/</link>
-      <pubDate>Wed, 28 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/project-euler-num-308/</guid>
-      <description>Project Euler has a Fractran problem.&#xA;If you don&amp;rsquo;t know about John Conway&amp;rsquo;s Fractran you can look here and here.&#xA;You can find the problem here: https://projecteuler.net/problem=308&#xA;I have reproduced it here:&#xA;A program written in the programming language Fractran consists of a list of fractions.&#xA;The internal state of the Fractran Virtual Machine is a positive integer, which is initially set to a seed value. Each iteration of a Fractran program multiplies the state integer by the first fraction in the list which will leave it an integer.</description>
-    </item>
     <item>
       <title>The C Programming Language</title>
       <link>http://localhost:1313/posts/this-is-now/</link>

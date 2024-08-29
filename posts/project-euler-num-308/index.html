@@ -56,12 +56,12 @@ the fraction, and if we get an integer then return it, otherwise, discard the ca
 on. If we exhaust all the fractions having not gotten an integer, the program halts.</p>
 <p>So, our simulator looks like this:</p>
 <p><a id="code-snippet--fractran-simulator"></a>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span>(defun fractran (state program)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span>(defun fractran-simulator (state program)
 </span></span><span style="display:flex;"><span>  (cond ((<span style="color:#a6e22e">null</span> program) <span style="color:#66d9ef">nil</span>)
 </span></span><span style="display:flex;"><span>        ((<span style="color:#a6e22e">integerp</span> (<span style="color:#a6e22e">/</span> (<span style="color:#a6e22e">*</span> state (<span style="color:#a6e22e">caar</span> program)) (<span style="color:#a6e22e">cadar</span> program)))
 </span></span><span style="display:flex;"><span>         (<span style="color:#a6e22e">/</span> (<span style="color:#a6e22e">*</span> state (<span style="color:#a6e22e">caar</span> program)) (<span style="color:#a6e22e">cadar</span> program)))
-</span></span><span style="display:flex;"><span>        (<span style="color:#66d9ef">t</span> (fractran state (<span style="color:#a6e22e">cdr</span> program)))))
-</span></span><span style="display:flex;"><span>(fractran start *fp*)</span></span></code></pre></div></p>
+</span></span><span style="display:flex;"><span>        (<span style="color:#66d9ef">t</span> (fractran-simulator state (<span style="color:#a6e22e">cdr</span> program)))))
+</span></span><span style="display:flex;"><span>(fractran-simulator start *fp*)</span></span></code></pre></div></p>
 <p>Easy peasy. Let&rsquo;s use an initial seed value of 2 (as the problem description says).</p>
 <p>What do we get back from our simulator?</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>15
@@ -69,7 +69,7 @@ on. If we exhaust all the fractions having not gotten an integer, the program ha
 <p><a id="code-snippet--simulator-run"></a>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span>(loop for i from <span style="color:#ae81ff">1</span> to <span style="color:#ae81ff">20</span>
 </span></span><span style="display:flex;"><span>      with state <span style="color:#a6e22e">=</span> <span style="color:#ae81ff">2</span>
-</span></span><span style="display:flex;"><span>      do (setf state (fractran state *fp*))
+</span></span><span style="display:flex;"><span>      do (setf state (fractran-simulator state *fp*))
 </span></span><span style="display:flex;"><span>      collect (<span style="color:#a6e22e">list</span> i state) into results
 </span></span><span style="display:flex;"><span>      finally (return (<span style="color:#a6e22e">cons</span> <span style="color:#f92672">&#39;</span>(iteration state) results)))</span></span></code></pre></div></p>
 <p>Running the above code gives us the following:</p>
@@ -225,7 +225,7 @@ all the results we get from an iteration of the program can only be composed of 
 <p><a id="code-snippet--create-table"></a>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span>(loop for i from <span style="color:#ae81ff">1</span> to <span style="color:#ae81ff">20</span>
 </span></span><span style="display:flex;"><span>      with state <span style="color:#a6e22e">=</span> <span style="color:#ae81ff">2</span>
-</span></span><span style="display:flex;"><span>      collect (get-status i (setf state (fractran state *fp*))))</span></span></code></pre></div></p>
+</span></span><span style="display:flex;"><span>      collect (get-status i (setf state (fractran-simulator state *fp*))))</span></span></code></pre></div></p>
 <p>Okay, here it is:</p>
 <table>
 <thead>
@@ -944,6 +944,15 @@ the various fields with an &ldquo;r&rdquo;.</p>
 </span></span><span style="display:flex;"><span>         (decf (r <span style="color:#ae81ff">3</span>))
 </span></span><span style="display:flex;"><span>         (state-change <span style="color:#ae81ff">17</span> <span style="color:#ae81ff">19</span>))
 </span></span><span style="display:flex;"><span>        (<span style="color:#66d9ef">t</span> (state-change <span style="color:#ae81ff">17</span> <span style="color:#ae81ff">1</span>))))</span></span></code></pre></div></p>
+<h2 id="s19">S19</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span>(defun s19 (reg)
+</span></span><span style="display:flex;"><span>  (incf (r c))
+</span></span><span style="display:flex;"><span>  (cond ((<span style="color:#a6e22e">&gt;</span> (r <span style="color:#ae81ff">2</span>) <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>         (decf (r <span style="color:#ae81ff">2</span>))
+</span></span><span style="display:flex;"><span>         (state-change <span style="color:#ae81ff">19</span> <span style="color:#ae81ff">23</span>))
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">;; otherwise update factors and move to state 11</span>
+</span></span><span style="display:flex;"><span>        (<span style="color:#66d9ef">t</span> (incf (r <span style="color:#ae81ff">7</span>))
+</span></span><span style="display:flex;"><span>           (state-change <span style="color:#ae81ff">19</span> <span style="color:#ae81ff">11</span>))))</span></span></code></pre></div>
 <h2 id="s23-s29">S23 S29</h2>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span>(defun s23 (reg)
 </span></span><span style="display:flex;"><span>  (incf (r c))
@@ -955,38 +964,25 @@ the various fields with an &ldquo;r&rdquo;.</p>
 </span></span><span style="display:flex;"><span>  (incf (r <span style="color:#ae81ff">7</span>))
 </span></span><span style="display:flex;"><span>  (state-change <span style="color:#ae81ff">29</span> <span style="color:#ae81ff">11</span>))</span></span></code></pre></div>
 <h2 id="miscellaneous">Miscellaneous</h2>
-<p>Some utilities necessary for running and printing results.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span>  (defun init-fr ()
-</span></span><span style="display:flex;"><span>  (setf (fr c) <span style="color:#ae81ff">0</span>)
-</span></span><span style="display:flex;"><span>  (setf (fr s) <span style="color:#ae81ff">1</span>)
-</span></span><span style="display:flex;"><span>  (setf (fr p) <span style="color:#ae81ff">0</span>)
-</span></span><span style="display:flex;"><span>  (setf (fr <span style="color:#ae81ff">2</span>) <span style="color:#ae81ff">1</span>)
-</span></span><span style="display:flex;"><span>  (setf (fr <span style="color:#ae81ff">3</span>) <span style="color:#ae81ff">0</span>)
-</span></span><span style="display:flex;"><span>  (setf (fr <span style="color:#ae81ff">5</span>) <span style="color:#ae81ff">0</span>)
-</span></span><span style="display:flex;"><span>  (setf (fr <span style="color:#ae81ff">7</span>) <span style="color:#ae81ff">0</span>)
-</span></span><span style="display:flex;"><span>  (setf (fr <span style="color:#ae81ff">11</span>) <span style="color:#ae81ff">0</span>)
-</span></span><span style="display:flex;"><span>  (setf (fr <span style="color:#ae81ff">13</span>) <span style="color:#ae81ff">0</span>)
-</span></span><span style="display:flex;"><span>  (setf (fr <span style="color:#ae81ff">17</span>) <span style="color:#ae81ff">0</span>)
-</span></span><span style="display:flex;"><span>  (setf (fr <span style="color:#ae81ff">19</span>) <span style="color:#ae81ff">0</span>)
-</span></span><span style="display:flex;"><span>  (setf (fr <span style="color:#ae81ff">23</span>) <span style="color:#ae81ff">0</span>)
-</span></span><span style="display:flex;"><span>  (setf (fr <span style="color:#ae81ff">29</span>) <span style="color:#ae81ff">0</span>))
+<p><a id="code-snippet--iterate"></a>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span>    (defun init-fr ()
+</span></span><span style="display:flex;"><span>    (setf (fr c) <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>    (setf (fr s) <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    (setf (fr p) <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>    (setf (fr <span style="color:#ae81ff">1</span>) <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>    (setf (fr <span style="color:#ae81ff">2</span>) <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    (setf (fr <span style="color:#ae81ff">3</span>) <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>    (setf (fr <span style="color:#ae81ff">5</span>) <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>    (setf (fr <span style="color:#ae81ff">7</span>) <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>    (setf (fr <span style="color:#ae81ff">11</span>) <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>    (setf (fr <span style="color:#ae81ff">13</span>) <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>    (setf (fr <span style="color:#ae81ff">17</span>) <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>    (setf (fr <span style="color:#ae81ff">19</span>) <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>    (setf (fr <span style="color:#ae81ff">23</span>) <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>    (setf (fr <span style="color:#ae81ff">29</span>) <span style="color:#ae81ff">0</span>))
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>(defun get-r-list ()
-</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">list</span> (fr <span style="color:#ae81ff">2</span>) (fr <span style="color:#ae81ff">3</span>) (fr <span style="color:#ae81ff">5</span>) (fr <span style="color:#ae81ff">7</span>) (fr <span style="color:#ae81ff">11</span>) (fr <span style="color:#ae81ff">13</span>) (fr <span style="color:#ae81ff">17</span>) (fr <span style="color:#ae81ff">19</span>) (fr <span style="color:#ae81ff">23</span>)))
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>(defun cycle (cycles)
-</span></span><span style="display:flex;"><span>  (init-fr)
-</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">format</span> <span style="color:#66d9ef">t</span> <span style="color:#e6db74">&#34;~8:@&lt;~A~&gt; | ~8:@&lt;~A~&gt; | 2  3  5  7 | 11 13 17 19 23 29 | Total~%&#34;</span> <span style="color:#e6db74">&#39;State</span> <span style="color:#e6db74">&#39;Count</span>)
-</span></span><span style="display:flex;"><span>  (print-status)
-</span></span><span style="display:flex;"><span>  (loop repeat cycles
-</span></span><span style="display:flex;"><span>        with registers <span style="color:#a6e22e">=</span> *fractran-registers*
-</span></span><span style="display:flex;"><span>        do (fractran-6 registers)
-</span></span><span style="display:flex;"><span>        collect (print-status)))
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>(defun print-status ()
-</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">let</span> ((amount
-</span></span><span style="display:flex;"><span>          (<span style="color:#a6e22e">*</span> (<span style="color:#a6e22e">expt</span> <span style="color:#ae81ff">2</span> (fr <span style="color:#ae81ff">2</span>))
+</span></span><span style="display:flex;"><span>(defun calc-amount ()
+</span></span><span style="display:flex;"><span>   (<span style="color:#a6e22e">*</span> (<span style="color:#a6e22e">expt</span> <span style="color:#ae81ff">2</span> (fr <span style="color:#ae81ff">2</span>))
 </span></span><span style="display:flex;"><span>             (<span style="color:#a6e22e">expt</span> <span style="color:#ae81ff">3</span> (fr <span style="color:#ae81ff">3</span>))
 </span></span><span style="display:flex;"><span>             (<span style="color:#a6e22e">expt</span> <span style="color:#ae81ff">5</span> (fr <span style="color:#ae81ff">5</span>))
 </span></span><span style="display:flex;"><span>             (<span style="color:#a6e22e">expt</span> <span style="color:#ae81ff">7</span> (fr <span style="color:#ae81ff">7</span>))
@@ -995,14 +991,787 @@ the various fields with an &ldquo;r&rdquo;.</p>
 </span></span><span style="display:flex;"><span>             (<span style="color:#a6e22e">expt</span> <span style="color:#ae81ff">17</span> (fr <span style="color:#ae81ff">17</span>))
 </span></span><span style="display:flex;"><span>             (<span style="color:#a6e22e">expt</span> <span style="color:#ae81ff">19</span> (fr <span style="color:#ae81ff">19</span>))
 </span></span><span style="display:flex;"><span>             (<span style="color:#a6e22e">expt</span> <span style="color:#ae81ff">23</span> (fr <span style="color:#ae81ff">23</span>))
-</span></span><span style="display:flex;"><span>             (<span style="color:#a6e22e">expt</span> <span style="color:#ae81ff">29</span> (fr <span style="color:#ae81ff">29</span>)))))
+</span></span><span style="display:flex;"><span>             (<span style="color:#a6e22e">expt</span> <span style="color:#ae81ff">29</span> (fr <span style="color:#ae81ff">29</span>))))
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">format</span>
-</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">t</span>
-</span></span><span style="display:flex;"><span>     <span style="color:#e6db74">&#34;~8d | ~8d |~2d ~2d ~2d ~2d | ~[--~; 1~] ~[--~; 1~] ~[--~; 1~] ~[--~; 1~] ~[--~; 1~] ~[--~; 1~] | ~d~%&#34;</span>
-</span></span><span style="display:flex;"><span>          (fr s) (fr c) (fr <span style="color:#ae81ff">2</span>) (fr <span style="color:#ae81ff">3</span>) (fr <span style="color:#ae81ff">5</span>) (fr <span style="color:#ae81ff">7</span>) (fr <span style="color:#ae81ff">11</span>)
-</span></span><span style="display:flex;"><span>          (fr <span style="color:#ae81ff">13</span>) (fr <span style="color:#ae81ff">17</span>) (fr <span style="color:#ae81ff">19</span>) (fr <span style="color:#ae81ff">23</span>) (fr <span style="color:#ae81ff">29</span>) amount)))</span></span></code></pre></div>
-<p>And that&rsquo;s it.</p>
+</span></span><span style="display:flex;"><span>(defun iterate (i-number)
+</span></span><span style="display:flex;"><span>  (loop repeat i-number
+</span></span><span style="display:flex;"><span>        do (fractran *fractran-registers*)
+</span></span><span style="display:flex;"><span>        collect (<span style="color:#a6e22e">list</span>  (fr c) (fr s) (fr <span style="color:#ae81ff">2</span>) (fr <span style="color:#ae81ff">3</span>) (fr <span style="color:#ae81ff">5</span>) (fr <span style="color:#ae81ff">7</span>) (fr <span style="color:#ae81ff">11</span>)
+</span></span><span style="display:flex;"><span>          (fr <span style="color:#ae81ff">13</span>) (fr <span style="color:#ae81ff">17</span>) (fr <span style="color:#ae81ff">19</span>) (fr <span style="color:#ae81ff">23</span>) (fr <span style="color:#ae81ff">29</span>) (calc-amount))))
+</span></span><span style="display:flex;"><span>(init-fr)
+</span></span><span style="display:flex;"><span>(iterate <span style="color:#ae81ff">50</span>)</span></span></code></pre></div></p>
+<p>So, now running, we get the same results. The FSM works.</p>
+<table>
+<thead>
+<tr>
+<th>Iteration</th>
+<th>2</th>
+<th>3</th>
+<th>5</th>
+<th>7</th>
+<th>11</th>
+<th>13</th>
+<th>17</th>
+<th>19</th>
+<th>23</th>
+<th>29</th>
+<th>State</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>0</td>
+<td>15</td>
+</tr>
+<tr>
+<td>2</td>
+<td>11</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>&ndash;</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>0</td>
+<td>825</td>
+</tr>
+<tr>
+<td>3</td>
+<td>29</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>1</td>
+<td>725</td>
+</tr>
+<tr>
+<td>4</td>
+<td>11</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>0</td>
+<td>1925</td>
+</tr>
+<tr>
+<td>5</td>
+<td>13</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>0</td>
+<td>2275</td>
+</tr>
+<tr>
+<td>6</td>
+<td>17</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>0</td>
+<td>425</td>
+</tr>
+<tr>
+<td>7</td>
+<td>13</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>0</td>
+<td>390</td>
+</tr>
+<tr>
+<td>8</td>
+<td>11</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>0</td>
+<td>330</td>
+</tr>
+<tr>
+<td>9</td>
+<td>29</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>1</td>
+<td>290</td>
+</tr>
+<tr>
+<td>10</td>
+<td>11</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>0</td>
+<td>770</td>
+</tr>
+<tr>
+<td>11</td>
+<td>13</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>0</td>
+<td>910</td>
+</tr>
+<tr>
+<td>12</td>
+<td>17</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>0</td>
+<td>170</td>
+</tr>
+<tr>
+<td>13</td>
+<td>13</td>
+<td>2</td>
+<td>1</td>
+<td>0</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>0</td>
+<td>156</td>
+</tr>
+<tr>
+<td>14</td>
+<td>11</td>
+<td>2</td>
+<td>1</td>
+<td>0</td>
+<td>&ndash;</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>0</td>
+<td>132</td>
+</tr>
+<tr>
+<td>15</td>
+<td>29</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>1</td>
+<td>116</td>
+</tr>
+<tr>
+<td>16</td>
+<td>11</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>0</td>
+<td>308</td>
+</tr>
+<tr>
+<td>17</td>
+<td>13</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>0</td>
+<td>364</td>
+</tr>
+<tr>
+<td>18</td>
+<td>17</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>0</td>
+<td>68</td>
+</tr>
+<tr>
+<td>19</td>
+<td>1</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>0</td>
+<td>4</td>
+</tr>
+<tr>
+<td>20</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>0</td>
+<td>30</td>
+</tr>
+<tr>
+<td>21</td>
+<td>1</td>
+<td>0</td>
+<td>2</td>
+<td>2</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>0</td>
+<td>225</td>
+</tr>
+<tr>
+<td>22</td>
+<td>11</td>
+<td>0</td>
+<td>2</td>
+<td>3</td>
+<td>&ndash;</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>0</td>
+<td>12375</td>
+</tr>
+<tr>
+<td>23</td>
+<td>29</td>
+<td>0</td>
+<td>1</td>
+<td>3</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>1</td>
+<td>10875</td>
+</tr>
+<tr>
+<td>24</td>
+<td>11</td>
+<td>0</td>
+<td>1</td>
+<td>3</td>
+<td>1</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>0</td>
+<td>28875</td>
+</tr>
+<tr>
+<td>25</td>
+<td>29</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>1</td>
+<td>25375</td>
+</tr>
+<tr>
+<td>26</td>
+<td>11</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>0</td>
+<td>67375</td>
+</tr>
+<tr>
+<td>27</td>
+<td>13</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>2</td>
+<td>&ndash;</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>0</td>
+<td>79625</td>
+</tr>
+<tr>
+<td>28</td>
+<td>17</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>0</td>
+<td>14875</td>
+</tr>
+<tr>
+<td>29</td>
+<td>13</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>0</td>
+<td>13650</td>
+</tr>
+<tr>
+<td>30</td>
+<td>17</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>0</td>
+<td>2550</td>
+</tr>
+<tr>
+<td>31</td>
+<td>13</td>
+<td>2</td>
+<td>2</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>0</td>
+<td>2340</td>
+</tr>
+<tr>
+<td>32</td>
+<td>11</td>
+<td>2</td>
+<td>2</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>0</td>
+<td>1980</td>
+</tr>
+<tr>
+<td>33</td>
+<td>29</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>1</td>
+<td>1740</td>
+</tr>
+<tr>
+<td>34</td>
+<td>11</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>0</td>
+<td>4620</td>
+</tr>
+<tr>
+<td>35</td>
+<td>29</td>
+<td>2</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>1</td>
+<td>4060</td>
+</tr>
+<tr>
+<td>36</td>
+<td>11</td>
+<td>2</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>0</td>
+<td>10780</td>
+</tr>
+<tr>
+<td>37</td>
+<td>13</td>
+<td>2</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>&ndash;</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>0</td>
+<td>12740</td>
+</tr>
+<tr>
+<td>38</td>
+<td>17</td>
+<td>2</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>0</td>
+<td>2380</td>
+</tr>
+<tr>
+<td>39</td>
+<td>13</td>
+<td>3</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>0</td>
+<td>2184</td>
+</tr>
+<tr>
+<td>40</td>
+<td>17</td>
+<td>3</td>
+<td>1</td>
+<td>0</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>0</td>
+<td>408</td>
+</tr>
+<tr>
+<td>41</td>
+<td>19</td>
+<td>3</td>
+<td>0</td>
+<td>0</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>0</td>
+<td>152</td>
+</tr>
+<tr>
+<td>42</td>
+<td>23</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>1</td>
+<td>0</td>
+<td>92</td>
+</tr>
+<tr>
+<td>43</td>
+<td>19</td>
+<td>2</td>
+<td>0</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>0</td>
+<td>380</td>
+</tr>
+<tr>
+<td>44</td>
+<td>23</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>1</td>
+<td>0</td>
+<td>230</td>
+</tr>
+<tr>
+<td>45</td>
+<td>19</td>
+<td>1</td>
+<td>0</td>
+<td>2</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>0</td>
+<td>950</td>
+</tr>
+<tr>
+<td>46</td>
+<td>23</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>1</td>
+<td>0</td>
+<td>575</td>
+</tr>
+<tr>
+<td>47</td>
+<td>19</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>0</td>
+<td>2375</td>
+</tr>
+<tr>
+<td>48</td>
+<td>11</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>1</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>0</td>
+<td>9625</td>
+</tr>
+<tr>
+<td>49</td>
+<td>13</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>0</td>
+<td>11375</td>
+</tr>
+<tr>
+<td>50</td>
+<td>17</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>1</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>0</td>
+<td>2125</td>
+</tr>
+</tbody>
+</table>
 <p>There are some optimizations that can be made. These are easily discernible from the
 FSM. (Hint: <code>S11</code> and <code>S29</code> looks like a good place to start.)</p>
 
@@ -1020,9 +1789,6 @@ FSM. (Hint: <code>S11</code> and <code>S29</code> looks like a good place to sta
 
 </li><li><span>Aug 20, 2024</span> &raquo;
 <a href="/posts/project-euler-num-5/">Project Euler - Number 5</a>
-
-</li><li><span>Aug 10, 2024</span> &raquo;
-<a href="/posts/this-is-now/">The C Programming Language</a>
 
 </li></ul>
 </div>

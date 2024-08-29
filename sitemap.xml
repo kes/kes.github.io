@@ -2,9 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/tags/c/</loc>
-    <lastmod>2024-08-28T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/tags/euler/</loc>
     <lastmod>2024-08-28T00:00:00+00:00</lastmod>
   </url><url>
@@ -34,6 +31,9 @@
   </url><url>
     <loc>http://localhost:1313/posts/project-euler-num-5/</loc>
     <lastmod>2024-08-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/c/</loc>
+    <lastmod>2024-08-10T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/programming/</loc>
     <lastmod>2024-08-10T00:00:00+00:00</lastmod>
