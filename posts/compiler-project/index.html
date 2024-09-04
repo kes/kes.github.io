@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en-us"
+      dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <link rel="stylesheet" href="/common.css" type="text/css" media="screen, projection">
+  <link rel="stylesheet" href="/style.css" type="text/css" media="screen, projection">
+  <title>Karl Stump's Blog</title>
+
+
+</head>
+<body>
+  <div class="site">
+  <header>
+    <div class="title">
+  <a href="/">Karl Stump </a>
+  <a class="extra" href="/">home</a>
+</header>
+
+  </header>
+  <main>
+    
+<div id="post">Compiler Project<p class="meta"> Sep 3, 2024</p>
+  <p>I&rsquo;ve started writing a C compiler, and I&rsquo;m using Nora Sandler&rsquo;s book, Writing a C
+Compiler.<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> Recommended. Created github repository for the project:
+<a href="https://github.com/kes/c-compiler">https://github.com/kes/c-compiler</a>.</p>
+<p>Back in the day, I was taught compilers using the &ldquo;Dragon book.&rdquo; (Compilers<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>)</p>
+<p>After a brief examination of Sandler&rsquo;s book, what I like is that while it&rsquo;s a &ldquo;detailed guide,&rdquo; and
+(so far at least) with plenty of technical insight, nevertheless the reader is left to his own devices.</p>
+<p>For example, Sandler tells the reader to use whatever language he prefers for the
+implementation. Granted, she offers advice — some languages are better than others after all —
+nevertheless, the choice is the reader&rsquo;s. Second, when it comes to writing the code she again offers
+advice, and in some cases offers pseudocode. But the burden is the reader&rsquo;s to actually implement,
+to make choices on data representation, to decide on program organization, and to just solve
+problems along the way.</p>
+<p>This is really a great approach. In some books in a similar vein, the program code is given,
+data-structures given, program organization given, and in the extreme, the reader becomes a
+typist. Quite to the contrary, with Sandler&rsquo;s approach, the reader must make choices, even choices
+with limited information. As a result the reader must be willing to make progress, to move forward,
+under a &ldquo;cloud of unknowing,&rdquo; and be willing to back-track when greater understanding comes.</p>
+<p>The result is pretty much exactly what it feels like to be a professional software developer.</p>
+<p>Okay, enough talk, let&rsquo;s do it!</p>
+<h2 id="chapter-1-a-minimal-compiler">Chapter 1: A minimal compiler</h2>
+<p>The first goal is to write a minimal compiler. Generally, there are three steps.</p>
+<ol>
+<li>Preprocess the source code</li>
+<li>Compile the source code into assembler</li>
+<li>Assemble and link into an executable.</li>
+</ol>
+<p>For this chapter, the compiler will have four passes. (1) It will break the source code up into <em>tokens</em>. Then
+(2) the tokens will be converted into an abstract syntax tree, otherwise known as an AST. Then, (3) the
+AST will be converted into assembly language (still in a data structure). Finally, (4) the actual assembly
+code will be written to a file for processing by an assembler and linker.</p>
+<p>One of the things that I like most about Sandler&rsquo;s book is that there&rsquo;s also available a test
+suite. So, as various milestones are completed, these can be tested.</p>
+<p>So, the first step is to write a lexer.</p>
+<h2 id="language-project-structure-etc">Language, Project Structure, etc</h2>
+<p>So, actually getting started I&rsquo;ve had to make some choices.</p>
+<p>First, I&rsquo;m definitely using C++.</p>
+<p>Second, the directory lay out is going to be something like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>.
+</span></span><span style="display:flex;"><span>├── build
+</span></span><span style="display:flex;"><span>├── CMakeLists.txt
+</span></span><span style="display:flex;"><span>├── external
+</span></span><span style="display:flex;"><span>├── src
+</span></span><span style="display:flex;"><span>└── tests</span></span></code></pre></div>
+<p>You can see the CMakeLists.txt file, so, third I&rsquo;m using CMake for build and test.  I&rsquo;m using CTest
+and Google Test, and of course, Sandler&rsquo;s own tests.</p>
+<p>What else? Oh, editors. Sigh. For editing, I&rsquo;m splitting time between emacs, and VS Code. The reason
+is that I don&rsquo;t have LSP (Language Server Protocol) setup on emacs – well, that&rsquo;s not true. I don&rsquo;t
+have it completely setup. It starts the LSP server, connects, and gives advice, intellisense —
+which is all great, but it doesn&rsquo;t work and look like I want. I declared emacs init file bankruptcy
+a while back and have been slowly building my configuration, and the last thing I want to do is just
+dump stuff into my .init. The fact is that I&rsquo;ve got too much invested into emacs to just forgo it
+altogether. I create my blog posts (like this one) using emacs and ox-hugo, I use org-roam daily,
+and I like programming in Lisp. So, emacs will be there. But VS Code just pretty much works out of
+the box, very little configuration, and C++ and CMake intelli-sense just works, and git too. So,
+wanting to focus on the compiler project, focusing on C++, and CMake, and Google test, I decided not
+spend time focusing on my editor. Alright, let&rsquo;s not get hung up on the editor.</p>
+<h2 id="lexer">Lexer</h2>
+<p>The first task is to create a lexer that creates tokens from a simple C program. Here&rsquo;s the simple C program:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>){
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>And the lexer that I&rsquo;ve written outputs the following.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>KEYWORD:INT
+</span></span><span style="display:flex;"><span>IDENTIFIER:main
+</span></span><span style="display:flex;"><span>OPENPAREN
+</span></span><span style="display:flex;"><span>KEYWORD:VOID
+</span></span><span style="display:flex;"><span>CLOSEPAREN
+</span></span><span style="display:flex;"><span>OPENBRACE
+</span></span><span style="display:flex;"><span>KEYWORD:RETURN
+</span></span><span style="display:flex;"><span>CONSTANT:2
+</span></span><span style="display:flex;"><span>SEMICOLON
+</span></span><span style="display:flex;"><span>CLOSEBRACE</span></span></code></pre></div>
+<p>The idea of the lexer is to search from the start of the string for a token. Tokens are identified using
+regular expressions. I&rsquo;ve got ten (or so)  defined, and here are three of them, for an example.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>regex identifierRegex(&#34;^[a-zA-Z_]\\w*\\b&#34;);
+</span></span><span style="display:flex;"><span>regex constantRegex(&#34;^[0-9]+\\b&#34;);
+</span></span><span style="display:flex;"><span>regex intKeywordRegex(&#34;^int\\b&#34;);</span></span></code></pre></div>
+<p>So, here is the lexer testing the string against a regular expression. And if success, then a token is returned.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>regex_search(raw, m, voidKeywordRegex);
+</span></span><span style="display:flex;"><span>if (!m.empty()){
+</span></span><span style="display:flex;"><span>  t.returnCode = SUCCESS;
+</span></span><span style="display:flex;"><span>  t.name = &#34;KEYWORD:VOID&#34;;
+</span></span><span style="display:flex;"><span>  t.value = &#34;&#34;;
+</span></span><span style="display:flex;"><span>  t.remaining = m.suffix();
+</span></span><span style="display:flex;"><span>  return t;
+</span></span><span style="display:flex;"><span> }</span></span></code></pre></div>
+<p>I&rsquo;ve broken up the lexer into two essential functions. The first is the lexer. The lexer is the
+entry point for the compiler to get the tokens from the program string. The lexer&rsquo;s job is to call
+the tokenizer (which, actually, is the code seen above), and then to package up all the tokens and
+return them to the compiler. The tokenizer returns only one token at a time from the program
+string. So, the lexer keeps calling the tokenizer with smaller and smaller strings.</p>
+<h2 id="running-sandler-s-test">Running Sandler&rsquo;s Test</h2>
+<p>On the first run of Sandler&rsquo;s tests for the lexer, I scored 20/24 – not too bad.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Ran 24 tests in 0.100s
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>FAILED (failures=4)</span></span></code></pre></div>
+<p>I was missing handling comments in the tokenizer – so I added two regular expressions for comments (two types of comments).</p>
+<p>You might think it difficult to handle multi-line comments with the tokenizer returning only one token at a time. But
+no that&rsquo;s not the case. The tokenizer gets the full program string. Finding a multi-line comment becomes is quite easy. In
+fact the tokenizer returns a comment token. But the lexer throws away comment tokens.</p>
+<p>Rerunning tests and 100% pass.</p>
+<p>Created github repository: <a href="https://github.com/kes/c-compiler">https://github.com/kes/c-compiler</a> and have pushed the lexer code.</p>
+<p>Fun!</p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>Nora Sandler, <i>Writing a C Compiler: Build a Real Programming Language from Scratch</i> (San Francisco, CA: No Starch Press, 2024).&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>Alfred V. Aho et al., eds., <i>Compilers: Principles, Techniques, &amp; Tools</i>, 2. ed., Pearson internat. ed (Boston Munich: Pearson Addison-Wesley, 2007).&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+</div>
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts"></ul>
+</div>
+  </main>
+  <footer>
+    <div class="footer">
+  <div class="contact">
+    <pr><br><a href="https://www.linkedin.com/in/karl-s-9a705398/">linkedIn</a>
+      <br>
+      <pr><a href="https://github.com/kes">github.com</a>
+
+  </div>
+</div>
+
+  </footer>
+  </div>
+</body>
+</html>
+

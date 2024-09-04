@@ -251,7 +251,10 @@ it is!</p>
 <blockquote>
 <p><code>add_library(&lt;name&gt; [&lt;type&gt;] [EXCLUDE_FROM_ALL] &lt;sources&gt;...)</code></p>
 </blockquote>
-<p>Of course, nothing is easy. What should the name be after all? The documents are helpful:</p>
+<p>First off, notice that <code>sources</code> is plural. So, we can add all the source file that make up this
+library. At the moment we have two files that will go into this library. Nothing difficult there,
+at least so far. Perhaps a little later this might be changed. (Hint, we will change it.)</p>
+<p>Of course, nothing is totally easy. What should the <code>name</code> be after all? The documents are helpful:</p>
 <blockquote>
 <p>The &lt;name&gt; corresponds to the logical target name and must be globally unique within a project. The
 actual file name of the library built is constructed based on conventions of the native platform
@@ -324,6 +327,68 @@ command — and we note the difference between, <code>&quot;${PROJECT_BINARY_DIR
 </ol>
 <p>And that&rsquo;s it!</p>
 <p>Very cool!</p>
+<h3 id="adding-an-option">Adding an Option</h3>
+<p>Now, we want to add an option to allow developers to choose to use a custom implementation, or the
+standard one. Remember that I said we might want to change the sources in the <code>add_library</code> line? It&rsquo;s
+coming up. But first we need to attend to other matters.</p>
+<p>Now, In the tutorial, the difference we have is between the cusotm square root and the standar
+one. The tutorial comments: &ldquo;While for the tutorial there really isn&rsquo;t any need to do so, for larger
+projects this is a common occurrence.&rdquo; Yes, and CMake provides a handy way to make this happen.</p>
+<p>I&rsquo;m going to run through this pretty quickly, since there&rsquo;s always the tutorial itself that
+can be referenced.</p>
+<p>The idea is that in the library, or that is, in the CMakeLists.txt for the library, we want to
+define an <code>option</code> that we can turn on or turn off. Then in the source code, a developer can
+check for that option and the compiler will include whichever code branch. Pretty slick, and
+easy to do with CMake.</p>
+<p>So, to Step2/MathFunctions/CMakeLists.txt add an option command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>option(USE_MYMATH &#34;Use tutorial provided math implementation&#34; ON)</span></span></code></pre></div>
+<p>That&rsquo;s pretty self explanatory. But, of course, that&rsquo;s just the option itself. We have to get
+it onto the compile command line. Here&rsquo;s how, with a <code>target_compile_definitions</code> command with
+a =USE<sub>MYMATH</sub> block:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>if (USE_MYMATH)
+</span></span><span style="display:flex;"><span>  target_compile_definitions(MathFunctions PRIVATE &#34;USE_MYMATH&#34;)
+</span></span><span style="display:flex;"><span>endif()</span></span></code></pre></div>
+<p>What may not be understood is that when we compile, we can set the <code>-D</code> flag, which creates a symbol
+that can be used by the developer and the preprocessor. <code>-D name=definition</code> is how it&rsquo;s given in the
+GNU manual. See: <a href="https://gcc.gnu.org/onlinedocs/gcc/Preprocessor-Options.html">https://gcc.gnu.org/onlinedocs/gcc/Preprocessor-Options.html</a></p>
+<p>Now, this is available to the preprocessor, and in source you can write stuff like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cmath&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#ifdef USE_MYMATH
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#  include &#34;mysqrt.h&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#endif
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># code ... code ... code
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#ifdef USE_MYMATH
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">return</span> detail<span style="color:#f92672">::</span><span style="color:#a6e22e">mysqrt</span>(x);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#else
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">return</span> std<span style="color:#f92672">::</span><span style="color:#a6e22e">sqrt</span>(x);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#endif
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># code ... code ... code</span></span></span></code></pre></div>
+<p>It&rsquo;s as useful a technique as any for deveopment and debugging. For example, there might be a feature
+that you want to start getting into the production code base but you don&rsquo;t want to be available generally.
+This is one way to navigate that process.</p>
+<p>And yet, there&rsquo;s a bit of a problem. Suppose you&rsquo;re not using <code>MYMATH</code> for some build. In the current
+situation while the code will not be executed, it will still be compiled in. Why? Because it&rsquo;s in
+this line:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>add_library(MathFunctions MathFunctions.cxx mysqrt.cxx)</span></span></code></pre></div>
+<p>Yup, it seems like we just added it there and now we want to remove it at least under certain
+conditions. But how to handle this?</p>
+<p>We&rsquo;re going to create an additional library to control the compilation and inclusion of mysqrt.cxx,
+and add it as a link library. So, within the MYMATH block:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>add_library(SqrtLibrary STATIC
+</span></span><span style="display:flex;"><span>             mysqrt.cxx
+</span></span><span style="display:flex;"><span>             )
+</span></span><span style="display:flex;"><span> target_link_libraries(MathFunctions PRIVATE SqrtLibrary)</span></span></code></pre></div>
+<p>And we remove mysqrt.cxx from the add libraries command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>add_library(MathFunctions MathFunctions.cxx)</span></span></code></pre></div>
+<p>Be clear about the difference between <code>add library</code> which defines a library and its contents, versus
+<code>target_link_libraries</code> which specifies linkage of already existing libraries.</p>
+<p>So, with these changes, who is building can have whatever verson is wanted.</p>
+<p>But I have found that changing the option in the CMakeListings.txt file doesn&rsquo;t change
+things. Not sure why. But I can delete the cache, <code>build/CmakeFiles/cmake.check_cache</code>
+and then build, and it works as advertised.</p>
 
 </div>
 <div id="related">
