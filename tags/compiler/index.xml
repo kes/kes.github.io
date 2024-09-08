@@ -6,8 +6,15 @@
     <description>Recent content in Compiler on My New Hugo Site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 03 Sep 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 07 Sep 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/compiler/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Setting up g&#43;&#43;</title>
+      <link>http://localhost:1313/posts/setting-up-g&#43;&#43;/</link>
+      <pubDate>Sat, 07 Sep 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/setting-up-g&#43;&#43;/</guid>
+      <description>I want to use std::format in C++. If I just compile with g++ without any command line options, I get an error – format is not found. I&amp;rsquo;m using GCC version 13, and C++20 is supported. What gives? (GCC supports different C++ standards, for details see: https://gcc.gnu.org/projects/cxx-status.html.)&#xA;(Oh, and don&amp;rsquo;t be confused by the GCC version and the C++ standard – these are different things. You can use the GCC version 13 compiling to C++ Standard 17 (for example; or 11, or 20, or…).</description>
+    </item>
     <item>
       <title>Compiler Project</title>
       <link>http://localhost:1313/posts/compiler-project/</link>

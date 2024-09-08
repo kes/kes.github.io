@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en-us"
+      dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <link rel="stylesheet" href="/common.css" type="text/css" media="screen, projection">
+  <link rel="stylesheet" href="/style.css" type="text/css" media="screen, projection">
+  <title>Karl Stump's Blog</title>
+
+
+</head>
+<body>
+  <div class="site">
+  <header>
+    <div class="title">
+  <a href="/">Karl Stump </a>
+  <a class="extra" href="/">home</a>
+</header>
+
+  </header>
+  <main>
+    
+<div id="post">Setting up g&#43;&#43;<p class="meta"> Sep 7, 2024</p>
+  <p>I want to use <code>std::format</code> in C++. If I just compile with g++ without any command line options, I get
+an error – format is not found. I&rsquo;m using GCC version 13, and C++20 is supported. What gives? (GCC
+supports different C++ standards, for details see: <a href="https://gcc.gnu.org/projects/cxx-status.html">https://gcc.gnu.org/projects/cxx-status.html</a>.)</p>
+<p>(Oh, and don&rsquo;t be confused by the GCC version and the C++ standard – these are different
+things. You can use the GCC version 13 compiling to C++ Standard 17 (for example; or 11, or 20,
+or…). So, if someone asks, &ldquo;What version of the compiler are you using,&rdquo; it&rsquo;s conceivable that
+they might be asking what version of GCC, or what Standard of C++.)</p>
+<p>By default GCC 13 compiles C++ source code according to the C++17 standard (C++17 mode is the default since
+GCC 11) . And C++17 does not have support for <code>std::format</code>.</p>
+<p>Unfortunately, the C++17 standard is set at compile time – that is, the compiling of the GCC
+compiler! That makes this standard the  builtin option.</p>
+<p>So, if you want to use C++11 or C++20?</p>
+<p>The typical way to switch among them is by using the <code>-std</code> flag, something like:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>g++ -std=c++11 foo.cpp -o foo</span></span></code></pre></div>
+<p>So, of course, I can just use <code>-std=c+20</code> and it&rsquo;s all good. (Of course, GCC takes lots of options. See: <a href="https://gcc.gnu.org/onlinedocs/gcc/Option-Summary.html">https://gcc.gnu.org/onlinedocs/gcc/Option-Summary.html</a>)</p>
+<p>But what if you want the default to be C++11? Or, C++20? Is there nothing to be done? Do you just have to use the <code>-std</code> option?</p>
+<p>Well, there might be a few ways to overcome this, and depending on what you&rsquo;re trying to do, some
+will be better than others. But it turns our there&rsquo;s a way to control this using the GCC -<code>specs</code>
+option. Spec <a href="https://gcc.gnu.org/onlinedocs/gcc-13.3.0/gcc/Spec-Files.html">https://gcc.gnu.org/onlinedocs/gcc-13.3.0/gcc/Spec-Files.html</a></p>
+<blockquote>
+<p>The spec strings built into GCC can be overridden by using the -specs= command-line switch to specify a spec file.</p>
+</blockquote>
+<p>So, this is definitely one option. And it sounds pretty neat. So, we need a spec file, and then we
+just tell GCC to use it. Cool.</p>
+<p>Might be good to get like a starter spec file, but how?</p>
+<p>Turns out it&rsquo;s not that hard!</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>g++ -dumpspecs</span></span></code></pre></div>
+<p>Okay how do we we set the <code>-std</code> option in this file?</p>
+<p>Well, let&rsquo;s grep.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>g++ -dumpspecs | grep -n cc1plus</span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>43:*cc1plus:
+</span></span></code></pre></div><p>That&rsquo;s the line where we need to make our modification, so redirect to a file</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>g++ -dumpspecs &gt; specs</span></span></code></pre></div>
+<p>– now, after the <code>*cc1plus:</code> line you can specify the standard, so it will look like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>*cc1plus:
+</span></span><span style="display:flex;"><span>%{!std*:-std=c++20}</span></span></code></pre></div>
+<p>Make sure you don&rsquo;t have any extra blank lines. In my first go at this, I had an extra blank line
+after the <code>-std</code> line, and g++ complained.</p>
+<p>Once you&rsquo;ve got it set, you can do this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>g++ -specs=./&lt;myspecs file&gt; foo.cpp -o foo</span></span></code></pre></div>
+<p>And you&rsquo;re compiling with a the C++20 standard without having to put any switches on the command
+line. Very cool. Play around with this and prove it to yourself. But, yes, it works.</p>
+<p>But wait. This gets us nowhere – we may as well just specify <code>-std</code>.</p>
+<p>If only we could put the specs file somwhere g++ would look for it!</p>
+<p>Turns out, GCC does look for a spec file in a few places.</p>
+<p>Where?</p>
+<p>To find out, do this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>strace g++ 2&gt;&amp;<span style="color:#ae81ff">1</span> | grep specs</span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>access(&#34;/usr/lib/gcc/x86_64-linux-gnu/13/specs&#34;, R_OK) = -1 ENOENT (No such file or directory)
+</span></span><span style="display:flex;"><span>access(&#34;/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/lib/x86_64-linux-gnu/13/specs&#34;, R_OK) = -1 ENOENT (No such file or directory)
+</span></span><span style="display:flex;"><span>access(&#34;/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/lib/specs&#34;, R_OK) = -1 ENOENT (No such file or directory)
+</span></span><span style="display:flex;"><span>access(&#34;/usr/lib/gcc/x86_64-linux-gnu/specs&#34;, R_OK) = -1 ENOENT (No such file or directory)
+</span></span></code></pre></div><p>And we see that GCC looks in a couple of places for a specs file. Copy your specs file to your preferred location.</p>
+<p>And then you&rsquo;ll be using your preferred C++ standard by default.</p>
+<p>Before setting the spec file:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>g++ foo.cpp</span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>foo.cpp:7:12: error: ‘format’ has not been declared in ‘std’
+</span></span><span style="display:flex;"><span>    7 | using std::format;
+</span></span><span style="display:flex;"><span>      |            ^~~~~~
+</span></span><span style="display:flex;"><span>foo.cpp: In function ‘int main()’:
+</span></span><span style="display:flex;"><span>foo.cpp:92:13: error: ‘format’ was not declared in this scope
+</span></span><span style="display:flex;"><span>   92 |     cout &lt;&lt; format(&#34;a is: {} = {}\n&#34;, &#34;hello&#34;, &#34;world&#34;);
+</span></span><span style="display:flex;"><span>      |             ^~~~~~
+</span></span></code></pre></div><p>And after setting the spec file, it just works, and with no command line options! (Look, ma! No hands!)</p>
+<p>Excellent!</p>
+<p>I was inspired to pursue this by this:  <a href="https://stackoverflow.com/questions/41648978/change-default-c-standard-in-g">https://stackoverflow.com/questions/41648978/change-default-c-standard-in-g</a></p>
+
+</div>
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts"><li><span>Sep 3, 2024</span> &raquo;
+<a href="/posts/compiler-project/">Compiler Project</a>
+
+</li></ul>
+</div>
+  </main>
+  <footer>
+    <div class="footer">
+  <div class="contact">
+    <pr><br><a href="https://www.linkedin.com/in/karl-s-9a705398/">linkedIn</a>
+      <br>
+      <pr><a href="https://github.com/kes">github.com</a>
+
+  </div>
+</div>
+
+  </footer>
+  </div>
+</body>
+</html>
+
