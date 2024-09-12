@@ -37,8 +37,9 @@ compiler! That makes this standard the  builtin option.</p>
 <p>So, of course, I can just use <code>-std=c+20</code> and it&rsquo;s all good. (Of course, GCC takes lots of options. See: <a href="https://gcc.gnu.org/onlinedocs/gcc/Option-Summary.html">https://gcc.gnu.org/onlinedocs/gcc/Option-Summary.html</a>)</p>
 <p>But what if you want the default to be C++11? Or, C++20? Is there nothing to be done? Do you just have to use the <code>-std</code> option?</p>
 <p>Well, there might be a few ways to overcome this, and depending on what you&rsquo;re trying to do, some
-will be better than others. But it turns our there&rsquo;s a way to control this using the GCC -<code>specs</code>
-option. Spec <a href="https://gcc.gnu.org/onlinedocs/gcc-13.3.0/gcc/Spec-Files.html">https://gcc.gnu.org/onlinedocs/gcc-13.3.0/gcc/Spec-Files.html</a></p>
+will be better than others. (For example, in my use case at least, an alias is probably the best way
+of handling this.) But it turns our there&rsquo;s a way to control this using the GCC -<code>specs</code> option. Spec
+<a href="https://gcc.gnu.org/onlinedocs/gcc-13.3.0/gcc/Spec-Files.html">https://gcc.gnu.org/onlinedocs/gcc-13.3.0/gcc/Spec-Files.html</a></p>
 <blockquote>
 <p>The spec strings built into GCC can be overridden by using the -specs= command-line switch to specify a spec file.</p>
 </blockquote>
@@ -62,7 +63,8 @@ after the <code>-std</code> line, and g++ complained.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>g++ -specs=./&lt;myspecs file&gt; foo.cpp -o foo</span></span></code></pre></div>
 <p>And you&rsquo;re compiling with a the C++20 standard without having to put any switches on the command
 line. Very cool. Play around with this and prove it to yourself. But, yes, it works.</p>
-<p>But wait. This gets us nowhere – we may as well just specify <code>-std</code>.</p>
+<p>But wait.</p>
+<p>This gets us nowhere – we may as well just specify <code>-std</code>.</p>
 <p>If only we could put the specs file somwhere g++ would look for it!</p>
 <p>Turns out, GCC does look for a spec file in a few places.</p>
 <p>Where?</p>
@@ -90,7 +92,7 @@ line. Very cool. Play around with this and prove it to yourself. But, yes, it wo
 </div>
 <div id="related">
   <h2>Related Posts</h2>
-  <ul class="posts"><li><span>Sep 3, 2024</span> &raquo;
+  <ul class="posts"><li><span>Sep 09 2024</span> &raquo;
 <a href="/posts/compiler-project/">Compiler Project</a>
 
 </li></ul>

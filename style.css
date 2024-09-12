@@ -1,6 +1,6 @@
 /* post list */
 ul.posts {
-  list-style-type: none;
+  list-style-type:disc;
   margin-bottom: 2em;
 }
 
@@ -13,7 +13,9 @@ ul.posts span {
     font-family: Monaco, "Courier New", monospace;
     font-size: 80%;
 }
-
+div #post ol {
+  padding:30px;
+}
 
 blockquote {
 

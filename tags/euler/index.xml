@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Euler on My New Hugo Site</title>
+    <title>Euler on Karl Stump</title>
     <link>http://localhost:1313/tags/euler/</link>
-    <description>Recent content in Euler on My New Hugo Site</description>
+    <description>Recent content in Euler on Karl Stump</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 28 Aug 2024 00:00:00 +0000</lastBuildDate>
