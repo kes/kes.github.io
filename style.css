@@ -1,6 +1,6 @@
 /* post list */
 ul.posts {
-  list-style-type:disc;
+  list-style-type:none;
   margin-bottom: 2em;
 }
 
