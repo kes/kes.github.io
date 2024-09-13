@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en-us"
+      dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <link rel="stylesheet" href="/common.css" type="text/css" media="screen, projection">
+  <link rel="stylesheet" href="/style.css" type="text/css" media="screen, projection">
+  <title>Karl Stump's Blog</title>
+
+
+</head>
+<body>
+  <div class="site">
+  <header>
+    <div class="title">
+  <a href="/">Karl Stump </a>
+  <a class="extra" href="/">home</a>
+</header>
+
+  </header>
+  <main>
+    
+<div id="post">Java: Counting non-Duplicate Items<p class="meta"> Sep 12, 2024</p>
+  <p>This problem came up at <a href="https://www.codewars.com/kata/635fc0497dadea0030cb7936">codewars.com</a>.</p>
+<p>Given the goal to count items in a list, and with the caveat that some of the items will be
+duplicated, and these additional duplicates are not to be counted. So, a count of unique items is
+what is wanted.</p>
+<p>Such problems always make me think of a hash table, or an &ldquo;associative array.&rdquo;</p>
+<p>But there are more details: the items to count are in an array, and the items themselves
+are also an array – so a two dimensional array, something like:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>[[1,2,3,4], ...]
+</span></span></code></pre></div><p>To be intrepreted as:</p>
+<p><img src="/ltximg/whatisalambda_d1e5692a115d7e2848cbdb27a0786fa743b5fdea.png" alt="\(\LARGE\begin{pmatrix}
+1 &amp;amp; 2 \\
+3 &amp;amp; 4
+\end{pmatrix}
+\)" /></p>
+<p>So, then the question becomes, in what way are matrices to be regarded as the same?</p>
+<p>Matrices are to be regarded as the same, if they match through any &ldquo;rotations.&rdquo;</p>
+<p>What&rsquo;s a rotation?</p>
+<p>If we consider that this matrix is at 0 degrees:</p>
+<p><img src="/ltximg/whatisalambda_5cad1313cdd8087f556b46806908dbdf2490ee6e.png" alt="\(\LARGE\begin{pmatrix}
+1 &amp;amp; 2 \\
+3 &amp;amp; 4
+\end{pmatrix}
+\)" /></p>
+<p>Then, rotated 90 degress (clockwise) would be:</p>
+<p><img src="/ltximg/whatisalambda_d126427ad023c839a760bfe1c92da76c9026347a.png" alt="\(
+\LARGE\begin{pmatrix}
+3 &amp;amp; 1 \\
+4 &amp;amp; 2
+\end{pmatrix}
+\)" /></p>
+<p>And, rotated 90 more degrees (180 degrees in total) would be:</p>
+<p><img src="/ltximg/whatisalambda_6eca06b3f1d714024f610b0696f467c760039cd8.png" alt="\(
+\LARGE\begin{pmatrix}
+4 &amp;amp; 3 \\
+2 &amp;amp; 1
+\end{pmatrix}
+\)" /></p>
+<p>And, again rotated 90 more degrees (270 degrees in total) would be:</p>
+<p><img src="/ltximg/whatisalambda_33c366941654885450c502307deec958524de0de.png" alt="\(
+\LARGE\begin{pmatrix}
+2 &amp;amp; 4 \\
+1 &amp;amp; 3
+\end{pmatrix}
+\)" /></p>
+<p>All of these matrices are to be regarded as the same, and counted only once.</p>
+<h2 id="rotation">Rotation</h2>
+<p>My first thought was that I needed to actually rotate an array, moving values around. But a moments reflection
+disabuses one of that notion. So, I came up with four groups of comparisons, to determine if two
+arrays were the same.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">same</span>(<span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span> <span style="color:#f92672">[]</span>m1, <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> m2){
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (( <span style="color:#75715e">// 0 degrees</span>
+</span></span><span style="display:flex;"><span>          m1<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> m2<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> m1<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> m2<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span>
+</span></span><span style="display:flex;"><span>          m1<span style="color:#f92672">[</span>2<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> m2<span style="color:#f92672">[</span>2<span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> m1<span style="color:#f92672">[</span>3<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> m2<span style="color:#f92672">[</span>3<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>          ) <span style="color:#f92672">||</span>
+</span></span><span style="display:flex;"><span>        ( <span style="color:#75715e">// 90 degrees</span>
+</span></span><span style="display:flex;"><span>          m1<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> m2<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> m1<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> m2<span style="color:#f92672">[</span>3<span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span>
+</span></span><span style="display:flex;"><span>          m1<span style="color:#f92672">[</span>2<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> m2<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> m1<span style="color:#f92672">[</span>3<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> m2<span style="color:#f92672">[</span>2<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>          ) <span style="color:#f92672">||</span>
+</span></span><span style="display:flex;"><span>        ( <span style="color:#75715e">// 180 degrees</span>
+</span></span><span style="display:flex;"><span>          m1<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> m2<span style="color:#f92672">[</span>3<span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> m1<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> m2<span style="color:#f92672">[</span>2<span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span>
+</span></span><span style="display:flex;"><span>          m1<span style="color:#f92672">[</span>2<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> m2<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> m1<span style="color:#f92672">[</span>3<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> m2<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>          ) <span style="color:#f92672">||</span>
+</span></span><span style="display:flex;"><span>        ( <span style="color:#75715e">// 270 degrees</span>
+</span></span><span style="display:flex;"><span>          m1<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> m2<span style="color:#f92672">[</span>2<span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> m1<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> m2<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span>
+</span></span><span style="display:flex;"><span>          m1<span style="color:#f92672">[</span>2<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> m2<span style="color:#f92672">[</span>3<span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> m1<span style="color:#f92672">[</span>3<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> m2<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>          ))
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>        }<span style="color:#66d9ef">else</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>That seems to work quite well.</p>
+<h2 id="counting-non-duplicates">Counting non duplicates</h2>
+<p>Java provides us with a nice way to filter a stream. (Well, Java provides a nice way to stream an
+array and then filter it… It all gets down to LISt Processing, I suppose.) For the predicate of
+the filter the <code>same</code> method will do nicely. Having filtered the stream, it will be turned back
+into an array, and one with all those items deleted.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// let m be: int [][] passed into be counted</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> counter <span style="color:#f92672">=</span> 0;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span>( ; 0 <span style="color:#f92672">&lt;</span> m.<span style="color:#a6e22e">length</span> ;){
+</span></span><span style="display:flex;"><span>    counter<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> <span style="color:#f92672">[]</span> testThis <span style="color:#f92672">=</span> m<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span>;
+</span></span><span style="display:flex;"><span>    m <span style="color:#f92672">=</span> Arrays.<span style="color:#a6e22e">stream</span>(m)
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">filter</span>(s<span style="color:#f92672">-&gt;</span> <span style="color:#f92672">!</span>same(testThis,s))
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">toArray</span>(<span style="color:#66d9ef">int</span><span style="color:#f92672">[][]</span>::<span style="color:#66d9ef">new</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">return</span> counter;</span></span></code></pre></div>
+<p>Nice!</p>
+<p>In one pass not only do we count (that&rsquo;s just incrementing the counter), but we remove <strong>all</strong> the
+duplicates, including the current matrix (the <code>testThis</code> one), so none of them will cause any
+bother. And so, the array <code>m</code> will continue to grow smaller and smaller, until there&rsquo;s nothing in it.</p>
+<p>Initially, I was doing a loop with a control variable (your typical, <code>i</code> or <code>j)</code> but then it became
+clear that it was not needed. I decided to leave the <code>for</code> anyway, although a <code>while</code> might be
+preferable. The <code>for</code> with the first and third expressions omitted does focus one&rsquo;s attention.</p>
+<p>As we learned many years ago, the choice between <code>for</code> and <code>while</code> is arbitrary and a matter of personal
+preference.<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
+<p>That was fun!</p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>, Brian W. Kernighan and Dennis M. Ritchie, <i>The C Programming Language</i>, 2nd ed (Englewood Cliffs, N.J: Prentice Hall, 1988), 14, 60.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+</div>
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts"></ul>
+</div>
+  </main>
+  <footer>
+    <div class="footer">
+  <div class="contact">
+    <pr><br><a href="https://www.linkedin.com/in/karl-s-9a705398/">linkedIn</a>
+      <br>
+      <pr><a href="https://github.com/kes">github.com</a>
+
+  </div>
+</div>
+
+  </footer>
+  </div>
+</body>
+</html>
+
