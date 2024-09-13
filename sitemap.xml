@@ -2,6 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://localhost:1313/tags/java/</loc>
+    <lastmod>2024-09-12T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/posts/java-counting-non-duplicate-items/</loc>
     <lastmod>2024-09-12T00:00:00+00:00</lastmod>
   </url><url>
@@ -11,6 +14,9 @@
     <loc>http://localhost:1313/posts/</loc>
     <lastmod>2024-09-12T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/tags/</loc>
+    <lastmod>2024-09-12T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/tags/compiler/</loc>
     <lastmod>2024-09-07T00:00:00+00:00</lastmod>
   </url><url>
@@ -18,9 +24,6 @@
     <lastmod>2024-09-07T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/setting-up-g&#43;&#43;/</loc>
-    <lastmod>2024-09-07T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/</loc>
     <lastmod>2024-09-07T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/compiler-project/</loc>
@@ -73,9 +76,6 @@
   </url><url>
     <loc>http://localhost:1313/tags/org/</loc>
     <lastmod>2024-08-04T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/java/</loc>
-    <lastmod>2021-09-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/lambda/</loc>
     <lastmod>2021-09-14T00:00:00+00:00</lastmod>
