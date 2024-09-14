@@ -37,7 +37,7 @@ compiler! That makes this standard the  builtin option.</p>
 <p>So, of course, I can just use <code>-std=c+20</code> and it&rsquo;s all good. (Of course, GCC takes lots of options. See: <a href="https://gcc.gnu.org/onlinedocs/gcc/Option-Summary.html">https://gcc.gnu.org/onlinedocs/gcc/Option-Summary.html</a>)</p>
 <p>But what if you want the default to be C++11? Or, C++20? Is there nothing to be done? Do you just have to use the <code>-std</code> option?</p>
 <p>Well, there might be a few ways to overcome this, and depending on what you&rsquo;re trying to do, some
-will be better than others. (For example, in my use case at least, an alias is probably the best way
+will be better than others. (For example, in my use case at least, an alias is undoubtedly the best way
 of handling this.) But it turns our there&rsquo;s a way to control this using the GCC -<code>specs</code> option. Spec
 <a href="https://gcc.gnu.org/onlinedocs/gcc-13.3.0/gcc/Spec-Files.html">https://gcc.gnu.org/onlinedocs/gcc-13.3.0/gcc/Spec-Files.html</a></p>
 <blockquote>
@@ -88,6 +88,8 @@ line. Very cool. Play around with this and prove it to yourself. But, yes, it wo
 </span></span></code></pre></div><p>And after setting the spec file, it just works, and with no command line options! (Look, ma! No hands!)</p>
 <p>Excellent!</p>
 <p>I was inspired to pursue this by this:  <a href="https://stackoverflow.com/questions/41648978/change-default-c-standard-in-g">https://stackoverflow.com/questions/41648978/change-default-c-standard-in-g</a></p>
+<p>A great introduction to gcc is Brian Gough&rsquo;s tutorial. He is no longer updating but
+it is still a great read. He&rsquo;s put it on github, here: <a href="https://github.com/briangough/gccintro">https://github.com/briangough/gccintro</a></p>
 
 </div>
 <div id="related">
