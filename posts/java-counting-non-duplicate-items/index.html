@@ -212,7 +212,21 @@ that have the same maximum hash value are the duplicates.</p>
 </span></span><span style="display:flex;"><span>user	0m0.135s
 </span></span><span style="display:flex;"><span>sys	0m0.050s</span></span></code></pre></div>
 <p>The user row is what you want to look at. And that&rsquo;s a pretty significant difference.</p>
-<p>Okay, that&rsquo;s enough.</p>
+<p>UPDATE: I went ahead and implemented the hash approach in C. The main loop is:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> MSIZE; i<span style="color:#f92672">++</span>){
+</span></span><span style="display:flex;"><span>  hashValue <span style="color:#f92672">=</span> <span style="color:#a6e22e">calculateHash</span>(matrices[i]);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (hashStore[hashValue] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>){
+</span></span><span style="display:flex;"><span>    counter<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>    hashStore[hashValue] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span> }</span></span></code></pre></div>
+<p>and timing 25000 randomly generatated
+matrices yields:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>real	0m0.008s
+</span></span><span style="display:flex;"><span>user	0m0.008s
+</span></span><span style="display:flex;"><span>sys	0m0.001s</span></span></code></pre></div>
+<p>… and that&rsquo;s more than &ldquo;pretty significant.&rdquo; Wow!</p>
+<p>Okay, that&rsquo;s (really) enough.</p>
 <p>That was fun!</p>
 <div class="footnotes" role="doc-endnotes">
 <hr>
