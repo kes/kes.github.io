@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en-us"
+      dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <link rel="stylesheet" href="/common.css" type="text/css" media="screen, projection">
+  <link rel="stylesheet" href="/style.css" type="text/css" media="screen, projection">
+  <title>Karl Stump's Blog</title>
+
+
+</head>
+<body>
+  <div class="site">
+  <header>
+    <div class="title">
+  <a href="/">Karl Stump </a>
+  <a class="extra" href="/">home</a>
+</header>
+
+  </header>
+  <main>
+    
+<div id="post">Emacs Modules<p class="meta"> Nov 18, 2024</p>
+  <p>Emacs is implemented in elisp (most of it). Extending, modifying or customizing emacs is also done
+in elisp. (However, some of emacs is written in C.),</p>
+<p>As of Emacs 25 it is possible to extend emacs by writing modules in C.</p>
+<p>Let&rsquo;s look at a simple example using the notes from <a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/Module-Initialization.html">https://www.gnu.org/software/emacs/manual/html_node/elisp/Module-Initialization.html</a></p>
+<h2 id="start-the-module">Start the Module</h2>
+<p>A module <strong>must</strong> start with the following:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;emacs-module.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> plugin_is_GPL_compatible;</span></span></code></pre></div>
+<p>After that, it&rsquo;s pretty easy to create a test function. The steps are as follows:</p>
+<ol>
+<li>Define the function. In our case we&rsquo;ll just be returning an integer.</li>
+<li>Next, you need to provide a function called int <code>emacs_module_init(struct emacs_runtime *runtime)</code>
+– more about this below.</li>
+<li>Finally, you&rsquo;ll need some way to &ldquo;wire up&rdquo; your function so that emacs can get to it. This is done
+by &ldquo;binding,&rdquo; the function to a symbol, and &ldquo;providing&rdquo; the module.</li>
+</ol>
+<h2 id="initialization-function">Initialization Function</h2>
+<p>An initialization function is needed. Emacs will call this function when emacs loads the module (i.e., when <code>(require 'module-name)</code> is executed). If the initialization does not exist, emacs generates an error. Note, this function should return 0 if all goes well, and non-zero if there&rsquo;s an error of some kind.</p>
+<p>Okay, so we need:</p>
+<p><code>Function: int emacs_module_init (struct emacs_runtime *runtime)</code></p>
+<p>By the way, there are any number of tests that can be run on initialization, for example if you wanted to check for the emacs version. See details from the link provided. For our purposes, we simply move on to initializing the function that we want to to call from elisp.</p>
+<p>The beginning code looks like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">emacs_module_init</span> (<span style="color:#66d9ef">struct</span> emacs_runtime <span style="color:#f92672">*</span>runtime){
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// You could put various checks and guards here .....
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// get the environment
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  emacs_env <span style="color:#f92672">*</span>env <span style="color:#f92672">=</span> runtime<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">get_environment</span> (runtime);
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// continues next section
+</span></span></span></code></pre></div>
+<p>That&rsquo;s the beginning — now we need to create the function pointer.</p>
+<h2 id="create-function-pointer">Create Function Pointer</h2>
+<p>Creating the function point is easy.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>emacs_value func <span style="color:#f92672">=</span> env<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">make_function</span> (env, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>                                       (<span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>) my_get_number,
+</span></span><span style="display:flex;"><span>                                       <span style="color:#e6db74">&#34;This function returens a number&#34;</span>, NULL);</span></span></code></pre></div>
+<h2 id="bind-and-provide">Bind and Provide</h2>
+<p>Now, we just bind and provide.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">/* bind */</span>
+</span></span><span style="display:flex;"><span>emacs_value symbol <span style="color:#f92672">=</span> env<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">intern</span> (env, <span style="color:#e6db74">&#34;Fmymod_test&#34;</span>);
+</span></span><span style="display:flex;"><span>emacs_value args[] <span style="color:#f92672">=</span> {symbol, func};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/* provide */</span>
+</span></span><span style="display:flex;"><span>env<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">funcall</span> (env, env<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">intern</span> (env, <span style="color:#e6db74">&#34;defalias&#34;</span>), <span style="color:#ae81ff">2</span>, args);</span></span></code></pre></div>
+<h2 id="the-entire-code">The Entire Code</h2>
+<p>As long as you keep the few steps in mind, the code is self-explanatory.</p>
+<ol>
+<li>Define the function you&rsquo;ll be calling from emacs</li>
+<li>Define your init function. In that function you will do the following:
+<ol>
+<li>Create a function pointer</li>
+<li>Bind the function pointer to a symbol</li>
+<li>Provide the module to emacs.</li>
+</ol>
+</li>
+</ol>
+<p>Here&rsquo;s the entire code:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;emacs-module.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;assert.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> plugin_is_GPL_compatible;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/* New emacs lisp function. All function exposed to Emacs must have this prototype. */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">static</span> emacs_value <span style="color:#a6e22e">my_get_number</span> (emacs_env <span style="color:#f92672">*</span>env, <span style="color:#66d9ef">int</span> nargs, emacs_value args[], <span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>data){
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">assert</span> (nargs <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// return a value
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">return</span> env<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">make_integer</span> (env, <span style="color:#ae81ff">9991</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/* helper function for binding */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">bind_symbol_to_func</span> (emacs_env <span style="color:#f92672">*</span>env, <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>func_name, emacs_value function){
+</span></span><span style="display:flex;"><span>  emacs_value fset <span style="color:#f92672">=</span> env<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">intern</span> (env, <span style="color:#e6db74">&#34;fset&#34;</span>);
+</span></span><span style="display:flex;"><span>  emacs_value symbol <span style="color:#f92672">=</span> env<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">intern</span> (env, func_name);
+</span></span><span style="display:flex;"><span>  emacs_value args[] <span style="color:#f92672">=</span> {symbol, function};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Lisp: *symbol ----&gt; C: function (which is: Fmymod_test)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  env<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">funcall</span>(env, fset, <span style="color:#ae81ff">2</span>, args);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/* helper function for providing */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">provide_module</span> (emacs_env <span style="color:#f92672">*</span>env, <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>module){
+</span></span><span style="display:flex;"><span>  emacs_value interned_module <span style="color:#f92672">=</span> env<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">intern</span> (env, module);
+</span></span><span style="display:flex;"><span>  emacs_value provide <span style="color:#f92672">=</span> env<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">intern</span> (env, <span style="color:#e6db74">&#34;provide&#34;</span>);
+</span></span><span style="display:flex;"><span>  emacs_value args[] <span style="color:#f92672">=</span> { interned_module };
+</span></span><span style="display:flex;"><span>  env<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">funcall</span> (env, provide, <span style="color:#ae81ff">1</span>, args);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/* initialize -- which creates the function, binds, and provides it. */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">emacs_module_init</span> (<span style="color:#66d9ef">struct</span> emacs_runtime <span style="color:#f92672">*</span>runtime){
+</span></span><span style="display:flex;"><span>  emacs_env <span style="color:#f92672">*</span>env <span style="color:#f92672">=</span> runtime<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">get_environment</span> (runtime);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  emacs_value func <span style="color:#f92672">=</span> env<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">make_function</span> (env, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>                                         (<span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>) my_get_number,
+</span></span><span style="display:flex;"><span>                                         <span style="color:#e6db74">&#34;This function returens a number&#34;</span>, NULL);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">bind_symbol_to_func</span>(env, <span style="color:#e6db74">&#34;my-get-number&#34;</span>, func);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">provide_module</span>(env, <span style="color:#e6db74">&#34;mymod&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>And here&rsquo;s a Makefile:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ROOT	<span style="color:#f92672">=</span> $HOME/repos/emacs/ <span style="color:#75715e"># yours will be different</span>
+</span></span><span style="display:flex;"><span>CC	<span style="color:#f92672">=</span> gcc
+</span></span><span style="display:flex;"><span>LD	<span style="color:#f92672">=</span> gcc
+</span></span><span style="display:flex;"><span>CFLAGS	<span style="color:#f92672">=</span> -ggdb3 -Wall
+</span></span><span style="display:flex;"><span>LDFLAGS <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>all: mymod.so
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>%.so: %.o
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">$(</span>LD<span style="color:#66d9ef">)</span> -shared <span style="color:#66d9ef">$(</span>LDFLAGS<span style="color:#66d9ef">)</span> -o $@ $&lt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>%.o: %.c
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">$(</span>CC<span style="color:#66d9ef">)</span> <span style="color:#66d9ef">$(</span>CFLAGS<span style="color:#66d9ef">)</span> -I<span style="color:#66d9ef">$(</span>ROOT<span style="color:#66d9ef">)</span>/src -fPIC -c $&lt;</span></span></code></pre></div>
+<p>Now, when you start emacs, in the <strong>scratch</strong> buffer you can run</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elisp" data-lang="elisp"><span style="display:flex;"><span>(require <span style="color:#e6db74">&#39;mymod</span>)
+</span></span><span style="display:flex;"><span>(provide <span style="color:#e6db74">&#39;my-get-number</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(my-get-number)</span></span></code></pre></div>
+
+</div>
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts"><li><span>Aug 28 2024</span> &raquo;
+<a href="/posts/project-euler-num-308/">Project Euler - Number 308</a>
+
+</li><li><span>Aug 23 2024</span> &raquo;
+<a href="/posts/understanding-loop/">Understanding Loop</a>
+
+</li><li><span>Aug 22 2024</span> &raquo;
+<a href="/posts/project-euler-num-6/">Project Euler - Number 6</a>
+
+</li><li><span>Aug 22 2024</span> &raquo;
+<a href="/posts/project-euler-num-7/">Project Euler - Number 7</a>
+
+</li><li><span>Aug 20 2024</span> &raquo;
+<a href="/posts/project-euler-num-5/">Project Euler - Number 5</a>
+
+</li><li><span>Aug 10 2024</span> &raquo;
+<a href="/posts/this-is-now/">The C Programming Language</a>
+
+</li><li><span>Aug 04 2024</span> &raquo;
+<a href="/posts/computational-documents/">Computational Documents</a>
+
+</li><li><span>Sep 14 2021</span> &raquo;
+<a href="/posts/whatisalambda/">What&#39;s a Lambda?</a>
+
+</li></ul>
+</div>
+  </main>
+  <footer>
+    <div class="footer">
+  <div class="contact">
+    <pr><br><a href="https://www.linkedin.com/in/karl-s-9a705398/">linkedIn</a>
+      <br>
+      <pr><a href="https://github.com/kes">github.com</a>
+
+  </div>
+</div>
+
+  </footer>
+  </div>
+</body>
+</html>
+
