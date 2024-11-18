@@ -16,6 +16,13 @@
       <description>Project Euler has a Fractran problem.&#xA;If you don&amp;rsquo;t know about John Conway&amp;rsquo;s Fractran you can look here and here.&#xA;You can find the problem here: https://projecteuler.net/problem=308&#xA;I have reproduced it here:&#xA;A program written in the programming language Fractran consists of a list of fractions.&#xA;The internal state of the Fractran Virtual Machine is a positive integer, which is initially set to a seed value. Each iteration of a Fractran program multiplies the state integer by the first fraction in the list which will leave it an integer.</description>
     </item>
     <item>
+      <title>Project Euler - Number 6</title>
+      <link>http://localhost:1313/posts/project-euler-num-6/</link>
+      <pubDate>Thu, 22 Aug 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/project-euler-num-6/</guid>
+      <description>The problem can be found here: https://projecteuler.net/problem=6&#xA;Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.&#xA;Once the formula for both is known, the sum of the squares, [n(n+1)(2n+1)]/6 and the sun of the first n numbers, (2n(n+1))/2 the solution is trival:&#xA;(defun formula/sum-of-squares (n) (/ (* n (+ n 1) (+ (* 2 n) 1)) 6)) (defun formula/square-of-the-sum (n) (expt (/ (* n (+ n 1)) 2) 2)) (defun formula/diff (n) (- (formula/square-of-the-sum n) (formula/sum-of-squares n))) (formula/diff 100)</description>
+    </item>
+    <item>
       <title>Project Euler - Number 7</title>
       <link>http://localhost:1313/posts/project-euler-num-7/</link>
       <pubDate>Thu, 22 Aug 2024 00:00:00 +0000</pubDate>
