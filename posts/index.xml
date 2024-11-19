@@ -6,8 +6,15 @@
     <description>Recent content in Posts on Karl Stump</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 18 Nov 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 19 Nov 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Amateur Extra Class</title>
+      <link>http://localhost:1313/posts/amateur-extra-class/</link>
+      <pubDate>Tue, 19 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/amateur-extra-class/</guid>
+      <description>Recently (11/16/2024) I upgraded my amateur radio (ham) license from General to Extra.&#xA;Over the years, the FCC has had a number of Amateur License Service classes, each providing different privileges. Currently there are three classes. Technician, General, and Extra. (And for those who are old enough to remember such things, there is no longer a Morse code requirement – though this mode is still popular on the amateur radio bands where Morse code enthusiasts will find a warm reception.</description>
+    </item>
     <item>
       <title>Emacs Modules</title>
       <link>http://localhost:1313/posts/emacs-modules/</link>
