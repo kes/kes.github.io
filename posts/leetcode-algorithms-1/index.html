@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en-us"
+      dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <link rel="stylesheet" href="/common.css" type="text/css" media="screen, projection">
+  <link rel="stylesheet" href="/style.css" type="text/css" media="screen, projection">
+  <title>Karl Stump's Blog</title>
+
+
+</head>
+<body>
+  <div class="site">
+  <header>
+    <div class="title">
+  <a href="/">Karl Stump </a>
+  <a class="extra" href="/">home</a>
+</header>
+
+  </header>
+  <main>
+    
+<div id="post">Leetcode Algorithms 1<p class="meta"> Nov 22, 2024</p>
+  <p>Working on <a href="https:leetcode.com">leetcode.com</a> there&rsquo;s a &ldquo;Top Interview 150&rdquo; list of problems. I&rsquo;m not sure where the list comes from, but no matter. Doing a quick count it looks like there are around 20 hard problems,about 40 easy, and about 90 medium.</p>
+<p>So that&rsquo;s the goal. Do all 150 problems.</p>
+<h2 id="merge-sorted-array">Merge Sorted Array</h2>
+<p>Level: easy</p>
+<p>Read the <a href="https://leetcode.com/problems/merge-sorted-array/description/?envType=study-plan-v2&amp;envId=top-interview-150">problem description</a>.</p>
+<p>Here&rsquo;s the code:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;gtest/gtest.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>class Solution {
+</span></span><span style="display:flex;"><span>public:
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">merge</span>(std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">&amp;</span>nums1, <span style="color:#66d9ef">int</span> m, std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">&amp;</span>nums2,
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">int</span> n) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> m <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>; <span style="color:#75715e">// keeping track of where we are in nums1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>; <span style="color:#75715e">// keeping track of where we are in nums2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> k <span style="color:#f92672">=</span> m <span style="color:#f92672">+</span> n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>; <span style="color:#75715e">// keeping track of where to insert the next
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                       <span style="color:#75715e">// digit in nums1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/* The loop is controlled by j because once we&#39;ve moved all of
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">       num2 into num1, we&#39;re done no matter what i is */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (j <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">/* Either move the end of nums1[i] or the end of nums2[j] into
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         nums1[k] -- and notice, that if i == 0 then just keep moving
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         digits from nums2[j] */</span>
+</span></span><span style="display:flex;"><span>      nums1[k<span style="color:#f92672">--</span>] <span style="color:#f92672">=</span> i <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> nums1[i] <span style="color:#f92672">&gt;</span> nums2[j] <span style="color:#f92672">?</span>
+</span></span><span style="display:flex;"><span>        nums1[i<span style="color:#f92672">--</span>] <span style="color:#f92672">:</span> nums2[j<span style="color:#f92672">--</span>];
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">TEST</span>(Merge, test_1) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Arrange
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">int</span> v1N <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> v2N <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>;
+</span></span><span style="display:flex;"><span>  std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> v1 <span style="color:#f92672">=</span> {<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>};
+</span></span><span style="display:flex;"><span>  std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> v2 <span style="color:#f92672">=</span> {<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>};
+</span></span><span style="display:flex;"><span>  std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> expected <span style="color:#f92672">=</span> {<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Act
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  Solution<span style="color:#f92672">::</span><span style="color:#a6e22e">merge</span>(v1, v1N, v2, v2N);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Assert
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">EXPECT_TRUE</span>(v1 <span style="color:#f92672">==</span> expected);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">TEST</span>(Merge, test_2) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Arrange
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">int</span> v1N <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> v2N <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>  std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> v1 <span style="color:#f92672">=</span> {<span style="color:#ae81ff">1</span>};
+</span></span><span style="display:flex;"><span>  std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> v2 <span style="color:#f92672">=</span> {};
+</span></span><span style="display:flex;"><span>  std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> expected <span style="color:#f92672">=</span> {<span style="color:#ae81ff">1</span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Act
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  Solution<span style="color:#f92672">::</span><span style="color:#a6e22e">merge</span>(v1, v1N, v2, v2N);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Assert
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">EXPECT_TRUE</span>(v1 <span style="color:#f92672">==</span> expected);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">TEST</span>(Merge, test_3) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Arrange
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">int</span> v1N <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> v2N <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>  std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> v1 <span style="color:#f92672">=</span> {<span style="color:#ae81ff">0</span>};
+</span></span><span style="display:flex;"><span>  std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> v2 <span style="color:#f92672">=</span> {<span style="color:#ae81ff">1</span>};
+</span></span><span style="display:flex;"><span>  std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> expected <span style="color:#f92672">=</span> {<span style="color:#ae81ff">1</span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Act
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  Solution<span style="color:#f92672">::</span><span style="color:#a6e22e">merge</span>(v1, v1N, v2, v2N);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Assert
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">EXPECT_TRUE</span>(v1 <span style="color:#f92672">==</span> expected);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">**</span>argv) {
+</span></span><span style="display:flex;"><span>  testing<span style="color:#f92672">::</span><span style="color:#a6e22e">InitGoogleTest</span>(<span style="color:#f92672">&amp;</span>argc, argv);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">RUN_ALL_TESTS</span>();
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>Compile with:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>g++ merge-sorted-array.cpp -lgtest -lgtest_main</span></span></code></pre></div>
+<p>Results:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>[==========] Running 3 tests from 1 test suite.
+</span></span><span style="display:flex;"><span>[----------] Global test environment set-up.
+</span></span><span style="display:flex;"><span>[----------] 3 tests from Merge
+</span></span><span style="display:flex;"><span>[ RUN      ] Merge.test_1
+</span></span><span style="display:flex;"><span>[       OK ] Merge.test_1 (0 ms)
+</span></span><span style="display:flex;"><span>[ RUN      ] Merge.test_2
+</span></span><span style="display:flex;"><span>[       OK ] Merge.test_2 (0 ms)
+</span></span><span style="display:flex;"><span>[ RUN      ] Merge.test_3
+</span></span><span style="display:flex;"><span>[       OK ] Merge.test_3 (0 ms)
+</span></span><span style="display:flex;"><span>[----------] 3 tests from Merge (0 ms total)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[----------] Global test environment tear-down
+</span></span><span style="display:flex;"><span>[==========] 3 tests from 1 test suite ran. (0 ms total)
+</span></span><span style="display:flex;"><span>[  PASSED  ] 3 tests.</span></span></code></pre></div>
+<p>Time complexity: O(m + n)</p>
+
+</div>
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts"></ul>
+</div>
+  </main>
+  <footer>
+    <div class="footer">
+  <div class="contact">
+    <pr><br><a href="https://www.linkedin.com/in/karl-s-9a705398/">linkedIn</a>
+      <br>
+      <pr><a href="https://github.com/kes">github.com</a>
+
+  </div>
+</div>
+
+  </footer>
+  </div>
+</body>
+</html>
+
