@@ -6,8 +6,15 @@
     <description>Recent content in Posts on Karl Stump</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 19 Nov 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 22 Nov 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Leetcode Algorithms 1</title>
+      <link>http://localhost:1313/posts/leetcode-algorithms-1/</link>
+      <pubDate>Fri, 22 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/leetcode-algorithms-1/</guid>
+      <description>Working on leetcode.com there&amp;rsquo;s a &amp;ldquo;Top Interview 150&amp;rdquo; list of problems. I&amp;rsquo;m not sure where the list comes from, but no matter. Doing a quick count it looks like there are around 20 hard problems,about 40 easy, and about 90 medium.&#xA;So that&amp;rsquo;s the goal. Do all 150 problems.&#xA;Merge Sorted Array Level: easy&#xA;Read the problem description.&#xA;Here&amp;rsquo;s the code:&#xA;#include &amp;lt;vector&amp;gt; #include &amp;lt;gtest/gtest.h&amp;gt; class Solution { public: static void merge(std::vector&amp;lt;int&amp;gt; &amp;amp;nums1, int m, std::vector&amp;lt;int&amp;gt; &amp;amp;nums2, int n) { int i = m - 1; // keeping track of where we are in nums1 int j = n - 1; // keeping track of where we are in nums2 int k = m + n - 1; // keeping track of where to insert the next // digit in nums1 /* The loop is controlled by j because once we&amp;#39;ve moved all of num2 into num1, we&amp;#39;re done no matter what i is */ while (j &amp;gt;= 0) { /* Either move the end of nums1[i] or the end of nums2[j] into nums1[k] -- and notice, that if i == 0 then just keep moving digits from nums2[j] */ nums1[k--] = i &amp;gt;= 0 &amp;amp;&amp;amp; nums1[i] &amp;gt; nums2[j] ?</description>
+    </item>
     <item>
       <title>Amateur Extra Class</title>
       <link>http://localhost:1313/posts/amateur-extra-class/</link>
