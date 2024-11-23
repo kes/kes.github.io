@@ -19,14 +19,22 @@
   </header>
   <main>
     
-<div id="post">Leetcode Algorithms 3<p class="meta"> Nov 23, 2024</p>
-  <p>Okay, this is the third question from the &ldquo;Top Interview 150.&rdquo;</p>
+<div id="post">Leetcode Algorithms 4<p class="meta"> Nov 23, 2024</p>
+  <p>Okay, this is the fourth question from the &ldquo;Top Interview 150.&rdquo;</p>
 <p>If you&rsquo;re new here:</p>
 <p>Working on <a href="https:leetcode.com">leetcode.com</a> there&rsquo;s a &ldquo;Top Interview 150&rdquo; list of problems. I&rsquo;m not sure where the list comes from, but no matter. Doing a quick count it looks like there are around 20 hard problems,about 40 easy, and about 90 medium.</p>
 <p>So that&rsquo;s the goal. Do all 150 problems.</p>
-<h2 id="remove-duplicates-from-sorted-array">Remove Duplicates from Sorted Array</h2>
-<p>Level: easy</p>
-<p>Read the <a href="https://leetcode.com/problems/remove-duplicates-from-sorted-array/description/?envType=study-plan-v2&amp;envId=top-interview-150">problem description</a>.</p>
+<h2 id="remove-duplicates-from-sorted-array-ii">Remove Duplicates from Sorted Array II</h2>
+<p>Level: medium</p>
+<p>Read the <a href="https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/description/?envType=study-plan-v2&amp;envId=top-interview-150">problem description</a>.</p>
+<p>The key difference between this problem and the previous remove duplicates problem is that you&rsquo;re
+not permitted to use an auxiliary array.</p>
+<blockquote>
+<p>Do not allocate extra space for another array. You must do this by modifying the input array
+in-place with O(1) extra memory.</p>
+</blockquote>
+<p>Yike! Gulp!</p>
+<p>That&rsquo;s okay. Where there&rsquo;s a will, there&rsquo;s a way.</p>
 <p>Here&rsquo;s the code and tests.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;gtest/gtest.h&gt;</span><span style="color:#75715e">
@@ -34,57 +42,62 @@
 </span></span><span style="display:flex;"><span>class Solution {
 </span></span><span style="display:flex;"><span>public:
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">removeDuplicates</span>(std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&amp;</span> nums) {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> index[nums.<span style="color:#a6e22e">size</span>()];
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> indexSize <span style="color:#f92672">=</span> nums.<span style="color:#a6e22e">size</span>();
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> k <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> previous <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">bool</span> discarding <span style="color:#f92672">=</span> false;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> nums.<span style="color:#a6e22e">size</span>(); i<span style="color:#f92672">++</span>) {
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (i <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
-</span></span><span style="display:flex;"><span>        index[k<span style="color:#f92672">++</span>] <span style="color:#f92672">=</span> i;
-</span></span><span style="display:flex;"><span>      } <span style="color:#66d9ef">else</span> {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (nums[i] <span style="color:#f92672">!=</span> nums[i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]) {
-</span></span><span style="display:flex;"><span>          index[k<span style="color:#f92672">++</span>] <span style="color:#f92672">=</span> i;
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (i <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>){
+</span></span><span style="display:flex;"><span>        previous <span style="color:#f92672">=</span> nums[i];
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">++</span>k;
+</span></span><span style="display:flex;"><span>      }<span style="color:#66d9ef">else</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (nums[i] <span style="color:#f92672">==</span> previous){
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span> discarding){
+</span></span><span style="display:flex;"><span>            nums[k<span style="color:#f92672">++</span>] <span style="color:#f92672">=</span> nums[i];
+</span></span><span style="display:flex;"><span>            discarding <span style="color:#f92672">=</span> true;
+</span></span><span style="display:flex;"><span>          }
+</span></span><span style="display:flex;"><span>        }<span style="color:#66d9ef">else</span>{
+</span></span><span style="display:flex;"><span>          nums[k<span style="color:#f92672">++</span>] <span style="color:#f92672">=</span> nums[i];
+</span></span><span style="display:flex;"><span>          previous <span style="color:#f92672">=</span> nums[i];
+</span></span><span style="display:flex;"><span>          discarding <span style="color:#f92672">=</span> false;
 </span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>      }
 </span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> k; i<span style="color:#f92672">++</span>) {
-</span></span><span style="display:flex;"><span>      nums[i] <span style="color:#f92672">=</span> nums[index[i]];
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> k;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> k ;
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>};
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">TEST</span>(RemoveDuplicates, test_1) {
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Arrange
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> nums <span style="color:#f92672">=</span> {<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>};
-</span></span><span style="display:flex;"><span>  std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> expectedNums <span style="color:#f92672">=</span> {<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>};
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> nums <span style="color:#f92672">=</span> {<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>};
+</span></span><span style="display:flex;"><span>  std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> expectedNums <span style="color:#f92672">=</span> {<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">9</span>};
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> returns;
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> expectedReturns <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> ;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> expectedReturns <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span> ;
 </span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Act
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  returns <span style="color:#f92672">=</span> Solution<span style="color:#f92672">::</span><span style="color:#a6e22e">removeDuplicates</span>(nums);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Assert
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">ASSERT_TRUE</span>(returns <span style="color:#f92672">==</span> expectedReturns);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">ASSERT_TRUE</span>(returns <span style="color:#f92672">==</span> expectedReturns) <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;returns: &#34;</span> <span style="color:#f92672">&lt;&lt;</span> returns <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;expected: &#34;</span> <span style="color:#f92672">&lt;&lt;</span> expectedReturns <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>;
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> returns; i<span style="color:#f92672">++</span>) {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ASSERT_TRUE</span>(nums[i] <span style="color:#f92672">==</span> expectedNums[i]);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ASSERT_TRUE</span>(nums[i] <span style="color:#f92672">==</span> expectedNums[i]) <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;at i = &#34;</span> <span style="color:#f92672">&lt;&lt;</span> i <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;: &#34;</span> <span style="color:#f92672">&lt;&lt;</span> nums[i] <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; != &#34;</span> <span style="color:#f92672">&lt;&lt;</span> expectedNums[i] <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>;
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">TEST</span>(RemoveDuplicates, test_2) {
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Arrange
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> nums <span style="color:#f92672">=</span> {<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>};
-</span></span><span style="display:flex;"><span>  std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> expectedNums <span style="color:#f92672">=</span> {<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">9</span>,<span style="color:#ae81ff">9</span>,<span style="color:#ae81ff">9</span>,<span style="color:#ae81ff">9</span>,<span style="color:#ae81ff">9</span>};
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> nums <span style="color:#f92672">=</span> {<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">3</span>};
+</span></span><span style="display:flex;"><span>  std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> expectedNums <span style="color:#f92672">=</span> {<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">3</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">9</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">9</span>};
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> returns;
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> expectedReturns <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> expectedReturns <span style="color:#f92672">=</span> <span style="color:#ae81ff">7</span>;
 </span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Act
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  returns <span style="color:#f92672">=</span> Solution<span style="color:#f92672">::</span><span style="color:#a6e22e">removeDuplicates</span>(nums);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Assert
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">ASSERT_TRUE</span>(returns <span style="color:#f92672">==</span> expectedReturns);
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> returns; i<span style="color:#f92672">++</span>) {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ASSERT_TRUE</span>(nums[i] <span style="color:#f92672">==</span> expectedNums[i]);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ASSERT_TRUE</span>(nums[i] <span style="color:#f92672">==</span> expectedNums[i]) <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;at i = &#34;</span> <span style="color:#f92672">&lt;&lt;</span> i <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;: &#34;</span> <span style="color:#f92672">&lt;&lt;</span> nums[i] <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; != &#34;</span> <span style="color:#f92672">&lt;&lt;</span> expectedNums[i] <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>;
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
@@ -93,17 +106,17 @@
 </span></span><span style="display:flex;"><span>  testing<span style="color:#f92672">::</span><span style="color:#a6e22e">InitGoogleTest</span>(<span style="color:#f92672">&amp;</span>argc, argv);
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">RUN_ALL_TESTS</span>();
 </span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
-<p>And, I have a simple Makefile:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-makefile" data-lang="makefile"><span style="display:flex;"><span>OBJS <span style="color:#f92672">=</span> remove-duplicates-from-sorted.o
+<p>I have a simple Makefile:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-makefile" data-lang="makefile"><span style="display:flex;"><span>OBJS <span style="color:#f92672">=</span> remove-duplicates-from-sorted-2.o
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">remove-element</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">$(</span>OBJS<span style="color:#66d9ef">)</span>
-</span></span><span style="display:flex;"><span>        g++ -Wall -g -o remove-duplicates-from-sorted <span style="color:#66d9ef">$(</span>OBJS<span style="color:#66d9ef">)</span> -lgtest -lgtest_main
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">remove-duplicates-from-sorted-2</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">$(</span>OBJS<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>        g++ -Wall -g -o remove-duplicates-from-sorted-2 <span style="color:#66d9ef">$(</span>OBJS<span style="color:#66d9ef">)</span> -lgtest -lgtest_main
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">remove-element.o</span><span style="color:#f92672">:</span> remove-duplicates-from-sorted.cpp
-</span></span><span style="display:flex;"><span>        g++ -Wall -g -c remove-duplicates-from-sorted.cpp
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">remove-duplicates-from-sorted-2.o</span><span style="color:#f92672">:</span> remove-duplicates-from-sorted-2.cpp
+</span></span><span style="display:flex;"><span>        g++ -Wall -g -c remove-duplicates-from-sorted-2.cpp
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">clean</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span>        rm remove-duplicates-from-sorted <span style="color:#66d9ef">$(</span>OBJS<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>        rm remove-duplicates-from-sorted-2 <span style="color:#66d9ef">$(</span>OBJS<span style="color:#66d9ef">)</span>
 </span></span></code></pre></div>
 <p>Now, when I run, the tests are passing:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">[==========]</span> Running <span style="color:#ae81ff">2</span> tests from <span style="color:#ae81ff">1</span> test suite.
@@ -118,10 +131,8 @@
 </span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>----------<span style="color:#f92672">]</span> Global test environment tear-down
 </span></span><span style="display:flex;"><span><span style="color:#f92672">[==========]</span> <span style="color:#ae81ff">2</span> tests from <span style="color:#ae81ff">1</span> test suite ran. <span style="color:#f92672">(</span><span style="color:#ae81ff">0</span> ms total<span style="color:#f92672">)</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>  PASSED  <span style="color:#f92672">]</span> <span style="color:#ae81ff">2</span> tests.</span></span></code></pre></div>
-<figure><img src="/ox-hugo/remove-duplicates.png"/>
-</figure>
-
-<p>Cool!</p>
+<p><img src="/ox-hugo/complexity.png" alt="">]]</p>
+<p>0 ms is good.</p>
 
 </div>
 <div id="related">
@@ -130,7 +141,7 @@
 <a href="/posts/leetcode-algorithms-2/">Leetcode Algorithms 2</a>
 
 </li><li><span>Nov 23 2024</span> &raquo;
-<a href="/posts/leetcode-algorithms-4/">Leetcode Algorithms 4</a>
+<a href="/posts/leetcode-algorithms-3/">Leetcode Algorithms 3</a>
 
 </li><li><span>Nov 22 2024</span> &raquo;
 <a href="/posts/leetcode-algorithms-1/">Leetcode Algorithms 1</a>
