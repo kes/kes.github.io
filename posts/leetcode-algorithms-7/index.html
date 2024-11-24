@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en-us"
+      dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <link rel="stylesheet" href="/common.css" type="text/css" media="screen, projection">
+  <link rel="stylesheet" href="/style.css" type="text/css" media="screen, projection">
+  <title>Karl Stump's Blog</title>
+
+
+</head>
+<body>
+  <div class="site">
+  <header>
+    <div class="title">
+  <a href="/">Karl Stump </a>
+  <a class="extra" href="/">home</a>
+</header>
+
+  </header>
+  <main>
+    
+<div id="post">Leetcode Algorithms 7<p class="meta"> Nov 24, 2024</p>
+  <p>Okay, this is the seventh question from the &ldquo;Top Interview 150.&rdquo;</p>
+<p>If you&rsquo;re new here:</p>
+<p>Working on <a href="https:leetcode.com">leetcode.com</a> there&rsquo;s a &ldquo;Top Interview 150&rdquo; list of problems. I&rsquo;m not sure where the list
+comes from, but no matter. Doing a quick count it looks like there are around 20 hard problems,about
+40 easy, and about 90 medium.</p>
+<p>So that&rsquo;s the goal. Do all 150 problems.</p>
+<h2 id="best-time-to-buy-and-sell-stock">Best Time to Buy and Sell Stock</h2>
+<p>Level: easy</p>
+<p>Read the <a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/?envType=study-plan-v2&amp;envId=top-interview-150">problem description</a>.</p>
+<p>Suppose we have a list of daily stock prices: <code>(7, 1, 5, 3, 6, 4)</code>.</p>
+<p>And we want to find what &ldquo;buy&rdquo; and &ldquo;sell&rdquo; days would give the largest profits. For example, suppose
+we buy when the price is 7, and then sell the next day, at 1, giving a profit of -6, which is a
+loss. Can we do better? What&rsquo;s the highest profit we can derive from this list of daily stock prices?</p>
+<p>Here&rsquo;s a table showing profits for the given day purchased and sold. So, regarding the row labeled 7,
+imagine that you purchase on the day the price is 7, and then working across that row, each column
+shows the profit for the given sale price, which prices are occurring on successive days.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>7</th>
+<th>1</th>
+<th>5</th>
+<th>3</th>
+<th>6</th>
+<th>4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7</td>
+<td>x</td>
+<td>-6</td>
+<td>-2</td>
+<td>-4</td>
+<td>-1</td>
+<td>-3</td>
+</tr>
+<tr>
+<td>1</td>
+<td></td>
+<td>x</td>
+<td>4</td>
+<td>2</td>
+<td>5</td>
+<td>3</td>
+</tr>
+<tr>
+<td>5</td>
+<td></td>
+<td></td>
+<td>x</td>
+<td>-2</td>
+<td>1</td>
+<td>-1</td>
+</tr>
+<tr>
+<td>3</td>
+<td></td>
+<td></td>
+<td></td>
+<td>x</td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr>
+<td>6</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>x</td>
+<td>-2</td>
+</tr>
+<tr>
+<td>4</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>x</td>
+</tr>
+</tbody>
+</table>
+<p>It&rsquo;s easy to see that purchasing on the first day at a price of 7 does not lead to any
+profit. The most you can do is limit your losses by selling at price 6 for a mere -1 loss.</p>
+<p>But iterating over the list, that cannot possibly be known up-front.</p>
+<p>And that idea, that &ldquo;we cannot know,&rdquo; leads to the idea that there is nothing to do but
+&ldquo;brute-force,&rdquo; calculate all the profit-loss values in the table, something like this pseudo-code:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> prices[] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">4</span>};
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> max_profit <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> profit <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> buy <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#f92672">&lt;</span> prices.<span style="color:#a6e22e">size</span>(); i<span style="color:#f92672">++</span>){
+</span></span><span style="display:flex;"><span>  buy <span style="color:#f92672">=</span> prices[i];
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>; j <span style="color:#f92672">&lt;</span> prices.<span style="color:#a6e22e">size</span>() ; j<span style="color:#f92672">++</span>){
+</span></span><span style="display:flex;"><span>    profit <span style="color:#f92672">=</span> prices[j] <span style="color:#f92672">-</span> buy ;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (profit <span style="color:#f92672">&gt;</span> max_profit){
+</span></span><span style="display:flex;"><span>      max_profit <span style="color:#f92672">=</span> profit;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span> }</span></span></code></pre></div>
+<p>We can make an interesting chart, pretty self-explanatory:</p>
+<table>
+<thead>
+<tr>
+<th>Outside Iteration Step</th>
+<th>Inside Iterations</th>
+<th>Running Total</th>
+<th>Potential Max Profit Found</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>5</td>
+<td>5</td>
+<td>-1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>4</td>
+<td>9</td>
+<td>5</td>
+</tr>
+<tr>
+<td>3</td>
+<td>3</td>
+<td>12</td>
+<td>1</td>
+</tr>
+<tr>
+<td>4</td>
+<td>2</td>
+<td>15</td>
+<td>3</td>
+</tr>
+<tr>
+<td>5</td>
+<td>1</td>
+<td>16</td>
+<td>-2</td>
+</tr>
+</tbody>
+</table>
+<p>And you can see, at step 5, we already are at 16 iterations – and that&rsquo;s O(n<sup>2</sup>) – as we expected
+from such nested loops. In other words, the search space for finding the maximum profit is going to
+grow enormous very fast as the list size grows.</p>
+<p>Is there a better way?</p>
+<p>In fact, there is. And we can find it easily, if we are able to grasp one simple concept.</p>
+<p>On successive days, if we encounter a price that is lower than our current buy price, then it must
+be the case that any future prices (future sell prices) <strong>must</strong> create a greater delta (the profit)
+using this lower buy price, than with the higher buy price. Now, note that this future potential
+profit will not necessarily be greater than what has been found previously. And I suppose missing
+this point is a bit of a hiccup. It is not being said that all future profits using this lower price
+will be greater than a previously found profit. Only that future calculated profits must be greater using
+this lower price than the higher price.</p>
+<p>This above point is obvious, after all, but easy to overlook.</p>
+<p>But there&rsquo;s an even greater significance, also easy to overlook, which is that using this observation, we can reduce our
+search space from O(n<sup>2</sup>) to O(n). Amazing.</p>
+<p>Here&rsquo;s the code and tests.</p>
+<p>Notice, there is only one loop. So, O(n) nirvana.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;gtest/gtest.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>class Solution {
+</span></span><span style="display:flex;"><span>public:
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">maxProfit</span>(std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&amp;</span> prices) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> profit <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> buy <span style="color:#f92672">=</span> prices[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span> sell <span style="color:#f92672">=</span> prices.<span style="color:#a6e22e">begin</span>() <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> ; sell <span style="color:#f92672">!=</span> prices.<span style="color:#a6e22e">end</span>(); sell<span style="color:#f92672">++</span>){
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (<span style="color:#f92672">*</span>sell <span style="color:#f92672">&gt;</span> buy)
+</span></span><span style="display:flex;"><span>        profit <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span><span style="color:#a6e22e">max</span>(profit, <span style="color:#f92672">*</span>sell <span style="color:#f92672">-</span> buy);
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>        buy <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>sell;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> profit;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">TEST</span>(MaxProfit, test_1) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Arrange
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> prices <span style="color:#f92672">=</span> {<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">4</span>};
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> returns;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> expectedReturns <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span> ;
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Act
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  returns <span style="color:#f92672">=</span> Solution<span style="color:#f92672">::</span><span style="color:#a6e22e">maxProfit</span>(prices);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Assert
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">EXPECT_TRUE</span>(expectedReturns <span style="color:#f92672">==</span> returns);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">TEST</span>(MaxProfit, test_2) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Arrange
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> prices <span style="color:#f92672">=</span> {<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">1</span>};
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> returns;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> expectedReturns <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> ;
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Act
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  returns <span style="color:#f92672">=</span> Solution<span style="color:#f92672">::</span><span style="color:#a6e22e">maxProfit</span>(prices);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Assert
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">EXPECT_TRUE</span>(expectedReturns <span style="color:#f92672">==</span> returns);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">**</span>argv) {
+</span></span><span style="display:flex;"><span>  testing<span style="color:#f92672">::</span><span style="color:#a6e22e">InitGoogleTest</span>(<span style="color:#f92672">&amp;</span>argc, argv);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">RUN_ALL_TESTS</span>();
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>I have a simple Makefile:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-makefile" data-lang="makefile"><span style="display:flex;"><span>OBJS <span style="color:#f92672">=</span> max-profit.o
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">remove-element</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">$(</span>OBJS<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>        g++ -Wall -g -o max-profit <span style="color:#66d9ef">$(</span>OBJS<span style="color:#66d9ef">)</span> -lgtest -lgtest_main
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">remove-element.o</span><span style="color:#f92672">:</span> max-profit.cpp
+</span></span><span style="display:flex;"><span>        g++ -Wall -g -c max-profit.cpp
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">clean</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>        rm max-profit <span style="color:#66d9ef">$(</span>OBJS<span style="color:#66d9ef">)</span>
+</span></span></code></pre></div>
+<p>Now, when I run, the tests are passing:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">[==========]</span> Running <span style="color:#ae81ff">2</span> tests from <span style="color:#ae81ff">1</span> test suite.
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>----------<span style="color:#f92672">]</span> Global test environment set-up.
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>----------<span style="color:#f92672">]</span> <span style="color:#ae81ff">2</span> tests from MaxProfit
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span> RUN      <span style="color:#f92672">]</span> MaxProfit.test_1
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>       OK <span style="color:#f92672">]</span> MaxProfit.test_1 <span style="color:#f92672">(</span><span style="color:#ae81ff">0</span> ms<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span> RUN      <span style="color:#f92672">]</span> MaxProfit.test_2
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>       OK <span style="color:#f92672">]</span> MaxProfit.test_2 <span style="color:#f92672">(</span><span style="color:#ae81ff">0</span> ms<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>----------<span style="color:#f92672">]</span> <span style="color:#ae81ff">2</span> tests from MaxProfit <span style="color:#f92672">(</span><span style="color:#ae81ff">0</span> ms total<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>----------<span style="color:#f92672">]</span> Global test environment tear-down
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[==========]</span> <span style="color:#ae81ff">2</span> tests from <span style="color:#ae81ff">1</span> test suite ran. <span style="color:#f92672">(</span><span style="color:#ae81ff">0</span> ms total<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>  PASSED  <span style="color:#f92672">]</span> <span style="color:#ae81ff">2</span> tests.</span></span></code></pre></div>
+<figure><img src="/ox-hugo/complexity-buy-sell.png"/>
+</figure>
+
+<p>Heck, yeah!</p>
+
+</div>
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts"><li><span>Nov 23 2024</span> &raquo;
+<a href="/posts/leetcode-algorithms-2/">Leetcode Algorithms 2</a>
+
+</li><li><span>Nov 23 2024</span> &raquo;
+<a href="/posts/leetcode-algorithms-3/">Leetcode Algorithms 3</a>
+
+</li><li><span>Nov 23 2024</span> &raquo;
+<a href="/posts/leetcode-algorithms-4/">Leetcode Algorithms 4</a>
+
+</li><li><span>Nov 23 2024</span> &raquo;
+<a href="/posts/leetcode-algorithms-5/">Leetcode Algorithms 5</a>
+
+</li><li><span>Nov 23 2024</span> &raquo;
+<a href="/posts/leetcode-algorithms-6/">Leetcode Algorithms 6</a>
+
+</li><li><span>Nov 22 2024</span> &raquo;
+<a href="/posts/leetcode-algorithms-1/">Leetcode Algorithms 1</a>
+
+</li></ul>
+</div>
+  </main>
+  <footer>
+    <div class="footer">
+  <div class="contact">
+    <pr><br><a href="https://www.linkedin.com/in/karl-s-9a705398/">linkedIn</a>
+      <br>
+      <pr><a href="https://github.com/kes">github.com</a>
+
+  </div>
+</div>
+
+  </footer>
+  </div>
+</body>
+</html>
+
