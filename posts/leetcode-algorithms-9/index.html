@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en-us"
+      dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <link rel="stylesheet" href="/common.css" type="text/css" media="screen, projection">
+  <link rel="stylesheet" href="/style.css" type="text/css" media="screen, projection">
+  <title>Karl Stump's Blog</title>
+
+
+</head>
+<body>
+  <div class="site">
+  <header>
+    <div class="title">
+  <a href="/">Karl Stump </a>
+  <a class="extra" href="/">home</a>
+</header>
+
+  </header>
+  <main>
+    
+<div id="post">Leetcode Algorithms 9<p class="meta"> Nov 24, 2024</p>
+  <p>Okay, this is the ninth question from the &ldquo;Top Interview 150.&rdquo;</p>
+<p>If you&rsquo;re new here:</p>
+<p>Working on <a href="https:leetcode.com">leetcode.com</a> there&rsquo;s a &ldquo;Top Interview 150&rdquo; list of problems. I&rsquo;m not sure where the list
+comes from, but no matter. Doing a quick count it looks like there are around 20 hard problems,about
+40 easy, and about 90 medium.</p>
+<p>So that&rsquo;s the goal. Do all 150 problems.</p>
+<h2 id="jump-game">Jump Game</h2>
+<p>Level: medium.</p>
+<p>Read the <a href="https://leetcode.com/problems/jump-game/description/?envType=study-plan-v2&amp;envId=top-interview-150">description</a> here.</p>
+<h3 id="first-try">First Try</h3>
+<p>The problem has an easy solution, but even though it runs in O(n), I was surprised the code below is
+not by comparison a great runtime. It only gets:</p>
+<figure><img src="/ox-hugo/complexity-canjump-1.png"/>
+</figure>
+
+<p>This version works by solving increasingly smaller versions of the problem. I have to get to <code>n</code>, so,
+can I get to <code>n</code> from <code>n-1</code>. If so, then work on getting to <code>n-1</code>. The problem is that you&rsquo;re guaranteed
+to touch all items in the vector.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;gtest/gtest.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>class Solution {
+</span></span><span style="display:flex;"><span>public:
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">canJump</span>(std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&amp;</span> nums) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> target <span style="color:#f92672">=</span> nums.<span style="color:#a6e22e">size</span>() <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> index <span style="color:#f92672">=</span> target <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">bool</span> makeIt <span style="color:#f92672">=</span> true;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (index <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>){
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (index <span style="color:#f92672">+</span> nums[index] <span style="color:#f92672">&gt;=</span> target){
+</span></span><span style="display:flex;"><span>        target <span style="color:#f92672">=</span> index;
+</span></span><span style="display:flex;"><span>        makeIt <span style="color:#f92672">=</span> true;
+</span></span><span style="display:flex;"><span>      }<span style="color:#66d9ef">else</span>{
+</span></span><span style="display:flex;"><span>        makeIt <span style="color:#f92672">=</span> false;
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">--</span>index;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> makeIt;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">TEST</span>(CanJump, test_1) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Arrange
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> nums <span style="color:#f92672">=</span> {<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">4</span>};
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> returns;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> expectedReturns <span style="color:#f92672">=</span> true ;
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Act
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  returns <span style="color:#f92672">=</span> Solution<span style="color:#f92672">::</span><span style="color:#a6e22e">canJump</span>(nums);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Assert
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">EXPECT_TRUE</span>(expectedReturns <span style="color:#f92672">==</span> returns);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">TEST</span>(CanJump, test_2) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Arrange
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> nums <span style="color:#f92672">=</span> {<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">4</span>};
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> returns;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> expectedReturns <span style="color:#f92672">=</span> false;
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Act
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  returns <span style="color:#f92672">=</span> Solution<span style="color:#f92672">::</span><span style="color:#a6e22e">canJump</span>(nums);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Assert
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">EXPECT_TRUE</span>(expectedReturns <span style="color:#f92672">==</span> returns);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">**</span>argv) {
+</span></span><span style="display:flex;"><span>  testing<span style="color:#f92672">::</span><span style="color:#a6e22e">InitGoogleTest</span>(<span style="color:#f92672">&amp;</span>argc, argv);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">RUN_ALL_TESTS</span>();
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>Here&rsquo;s my makefile:
+I have a simple Makefile:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-makefile" data-lang="makefile"><span style="display:flex;"><span>OBJS <span style="color:#f92672">=</span> canJump.o
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">canJump</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">$(</span>OBJS<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>        g++ -Wall -g -o canJump <span style="color:#66d9ef">$(</span>OBJS<span style="color:#66d9ef">)</span> -lgtest -lgtest_main
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">canJump.o</span><span style="color:#f92672">:</span> canJump.cpp
+</span></span><span style="display:flex;"><span>        g++ -Wall -g -c canJump.cpp
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">clean</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>        rm canJump <span style="color:#66d9ef">$(</span>OBJS<span style="color:#66d9ef">)</span>
+</span></span></code></pre></div>
+<p>And here are my google test results:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">[==========]</span> Running <span style="color:#ae81ff">2</span> tests from <span style="color:#ae81ff">1</span> test suite.
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>----------<span style="color:#f92672">]</span> Global test environment set-up.
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>----------<span style="color:#f92672">]</span> <span style="color:#ae81ff">2</span> tests from CanJump
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span> RUN      <span style="color:#f92672">]</span> CanJump.test_1
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>       OK <span style="color:#f92672">]</span> CanJump.test_1 <span style="color:#f92672">(</span><span style="color:#ae81ff">0</span> ms<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span> RUN      <span style="color:#f92672">]</span> CanJump.test_2
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>       OK <span style="color:#f92672">]</span> CanJump.test_2 <span style="color:#f92672">(</span><span style="color:#ae81ff">0</span> ms<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>----------<span style="color:#f92672">]</span> <span style="color:#ae81ff">2</span> tests from CanJump <span style="color:#f92672">(</span><span style="color:#ae81ff">0</span> ms total<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>----------<span style="color:#f92672">]</span> Global test environment tear-down
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[==========]</span> <span style="color:#ae81ff">2</span> tests from <span style="color:#ae81ff">1</span> test suite ran. <span style="color:#f92672">(</span><span style="color:#ae81ff">0</span> ms total<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>  PASSED  <span style="color:#f92672">]</span> <span style="color:#ae81ff">2</span> tests.</span></span></code></pre></div>
+<h3 id="second-try">Second Try</h3>
+<p>Turns out it&rsquo;s just better to start at the beginning of the array and calculate a maximum reach, where starting at the beginning, you always test for the greatest jump. And if that jump gets to the goal then you&rsquo;re done. An improvement. The key to understanding this approach is that if the index <code>i</code> is every greater than the <code>maxReach</code> attained then the goal cannot be reached so return false.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>class Solution {
+</span></span><span style="display:flex;"><span>public:
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">canJump</span>(vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&amp;</span> nums) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> maxReach <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> nums.<span style="color:#a6e22e">size</span>(); i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (i <span style="color:#f92672">&gt;</span> maxReach) <span style="color:#66d9ef">return</span> false; <span style="color:#75715e">// Cannot proceed further
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      maxReach <span style="color:#f92672">=</span> <span style="color:#a6e22e">max</span>(maxReach, i <span style="color:#f92672">+</span> nums[i]);
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (maxReach <span style="color:#f92672">&gt;=</span> nums.<span style="color:#a6e22e">size</span>() <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">return</span> true; <span style="color:#75715e">// Reached or surpassed last index
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> false;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>};</span></span></code></pre></div>
+<p>And that gets the runtime down.</p>
+<figure><img src="/ox-hugo/complexity-max-reach.png"/>
+</figure>
+
+<p>Cool!</p>
+
+</div>
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts"></ul>
+</div>
+  </main>
+  <footer>
+    <div class="footer">
+  <div class="contact">
+    <pr><br><a href="https://www.linkedin.com/in/karl-s-9a705398/">linkedIn</a>
+      <br>
+      <pr><a href="https://github.com/kes">github.com</a>
+
+  </div>
+</div>
+
+  </footer>
+  </div>
+</body>
+</html>
+
