@@ -6,8 +6,29 @@
     <description>Recent content in Posts on Karl Stump</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 24 Nov 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 26 Nov 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Leetcode Algorithms 11</title>
+      <link>http://localhost:1313/posts/leetcode-algorithms-11/</link>
+      <pubDate>Tue, 26 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/leetcode-algorithms-11/</guid>
+      <description>Okay, this is the tenth question from the &amp;ldquo;Top Interview 150.&amp;rdquo;&#xA;If you&amp;rsquo;re new here:&#xA;Working on leetcode.com there&amp;rsquo;s a &amp;ldquo;Top Interview 150&amp;rdquo; list of problems. I&amp;rsquo;m not sure where the list comes from, but no matter. Doing a quick count it looks like there are around 20 hard problems,about 40 easy, and about 90 medium.&#xA;So that&amp;rsquo;s the goal. Do all 150 problems.&#xA;H-Index Level: medium.&#xA;Read the description here.</description>
+    </item>
+    <item>
+      <title>Leetcode Algorithms 13</title>
+      <link>http://localhost:1313/posts/leetcode-algorithms-13/</link>
+      <pubDate>Tue, 26 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/leetcode-algorithms-13/</guid>
+      <description>Okay, this is the thirteenth question from the &amp;ldquo;Top Interview 150.&amp;rdquo;&#xA;If you&amp;rsquo;re new here:&#xA;Working on leetcode.com there&amp;rsquo;s a &amp;ldquo;Top Interview 150&amp;rdquo; list of problems. I&amp;rsquo;m not sure where the list comes from, but no matter. Doing a quick count it looks like there are around 20 hard problems,about 40 easy, and about 90 medium.&#xA;So that&amp;rsquo;s the goal. Do all 150 problems.&#xA;Product of Array, &amp;lsquo;cept Self Level: medium.</description>
+    </item>
+    <item>
+      <title>Leetcode Algorithms 10</title>
+      <link>http://localhost:1313/posts/leetcode-algorithms-10/</link>
+      <pubDate>Mon, 25 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/leetcode-algorithms-10/</guid>
+      <description>Okay, this is the tenth question from the &amp;ldquo;Top Interview 150.&amp;rdquo;&#xA;If you&amp;rsquo;re new here:&#xA;Working on leetcode.com there&amp;rsquo;s a &amp;ldquo;Top Interview 150&amp;rdquo; list of problems. I&amp;rsquo;m not sure where the list comes from, but no matter. Doing a quick count it looks like there are around 20 hard problems,about 40 easy, and about 90 medium.&#xA;So that&amp;rsquo;s the goal. Do all 150 problems.&#xA;Jump Game II Level: medium.&#xA;Read the description here.</description>
+    </item>
     <item>
       <title>Leetcode Algorithms 7</title>
       <link>http://localhost:1313/posts/leetcode-algorithms-7/</link>

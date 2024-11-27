@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en-us"
+      dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <link rel="stylesheet" href="/common.css" type="text/css" media="screen, projection">
+  <link rel="stylesheet" href="/style.css" type="text/css" media="screen, projection">
+  <title>Karl Stump's Blog</title>
+
+
+</head>
+<body>
+  <div class="site">
+  <header>
+    <div class="title">
+  <a href="/">Karl Stump </a>
+  <a class="extra" href="/">home</a>
+</header>
+
+  </header>
+  <main>
+    
+<div id="post">Leetcode Algorithms 13<p class="meta"> Nov 26, 2024</p>
+  <p>Okay, this is the thirteenth question from the &ldquo;Top Interview 150.&rdquo;</p>
+<p>If you&rsquo;re new here:</p>
+<p>Working on <a href="https:leetcode.com">leetcode.com</a> there&rsquo;s a &ldquo;Top Interview 150&rdquo; list of problems. I&rsquo;m not sure where the list
+comes from, but no matter. Doing a quick count it looks like there are around 20 hard problems,about
+40 easy, and about 90 medium.</p>
+<p>So that&rsquo;s the goal. Do all 150 problems.</p>
+<h2 id="product-of-array-cept-self">Product of Array, &lsquo;cept Self</h2>
+<p>Level: medium.</p>
+<p>Read the <a href="https://leetcode.com/problems/h-index/description/?envType=study-plan-v2&amp;envId=top-interview-150">description</a> here.</p>
+<p>Given: <code>[1,2,3,4]</code> we return, <code>[24,12,8,6]</code>. How does this work?</p>
+<table>
+<thead>
+<tr>
+<th>Index</th>
+<th>       Calculation       </th>
+<th>       Return         </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>2 * 3 * 4</td>
+<td>[24]</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1 * 3 * 4</td>
+<td>[24, 12]</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1 * 2 * 4</td>
+<td>[24, 12, 8]</td>
+</tr>
+<tr>
+<td>3</td>
+<td>1 * 2 * 3</td>
+<td>[24, 12, 8, 6]</td>
+</tr>
+</tbody>
+</table>
+<p>If we could take the product of the entire list, and then divide by the excluded number, that would
+be best.</p>
+<p>But the description <strong>forbids</strong> the use of division.</p>
+<p>Let&rsquo;s try another: <code>[-1, 1, 0, -3, 3]</code></p>
+<table>
+<thead>
+<tr>
+<th>Index</th>
+<th>       Calculation       </th>
+<th>       Return       </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>1 * 0 * -3 * 3</td>
+<td>[0]</td>
+</tr>
+<tr>
+<td>1</td>
+<td>-1 * 0 * -3 * 3</td>
+<td>[0, 0]</td>
+</tr>
+<tr>
+<td>2</td>
+<td>-1 * 1 * -3 * 3</td>
+<td>[0, 0, 9]</td>
+</tr>
+<tr>
+<td>3</td>
+<td>-1 * 1 * 0 * 3</td>
+<td>[0, 0, 9, 0]</td>
+</tr>
+<tr>
+<td>4</td>
+<td>-1 * 1 * 0 * -3</td>
+<td>[0, 0, 9, 0, 0]</td>
+</tr>
+</tbody>
+</table>
+<p>That last is an interesting one. If there&rsquo;s a zero in the list, everything will be zero
+except where the zero is excluded.</p>
+<p>So, maybe this is a left and right problem. Calculate the product for all numbers in the vector up
+to but not including the <code>ith</code>. Then calculate the product for all numbers from (but not including)
+the <code>ith</code> to the end. Finally, calculate the produce of the right and left.</p>
+<table>
+<thead>
+<tr>
+<th>Index</th>
+<th>       Left       </th>
+<th>       Right       </th>
+<th>       Calculation       </th>
+<th>       Return       </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>1 (Default)</td>
+<td>1 * 0 * -3 * 3</td>
+<td>1 * 0</td>
+<td>[0]</td>
+</tr>
+<tr>
+<td>1</td>
+<td>-1</td>
+<td>0 * -3 * 3</td>
+<td>-1 * 0</td>
+<td>[0, 0]</td>
+</tr>
+<tr>
+<td>2</td>
+<td>-1 * 1</td>
+<td>-3 * 3</td>
+<td>-1 * -9</td>
+<td>[0, 0, -9]</td>
+</tr>
+<tr>
+<td>3</td>
+<td>-1 * 1 * 0</td>
+<td>3</td>
+<td>0 * 3</td>
+<td>[0, 0, -9, 0]</td>
+</tr>
+<tr>
+<td>4</td>
+<td>-1 * 1 * 0 * -3</td>
+<td>1 (Default)</td>
+<td>0 * 1</td>
+<td>[0, 0, -9, 0, 0]</td>
+</tr>
+</tbody>
+</table>
+<p>Let&rsquo;s try <code>[1, 2, 3, 4, 5]</code></p>
+<table>
+<thead>
+<tr>
+<th>Index</th>
+<th>       Left       </th>
+<th>       Right       </th>
+<th>       Calculation       </th>
+<th>       Return       </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>1 (Default)</td>
+<td>2 * 3 * 4 * 5</td>
+<td>1 * 120</td>
+<td>[120]</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>3 * 4 * 5</td>
+<td>1 * 60</td>
+<td>[120, 60]</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1 * 2</td>
+<td>4 * 5</td>
+<td>2 * 20</td>
+<td>[120, 60, 40]</td>
+</tr>
+<tr>
+<td>3</td>
+<td>1 * 2 * 3</td>
+<td>5</td>
+<td>6 * 5</td>
+<td>[120, 60, 40, 30]</td>
+</tr>
+<tr>
+<td>4</td>
+<td>1 * 2 * 3 * 4</td>
+<td>1 (Default)</td>
+<td>24 * 1</td>
+<td>[120, 60, 40, 30, 24]</td>
+</tr>
+</tbody>
+</table>
+<p>But try as you might, there&rsquo;s no way to avoid O(n<sup>2</sup>).</p>
+<p>The no-division requirement is artificial. Is there some way around that?</p>
+<p>There is the identity: <code>a/b  = a * (b^-1)</code></p>
+<p>So, first calculate the total and then for each <code>i</code>, push onto a list <code>total * (v[i]^-1)</code>. There will be
+the case of having a zero. But that won&rsquo;t be hard to catch.</p>
+<p>What&rsquo;s the take away from this? I&rsquo;m not really sure. I can only liken it to solving chess
+problems. What&rsquo;s the point of chess problems? First, it trains you to think in a
+chess-problem-solving way. Second, it gives you patterns to remember and hopefully apply in other
+situations. For example, once you know Anastasia&rsquo;s mate, seeing it, even many moves away, is pretty
+easy, and if your opponent is not aware of the pattern, you have a distinct advantage.</p>
+<p>Actually, I&rsquo;m not even sure that this programming challenge rises to the level of a chess problem.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cmath&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;gtest/gtest.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>class Solution {
+</span></span><span style="display:flex;"><span>public:
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">static</span> std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">productExceptSelf</span>(std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&amp;</span> nums) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> total <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> zerosFound <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span>(std<span style="color:#f92672">::</span><span style="color:#66d9ef">size_t</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> nums.<span style="color:#a6e22e">size</span>(); i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (nums[i] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>){
+</span></span><span style="display:flex;"><span>        zerosFound<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>      } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        total <span style="color:#f92672">*=</span> nums[i];
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// we expect only one zero, but it&#39;s not in the constraints, so if
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// more than one zero, everything is zero
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> (zerosFound <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">for</span>(std<span style="color:#f92672">::</span><span style="color:#66d9ef">size_t</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; i<span style="color:#f92672">&lt;</span>nums.<span style="color:#a6e22e">size</span>(); i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>        nums[i] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> nums;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// from here on out we have no more than one zero
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span>(std<span style="color:#f92672">::</span><span style="color:#66d9ef">size_t</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; i<span style="color:#f92672">&lt;</span>nums.<span style="color:#a6e22e">size</span>(); i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (nums[i] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// found a zero
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        nums[i] <span style="color:#f92672">=</span> total;
+</span></span><span style="display:flex;"><span>      }<span style="color:#66d9ef">else</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (zerosFound <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>){
+</span></span><span style="display:flex;"><span>          nums[i] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        }<span style="color:#66d9ef">else</span>{
+</span></span><span style="display:flex;"><span>          nums[i] <span style="color:#f92672">=</span> total <span style="color:#f92672">*</span> <span style="color:#a6e22e">pow</span>(nums[i], <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> nums;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">TEST</span>(ProductExceptSelf, test_1) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Arrange
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> nums <span style="color:#f92672">=</span> {<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>};
+</span></span><span style="display:flex;"><span>  std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> returns;
+</span></span><span style="display:flex;"><span>  std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> expectedReturns <span style="color:#f92672">=</span> {<span style="color:#ae81ff">24</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">6</span>};
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Act
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  returns <span style="color:#f92672">=</span> Solution<span style="color:#f92672">::</span><span style="color:#a6e22e">productExceptSelf</span>(nums);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Assert
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">EXPECT_TRUE</span>(expectedReturns <span style="color:#f92672">==</span> returns);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">TEST</span>(ProductExceptSelf, test_2) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Arrange
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> nums <span style="color:#f92672">=</span> {<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>};
+</span></span><span style="display:flex;"><span>  std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> returns;
+</span></span><span style="display:flex;"><span>  std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> expectedReturns <span style="color:#f92672">=</span> {<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>};
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Act
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  returns <span style="color:#f92672">=</span> Solution<span style="color:#f92672">::</span><span style="color:#a6e22e">productExceptSelf</span>(nums);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Assert
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">EXPECT_TRUE</span>(expectedReturns <span style="color:#f92672">==</span> returns);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">**</span>argv) {
+</span></span><span style="display:flex;"><span>  testing<span style="color:#f92672">::</span><span style="color:#a6e22e">InitGoogleTest</span>(<span style="color:#f92672">&amp;</span>argc, argv);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">RUN_ALL_TESTS</span>();
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>I have a simple Makefile:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-makefile" data-lang="makefile"><span style="display:flex;"><span>OBJS <span style="color:#f92672">=</span> productExceptSelf.o
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">productExceptSelf</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">$(</span>OBJS<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>        g++ -Wall -g -o productExceptSelf <span style="color:#66d9ef">$(</span>OBJS<span style="color:#66d9ef">)</span> -lgtest -lgtest_main
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">productExceptSelf.o</span><span style="color:#f92672">:</span> productExceptSelf.cpp
+</span></span><span style="display:flex;"><span>        g++ -Wall -g -c productExceptSelf.cpp
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">clean</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>        rm productExceptSelf <span style="color:#66d9ef">$(</span>OBJS<span style="color:#66d9ef">)</span>
+</span></span></code></pre></div>
+<p>And here are my google test results:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">[==========]</span> Running <span style="color:#ae81ff">2</span> tests from <span style="color:#ae81ff">1</span> test suite.
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>----------<span style="color:#f92672">]</span> Global test environment set-up.
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>----------<span style="color:#f92672">]</span> <span style="color:#ae81ff">2</span> tests from ProductExceptSelf
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span> RUN      <span style="color:#f92672">]</span> ProductExceptSelf.test_1
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>       OK <span style="color:#f92672">]</span> ProductExceptSelf.test_1 <span style="color:#f92672">(</span><span style="color:#ae81ff">0</span> ms<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span> RUN      <span style="color:#f92672">]</span> ProductExceptSelf.test_2
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>       OK <span style="color:#f92672">]</span> ProductExceptSelf.test_2 <span style="color:#f92672">(</span><span style="color:#ae81ff">0</span> ms<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>----------<span style="color:#f92672">]</span> <span style="color:#ae81ff">2</span> tests from ProductExceptSelf <span style="color:#f92672">(</span><span style="color:#ae81ff">0</span> ms total<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>----------<span style="color:#f92672">]</span> Global test environment tear-down
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[==========]</span> <span style="color:#ae81ff">2</span> tests from <span style="color:#ae81ff">1</span> test suite ran. <span style="color:#f92672">(</span><span style="color:#ae81ff">0</span> ms total<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>  PASSED  <span style="color:#f92672">]</span> <span style="color:#ae81ff">2</span> tests.</span></span></code></pre></div>
+<p>Runtime?</p>
+<figure><img src="/ox-hugo/complexity-product-except-self.png"/>
+</figure>
+
+<p>Yowsers!</p>
+
+</div>
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts"></ul>
+</div>
+  </main>
+  <footer>
+    <div class="footer">
+  <div class="contact">
+    <pr><br><a href="https://www.linkedin.com/in/karl-s-9a705398/">linkedIn</a>
+      <br>
+      <pr><a href="https://github.com/kes">github.com</a>
+
+  </div>
+</div>
+
+  </footer>
+  </div>
+</body>
+</html>
+
