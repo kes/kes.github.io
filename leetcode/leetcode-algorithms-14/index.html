@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en-us"
+      dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <link rel="stylesheet" href="/common.css" type="text/css" media="screen, projection">
+  <link rel="stylesheet" href="/style.css" type="text/css" media="screen, projection">
+  <title>Karl Stump's Blog</title>
+
+
+</head>
+<body>
+  <div class="site">
+  <header>
+    <div class="title">
+  <a href="/">Karl Stump </a>
+  <a class="extra" href="/">home</a>
+    <a class="extra" href="/posts">posts</a>
+  <a class="extra" href="/leetcode">leetcodes</a>
+</header>
+
+  </header>
+  <main>
+    
+<div id="post">Leetcode Algorithms 14<p class="meta"> Nov 28, 2024</p>
+  <p>Okay, this is the fourteenth question from the &ldquo;Top Interview 150.&rdquo;</p>
+<p>If you&rsquo;re new here:</p>
+<p>Working on <a href="https:leetcode.com">leetcode.com</a> there&rsquo;s a &ldquo;Top Interview 150&rdquo; list of problems. I&rsquo;m not sure where the list
+comes from, but no matter. Doing a quick count it looks like there are around 20 hard problems,about
+40 easy, and about 90 medium.</p>
+<p>So that&rsquo;s the goal. Do all 150 problems.</p>
+<h2 id="gas-station">Gas Station</h2>
+<p>Level: medium.</p>
+<p>Read the <a href="https://leetcode.com/problems/h-index/description/?envType=study-plan-v2&amp;envId=top-interview-150">description</a> here.</p>
+<h2 id="first-attempt">First Attempt</h2>
+<p>Here&rsquo;s the brute-force method. Unfortunately, worst case, it&rsquo;s O(n<sup>2</sup>).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;gtest/gtest.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>class Solution {
+</span></span><span style="display:flex;"><span>public:
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">canCompleteCircuit</span>(std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">&amp;</span>gas, std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">&amp;</span>cost) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> totalGas <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> totalCost <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> gas.<span style="color:#a6e22e">size</span>(); i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>      totalCost <span style="color:#f92672">+=</span> cost[i];
+</span></span><span style="display:flex;"><span>      totalGas <span style="color:#f92672">+=</span> gas[i];
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (totalCost <span style="color:#f92672">&gt;</span> totalGas)
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> gas.<span style="color:#a6e22e">size</span>(); i<span style="color:#f92672">++</span>){
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (gas[i] <span style="color:#f92672">&gt;=</span> cost[i]) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> Jmod <span style="color:#f92672">=</span> i ;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> myTank <span style="color:#f92672">=</span> gas[i];
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">bool</span> cycle <span style="color:#f92672">=</span> false;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (cycle <span style="color:#f92672">!=</span> true) {
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">int</span> travelNet <span style="color:#f92672">=</span> myTank <span style="color:#f92672">-</span> cost[Jmod];
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">if</span> (travelNet <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// if we cannot make it from i to Jmod, then we cannot
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#75715e">// make it from anything in-between but Jmod may have
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#75715e">// wrapped around. In which case we&#39;re done.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#66d9ef">if</span> (Jmod <span style="color:#f92672">&lt;</span> i) <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// Here, because of the preceeding test, Jmod must be
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#75715e">// equal to or greater than i; skip all the in-between.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            i <span style="color:#f92672">=</span> Jmod;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>          }
+</span></span><span style="display:flex;"><span>          myTank <span style="color:#f92672">=</span> travelNet <span style="color:#f92672">+</span> gas[(Jmod <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">%</span> gas.<span style="color:#a6e22e">size</span>()];
+</span></span><span style="display:flex;"><span>          <span style="color:#75715e">// We might wrap
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>          Jmod <span style="color:#f92672">=</span> <span style="color:#f92672">++</span>Jmod <span style="color:#f92672">%</span> gas.<span style="color:#a6e22e">size</span>();
+</span></span><span style="display:flex;"><span>          <span style="color:#75715e">// have we cycled
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>          <span style="color:#66d9ef">if</span> (i <span style="color:#f92672">==</span> Jmod) {
+</span></span><span style="display:flex;"><span>            cycle <span style="color:#f92672">=</span> true;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (myTank <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>              <span style="color:#75715e">// description says there is only one solution
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>              <span style="color:#66d9ef">return</span> i;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>          }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">TEST</span>(CanCompeleteCircuit, test_1) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Arrange
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> gas <span style="color:#f92672">=</span> {<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>};
+</span></span><span style="display:flex;"><span>  std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> cost <span style="color:#f92672">=</span> {<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>};
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> returns;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> expectedReturns <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span> ;
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Act
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  returns <span style="color:#f92672">=</span> Solution<span style="color:#f92672">::</span><span style="color:#a6e22e">canCompleteCircuit</span>(gas, cost);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Assert
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">EXPECT_TRUE</span>(expectedReturns <span style="color:#f92672">==</span> returns) <span style="color:#f92672">&lt;&lt;</span> expectedReturns <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; not equal&#34;</span> <span style="color:#f92672">&lt;&lt;</span> returns;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">TEST</span>(CanCompeleteCircuit, test_2) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Arrange
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> gas <span style="color:#f92672">=</span> {<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>};
+</span></span><span style="display:flex;"><span>  std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> cost <span style="color:#f92672">=</span> {<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">3</span>};
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> returns;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> expectedReturns <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> ;
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Act
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  returns <span style="color:#f92672">=</span> Solution<span style="color:#f92672">::</span><span style="color:#a6e22e">canCompleteCircuit</span>(gas, cost);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Assert
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">EXPECT_TRUE</span>(expectedReturns <span style="color:#f92672">==</span> returns) <span style="color:#f92672">&lt;&lt;</span> expectedReturns <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; not equal&#34;</span> <span style="color:#f92672">&lt;&lt;</span> returns;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">TEST</span>(CanCompeleteCircuit, test_3) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Arrange
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> gas <span style="color:#f92672">=</span> {<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">50</span>};
+</span></span><span style="display:flex;"><span>  std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> cost <span style="color:#f92672">=</span> {<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">1</span>};
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> returns;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> expectedReturns <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Act
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  returns <span style="color:#f92672">=</span> Solution<span style="color:#f92672">::</span><span style="color:#a6e22e">canCompleteCircuit</span>(gas, cost);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Assert
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">EXPECT_TRUE</span>(expectedReturns <span style="color:#f92672">==</span> returns) <span style="color:#f92672">&lt;&lt;</span> expectedReturns <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; not equal&#34;</span> <span style="color:#f92672">&lt;&lt;</span> returns;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">TEST</span>(CanCompeleteCircuit, test_4) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Arrange
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> gas <span style="color:#f92672">=</span> {<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>};
+</span></span><span style="display:flex;"><span>  std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> cost <span style="color:#f92672">=</span> {<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>};
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> returns;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> expectedReturns <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Act
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  returns <span style="color:#f92672">=</span> Solution<span style="color:#f92672">::</span><span style="color:#a6e22e">canCompleteCircuit</span>(gas, cost);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Assert
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">EXPECT_TRUE</span>(expectedReturns <span style="color:#f92672">==</span> returns) <span style="color:#f92672">&lt;&lt;</span> expectedReturns <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; not equal&#34;</span> <span style="color:#f92672">&lt;&lt;</span> returns;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">**</span>argv) {
+</span></span><span style="display:flex;"><span>  testing<span style="color:#f92672">::</span><span style="color:#a6e22e">InitGoogleTest</span>(<span style="color:#f92672">&amp;</span>argc, argv);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">RUN_ALL_TESTS</span>();
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<h2 id="second-pass">Second Pass</h2>
+<p>The brute-force method isn&rsquo;t that far off.  But we don&rsquo;t have to wrap around. Instead, we&rsquo;ll keep the total gas as a running total.</p>
+<p>So, the goals: is there enough gas total, and what is the starting point? Assuming that there is
+enough gas, there must be a starting point that will take us to the end of the vector.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;gtest/gtest.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>class Solution {
+</span></span><span style="display:flex;"><span>public:
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">canCompleteCircuit</span>(std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">&amp;</span>gas, std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">&amp;</span>cost) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> totalGas <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> myTank <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> gas.<span style="color:#a6e22e">size</span>(); i<span style="color:#f92672">++</span>){
+</span></span><span style="display:flex;"><span>      totalGas <span style="color:#f92672">+=</span> gas[i] <span style="color:#f92672">-</span> cost[i];
+</span></span><span style="display:flex;"><span>      myTank <span style="color:#f92672">+=</span> gas[i] <span style="color:#f92672">-</span> cost[i];
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (myTank <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>){
+</span></span><span style="display:flex;"><span>        myTank <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        start <span style="color:#f92672">=</span> i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> (totalGas <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>) <span style="color:#f92672">?</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">:</span> start;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">TEST</span>(CanCompeleteCircuit, test_1) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Arrange
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> gas <span style="color:#f92672">=</span> {<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>};
+</span></span><span style="display:flex;"><span>  std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> cost <span style="color:#f92672">=</span> {<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>};
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> returns;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> expectedReturns <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span> ;
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Act
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  returns <span style="color:#f92672">=</span> Solution<span style="color:#f92672">::</span><span style="color:#a6e22e">canCompleteCircuit</span>(gas, cost);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Assert
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">EXPECT_TRUE</span>(expectedReturns <span style="color:#f92672">==</span> returns) <span style="color:#f92672">&lt;&lt;</span> expectedReturns <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; not equal&#34;</span> <span style="color:#f92672">&lt;&lt;</span> returns;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">TEST</span>(CanCompeleteCircuit, test_2) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Arrange
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> gas <span style="color:#f92672">=</span> {<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>};
+</span></span><span style="display:flex;"><span>  std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> cost <span style="color:#f92672">=</span> {<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">3</span>};
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> returns;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> expectedReturns <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> ;
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Act
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  returns <span style="color:#f92672">=</span> Solution<span style="color:#f92672">::</span><span style="color:#a6e22e">canCompleteCircuit</span>(gas, cost);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Assert
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">EXPECT_TRUE</span>(expectedReturns <span style="color:#f92672">==</span> returns) <span style="color:#f92672">&lt;&lt;</span> expectedReturns <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; not equal&#34;</span> <span style="color:#f92672">&lt;&lt;</span> returns;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">TEST</span>(CanCompeleteCircuit, test_3) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Arrange
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> gas <span style="color:#f92672">=</span> {<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">50</span>};
+</span></span><span style="display:flex;"><span>  std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> cost <span style="color:#f92672">=</span> {<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">1</span>};
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> returns;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> expectedReturns <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Act
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  returns <span style="color:#f92672">=</span> Solution<span style="color:#f92672">::</span><span style="color:#a6e22e">canCompleteCircuit</span>(gas, cost);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Assert
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">EXPECT_TRUE</span>(expectedReturns <span style="color:#f92672">==</span> returns) <span style="color:#f92672">&lt;&lt;</span> expectedReturns <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; not equal&#34;</span> <span style="color:#f92672">&lt;&lt;</span> returns;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">TEST</span>(CanCompeleteCircuit, test_4) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Arrange
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> gas <span style="color:#f92672">=</span> {<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>};
+</span></span><span style="display:flex;"><span>  std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> cost <span style="color:#f92672">=</span> {<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>};
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> returns;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> expectedReturns <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Act
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  returns <span style="color:#f92672">=</span> Solution<span style="color:#f92672">::</span><span style="color:#a6e22e">canCompleteCircuit</span>(gas, cost);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Assert
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">EXPECT_TRUE</span>(expectedReturns <span style="color:#f92672">==</span> returns) <span style="color:#f92672">&lt;&lt;</span> expectedReturns <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; not equal&#34;</span> <span style="color:#f92672">&lt;&lt;</span> returns;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">**</span>argv) {
+</span></span><span style="display:flex;"><span>  testing<span style="color:#f92672">::</span><span style="color:#a6e22e">InitGoogleTest</span>(<span style="color:#f92672">&amp;</span>argc, argv);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">RUN_ALL_TESTS</span>();
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>I have a simple Makefile:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-makefile" data-lang="makefile"><span style="display:flex;"><span>OBJS <span style="color:#f92672">=</span> gasStation.o
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">gasStation</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">$(</span>OBJS<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>        g++ -Wall -g -o gasStation <span style="color:#66d9ef">$(</span>OBJS<span style="color:#66d9ef">)</span> -lgtest -lgtest_main
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">gasStation.o</span><span style="color:#f92672">:</span> gasStation.cpp
+</span></span><span style="display:flex;"><span>        g++ -Wall -g -c gasStation.cpp
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">clean</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>        rm gasStation <span style="color:#66d9ef">$(</span>OBJS<span style="color:#66d9ef">)</span>
+</span></span></code></pre></div>
+<p>And here are my google test results:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">[==========]</span> Running <span style="color:#ae81ff">4</span> tests from <span style="color:#ae81ff">1</span> test suite.
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>----------<span style="color:#f92672">]</span> Global test environment set-up.
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>----------<span style="color:#f92672">]</span> <span style="color:#ae81ff">4</span> tests from CanCompeleteCircuit
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span> RUN      <span style="color:#f92672">]</span> CanCompeleteCircuit.test_1
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>       OK <span style="color:#f92672">]</span> CanCompeleteCircuit.test_1 <span style="color:#f92672">(</span><span style="color:#ae81ff">0</span> ms<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span> RUN      <span style="color:#f92672">]</span> CanCompeleteCircuit.test_2
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>       OK <span style="color:#f92672">]</span> CanCompeleteCircuit.test_2 <span style="color:#f92672">(</span><span style="color:#ae81ff">0</span> ms<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span> RUN      <span style="color:#f92672">]</span> CanCompeleteCircuit.test_3
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>       OK <span style="color:#f92672">]</span> CanCompeleteCircuit.test_3 <span style="color:#f92672">(</span><span style="color:#ae81ff">0</span> ms<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span> RUN      <span style="color:#f92672">]</span> CanCompeleteCircuit.test_4
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>       OK <span style="color:#f92672">]</span> CanCompeleteCircuit.test_4 <span style="color:#f92672">(</span><span style="color:#ae81ff">0</span> ms<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>----------<span style="color:#f92672">]</span> <span style="color:#ae81ff">4</span> tests from CanCompeleteCircuit <span style="color:#f92672">(</span><span style="color:#ae81ff">0</span> ms total<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>----------<span style="color:#f92672">]</span> Global test environment tear-down
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[==========]</span> <span style="color:#ae81ff">4</span> tests from <span style="color:#ae81ff">1</span> test suite ran. <span style="color:#f92672">(</span><span style="color:#ae81ff">0</span> ms total<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>  PASSED  <span style="color:#f92672">]</span> <span style="color:#ae81ff">4</span> tests.</span></span></code></pre></div>
+<figure><img src="/ox-hugo/complexity-gas-station.png"/>
+</figure>
+
+<p>Slick!</p>
+
+</div>
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts"><li><span>Nov 26 2024</span> &raquo;
+<a href="/leetcode/leetcode-algorithms-11/">Leetcode Algorithms 11</a>
+
+</li><li><span>Nov 26 2024</span> &raquo;
+<a href="/leetcode/leetcode-algorithms-13/">Leetcode Algorithms 13</a>
+
+</li><li><span>Nov 25 2024</span> &raquo;
+<a href="/leetcode/leetcode-algorithms-10/">Leetcode Algorithms 10</a>
+
+</li><li><span>Nov 24 2024</span> &raquo;
+<a href="/leetcode/leetcode-algorithms-7/">Leetcode Algorithms 7</a>
+
+</li><li><span>Nov 24 2024</span> &raquo;
+<a href="/leetcode/leetcode-algorithms-8/">Leetcode Algorithms 8</a>
+
+</li><li><span>Nov 24 2024</span> &raquo;
+<a href="/leetcode/leetcode-algorithms-9/">Leetcode Algorithms 9</a>
+
+</li><li><span>Nov 23 2024</span> &raquo;
+<a href="/leetcode/leetcode-algorithms-2/">Leetcode Algorithms 2</a>
+
+</li><li><span>Nov 23 2024</span> &raquo;
+<a href="/leetcode/leetcode-algorithms-3/">Leetcode Algorithms 3</a>
+
+</li><li><span>Nov 23 2024</span> &raquo;
+<a href="/leetcode/leetcode-algorithms-4/">Leetcode Algorithms 4</a>
+
+</li><li><span>Nov 23 2024</span> &raquo;
+<a href="/leetcode/leetcode-algorithms-5/">Leetcode Algorithms 5</a>
+
+</li><li><span>Nov 23 2024</span> &raquo;
+<a href="/leetcode/leetcode-algorithms-6/">Leetcode Algorithms 6</a>
+
+</li><li><span>Nov 22 2024</span> &raquo;
+<a href="/leetcode/leetcode-algorithms-1/">Leetcode Algorithms 1</a>
+
+</li></ul>
+</div>
+  </main>
+  <footer>
+    <div class="footer">
+  <div class="contact">
+    <pr><br><a href="https://www.linkedin.com/in/karl-s-9a705398/">linkedIn</a>
+      <br>
+      <pr><a href="https://github.com/kes">github.com</a>
+
+  </div>
+</div>
+
+  </footer>
+  </div>
+</body>
+</html>
+
