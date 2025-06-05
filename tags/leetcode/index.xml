@@ -2,101 +2,108 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Leetcode on Karl Stump</title>
-    <link>http://localhost:1313/tags/leetcode/</link>
+    <link>https://kes.github.io/tags/leetcode/</link>
     <description>Recent content in Leetcode on Karl Stump</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 28 Nov 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/leetcode/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 29 Nov 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://kes.github.io/tags/leetcode/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Leetcode Algorithms 15</title>
+      <link>https://kes.github.io/leetcode/leetcode-algorithms-15/</link>
+      <pubDate>Fri, 29 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>https://kes.github.io/leetcode/leetcode-algorithms-15/</guid>
+      <description>Okay, this is the fifteenth question from the &amp;ldquo;Top Interview 150.&amp;rdquo;&#xA;If you&amp;rsquo;re new here:&#xA;Working on leetcode.com there&amp;rsquo;s a &amp;ldquo;Top Interview 150&amp;rdquo; list of problems. I&amp;rsquo;m not sure where the list comes from, but no matter. Doing a quick count it looks like there are around 20 hard problems,about 40 easy, and about 90 medium.&#xA;So that&amp;rsquo;s the goal. Do all 150 problems.&#xA;Candy Level: Hard.&#xA;Read the description here.</description>
+    </item>
     <item>
       <title>Leetcode Algorithms 14</title>
-      <link>http://localhost:1313/leetcode/leetcode-algorithms-14/</link>
+      <link>https://kes.github.io/leetcode/leetcode-algorithms-14/</link>
       <pubDate>Thu, 28 Nov 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/leetcode/leetcode-algorithms-14/</guid>
+      <guid>https://kes.github.io/leetcode/leetcode-algorithms-14/</guid>
       <description>Okay, this is the fourteenth question from the &amp;ldquo;Top Interview 150.&amp;rdquo;&#xA;If you&amp;rsquo;re new here:&#xA;Working on leetcode.com there&amp;rsquo;s a &amp;ldquo;Top Interview 150&amp;rdquo; list of problems. I&amp;rsquo;m not sure where the list comes from, but no matter. Doing a quick count it looks like there are around 20 hard problems,about 40 easy, and about 90 medium.&#xA;So that&amp;rsquo;s the goal. Do all 150 problems.&#xA;Gas Station Level: medium.&#xA;Read the description here.</description>
     </item>
     <item>
       <title>Leetcode Algorithms 11</title>
-      <link>http://localhost:1313/leetcode/leetcode-algorithms-11/</link>
+      <link>https://kes.github.io/leetcode/leetcode-algorithms-11/</link>
       <pubDate>Tue, 26 Nov 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/leetcode/leetcode-algorithms-11/</guid>
+      <guid>https://kes.github.io/leetcode/leetcode-algorithms-11/</guid>
       <description>Okay, this is the tenth question from the &amp;ldquo;Top Interview 150.&amp;rdquo;&#xA;If you&amp;rsquo;re new here:&#xA;Working on leetcode.com there&amp;rsquo;s a &amp;ldquo;Top Interview 150&amp;rdquo; list of problems. I&amp;rsquo;m not sure where the list comes from, but no matter. Doing a quick count it looks like there are around 20 hard problems,about 40 easy, and about 90 medium.&#xA;So that&amp;rsquo;s the goal. Do all 150 problems.&#xA;H-Index Level: medium.&#xA;Read the description here.</description>
     </item>
     <item>
       <title>Leetcode Algorithms 13</title>
-      <link>http://localhost:1313/leetcode/leetcode-algorithms-13/</link>
+      <link>https://kes.github.io/leetcode/leetcode-algorithms-13/</link>
       <pubDate>Tue, 26 Nov 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/leetcode/leetcode-algorithms-13/</guid>
+      <guid>https://kes.github.io/leetcode/leetcode-algorithms-13/</guid>
       <description>Okay, this is the thirteenth question from the &amp;ldquo;Top Interview 150.&amp;rdquo;&#xA;If you&amp;rsquo;re new here:&#xA;Working on leetcode.com there&amp;rsquo;s a &amp;ldquo;Top Interview 150&amp;rdquo; list of problems. I&amp;rsquo;m not sure where the list comes from, but no matter. Doing a quick count it looks like there are around 20 hard problems,about 40 easy, and about 90 medium.&#xA;So that&amp;rsquo;s the goal. Do all 150 problems.&#xA;Product of Array, &amp;lsquo;cept Self Level: medium.</description>
     </item>
     <item>
       <title>Leetcode Algorithms 10</title>
-      <link>http://localhost:1313/leetcode/leetcode-algorithms-10/</link>
+      <link>https://kes.github.io/leetcode/leetcode-algorithms-10/</link>
       <pubDate>Mon, 25 Nov 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/leetcode/leetcode-algorithms-10/</guid>
+      <guid>https://kes.github.io/leetcode/leetcode-algorithms-10/</guid>
       <description>Okay, this is the tenth question from the &amp;ldquo;Top Interview 150.&amp;rdquo;&#xA;If you&amp;rsquo;re new here:&#xA;Working on leetcode.com there&amp;rsquo;s a &amp;ldquo;Top Interview 150&amp;rdquo; list of problems. I&amp;rsquo;m not sure where the list comes from, but no matter. Doing a quick count it looks like there are around 20 hard problems,about 40 easy, and about 90 medium.&#xA;So that&amp;rsquo;s the goal. Do all 150 problems.&#xA;Jump Game II Level: medium.&#xA;Read the description here.</description>
     </item>
     <item>
       <title>Leetcode Algorithms 7</title>
-      <link>http://localhost:1313/leetcode/leetcode-algorithms-7/</link>
+      <link>https://kes.github.io/leetcode/leetcode-algorithms-7/</link>
       <pubDate>Sun, 24 Nov 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/leetcode/leetcode-algorithms-7/</guid>
+      <guid>https://kes.github.io/leetcode/leetcode-algorithms-7/</guid>
       <description>Okay, this is the seventh question from the &amp;ldquo;Top Interview 150.&amp;rdquo;&#xA;If you&amp;rsquo;re new here:&#xA;Working on leetcode.com there&amp;rsquo;s a &amp;ldquo;Top Interview 150&amp;rdquo; list of problems. I&amp;rsquo;m not sure where the list comes from, but no matter. Doing a quick count it looks like there are around 20 hard problems,about 40 easy, and about 90 medium.&#xA;So that&amp;rsquo;s the goal. Do all 150 problems.&#xA;Best Time to Buy and Sell Stock Level: easy</description>
     </item>
     <item>
       <title>Leetcode Algorithms 8</title>
-      <link>http://localhost:1313/leetcode/leetcode-algorithms-8/</link>
+      <link>https://kes.github.io/leetcode/leetcode-algorithms-8/</link>
       <pubDate>Sun, 24 Nov 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/leetcode/leetcode-algorithms-8/</guid>
+      <guid>https://kes.github.io/leetcode/leetcode-algorithms-8/</guid>
       <description>Okay, this is the eighth question from the &amp;ldquo;Top Interview 150.&amp;rdquo;&#xA;If you&amp;rsquo;re new here:&#xA;Working on leetcode.com there&amp;rsquo;s a &amp;ldquo;Top Interview 150&amp;rdquo; list of problems. I&amp;rsquo;m not sure where the list comes from, but no matter. Doing a quick count it looks like there are around 20 hard problems,about 40 easy, and about 90 medium.&#xA;So that&amp;rsquo;s the goal. Do all 150 problems.&#xA;Best Time to Sell Stock II Level: easy.</description>
     </item>
     <item>
       <title>Leetcode Algorithms 9</title>
-      <link>http://localhost:1313/leetcode/leetcode-algorithms-9/</link>
+      <link>https://kes.github.io/leetcode/leetcode-algorithms-9/</link>
       <pubDate>Sun, 24 Nov 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/leetcode/leetcode-algorithms-9/</guid>
+      <guid>https://kes.github.io/leetcode/leetcode-algorithms-9/</guid>
       <description>Okay, this is the ninth question from the &amp;ldquo;Top Interview 150.&amp;rdquo;&#xA;If you&amp;rsquo;re new here:&#xA;Working on leetcode.com there&amp;rsquo;s a &amp;ldquo;Top Interview 150&amp;rdquo; list of problems. I&amp;rsquo;m not sure where the list comes from, but no matter. Doing a quick count it looks like there are around 20 hard problems,about 40 easy, and about 90 medium.&#xA;So that&amp;rsquo;s the goal. Do all 150 problems.&#xA;Jump Game Level: medium.&#xA;Read the description here.</description>
     </item>
     <item>
       <title>Leetcode Algorithms 2</title>
-      <link>http://localhost:1313/leetcode/leetcode-algorithms-2/</link>
+      <link>https://kes.github.io/leetcode/leetcode-algorithms-2/</link>
       <pubDate>Sat, 23 Nov 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/leetcode/leetcode-algorithms-2/</guid>
+      <guid>https://kes.github.io/leetcode/leetcode-algorithms-2/</guid>
       <description>Okay, this is the second question from the &amp;ldquo;Top Interview 150.&amp;rdquo;&#xA;If you&amp;rsquo;re new here:&#xA;Working on leetcode.com there&amp;rsquo;s a &amp;ldquo;Top Interview 150&amp;rdquo; list of problems. I&amp;rsquo;m not sure where the list comes from, but no matter. Doing a quick count it looks like there are around 20 hard problems,about 40 easy, and about 90 medium.&#xA;So that&amp;rsquo;s the goal. Do all 150 problems.&#xA;Remove Element Level: easy&#xA;Read the problem description.</description>
     </item>
     <item>
       <title>Leetcode Algorithms 3</title>
-      <link>http://localhost:1313/leetcode/leetcode-algorithms-3/</link>
+      <link>https://kes.github.io/leetcode/leetcode-algorithms-3/</link>
       <pubDate>Sat, 23 Nov 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/leetcode/leetcode-algorithms-3/</guid>
+      <guid>https://kes.github.io/leetcode/leetcode-algorithms-3/</guid>
       <description>Okay, this is the third question from the &amp;ldquo;Top Interview 150.&amp;rdquo;&#xA;If you&amp;rsquo;re new here:&#xA;Working on leetcode.com there&amp;rsquo;s a &amp;ldquo;Top Interview 150&amp;rdquo; list of problems. I&amp;rsquo;m not sure where the list comes from, but no matter. Doing a quick count it looks like there are around 20 hard problems,about 40 easy, and about 90 medium.&#xA;So that&amp;rsquo;s the goal. Do all 150 problems.&#xA;Remove Duplicates from Sorted Array Level: easy</description>
     </item>
     <item>
       <title>Leetcode Algorithms 4</title>
-      <link>http://localhost:1313/leetcode/leetcode-algorithms-4/</link>
+      <link>https://kes.github.io/leetcode/leetcode-algorithms-4/</link>
       <pubDate>Sat, 23 Nov 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/leetcode/leetcode-algorithms-4/</guid>
+      <guid>https://kes.github.io/leetcode/leetcode-algorithms-4/</guid>
       <description>Okay, this is the fourth question from the &amp;ldquo;Top Interview 150.&amp;rdquo;&#xA;If you&amp;rsquo;re new here:&#xA;Working on leetcode.com there&amp;rsquo;s a &amp;ldquo;Top Interview 150&amp;rdquo; list of problems. I&amp;rsquo;m not sure where the list comes from, but no matter. Doing a quick count it looks like there are around 20 hard problems,about 40 easy, and about 90 medium.&#xA;So that&amp;rsquo;s the goal. Do all 150 problems.&#xA;Remove Duplicates from Sorted Array II Level: medium</description>
     </item>
     <item>
       <title>Leetcode Algorithms 5</title>
-      <link>http://localhost:1313/leetcode/leetcode-algorithms-5/</link>
+      <link>https://kes.github.io/leetcode/leetcode-algorithms-5/</link>
       <pubDate>Sat, 23 Nov 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/leetcode/leetcode-algorithms-5/</guid>
+      <guid>https://kes.github.io/leetcode/leetcode-algorithms-5/</guid>
       <description>Okay, this is the fifth question from the &amp;ldquo;Top Interview 150.&amp;rdquo;&#xA;If you&amp;rsquo;re new here:&#xA;Working on leetcode.com there&amp;rsquo;s a &amp;ldquo;Top Interview 150&amp;rdquo; list of problems. I&amp;rsquo;m not sure where the list comes from, but no matter. Doing a quick count it looks like there are around 20 hard problems,about 40 easy, and about 90 medium.&#xA;So that&amp;rsquo;s the goal. Do all 150 problems.&#xA;Majority Element The majority element is the one that appears more than n/2.</description>
     </item>
     <item>
       <title>Leetcode Algorithms 6</title>
-      <link>http://localhost:1313/leetcode/leetcode-algorithms-6/</link>
+      <link>https://kes.github.io/leetcode/leetcode-algorithms-6/</link>
       <pubDate>Sat, 23 Nov 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/leetcode/leetcode-algorithms-6/</guid>
+      <guid>https://kes.github.io/leetcode/leetcode-algorithms-6/</guid>
       <description>Okay, this is the sixth question from the &amp;ldquo;Top Interview 150.&amp;rdquo;&#xA;If you&amp;rsquo;re new here:&#xA;Working on leetcode.com there&amp;rsquo;s a &amp;ldquo;Top Interview 150&amp;rdquo; list of problems. I&amp;rsquo;m not sure where the list comes from, but no matter. Doing a quick count it looks like there are around 20 hard problems,about 40 easy, and about 90 medium.&#xA;So that&amp;rsquo;s the goal. Do all 150 problems.&#xA;Rotate Array Level: medium&#xA;Read the problem description.</description>
     </item>
     <item>
       <title>Leetcode Algorithms 1</title>
-      <link>http://localhost:1313/leetcode/leetcode-algorithms-1/</link>
+      <link>https://kes.github.io/leetcode/leetcode-algorithms-1/</link>
       <pubDate>Fri, 22 Nov 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/leetcode/leetcode-algorithms-1/</guid>
+      <guid>https://kes.github.io/leetcode/leetcode-algorithms-1/</guid>
       <description>Working on leetcode.com there&amp;rsquo;s a &amp;ldquo;Top Interview 150&amp;rdquo; list of problems. I&amp;rsquo;m not sure where the list comes from, but no matter. Doing a quick count it looks like there are around 20 hard problems,about 40 easy, and about 90 medium.&#xA;So that&amp;rsquo;s the goal. Do all 150 problems.&#xA;Merge Sorted Array Level: easy&#xA;Read the problem description.&#xA;Here&amp;rsquo;s the code:&#xA;#include &amp;lt;vector&amp;gt; #include &amp;lt;gtest/gtest.h&amp;gt; class Solution { public: static void merge(std::vector&amp;lt;int&amp;gt; &amp;amp;nums1, int m, std::vector&amp;lt;int&amp;gt; &amp;amp;nums2, int n) { int i = m - 1; // keeping track of where we are in nums1 int j = n - 1; // keeping track of where we are in nums2 int k = m + n - 1; // keeping track of where to insert the next // digit in nums1 /* The loop is controlled by j because once we&amp;#39;ve moved all of num2 into num1, we&amp;#39;re done no matter what i is */ while (j &amp;gt;= 0) { /* Either move the end of nums1[i] or the end of nums2[j] into nums1[k] -- and notice, that if i == 0 then just keep moving digits from nums2[j] */ nums1[k--] = i &amp;gt;= 0 &amp;amp;&amp;amp; nums1[i] &amp;gt; nums2[j] ?</description>
     </item>
   </channel>

@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>C on Karl Stump</title>
-    <link>http://localhost:1313/tags/c/</link>
+    <link>https://kes.github.io/tags/c/</link>
     <description>Recent content in C on Karl Stump</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 18 Nov 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/c/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://kes.github.io/tags/c/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Emacs Modules</title>
-      <link>http://localhost:1313/posts/emacs-modules/</link>
+      <link>https://kes.github.io/posts/emacs-modules/</link>
       <pubDate>Mon, 18 Nov 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/emacs-modules/</guid>
+      <guid>https://kes.github.io/posts/emacs-modules/</guid>
       <description>Emacs is implemented in elisp (most of it). Extending, modifying or customizing emacs is also done in elisp. (However, some of emacs is written in C.),&#xA;As of Emacs 25 it is possible to extend emacs by writing modules in C.&#xA;Let&amp;rsquo;s look at a simple example using the notes from https://www.gnu.org/software/emacs/manual/html_node/elisp/Module-Initialization.html&#xA;Start the Module A module must start with the following:&#xA;#include &amp;lt;emacs-module.h&amp;gt; int plugin_is_GPL_compatible; After that, it&amp;rsquo;s pretty easy to create a test function.</description>
     </item>
     <item>
       <title>The C Programming Language</title>
-      <link>http://localhost:1313/posts/this-is-now/</link>
+      <link>https://kes.github.io/posts/this-is-now/</link>
       <pubDate>Sat, 10 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/this-is-now/</guid>
+      <guid>https://kes.github.io/posts/this-is-now/</guid>
       <description>Some time ago, I was on a reddit thread and someone commented that they knew python and wondered if they should learn C …&#xA;I thought everybody knew C! ;)&#xA;Back in the day, C was my third or fourth programming language.&#xA;With the mention of C I just had to break out my copy of The C Programming Language. Unfortunately, my original copy is long gone but I have the second edition.</description>
     </item>
   </channel>

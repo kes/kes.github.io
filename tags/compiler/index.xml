@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Compiler on Karl Stump</title>
-    <link>http://localhost:1313/tags/compiler/</link>
+    <link>https://kes.github.io/tags/compiler/</link>
     <description>Recent content in Compiler on Karl Stump</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 07 Sep 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/compiler/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://kes.github.io/tags/compiler/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Setting up g&#43;&#43;</title>
-      <link>http://localhost:1313/posts/setting-up-g&#43;&#43;/</link>
+      <link>https://kes.github.io/posts/setting-up-g&#43;&#43;/</link>
       <pubDate>Sat, 07 Sep 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/setting-up-g&#43;&#43;/</guid>
+      <guid>https://kes.github.io/posts/setting-up-g&#43;&#43;/</guid>
       <description>I want to use std::format in C++. If I just compile with g++ without any command line options, I get an error – format is not found. I&amp;rsquo;m using GCC version 13, and C++20 is supported. What gives? (GCC supports different C++ standards, for details see: https://gcc.gnu.org/projects/cxx-status.html.)&#xA;(Oh, and don&amp;rsquo;t be confused by the GCC version and the C++ standard – these are different things. You can use the GCC version 13 compiling to C++ Standard 17 (for example; or 11, or 20, or…).</description>
     </item>
     <item>
       <title>Compiler Project</title>
-      <link>http://localhost:1313/posts/compiler-project/</link>
+      <link>https://kes.github.io/posts/compiler-project/</link>
       <pubDate>Tue, 03 Sep 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/compiler-project/</guid>
+      <guid>https://kes.github.io/posts/compiler-project/</guid>
       <description>I&amp;rsquo;ve started writing a C compiler, and I&amp;rsquo;m using Nora Sandler&amp;rsquo;s book, Writing a C Compiler.1 Recommended. Created github repository for the project: https://github.com/kes/c-compiler.&#xA;Back in the day, I was taught compilers using the &amp;ldquo;Dragon book.&amp;rdquo; (Compilers2)&#xA;After a brief examination of Sandler&amp;rsquo;s book, what I like is that while it&amp;rsquo;s a &amp;ldquo;detailed guide,&amp;rdquo; and (so far at least) with plenty of technical insight, nevertheless the reader is left to his own devices.</description>
     </item>
   </channel>
