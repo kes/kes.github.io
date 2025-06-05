@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Make on Karl Stump</title>
-    <link>https://kes.github.io/tags/make/</link>
+    <link>http://localhost:1313/tags/make/</link>
     <description>Recent content in Make on Karl Stump</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 31 Aug 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://kes.github.io/tags/make/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/make/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CMake</title>
-      <link>https://kes.github.io/posts/cmake-tutorial/</link>
+      <link>http://localhost:1313/posts/cmake-tutorial/</link>
       <pubDate>Sat, 31 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>https://kes.github.io/posts/cmake-tutorial/</guid>
+      <guid>http://localhost:1313/posts/cmake-tutorial/</guid>
       <description>Working through the CMake tutorial: https://cmake.org/cmake/help/latest/guide/tutorial/index.html&#xA;Step 1 Exercise 1 The first step (Step1) and this is the directory stucture:&#xA;Step1 ├── CMakeLists.txt ├── CMakeLists.txt~ ├── TutorialConfig.h.in └── tutorial.cxx A minumum requirement for CMake, in CMakeLists.txt is the following.&#xA;Required version cmake_minimum_required(VERSION 3.23) Project name and version project(Tutorial VERSION 1.0) Executable add_executable(Tutorial tutorial.cxx) So, for this tutorial this becomes:&#xA;# TODO 1: Set the minimum required version of CMake to be 3.</description>
     </item>
   </channel>
