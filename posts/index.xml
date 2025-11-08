@@ -6,8 +6,15 @@
     <description>Recent content in Posts on Karl Stump</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 19 Nov 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 08 Nov 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>C Programming with ChatGPT</title>
+      <link>http://localhost:1313/posts/programming-with-chatgpt/</link>
+      <pubDate>Sat, 08 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/programming-with-chatgpt/</guid>
+      <description>I wanted to experiment with ChatGPT and programming. So, I thought I would just start with an exercise from Kernighan and Ritchie&amp;rsquo;s The C Programming Language.&#xA;I prompted ChatGPT with the following:&#xA;In C write a program called detab that replaces tabs in the input with the proper number of spaces to reach the next tabstop. Assume tab stops every eight columns. This is exercise 1.20 from The C Programming Language by Kernighan and Ritchie.</description>
+    </item>
     <item>
       <title>Amateur Extra Class</title>
       <link>http://localhost:1313/posts/amateur-extra-class/</link>

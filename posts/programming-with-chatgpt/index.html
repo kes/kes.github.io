@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en-us"
+      dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <link rel="stylesheet" href="/common.css" type="text/css" media="screen, projection">
+  <link rel="stylesheet" href="/style.css" type="text/css" media="screen, projection">
+  <title>Karl Stump's Blog</title>
+
+
+</head>
+<body>
+  <div class="site">
+  <header>
+    <div class="title">
+  <a href="/">Karl Stump </a>
+  <a class="extra" href="/">home</a>
+    <a class="extra" href="/posts">posts</a>
+  <a class="extra" href="/leetcode">leetcodes</a>
+</header>
+
+  </header>
+  <main>
+    
+<div id="post">C Programming with ChatGPT<p class="meta"> Nov 8, 2025</p>
+  <p>I wanted to experiment with <code>ChatGPT</code> and programming. So, I thought I would just start with an exercise from Kernighan and Ritchie&rsquo;s <em>The C Programming Language</em>.</p>
+<p>I prompted <code>ChatGPT</code>  with the following:</p>
+<blockquote>
+<p>In C write a program called detab that replaces tabs in the input with the proper number of spaces to reach the next tabstop. Assume tab stops every eight columns. This is exercise 1.20 from The C Programming Language by Kernighan and Ritchie. I would also like some sort of tests (not sure what suites or frameworks are available).</p>
+</blockquote>
+<p>And I got the following reply:</p>
+<blockquote>
+<p>Love this exercise. Here’s a clean, portable detab implementation (C17), plus a lightweight test harness you can run with plain Bash. Tab stops default to every 8 columns, and you can optionally override with -t</p>
+</blockquote>
+<p>In the few weeks that I&rsquo;ve been using <code>ChatGPT</code> I have been surprised by responses a number of times. It&rsquo;s difficult not to anthropomorphize many of them. I have shared some of the responses with non-technical friends who make an apt observation: &ldquo;It&rsquo;s like talking to a friend, only they&rsquo;re really, really, smart!&rdquo; I have to laugh at that, and yes, I agree.  The &ldquo;Love this exercise,&rdquo; seems to emphasize familiarity with the exercise, perhaps the entire book – I will use this familiarity later.</p>
+<p>What code came back? The following:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">// detab.c — replace tabs with spaces to the next tab stop (default width 8)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Usage: ./detab            (tab width = 8)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//        ./detab -t 4       (tab width = 4)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Reads from stdin, writes to stdout.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdlib.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;errno.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">parse_tabwidth</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">**</span>argv) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> tabw <span style="color:#f92672">=</span> <span style="color:#ae81ff">8</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (argc <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">strcmp</span>(argv[<span style="color:#ae81ff">1</span>], <span style="color:#e6db74">&#34;-t&#34;</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>end <span style="color:#f92672">=</span> NULL;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">long</span> v <span style="color:#f92672">=</span> <span style="color:#a6e22e">strtol</span>(argv[<span style="color:#ae81ff">2</span>], <span style="color:#f92672">&amp;</span>end, <span style="color:#ae81ff">10</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>end <span style="color:#f92672">||</span> <span style="color:#f92672">*</span>end <span style="color:#f92672">!=</span> <span style="color:#e6db74">&#39;\0&#39;</span> <span style="color:#f92672">||</span> v <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> v <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">256</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">fprintf</span>(stderr, <span style="color:#e6db74">&#34;Invalid tab width: %s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, argv[<span style="color:#ae81ff">2</span>]);
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">exit</span>(EXIT_FAILURE);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        tabw <span style="color:#f92672">=</span> (<span style="color:#66d9ef">int</span>)v;
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (argc <span style="color:#f92672">!=</span> <span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">fprintf</span>(stderr, <span style="color:#e6db74">&#34;Usage: %s [-t width]</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, argv[<span style="color:#ae81ff">0</span>]);
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">exit</span>(EXIT_FAILURE);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> tabw;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">**</span>argv) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> tabw <span style="color:#f92672">=</span> <span style="color:#a6e22e">parse_tabwidth</span>(argc, argv);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> c;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> col <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#75715e">// current column, 0-based
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> ((c <span style="color:#f92672">=</span> <span style="color:#a6e22e">getchar</span>()) <span style="color:#f92672">!=</span> EOF) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (c <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;\t&#39;</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">int</span> spaces <span style="color:#f92672">=</span> tabw <span style="color:#f92672">-</span> (col <span style="color:#f92672">%</span> tabw);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> spaces; <span style="color:#f92672">++</span>i) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">putchar</span>(<span style="color:#e6db74">&#39; &#39;</span>) <span style="color:#f92672">==</span> EOF) {
+</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">perror</span>(<span style="color:#e6db74">&#34;putchar&#34;</span>);
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">return</span> EXIT_FAILURE;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            col <span style="color:#f92672">+=</span> spaces;
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">putchar</span>(c) <span style="color:#f92672">==</span> EOF) {
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">perror</span>(<span style="color:#e6db74">&#34;putchar&#34;</span>);
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> EXIT_FAILURE;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (c <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;\n&#39;</span>) {
+</span></span><span style="display:flex;"><span>                col <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (c <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;\r&#39;</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// Conservative: treat CR as carriage return (column reset)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                col <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>                col <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">ferror</span>(stdin)) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">perror</span>(<span style="color:#e6db74">&#34;getchar&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> EXIT_FAILURE;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> EXIT_SUCCESS;
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>Utterly fantastic. What else? A <code>Makefile</code>, of course.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-makefile" data-lang="makefile"><span style="display:flex;"><span>CC      <span style="color:#f92672">:=</span> gcc
+</span></span><span style="display:flex;"><span>CFLAGS  <span style="color:#f92672">:=</span> -std<span style="color:#f92672">=</span>c17 -O2 -Wall -Wextra -Wpedantic
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">.PHONY</span><span style="color:#f92672">:</span> all clean test
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">all</span><span style="color:#f92672">:</span> detab
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">detab</span><span style="color:#f92672">:</span> detab.c
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">$(</span>CC<span style="color:#66d9ef">)</span> <span style="color:#66d9ef">$(</span>CFLAGS<span style="color:#66d9ef">)</span> -o $@ $&lt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">clean</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>        rm -f detab
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">test</span><span style="color:#f92672">:</span> detab
+</span></span><span style="display:flex;"><span>        ./tests/run.sh
+</span></span></code></pre></div>
+<p>Perfect! What about testing? The following <code>bash</code> test harness was created.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>  <span style="color:#75715e">#!/usr/bin/env bash</span>
+</span></span><span style="display:flex;"><span>set -euo pipefail
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>pass<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>fail<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>run_case<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  local name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$1<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>  local args<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>2<span style="color:#66d9ef">:-</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>  local input<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$3<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>  local expect<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$4<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  local out
+</span></span><span style="display:flex;"><span>  out<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>printf <span style="color:#e6db74">&#34;%b&#34;</span> <span style="color:#e6db74">&#34;</span>$input<span style="color:#e6db74">&#34;</span> | ./detab $args<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> <span style="color:#f92672">[[</span> <span style="color:#e6db74">&#34;</span>$out<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>printf <span style="color:#e6db74">&#34;%b&#34;</span> <span style="color:#e6db74">&#34;</span>$expect<span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>    printf <span style="color:#e6db74">&#34;✅ %s\n&#34;</span> <span style="color:#e6db74">&#34;</span>$name<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">((</span>pass++<span style="color:#f92672">))</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>    printf <span style="color:#e6db74">&#34;❌ %s\n&#34;</span> <span style="color:#e6db74">&#34;</span>$name<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>    printf <span style="color:#e6db74">&#34;   expected: %q\n&#34;</span> <span style="color:#e6db74">&#34;</span>$expect<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>    printf <span style="color:#e6db74">&#34;   got     : %q\n&#34;</span> <span style="color:#e6db74">&#34;</span>$out<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">((</span>fail++<span style="color:#f92672">))</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 1) Basic: single tab expands to 8-space boundary</span>
+</span></span><span style="display:flex;"><span>run_case <span style="color:#e6db74">&#34;basic: &#39;a\\tb&#39;&#34;</span> <span style="color:#e6db74">&#34;&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#34;a\tb\n&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#34;a       b\n&#34;</span>   <span style="color:#75715e"># &#39;a&#39; at col 0 -&gt; tab adds 7 spaces</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 2) Tab at column boundary (col 8) -&gt; expands to full width</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># &#34;abcdefgh&#34; = 8 chars; next stop is 16, so 8 spaces.</span>
+</span></span><span style="display:flex;"><span>run_case <span style="color:#e6db74">&#34;tab at boundary -&gt; 8 spaces&#34;</span> <span style="color:#e6db74">&#34;&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#34;abcdefgh\tZ\n&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#34;abcdefgh        Z\n&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 3) Multiple tabs in a row</span>
+</span></span><span style="display:flex;"><span>run_case <span style="color:#e6db74">&#34;multiple tabs&#34;</span> <span style="color:#e6db74">&#34;&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#34;\t\tX\n&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#34;                X\n&#34;</span>  <span style="color:#75715e"># two tabs from col 0 -&gt; 16 spaces</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 4) Mixed text and tabs</span>
+</span></span><span style="display:flex;"><span>run_case <span style="color:#e6db74">&#34;mixed&#34;</span> <span style="color:#e6db74">&#34;&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#34;ab\tcd\te\n&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#34;ab      cd      e\n&#34;</span>  <span style="color:#75715e"># &#39;ab&#39; col 2 -&gt; 6 spaces, then &#39;cd&#39; col 10 -&gt; 6 spaces</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 5) Custom width: -t 4</span>
+</span></span><span style="display:flex;"><span>run_case <span style="color:#e6db74">&#34;custom width -t 4&#34;</span> <span style="color:#e6db74">&#34;-t 4&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#34;a\tb\tc\n&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#34;a   b   c\n&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 6) Newline resets column count</span>
+</span></span><span style="display:flex;"><span>run_case <span style="color:#e6db74">&#34;newline reset&#34;</span> <span style="color:#e6db74">&#34;&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#34;1234\t\nX\tY\n&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#34;1234    \nX       Y\n&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 7) Carriage return (optional handling)</span>
+</span></span><span style="display:flex;"><span>run_case <span style="color:#e6db74">&#34;CR resets column&#34;</span> <span style="color:#e6db74">&#34;&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#34;ABC\r\tZ\n&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#34;ABC        Z\n&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>printf <span style="color:#e6db74">&#34;\nSummary: %d passed, %d failed\n&#34;</span> <span style="color:#e6db74">&#34;</span>$pass<span style="color:#e6db74">&#34;</span> <span style="color:#e6db74">&#34;</span>$fail<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[[</span> $fail -eq <span style="color:#ae81ff">0</span> <span style="color:#f92672">]]</span></span></span></code></pre></div>
+<p>And helpfully, <code>ChatGPT</code> also gave me a, &ldquo;How to Run:&rdquo;</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkdir -p tests
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># save detab.c, Makefile, tests/run.sh as shown</span>
+</span></span><span style="display:flex;"><span>chmod +x tests/run.sh
+</span></span><span style="display:flex;"><span>make
+</span></span><span style="display:flex;"><span>make test</span></span></code></pre></div>
+<p><code>ChatGPT</code> also gave me a &ldquo;Notes and Gotchas&rdquo; section:</p>
+<blockquote>
+<p>Notes &amp; gotchas</p>
+<p>Column math: spaces = tabWidth - (col % tabWidth). Reset col on (and optionally ).</p>
+<p>Non-printing/backspace: The K&amp;R exercise doesn’t require special handling for backspace or multibyte characters. The implementation treats every non-newline byte (including UTF-8 bytes) as one column; that’s fine for the exercise.</p>
+<p>Custom tab width: Optional -t N flag if you want flexibility; default is the classic 8.</p>
+</blockquote>
+<p>And,</p>
+<blockquote>
+<p>Testing frameworks (optional)</p>
+<p>If you want a C unit test framework:</p>
+<p>Unity or cmocka are lightweight and easy to vend into a repo.</p>
+<p>For this specific tool, the Bash golden tests above are usually the simplest and clearest: pipe input → compare expected output.</p>
+<p>If you’d like, I can convert the Bash tests into a CUnit/cmocka test suite, or wrap the tests with ctest (CMake) — but the current Makefile + Bash keeps dependencies minimal.</p>
+</blockquote>
+<p>While I like the bash test harness, I did not feel that it was best to go in that direction. So, after some discussion with <code>ChatGPT</code>, I opted to go with <code>cmocka</code> (and admittedly, it was a bit of a &ldquo;flip o&rsquo; the coin&rdquo;). This required some changes to the Makefile and the source, which, if interested you can see my repository. Here are the resulting tests:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdarg.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stddef.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;setjmp.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cmocka.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;detab.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">test_basic_single_tab</span>(<span style="color:#66d9ef">void</span> <span style="color:#f92672">**</span>state) {
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">void</span>)state;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">char</span> out[<span style="color:#ae81ff">128</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">detab_line</span>(<span style="color:#e6db74">&#34;a</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">b</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, out, <span style="color:#ae81ff">8</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">assert_string_equal</span>(<span style="color:#e6db74">&#34;a       b</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, out);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">test_tab_at_boundary</span>(<span style="color:#66d9ef">void</span> <span style="color:#f92672">**</span>state) {
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">void</span>)state;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">char</span> out[<span style="color:#ae81ff">128</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">detab_line</span>(<span style="color:#e6db74">&#34;abcdefgh</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">Z</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, out, <span style="color:#ae81ff">8</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">assert_string_equal</span>(<span style="color:#e6db74">&#34;abcdefgh        Z</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, out);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">test_multiple_tabs</span>(<span style="color:#66d9ef">void</span> <span style="color:#f92672">**</span>state) {
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">void</span>)state;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">char</span> out[<span style="color:#ae81ff">128</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">detab_line</span>(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\t\t</span><span style="color:#e6db74">X</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, out, <span style="color:#ae81ff">8</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">assert_string_equal</span>(<span style="color:#e6db74">&#34;                X</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, out);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">test_mixed</span>(<span style="color:#66d9ef">void</span> <span style="color:#f92672">**</span>state) {
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">void</span>)state;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">char</span> out[<span style="color:#ae81ff">128</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">detab_line</span>(<span style="color:#e6db74">&#34;ab</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">cd</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">e</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, out, <span style="color:#ae81ff">8</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">assert_string_equal</span>(<span style="color:#e6db74">&#34;ab      cd      e</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, out);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">test_custom_width_4</span>(<span style="color:#66d9ef">void</span> <span style="color:#f92672">**</span>state) {
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">void</span>)state;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">char</span> out[<span style="color:#ae81ff">128</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">detab_line</span>(<span style="color:#e6db74">&#34;a</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">b</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">c</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, out, <span style="color:#ae81ff">4</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">assert_string_equal</span>(<span style="color:#e6db74">&#34;a   b   c</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, out);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">test_cr_resets_column</span>(<span style="color:#66d9ef">void</span> <span style="color:#f92672">**</span>state) {
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">void</span>)state;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">char</span> out[<span style="color:#ae81ff">128</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">detab_line</span>(<span style="color:#e6db74">&#34;ABC</span><span style="color:#ae81ff">\r\t</span><span style="color:#e6db74">Z</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, out, <span style="color:#ae81ff">8</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">assert_string_equal</span>(<span style="color:#e6db74">&#34;ABC</span><span style="color:#ae81ff">\r</span><span style="color:#e6db74">        Z</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, out);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">struct</span> CMUnitTest tests[] <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">cmocka_unit_test</span>(test_basic_single_tab),
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">cmocka_unit_test</span>(test_tab_at_boundary),
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">cmocka_unit_test</span>(test_multiple_tabs),
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">cmocka_unit_test</span>(test_mixed),
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">cmocka_unit_test</span>(test_custom_width_4),
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">cmocka_unit_test</span>(test_cr_resets_column),
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">cmocka_run_group_tests</span>(tests, NULL, NULL);
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>This was so easy, the code, the makefile, the tests, that I decide to do the next problem in the <code>K&amp;R</code> book. Counting on <code>ChaptGPT</code>&rsquo;s familiarity with the problems in the <code>K&amp;R</code> book, here&rsquo;s the prompt I used:</p>
+<blockquote>
+<p>Using a similiar code architecture and testing with cmocka, let&rsquo;s do the next exercise in the book, The C Programming language. Exercise 1.21. Do you know this exercise, or should I paste it in?</p>
+</blockquote>
+<p>And here&rsquo;s the response:</p>
+<blockquote>
+<p>Great prompt—yes, Exercise 1.21 is entab: replace runs of blanks with the minimum number of tabs and spaces to get the same alignment (assume tab stops every 8 columns). Below is a drop-in implementation that mirrors the detab architecture you just built: a pure function (entab<sub>line</sub>) + a tiny CLI wrapper + cmocka tests + Makefile targets.</p>
+</blockquote>
+<p>I take it that with the &ldquo;Great prompt&rdquo; that <code>ChatGPT</code> is indicating that it knows all the exercises in the book. Amazing.</p>
+<p>I won&rsquo;t give the code here, since you can see it in the repository.</p>
+<p>Additional testing, property tests were requested, and this resulted in the following response:</p>
+<blockquote>
+<p>Love it—property-style tests are perfect here. We’ll add a cmocka test module that generates randomized lines and checks invariants that should always hold for any string under detab<sub>line</sub> and entab<sub>line</sub>.</p>
+</blockquote>
+<p>And then the following from <code>ChatGPT</code>:</p>
+<blockquote>
+<p><strong>Chosen invariants</strong></p>
+<ol>
+<li>
+<p>Round-trip visual equivalence via detab:
+For any input s, expanding tabs to spaces once gives a concrete, canonical layout:</p>
+<p>D(s) = detab<sub>line</sub>(s)</p>
+<p>If we entab and then detab again, the fully expanded view should be identical:</p>
+<p>detab<sub>line</sub>(entab<sub>line</sub>(D(s))) == D(s)</p>
+<p>(Equivalently: detab(entab(detab(s))) == detab(s).)
+This asserts that entab<sub>line</sub> preserves alignment and detab<sub>line</sub> is idempotent on already-detabbed strings.</p>
+</li>
+<li>
+<p>No tabs after detab:
+Output of detab<sub>line</sub> must not contain &lsquo;&rsquo;.</p>
+</li>
+<li>
+<p>Optional sanity: bounded growth
+entab<sub>line</sub> never increases the count of spaces for runs that cross tab stops when using same tab width and no literal present (not strictly required, so we won’t assert it globally—just FYI).</p>
+</li>
+</ol>
+<p>Below is a new <code>cmocka</code> test file plus <code>Makefile</code> additions. It reuses your existing detab<sub>lib.c</sub> and entab<sub>lib.c</sub> (no CLI/main linked).</p>
+</blockquote>
+<p>This is fantastic. Again, if you want the details see the repository.</p>
+<p>After all is said and done, here is a run of the tests:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>make test
+</span></span><span style="display:flex;"><span>./test_cmocka_detab
+</span></span><span style="display:flex;"><span>[==========] tests: Running 6 test(s).
+</span></span><span style="display:flex;"><span>[ RUN      ] test_basic_single_tab
+</span></span><span style="display:flex;"><span>[       OK ] test_basic_single_tab
+</span></span><span style="display:flex;"><span>[ RUN      ] test_tab_at_boundary
+</span></span><span style="display:flex;"><span>[       OK ] test_tab_at_boundary
+</span></span><span style="display:flex;"><span>[ RUN      ] test_multiple_tabs
+</span></span><span style="display:flex;"><span>[       OK ] test_multiple_tabs
+</span></span><span style="display:flex;"><span>[ RUN      ] test_mixed
+</span></span><span style="display:flex;"><span>[       OK ] test_mixed
+</span></span><span style="display:flex;"><span>[ RUN      ] test_custom_width_4
+</span></span><span style="display:flex;"><span>[       OK ] test_custom_width_4
+</span></span><span style="display:flex;"><span>[ RUN      ] test_cr_resets_column
+</span></span><span style="display:flex;"><span>[       OK ] test_cr_resets_column
+</span></span><span style="display:flex;"><span>[==========] tests: 6 test(s) run.
+</span></span><span style="display:flex;"><span>[  PASSED  ] 6 test(s).
+</span></span><span style="display:flex;"><span>./test_cmocka_entab
+</span></span><span style="display:flex;"><span>[==========] tests: Running 7 test(s).
+</span></span><span style="display:flex;"><span>[ RUN      ] test_exact_8_spaces_to_tab
+</span></span><span style="display:flex;"><span>[       OK ] test_exact_8_spaces_to_tab
+</span></span><span style="display:flex;"><span>[ RUN      ] test_after_char_to_tab
+</span></span><span style="display:flex;"><span>[       OK ] test_after_char_to_tab
+</span></span><span style="display:flex;"><span>[ RUN      ] test_two_runs
+</span></span><span style="display:flex;"><span>[       OK ] test_two_runs
+</span></span><span style="display:flex;"><span>[ RUN      ] test_short_spaces_no_tab
+</span></span><span style="display:flex;"><span>[       OK ] test_short_spaces_no_tab
+</span></span><span style="display:flex;"><span>[ RUN      ] test_custom_width_4
+</span></span><span style="display:flex;"><span>[       OK ] test_custom_width_4
+</span></span><span style="display:flex;"><span>[ RUN      ] test_cr_resets
+</span></span><span style="display:flex;"><span>[       OK ] test_cr_resets
+</span></span><span style="display:flex;"><span>[ RUN      ] test_literal_tabs_passthrough
+</span></span><span style="display:flex;"><span>[       OK ] test_literal_tabs_passthrough
+</span></span><span style="display:flex;"><span>[==========] tests: 7 test(s) run.
+</span></span><span style="display:flex;"><span>[  PASSED  ] 7 test(s).
+</span></span><span style="display:flex;"><span>./test_cmocka_props
+</span></span><span style="display:flex;"><span>[==========] tests: Running 3 test(s).
+</span></span><span style="display:flex;"><span>[ RUN      ] prop_roundtrip_equivalence
+</span></span><span style="display:flex;"><span>[       OK ] prop_roundtrip_equivalence
+</span></span><span style="display:flex;"><span>[ RUN      ] prop_detab_no_tabs
+</span></span><span style="display:flex;"><span>[       OK ] prop_detab_no_tabs
+</span></span><span style="display:flex;"><span>[ RUN      ] prop_detab_idempotent
+</span></span><span style="display:flex;"><span>[       OK ] prop_detab_idempotent
+</span></span><span style="display:flex;"><span>[==========] tests: 3 test(s) run.
+</span></span><span style="display:flex;"><span>[  PASSED  ] 3 test(s).</span></span></code></pre></div>
+<p>Quite productive!</p>
+
+</div>
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts"><li><span>Nov 18 2024</span> &raquo;
+<a href="/posts/emacs-modules/">Emacs Modules</a>
+
+</li><li><span>Aug 10 2024</span> &raquo;
+<a href="/posts/this-is-now/">The C Programming Language</a>
+
+</li><li><span>Aug 04 2024</span> &raquo;
+<a href="/posts/computational-documents/">Computational Documents</a>
+
+</li><li><span>Sep 14 2021</span> &raquo;
+<a href="/posts/whatisalambda/">What&#39;s a Lambda?</a>
+
+</li></ul>
+</div>
+  </main>
+  <footer>
+    <div class="footer">
+  <div class="contact">
+    <pr><br><a href="https://www.linkedin.com/in/karl-s-9a705398/">linkedIn</a>
+      <br>
+      <pr><a href="https://github.com/kes">github.com</a>
+
+  </div>
+</div>
+
+  </footer>
+  </div>
+</body>
+</html>
+
