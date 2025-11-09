@@ -1,36 +1,212 @@
 <!DOCTYPE html>
-<html lang="en-us"
-      dir="ltr">
+<html lang="en">
 <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
-  <link rel="stylesheet" href="/common.css" type="text/css" media="screen, projection">
-  <link rel="stylesheet" href="/style.css" type="text/css" media="screen, projection">
-  <title>Karl Stump's Blog</title>
+  
+    <title>The C Programming Language :: </title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Some time ago, I was on a reddit thread and someone commented that they knew python and wondered if they should learn C &amp;hellip;
+I thought everybody knew C! ;)
+Back in the day, C was my third or fourth programming language.
+With the mention of C I just had to break out my copy of The C Programming Language. Unfortunately, my original copy is long gone but I have the second edition." />
+<meta name="keywords" content="" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="//localhost:1313/posts/this-is-now/" />
+
+
+
+
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/buttons.min.86f6b4c106b6c6eb690ae5203d36b442c1f66f718ff4e8164fa86cf6c61ad641.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/code.min.d529ea4b2fb8d34328d7d31afc5466d5f7bc2f0bc9abdd98b69385335d7baee4.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/fonts.min.5bb7ed13e1d00d8ff39ea84af26737007eb5051b157b86fc24487c94f3dc8bbe.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/footer.min.eb8dfc2c6a7eafa36cd3ba92d63e69e849e2200e0002a228d137f236b09ecd75.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/gist.min.a751e8b0abe1ba8bc53ced52a38b19d8950fe78ca29454ea8c2595cf26aad5c0.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/header.min.75c7eb0e2872d95ff48109c6647d0223a38db52e2561dd87966eb5fc7c6bdac6.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/main.min.36833afd348409fc6c3d09d0897c5833d9d5bf1ff31f5e60ea3ee42ce2b1268c.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/menu.min.3c17467ebeb3d38663dce68f71f519901124fa5cbb4519b2fb0667a21e9aca39.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/pagination.min.bbb986dbce00a5ce5aca0504b7925fc1c581992a4bf57f163e5d69cc1db7d836.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/post.min.e6dddd258e64c83e05cec0cd49c05216742d42fc8ecbfbe6b67083412b609bd3.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/syntax.min.a0773cce9310cb6d8ed23e50f005448facf29a53001b57e038828daa466b25c0.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/terminal.min.e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css">
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/terms.min.b81791663c3790e738e571cdbf802312390d30e4b1d8dc9d814a5b5454d0ac11.css">
+
+
+
+
+<link rel="stylesheet" href="//localhost:1313/style.css">
+
+
+<link rel="shortcut icon" href="//localhost:1313/favicon.png">
+<link rel="apple-touch-icon" href="//localhost:1313/apple-touch-icon.png">
+
+
+<meta name="twitter:card" content="summary" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="The C Programming Language">
+<meta property="og:description" content="Some time ago, I was on a reddit thread and someone commented that they knew python and wondered if they should learn C &amp;hellip;
+I thought everybody knew C! ;)
+Back in the day, C was my third or fourth programming language.
+With the mention of C I just had to break out my copy of The C Programming Language. Unfortunately, my original copy is long gone but I have the second edition." />
+<meta property="og:url" content="//localhost:1313/posts/this-is-now/" />
+<meta property="og:site_name" content="" />
+
+  <meta property="og:image" content="//localhost:1313/og-image.png">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2024-08-10 00:00:00 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="//localhost:1313/js/mathjax-config.js"></script>
+
+  
+  <script
+    id="MathJax-script"
+    async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+  </script>
+
+
 
 
 </head>
 <body>
-  <div class="site">
-  <header>
-    <div class="title">
-  <a href="/">Karl Stump </a>
-  <a class="extra" href="/">home</a>
-    <a class="extra" href="/posts">posts</a>
-  <a class="extra" href="/leetcode">leetcodes</a>
+
+
+<div class="container center">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    Karl Stump
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/about/about/">About</a></li>
+        
+      
+        
+          <li><a href="/leetcode/">Leet Code</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        
+          <li><a href="/about/about/" >About</a></li>
+        
+      
+        
+          <li><a href="/leetcode/" >Leet Code</a></li>
+        
+      
+      
+    
+  </ul>
+</nav>
+
+  
 </header>
 
-  </header>
-  <main>
+
+  <div class="content">
     
-<div id="post">The C Programming Language<p class="meta"> Aug 10, 2024</p>
-  <p>Some time ago, I was on a reddit thread and someone commented that they
-knew python and wondered if they should learn C …</p>
+<article class="post">
+  <h1 class="post-title">
+    <a href="//localhost:1313/posts/this-is-now/">The C Programming Language</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2024-08-10</time><span class="post-author">[Karl Stump]</span></div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="//localhost:1313/tags/c/">C</a>&nbsp;
+      
+      #<a href="//localhost:1313/tags/programming/">programming</a>&nbsp;
+      
+    </span>
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <p>Some time ago, I was on a reddit thread and someone commented that they
+knew python and wondered if they should learn C &hellip;</p>
 <p>I thought everybody knew C!   ;)</p>
 <p>Back in the day, C was my third or fourth programming language.</p>
 <p>With the mention of C I just had to break out my copy of <em>The C Programming Language</em>. Unfortunately,
 my original copy is long gone but I have the second edition.<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
 <p>The K&amp;R book is a classic and it&rsquo;s pretty easy to recommend to anyone interested in computer
 science, software development, or just plain ol&rsquo; programming. If you&rsquo;re reading this sentence, then
-yes, let me personally recommend it to you — and you should read it sooner than later!</p>
+yes, let me personally recommend it to you &mdash; and you should read it sooner than later!</p>
 <p>As a language, the longer you know C the better you like it. Just it says in K&amp;R,</p>
 <blockquote>
 <p>In our experience, C has proven to be a pleasant, expressive, and
@@ -38,16 +214,16 @@ versatile language for a wide variety of programs. It is easy to
 learn, and it wears will as one&rsquo;s experience with it grows.</p>
 </blockquote>
 <p>Yup, I agree!</p>
-<p>K&amp;R begins with chapter one: &ldquo;A Tutorial Introduction&rdquo; — and just looking at it, I just thought it would
+<p>K&amp;R begins with chapter one: &ldquo;A Tutorial Introduction&rdquo; &mdash; and just looking at it, I just thought it would
 be cool to skim through it, look at the programs, and just soak-in some cool 70&rsquo;s tech literature. It doesn&rsquo;t get any
 better! A language that is still going strong 50 years later has to have something going for it!</p>
 <p>A <code>hello world</code> program is the canonical first program for anybody learning a new language. Was it back then? Or did K&amp;R
 start it? I don&rsquo;t know.</p>
 <p>But before we experience the coolness of C we&rsquo;ll need a compiler!</p>
-<p>Back in the day, getting access to a compiler was not that easy. Compilers, RDBMS, OSes …. believe
+<p>Back in the day, getting access to a compiler was not that easy. Compilers, RDBMS, OSes &hellip;. believe
 me, a closed source world was not fun! Now, it&rsquo;s all free, and a machine can be had for not too
 much. May be we do owe a debt of gratitude to Richard Stallman!</p>
-<h2 id="installing-gcc-and-friends">Installing gcc and friends</h2>
+<h2 id="installing-gcc-and-friends">Installing gcc and friends<a href="#installing-gcc-and-friends" class="hanchor" ariaLabel="Anchor">#</a> </h2>
 <p>I&rsquo;ve got gcc already installed, but if you don&rsquo;t, on Ubuntu,  you can do this:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt install gcc <span style="color:#f92672">&amp;&amp;</span> sudo apt install build-essential</span></span></code></pre></div>
 <p>And you should be good to go. With gcc installed you can check the version:</p>
@@ -59,7 +235,7 @@ much. May be we do owe a debt of gratitude to Richard Stallman!</p>
 </span></span><span style="display:flex;"><span>This is free software; see the source for copying conditions.  There is NO
 </span></span><span style="display:flex;"><span>warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 </span></span></code></pre></div><p>So, if everything looks good, let&rsquo;s write &ldquo;hello world&rsquo; program!</p>
-<h2 id="hello-world">hello world</h2>
+<h2 id="hello-world">hello world<a href="#hello-world" class="hanchor" ariaLabel="Anchor">#</a> </h2>
 <p>K&amp;R gives the &ldquo;hello world&rdquo; program on page 6. Like this:</p>
 <p><a id="code-snippet--hello"></a>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
@@ -67,7 +243,7 @@ much. May be we do owe a debt of gratitude to Richard Stallman!</p>
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;hello world</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
 </span></span><span style="display:flex;"><span>}</span></span></code></pre></div></p>
 <p>I love how K&amp;R gives such an understated, unassuming, program. Not only does the string not
-capitalization or punctuation, not so bad, but hey, nothing, there&rsquo;s no return type in the
+have capitalization or punctuation, but also there&rsquo;s no return type in the
 signature! Man, this is really bare bones. No need to be too fastidious, I suppose.</p>
 <p>I do wonder what they were thinking all those years ago when they chose this as their first example
 code for C.</p>
@@ -75,40 +251,34 @@ code for C.</p>
 get much more complicated? I like to think that they were. &ldquo;Nothing to see here. Just a little
 language put together by us hackers.&rdquo;</p>
 <p>Yup, there&rsquo;s definitely some coolness here.</p>
-<p>But wait, this may have compiled in the 70&rsquo;s — but will it compile today?</p>
-<p><a id="code-snippet--shared-session"></a>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>  exec 2&gt;&amp;<span style="color:#ae81ff">1</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#  alias cc=&#34;gcc -x c -w&#34;</span>
-</span></span><span style="display:flex;"><span>  ls
-</span></span><span style="display:flex;"><span>  echo PID: <span style="color:#e6db74">&#34;</span>$$<span style="color:#e6db74">&#34;</span></span></span></code></pre></div></p>
-<p>In fact it will.Just as K&amp;R shows, <code>cc hello.c</code>.</p>
+<p>But wait, this may have compiled in the 70&rsquo;s &mdash; but will it compile today?</p>
+<p>In fact it will.Just as K&amp;R shows, <code>cc hello.c</code></p>
 <p>However, with today&rsquo;s compile command, <code>cc</code>, which on Linux points to <code>gcc</code> (which stands for GNU C Compiler), you&rsquo;ll
 get warnings. Something like this:</p>
+<p><a id="code-snippet--getWarningForMissingReturnType"></a>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cc hello.c</span></span></code></pre></div></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>hello.c:2:1: warning: return type defaults to ‘int’ [-Wimplicit-int]
 </span></span><span style="display:flex;"><span>    2 | main() {
 </span></span><span style="display:flex;"><span>      | ^~~~
-</span></span></code></pre></div><p>Notice that this is just a warning. (You still get an <code>a.out</code> file.) If you don&rsquo;t want to see these
-warnings you can alias cc like this: alias cc=&ldquo;gcc -w&rdquo;/. And for that matter if you want to compile
-files without the <code>.c</code> extension you could alias like this: alias cc=&ldquo;gcc -x c -w&rdquo; The <code>-w</code> flag says to
-ignore warnings, and the <code>-x</code> flag says to use the C compiler. So, it&rsquo;s up to you. I think I&rsquo;ll just
+</span></span></code></pre></div><p>Notice that this is just a warning. (You still get an <code>a.out</code> file.) If you don&rsquo;t want to (ever) see these warnings you can alias cc like this: alias cc=&ldquo;gcc -w&rdquo;/. And for that matter if you want to compile files without the <code>.c</code> extension you could alias like this: alias cc=&ldquo;gcc -x c -w&rdquo; The <code>-w</code> flag says to ignore warnings, and the <code>-x</code> flag says to use the C compiler. So, it&rsquo;s up to you. I think I&rsquo;ll just
 leave well-enough alone and put up with seeing the warnings.</p>
-<p>Okay, where were we? Oh, yes, compiling creates an executable file called <code>a.out</code>. You may have to
-<code>chmod</code> it (<code>man chmod</code>), like this:</p>
+<p>Okay, where were we? Oh, yes, compiling creates an executable file called <code>a.out</code>. You may have to <code>chmod</code> it (<code>man chmod</code>), like this:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>chmod <span style="color:#ae81ff">755</span> a.out</span></span></code></pre></div>
 <p>And then run it:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>./a.out</span></span></code></pre></div>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>hello world
-</span></span></code></pre></div><p>And here&rsquo;s the output:</p>
+<p>And here&rsquo;s the output:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>hello world
 </span></span></code></pre></div><p>Everything seems to be working!</p>
-<h2 id="errors-happen">Errors happen</h2>
+<h2 id="errors-happen">Errors happen<a href="#errors-happen" class="hanchor" ariaLabel="Anchor">#</a> </h2>
 <p>Exercise 1.1 tells us to experiment with our program by deleting various parts of it. I&rsquo;ll remove
 the <code>#include</code> line, and save the modified program to hell-error.c.</p>
 <p><a id="code-snippet--hello-error"></a>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#a6e22e">main</span>() {
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;hello world</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
 </span></span><span style="display:flex;"><span>}</span></span></code></pre></div></p>
-<p>And now, compile it and see what happens.</p>
+<p>Now, I&rsquo;ll compile with <code>cc hello.c</code> and see what happens.</p>
+<p><a id="code-snippet--show-error"></a>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cc hello-error.c</span></span></code></pre></div></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>hello-error.c:1:1: warning: return type defaults to ‘int’ [-Wimplicit-int]
 </span></span><span style="display:flex;"><span>    1 | main() {
 </span></span><span style="display:flex;"><span>      | ^~~~
@@ -123,54 +293,24 @@ the <code>#include</code> line, and save the modified program to hell-error.c.</
 </span></span><span style="display:flex;"><span>    2 |   printf(&#34;hello world\n&#34;);
 </span></span><span style="display:flex;"><span>      |   ^~~~~~
 </span></span><span style="display:flex;"><span>hello-error.c:2:3: note: include ‘&lt;stdio.h&gt;’ or provide a declaration of ‘printf’</span></span></code></pre></div>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;Hello World again</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
-<p>Now, I&rsquo;ll compile with <code>cc hello.c</code> and see what happens.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>test.c: In function ‘main’:
-</span></span><span style="display:flex;"><span>test.c:3:3: warning: implicit declaration of function ‘printf’ [-Wimplicit-function-declaration]
-</span></span><span style="display:flex;"><span>    3 |   printf(&#34;Hello World again\n&#34;);
-</span></span><span style="display:flex;"><span>      |   ^~~~~~
-</span></span><span style="display:flex;"><span>test.c:1:1: note: include ‘&lt;stdio.h&gt;’ or provide a declaration of ‘printf’
-</span></span><span style="display:flex;"><span>  +++ |+#include &lt;stdio.h&gt;
-</span></span><span style="display:flex;"><span>    1 |
-</span></span><span style="display:flex;"><span>test.c:3:3: warning: incompatible implicit declaration of built-in function ‘printf’ [-Wbuiltin-declaration-mismatch]
-</span></span><span style="display:flex;"><span>    3 |   printf(&#34;Hello World again\n&#34;);
-</span></span><span style="display:flex;"><span>      |   ^~~~~~
-</span></span><span style="display:flex;"><span>test.c:3:3: note: include ‘&lt;stdio.h&gt;’ or provide a declaration of ‘printf’</span></span></code></pre></div>
-<p>Yup. Looks like some problems. But interestingly these are only warnings
-and informational messages. Learning to read these messages is an
-important part of gaining skill in working with C. The compiler
-helpfully tells us that we have an <code>implicit declaration of function 'printf'</code>. Looking at the index of <code>K&amp;R</code> implicit declaration is
-covered on pages 27, 72, and 201.</p>
-<p>Also, the compiler tells us that <code>&lt;stdio.h&gt;</code> provides a declaration of <code>printf</code>, and then has
-the line <code>+++ | +#include &lt;stdio.h&gt;</code>. It doesn&rsquo;t take too much imagination that this means that we
-should include this line in our source code. And, indeed, the last line of output gives us explicit
-instructions to do just that.</p>
-<p>Nevertheless, <code>gcc</code> did create an executable. We&rsquo;ll do an <code>ls</code> command.</p>
-<p><a id="code-snippet--ls-output"></a>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ls -l a.out</span></span></code></pre></div></p>
-<p>And sure enough, there it is.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>-rwxrwxr-x 1 kes kes 15952 Aug 21 19:39 a.out
-</span></span></code></pre></div><p>What type of file is it? Let&rsquo;s run the <code>file</code> command:</p>
+<p>Yup. Looks like some problems. But interestingly these are only warnings and informational messages. Learning to read these messages is an
+important part of gaining skill in working with C. The compiler helpfully tells us that we have an <code>implicit declaration of function 'printf'</code>. Looking at the index of <code>K&amp;R</code> implicit declaration is covered on pages 27, 72, and 201.</p>
+<p>Also, the compiler tells us that <code>&lt;stdio.h&gt;</code> provides a declaration of <code>printf</code>, and then has the line <code>+++ | +#include &lt;stdio.h&gt;</code>. It doesn&rsquo;t take too much imagination that this means that we should include this line in our source code. And, indeed, the last line of output gives us explicit instructions to do just that.</p>
+<p>Nevertheless, <code>gcc</code> did create an executable.</p>
+<p>What type file is an <code>a.out</code> anyway?</p>
+<p>What type of file is it? Let&rsquo;s run the <code>file</code> command:</p>
 <p><a id="code-snippet--file-output"></a>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>file a.out</span></span></code></pre></div></p>
 <p>The <code>file</code> command will attempt to classify a file. See <code>man file</code> for more details. Here&rsquo;s the output from the command.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>a.out: ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=ab17dc2646ecd587c86aa8328ff3821ca535f79f, for GNU/Linux 3.2.0, not stripped
-</span></span></code></pre></div><p>Lots to try and understand there, but for now just leave it.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>a.out: ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=085fdccdc6a2e11d5900d3528fa1940c46972a95, for GNU/Linux 3.2.0, not stripped
+</span></span></code></pre></div><p>At the very least we see that it&rsquo;s an executable.</p>
 <p>We could continue to remove other lines and see the compiler messages. But lets move onto the next exercise.</p>
-<h2 id="escape-sequences">Escape sequences</h2>
-<p>This exercise draws our attention to the funny backslash-n that is in
-the string we&rsquo;re printing out. &rsquo;&rsquo; is an escape sequence and it
-represents the single character newline. Of course, in the output of a
-string we don&rsquo;t see the newline character, but we do see its
-results. K&amp;R want us to know that there are other such types of
-characters. Namely, , , for backspace, and tab characters, and the
-escape sequence \&rdquo; that allow you to embed double quotes in a double
-quoted string, and even the escape sequence \\ that allows you to embed
-a backslash in a string. You can find an <a href="https://en.wikipedia.org/wiki/ASCII">ASCII chart here</a>. You can experiment
-with these escape sequences in the hello world program.</p>
-<h2 id="celsius-to-fahrenheit-exercise-1-3">Celsius to Fahrenheit Exercise 1-3</h2>
+<h2 id="escape-sequences">Escape sequences<a href="#escape-sequences" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>This exercise draws our attention to the funny backslash-n that is in the string we&rsquo;re printing out. &lsquo;\n&rsquo; is an escape sequence and it
+represents the single character newline. Of course, in the output of a string we don&rsquo;t see the newline character, but we do see its
+results. K&amp;R want us to know that there are other such types of characters. Namely, \b, \t, for backspace, and tab characters, and the
+escape sequence \&rdquo; that allow you to embed double quotes in a double quoted string, and even the escape sequence \\ that allows you to embed a backslash in a string. You can find an <a href="https://en.wikipedia.org/wiki/ASCII">ASCII chart here</a>. You can experiment with these escape sequences in the hello world program.</p>
+<h2 id="celsius-to-fahrenheit-exercise-1-3">Celsius to Fahrenheit Exercise 1-3<a href="#celsius-to-fahrenheit-exercise-1-3" class="hanchor" ariaLabel="Anchor">#</a> </h2>
 <p>The book gives you a program to convert Fahrenheit to Celsius, and asks you to
 write one that does Celsius to Fahrenheit.</p>
 <p>Here&rsquo;s what I came up with:</p>
@@ -227,7 +367,7 @@ write one that does Celsius to Fahrenheit.</p>
 </div></p>
 <p>One of the most important points to be made in this section is the difference between integer and
 floating point division. In the text, K&amp;R, make a point to force floating point division by using
-numeric literals 5.0 and 9.0. &ldquo;We were unable to use <code>5/9</code> … because integer division would truncate
+numeric literals 5.0 and 9.0. &ldquo;We were unable to use <code>5/9</code> &hellip; because integer division would truncate
 it to zero.&rdquo; In fact, only one of the operands has to be floating point to force the conversion of
 the remaining operand to floating point.</p>
 <p>In my version, I have used &lsquo;casting&rsquo; to force the conversion of the integers to floating
@@ -254,7 +394,7 @@ I am using the incorrect <code>5/9</code> to demonstrate integer division and in
 </span></span><span style="display:flex;"><span>260		  292.0 		  500.0
 </span></span><span style="display:flex;"><span>280		  312.0 		  536.0
 </span></span><span style="display:flex;"><span>300		  332.0 		  572.0</span></span></code></pre></div>
-<h2 id="file-copying-an-idiom-and-an-issue-of-precedence">File copying, an idiom and an issue of precedence</h2>
+<h2 id="file-copying-an-idiom-and-an-issue-of-precedence">File copying, an idiom and an issue of precedence<a href="#file-copying-an-idiom-and-an-issue-of-precedence" class="hanchor" ariaLabel="Anchor">#</a> </h2>
 <p>K&amp;R give an example C program that copies input to output. Let&rsquo;s save this to test.c and compile it.</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
@@ -282,6 +422,7 @@ I am using the incorrect <code>5/9</code> to demonstrate integer division and in
 </span></span><span style="display:flex;"><span>}</span></span></code></pre></td></tr></table>
 </div>
 </div>
+<p>Compiling, we can then do something like:</p>
 <p><a id="code-snippet--cat-password"></a>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cat /etc/passwd | a.out | tail -5</span></span></code></pre></div></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>jenkins:x:131:140:Jenkins,,,:/var/lib/jenkins:/bin/bash
@@ -295,7 +436,7 @@ end-of-file marker has been hit. Note that <code>EOF</code> is not itself the en
 <p><a id="code-snippet--get-eof"></a>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>grep <span style="color:#e6db74">&#34;#define EOF&#34;</span> /usr/include/stdio.h</span></span></code></pre></div></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>#define EOF (-1)
-</span></span></code></pre></div><p>So, it&rsquo;s defined as negative 1 – can we see the declaration of getchar?</p>
+</span></span></code></pre></div><p>So, it&rsquo;s defined as negative 1 &ndash; can we see the declaration of getchar?</p>
 <p>Of course:</p>
 <p><a id="code-snippet--get-char declare"></a>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>grep <span style="color:#e6db74">&#34;getchar (&#34;</span> -A1 -B5  /usr/include/stdio.h</span></span></code></pre></div></p>
@@ -305,12 +446,8 @@ end-of-file marker has been hit. Note that <code>EOF</code> is not itself the en
 </span></span><span style="display:flex;"><span>   This function is a possible cancellation point and therefore not
 </span></span><span style="display:flex;"><span>   marked with __THROW.  */
 </span></span><span style="display:flex;"><span>extern int getchar (void);
-</span></span></code></pre></div><p>So, getchar returns an int. Which seems a bit odd. After all the name of the function is
-getchar. Why does it not return a <code>char</code>. In order to indicate EOF getchar must return a value that
-could never occur in a character set. Thus EOF fits the bill, and therefore, the variable c must be
-an <code>int</code>.</p>
-<p>But K&amp;R make another interesting point. The program is a bit verbose. Experienced C programmers would
-write it differently, with a different idiom. Like this.</p>
+</span></span></code></pre></div><p>So, getchar returns an int. Which seems a bit odd. After all the name of the function is getchar. Why does it not return a <code>char</code>. In order to indicate EOF getchar must return a value that could never occur in a character set. Thus EOF fits the bill, and therefore, the variable c must be an <code>int</code>.</p>
+<p>But K&amp;R make another interesting point. The program is a bit verbose. Experienced C programmers would write it differently, with a different idiom. Like this.</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
@@ -333,60 +470,8 @@ write it differently, with a different idiom. Like this.</p>
 </span></span><span style="display:flex;"><span>}</span></span></code></pre></td></tr></table>
 </div>
 </div>
-<p>K&amp;R remind us that in C an assignment is an expression and has a value. Thus c = getchar() not only
-assign a value to c, but expression itself is a value, and in this instance, the value is tested
-against EOF. Note that precedence is an issue. The parentheses around c = getchar() are necessary
-because the precedence of != is higher than =.</p>
-<h2 id="word-counting">Word counting</h2>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define IN  1 </span><span style="color:#75715e">/* inside a word */</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define OUT 0 </span><span style="color:#75715e">/* outside a word */</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> c, nl, nw, nc, state;
-</span></span><span style="display:flex;"><span>  state <span style="color:#f92672">=</span> OUT;
-</span></span><span style="display:flex;"><span>  nl <span style="color:#f92672">=</span> nw <span style="color:#f92672">=</span> nc <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">while</span> ((c <span style="color:#f92672">=</span> <span style="color:#a6e22e">getchar</span>()) <span style="color:#f92672">!=</span> EOF) {
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">++</span>nc;
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (c <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;\n&#39;</span>)
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">++</span>nl;
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (c <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39; &#39;</span> <span style="color:#f92672">||</span> c <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;\n&#39;</span> <span style="color:#f92672">||</span> c <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;\t&#39;</span>)
-</span></span><span style="display:flex;"><span>      state <span style="color:#f92672">=</span> OUT;
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (state <span style="color:#f92672">==</span> OUT) {
-</span></span><span style="display:flex;"><span>      state <span style="color:#f92672">=</span> IN;
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">++</span>nw;
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;%d %d %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, nl, nw, nc);
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></td></tr></table>
-</div>
-</div>
-<p>(… to be continued …)</p>
+<p>K&amp;R remind us that in C an assignment is an expression and has a value. Thus <code>c = getchar()</code> not only assign a value to c, but the expression itself is a value, and in this instance, the value is tested against EOF. Note that precedence is an issue. The parentheses around <code>c = getchar()</code> are necessary because the precedence of <code>!=</code> is higher than <code>=</code>.</p>
+<p>That&rsquo;s enough for now. Great fun!</p>
 <div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
@@ -396,33 +481,68 @@ because the precedence of != is higher than =.</p>
 </ol>
 </div>
 
-</div>
-<div id="related">
-  <h2>Related Posts</h2>
-  <ul class="posts"><li><span>Nov 18 2024</span> &raquo;
-<a href="/posts/emacs-modules/">Emacs Modules</a>
+      </div></div>
 
-</li><li><span>Aug 04 2024</span> &raquo;
-<a href="/posts/computational-documents/">Computational Documents</a>
-
-</li><li><span>Sep 14 2021</span> &raquo;
-<a href="/posts/whatisalambda/">What&#39;s a Lambda?</a>
-
-</li></ul>
-</div>
-  </main>
-  <footer>
-    <div class="footer">
-  <div class="contact">
-    <pr><br><a href="https://www.linkedin.com/in/karl-s-9a705398/">linkedIn</a>
-      <br>
-      <pr><a href="https://github.com/kes">github.com</a>
-
+  
+    
+<div class="pagination">
+  <div class="pagination__title">
+    <span class="pagination__title-h">Read other posts</span>
+    <hr />
+  </div>
+  <div class="pagination__buttons">
+    
+      <a href="//localhost:1313/posts/project-euler-num-5/" class="button inline prev">
+        &lt; [<span class="button__text">Project Euler - Number 5</span>]
+      </a>
+    
+    
+      ::
+    
+    
+      <a href="//localhost:1313/posts/computational-documents/" class="button inline next">
+         [<span class="button__text">Computational Documents</span>] &gt;
+      </a>
+    
   </div>
 </div>
 
-  </footer>
+
+  
+
+  
+    
+
+  
+</article>
+
   </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2025 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
 </body>
 </html>
-

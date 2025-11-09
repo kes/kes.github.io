@@ -1,39 +1,39 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Euler on Karl Stump</title>
-    <link>http://localhost:1313/tags/euler/</link>
-    <description>Recent content in Euler on Karl Stump</description>
+    <title>Euler on </title>
+    <link>//localhost:1313/tags/euler/</link>
+    <description>Recent content in Euler on </description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>en</language>
     <lastBuildDate>Wed, 28 Aug 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/euler/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="//localhost:1313/tags/euler/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Project Euler - Number 308</title>
-      <link>http://localhost:1313/posts/project-euler-num-308/</link>
+      <link>//localhost:1313/posts/project-euler-num-308/</link>
       <pubDate>Wed, 28 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/project-euler-num-308/</guid>
-      <description>Project Euler has a Fractran problem.&#xA;If you don&amp;rsquo;t know about John Conway&amp;rsquo;s Fractran you can look here and here.&#xA;You can find the problem here: https://projecteuler.net/problem=308&#xA;I have reproduced it here:&#xA;A program written in the programming language Fractran consists of a list of fractions.&#xA;The internal state of the Fractran Virtual Machine is a positive integer, which is initially set to a seed value. Each iteration of a Fractran program multiplies the state integer by the first fraction in the list which will leave it an integer.</description>
+      <guid>//localhost:1313/posts/project-euler-num-308/</guid>
+      <description>Project Euler has a Fractran problem. this will do it&#xA;If you don&amp;rsquo;t know about John Conway&amp;rsquo;s Fractran you can look here and here.&#xA;You can find the problem here: https://projecteuler.net/problem=308&#xA;I have reproduced it here:&#xA;A program written in the programming language Fractran consists of a list of fractions.&#xA;The internal state of the Fractran Virtual Machine is a positive integer, which is initially set to a seed value. Each iteration of a Fractran program multiplies the state integer by the first fraction in the list which will leave it an integer.</description>
     </item>
     <item>
       <title>Project Euler - Number 6</title>
-      <link>http://localhost:1313/posts/project-euler-num-6/</link>
+      <link>//localhost:1313/posts/project-euler-num-6/</link>
       <pubDate>Thu, 22 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/project-euler-num-6/</guid>
+      <guid>//localhost:1313/posts/project-euler-num-6/</guid>
       <description>The problem can be found here: https://projecteuler.net/problem=6&#xA;Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.&#xA;Once the formula for both is known, the sum of the squares, [n(n+1)(2n+1)]/6 and the sun of the first n numbers, (2n(n+1))/2 the solution is trival:&#xA;(defun formula/sum-of-squares (n) (/ (* n (+ n 1) (+ (* 2 n) 1)) 6)) (defun formula/square-of-the-sum (n) (expt (/ (* n (+ n 1)) 2) 2)) (defun formula/diff (n) (- (formula/square-of-the-sum n) (formula/sum-of-squares n))) (formula/diff 100)</description>
     </item>
     <item>
       <title>Project Euler - Number 7</title>
-      <link>http://localhost:1313/posts/project-euler-num-7/</link>
+      <link>//localhost:1313/posts/project-euler-num-7/</link>
       <pubDate>Thu, 22 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/project-euler-num-7/</guid>
+      <guid>//localhost:1313/posts/project-euler-num-7/</guid>
       <description>You can find the problem here: https://projecteuler.net/problem=7&#xA;The problem statement:&#xA;By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13 we can see that the 6th prime is 13.&#xA;What is the 10001st prime number?&#xA;Consider an array like this:&#xA;n a[n] 0 0 1 1 2 1 3 1 4 0 5 1 6 0 7 1 8 0 9 0 10 0 11 1 12 0 13 1 where n (the index of the array) is the number of interest – So, is the number prime?</description>
     </item>
     <item>
       <title>Project Euler - Number 5</title>
-      <link>http://localhost:1313/posts/project-euler-num-5/</link>
+      <link>//localhost:1313/posts/project-euler-num-5/</link>
       <pubDate>Tue, 20 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/project-euler-num-5/</guid>
+      <guid>//localhost:1313/posts/project-euler-num-5/</guid>
       <description>Problem number five can be found here: https://projecteuler.net/problem=5&#xA;Problem statement:&#xA;2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.&#xA;What is the smallest positive number that is evenly divisible by all the numbers 1 to 20?&#xA;What&amp;rsquo;s wanted is the least common multiple of all numbers 2-20.&#xA;We need to factor all the number from 2 to 20. So, let&amp;rsquo;s do some prime factoring!</description>
     </item>
   </channel>
