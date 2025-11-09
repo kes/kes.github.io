@@ -7,67 +7,67 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="This document is a brief investigation into the question:
-What is a lambda?
+?
 And, in our context, more specifically, what is lambda in computer languages, and even more specifically, what is lambda in Java.
 Java added lambda expressions in 2014 (see Java SE 8).
-Caveat: Nothing in this document is meant to be exhaustive. It&amp;rsquo;s not the final word on anything. And there most likely are errors in it – in fact, most definitely." />
+Caveat: Nothing in this document is meant to be exhaustive. It&amp;rsquo;s not the final word on anything. And there most likely are errors in it &amp;ndash; in fact, most definitely." />
 <meta name="keywords" content="" />
 
   <meta name="robots" content="noodp" />
 
-<link rel="canonical" href="//localhost:1313/posts/whatisalambda/" />
+<link rel="canonical" href="http://localhost:1313/posts/whatisalambda/" />
 
 
 
 
 
   
-  <link rel="stylesheet" href="//localhost:1313/css/buttons.min.86f6b4c106b6c6eb690ae5203d36b442c1f66f718ff4e8164fa86cf6c61ad641.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/buttons.min.86f6b4c106b6c6eb690ae5203d36b442c1f66f718ff4e8164fa86cf6c61ad641.css">
 
   
-  <link rel="stylesheet" href="//localhost:1313/css/code.min.d529ea4b2fb8d34328d7d31afc5466d5f7bc2f0bc9abdd98b69385335d7baee4.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/code.min.d529ea4b2fb8d34328d7d31afc5466d5f7bc2f0bc9abdd98b69385335d7baee4.css">
 
   
-  <link rel="stylesheet" href="//localhost:1313/css/fonts.min.5bb7ed13e1d00d8ff39ea84af26737007eb5051b157b86fc24487c94f3dc8bbe.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/fonts.min.5bb7ed13e1d00d8ff39ea84af26737007eb5051b157b86fc24487c94f3dc8bbe.css">
 
   
-  <link rel="stylesheet" href="//localhost:1313/css/footer.min.eb8dfc2c6a7eafa36cd3ba92d63e69e849e2200e0002a228d137f236b09ecd75.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/footer.min.eb8dfc2c6a7eafa36cd3ba92d63e69e849e2200e0002a228d137f236b09ecd75.css">
 
   
-  <link rel="stylesheet" href="//localhost:1313/css/gist.min.a751e8b0abe1ba8bc53ced52a38b19d8950fe78ca29454ea8c2595cf26aad5c0.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/gist.min.a751e8b0abe1ba8bc53ced52a38b19d8950fe78ca29454ea8c2595cf26aad5c0.css">
 
   
-  <link rel="stylesheet" href="//localhost:1313/css/header.min.75c7eb0e2872d95ff48109c6647d0223a38db52e2561dd87966eb5fc7c6bdac6.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/header.min.75c7eb0e2872d95ff48109c6647d0223a38db52e2561dd87966eb5fc7c6bdac6.css">
 
   
-  <link rel="stylesheet" href="//localhost:1313/css/main.min.36833afd348409fc6c3d09d0897c5833d9d5bf1ff31f5e60ea3ee42ce2b1268c.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/main.min.36833afd348409fc6c3d09d0897c5833d9d5bf1ff31f5e60ea3ee42ce2b1268c.css">
 
   
-  <link rel="stylesheet" href="//localhost:1313/css/menu.min.3c17467ebeb3d38663dce68f71f519901124fa5cbb4519b2fb0667a21e9aca39.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/menu.min.3c17467ebeb3d38663dce68f71f519901124fa5cbb4519b2fb0667a21e9aca39.css">
 
   
-  <link rel="stylesheet" href="//localhost:1313/css/pagination.min.bbb986dbce00a5ce5aca0504b7925fc1c581992a4bf57f163e5d69cc1db7d836.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/pagination.min.bbb986dbce00a5ce5aca0504b7925fc1c581992a4bf57f163e5d69cc1db7d836.css">
 
   
-  <link rel="stylesheet" href="//localhost:1313/css/post.min.e6dddd258e64c83e05cec0cd49c05216742d42fc8ecbfbe6b67083412b609bd3.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/post.min.e6dddd258e64c83e05cec0cd49c05216742d42fc8ecbfbe6b67083412b609bd3.css">
 
   
-  <link rel="stylesheet" href="//localhost:1313/css/syntax.min.a0773cce9310cb6d8ed23e50f005448facf29a53001b57e038828daa466b25c0.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/syntax.min.a0773cce9310cb6d8ed23e50f005448facf29a53001b57e038828daa466b25c0.css">
 
   
-  <link rel="stylesheet" href="//localhost:1313/css/terminal.min.e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/terminal.min.e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css">
 
   
-  <link rel="stylesheet" href="//localhost:1313/css/terms.min.b81791663c3790e738e571cdbf802312390d30e4b1d8dc9d814a5b5454d0ac11.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/terms.min.b81791663c3790e738e571cdbf802312390d30e4b1d8dc9d814a5b5454d0ac11.css">
 
 
 
 
-<link rel="stylesheet" href="//localhost:1313/style.css">
+<link rel="stylesheet" href="http://localhost:1313/style.css">
 
 
-<link rel="shortcut icon" href="//localhost:1313/favicon.png">
-<link rel="apple-touch-icon" href="//localhost:1313/apple-touch-icon.png">
+<link rel="shortcut icon" href="http://localhost:1313/favicon.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
 
 
 <meta name="twitter:card" content="summary" />
@@ -78,14 +78,14 @@ Caveat: Nothing in this document is meant to be exhaustive. It&amp;rsquo;s not t
 <meta property="og:type" content="article" />
 <meta property="og:title" content="What&#39;s a Lambda?">
 <meta property="og:description" content="This document is a brief investigation into the question:
-What is a lambda?
+?
 And, in our context, more specifically, what is lambda in computer languages, and even more specifically, what is lambda in Java.
 Java added lambda expressions in 2014 (see Java SE 8).
-Caveat: Nothing in this document is meant to be exhaustive. It&amp;rsquo;s not the final word on anything. And there most likely are errors in it – in fact, most definitely." />
-<meta property="og:url" content="//localhost:1313/posts/whatisalambda/" />
+Caveat: Nothing in this document is meant to be exhaustive. It&amp;rsquo;s not the final word on anything. And there most likely are errors in it &amp;ndash; in fact, most definitely." />
+<meta property="og:url" content="http://localhost:1313/posts/whatisalambda/" />
 <meta property="og:site_name" content="" />
 
-  <meta property="og:image" content="//localhost:1313/og-image.png">
+  <meta property="og:image" content="http://localhost:1313/og-image.png">
 
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="627">
@@ -105,7 +105,7 @@ Caveat: Nothing in this document is meant to be exhaustive. It&amp;rsquo;s not t
 
 
   
-  <script src="//localhost:1313/js/mathjax-config.js"></script>
+  <script src="http://localhost:1313/js/mathjax-config.js"></script>
 
   
   <script
@@ -181,18 +181,18 @@ Caveat: Nothing in this document is meant to be exhaustive. It&amp;rsquo;s not t
     
 <article class="post">
   <h1 class="post-title">
-    <a href="//localhost:1313/posts/whatisalambda/">What&rsquo;s a Lambda?</a>
+    <a href="http://localhost:1313/posts/whatisalambda/">What&rsquo;s a Lambda?</a>
   </h1>
   <div class="post-meta"><time class="post-date">2021-09-14</time><span class="post-author">[Karl Stump]</span></div>
 
   
     <span class="post-tags">
       
-      #<a href="//localhost:1313/tags/programming/">programming</a>&nbsp;
+      #<a href="http://localhost:1313/tags/programming/">programming</a>&nbsp;
       
-      #<a href="//localhost:1313/tags/lambda/">lambda</a>&nbsp;
+      #<a href="http://localhost:1313/tags/lambda/">lambda</a>&nbsp;
       
-      #<a href="//localhost:1313/tags/java/">java</a>&nbsp;
+      #<a href="http://localhost:1313/tags/java/">java</a>&nbsp;
       
     </span>
   
@@ -204,14 +204,14 @@ Caveat: Nothing in this document is meant to be exhaustive. It&amp;rsquo;s not t
   <div class="post-content"><div>
         <p>This document is a brief investigation into the question:</p>
 <blockquote>
-<p>What is a lambda?</p>
+<p>?</p>
 </blockquote>
 <p>And, in our context, more specifically, what is lambda in computer
 languages, and even more specifically, what is lambda in Java.</p>
 <p>Java added lambda expressions in 2014 (see <a href="https://en.wikipedia.org/wiki/Java_version_history#Java_SE_8">Java SE 8</a>).</p>
 <p><strong>Caveat</strong>: Nothing in this document is meant to be exhaustive. It&rsquo;s
 not the final word on anything. And there most likely are errors in
-it – in fact, most definitely.  And there are certainly better ways
+it &ndash; in fact, most definitely.  And there are certainly better ways
 that things could have been said, or demonstrated. But it is hoped
 that in some way some part of it can prove beneficial in thinking
 about lambda, and also along the way be fun.</p>
@@ -230,34 +230,34 @@ examples are sufficiently clear that even someone with no experience
 with Lisp, yet knowledgeable in some other programming language,
 will have not much trouble following. As such, I will leave a lot of
 Lisp details  unsaid.</p>
-<figure><img src="/ox-hugo/lambdaDefined.png" width="1000px"/>
+<figure><img src="~/Pictures/whatsalambda/lambdaDefined.png" width="1000px"/>
 </figure>
 
 <p>In the REPL (Read, Eval, Print Loop; think of it as Lisp&rsquo;s
-interactive window – okay, if severely interested, you might try
-<a href="https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop">REPL</a> on Wiki) defining a lambda …</p>
-<figure><img src="/ox-hugo/definingLambda.png" width="1000px"/>
+interactive window &ndash; okay, if severely interested, you might try
+<a href="https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop">REPL</a> on Wiki) defining a lambda &hellip;</p>
+<figure><img src="~/Pictures/whatsalambda/definingLambda.png" width="1000px"/>
 </figure>
 
 <p>Press <code>return</code>, and the REPL evaluates the expression, prints the
 &ldquo;printed representation&rdquo; of the lambda.</p>
-<figure><img src="/ox-hugo/lambdaDefined.png" width="1000px"/>
+<figure><img src="~/Pictures/whatsalambda/lambdaDefined.png" width="1000px"/>
 </figure>
 
 <p>What is a lambda? It says it&rsquo;s a function.</p>
 <p>Is there more detail available?</p>
 <p>In fact, there is.</p>
 <p>Right-clicking on the presentation gives a context menu.</p>
-<p>Selecting inspect…</p>
-<figure><img src="/ox-hugo/inspectLambda.png" width="1000px"/>
+<p>Selecting inspect&hellip;</p>
+<figure><img src="~/Pictures/whatsalambda/inspectLambda.png" width="1000px"/>
 </figure>
 
-<p>… gives us some details.</p>
-<figure><img src="/ox-hugo/inspectLambda2.png" width="1000px"/>
+<p>&hellip; gives us some details.</p>
+<figure><img src="~/Pictures/whatsalambda/inspectLambda2.png" width="1000px"/>
 </figure>
 
 <p>The CODE line looks interesting. Click it.</p>
-<figure><img src="/ox-hugo/disassembly.png" width="1000px"/>
+<figure><img src="~/Pictures/whatsalambda/disassembly.png" width="1000px"/>
 </figure>
 
 <p>Assembler?</p>
@@ -270,7 +270,7 @@ actual code.</p>
 <p>But how?</p>
 <p>Can&rsquo;t be done. It doesn&rsquo;t have a name. It&rsquo;s anonymous. You can&rsquo;t
 call it because it doesn&rsquo;t have a name.</p>
-<p>Okay, so … ?</p>
+<p>Okay, so &hellip; ?</p>
 <p>Here, fortunately, the REPL can help us.</p>
 <p>In the environment of the REPL, behind the scenes, a temporary name
 has in fact been given to the lambda. But please note that this is
@@ -278,35 +278,35 @@ entirely a convenience feature supplied by the REPL.</p>
 <p>What is this temporary name? It&rsquo;s the symbol <code>*</code>. So, the lambda
 does have a name, temporarily. It&rsquo;s <code>*</code></p>
 <p>So, let&rsquo;s use it, and invoke the lambda. How?</p>
-<p>We can use <code>funcall</code> — <code>funcall</code> is a function that takes a
+<p>We can use <code>funcall</code> &mdash; <code>funcall</code> is a function that takes a
 function as it first parameter, and optionally takes additional
 arguments.</p>
-<figure><img src="/ox-hugo/useAsterisk.png" width="1000px"/>
+<figure><img src="~/Pictures/whatsalambda/useAsterisk.png" width="1000px"/>
 </figure>
 
 <p>The result of <code>funcall</code> invoking the lambda is returned, it&rsquo;s the
-string returned by the lambda, &ldquo;hello world&rdquo; — and note that now
-<code>*</code> refers to the string &ldquo;hello world&rdquo; – so, we can&rsquo;t use <code>*</code> to
+string returned by the lambda, &ldquo;hello world&rdquo; &mdash; and note that now
+<code>*</code> refers to the string &ldquo;hello world&rdquo; &ndash; so, we can&rsquo;t use <code>*</code> to
 invoke the lambda (and with nothing referring to the lambda, the
 garbage collector will dispose of it).</p>
 <p>So, let&rsquo;s take a pause and ask the question: what&rsquo;s a lambda?</p>
 <ul>
-<li>In some languages, an expression that begins with &ldquo;(lambda …&rdquo;</li>
+<li>In some languages, an expression that begins with &ldquo;(lambda &hellip;&rdquo;</li>
 <li>In some environments, a printed representation, like <code>#&lt;FUNCTION (LAMBDA ()) {1002F5D59B}&gt;</code></li>
 <li>Code that, in some environments, we can inspect even down to the
 disassembly.</li>
-<li>Code that is &ldquo;anonymous&rdquo; – it doesn&rsquo;t have a name, or anything
+<li>Code that is &ldquo;anonymous&rdquo; &ndash; it doesn&rsquo;t have a name, or anything
 that points to it, leaving us unable to get to it.</li>
 <li>But also, code that could be executed if we could get to it.</li>
 <li>And it&rsquo;s a function created &ldquo;on the fly,&rdquo; at run time, and that
 will be garbage collected when it&rsquo;s done being used.</li>
 </ul>
 <p>That&rsquo;s a good start. Let&rsquo;s see how we might use a lambda.</p>
-<figure><img src="/ox-hugo/funcallLambda.png" width="1000px"/>
+<figure><img src="~/Pictures/whatsalambda/funcallLambda.png" width="1000px"/>
 </figure>
 
-<p>Wait – what?</p>
-<p>We just created a lambda – &ldquo;on the fly&rdquo; – it&rsquo;s anonymous, doesn&rsquo;t
+<p>Wait &ndash; what?</p>
+<p>We just created a lambda &ndash; &ldquo;on the fly&rdquo; &ndash; it&rsquo;s anonymous, doesn&rsquo;t
 have a name, but since we&rsquo;re passing it to <code>funcall</code> it doesn&rsquo;t need
 a name. And when the evaluation of the lambda is complete it will be
 disposed of.</p>
@@ -320,7 +320,7 @@ value. The lambda code is executed and returns the value 101.</p>
 <p>(Don&rsquo;t be confused by the <code>#'</code> prepended to the <code>+</code>
 symbol. This is simply the Lisp way of indicating that the function
 value of <code>+</code> is wanted.)</p>
-<figure><img src="/ox-hugo/funcallPlus.png" width="1000px"/>
+<figure><img src="~/Pictures/whatsalambda/funcallPlus.png" width="1000px"/>
 </figure>
 
 <p>Interesting. And it gets you thinking: might some of this be useful?</p>
@@ -337,7 +337,7 @@ discussion.</p>
 argument, not just <code>funcall</code>.</p>
 <p>For example, <code>mapcar</code> is one such function. Rather than tell you
 what <code>mapcar</code> does, let&rsquo;s just see how it works.</p>
-<figure><img src="/ox-hugo/mapcar.png" width="1000px"/>
+<figure><img src="~/Pictures/whatsalambda/mapcar.png" width="1000px"/>
 </figure>
 
 <p>How would you describe it?</p>
@@ -345,15 +345,15 @@ what <code>mapcar</code> does, let&rsquo;s just see how it works.</p>
 given function, collecting the results from each iteration.</p>
 <p>Could a lambda be used? Let&rsquo;s try.</p>
 <p>Here&rsquo;s a lambda that computes averages.</p>
-<figure><img src="/ox-hugo/average.png" width="1000px"/>
+<figure><img src="~/Pictures/whatsalambda/average.png" width="1000px"/>
 </figure>
 
 <p>Here&rsquo;s one that rearranges the numbers.</p>
-<figure><img src="/ox-hugo/rearrange.png" width="1000px"/>
+<figure><img src="~/Pictures/whatsalambda/rearrange.png" width="1000px"/>
 </figure>
 
 <p>Here&rsquo;s one that keeps a running total for each iteration.</p>
-<figure><img src="/ox-hugo/runningTotal.png" width="1000px"/>
+<figure><img src="~/Pictures/whatsalambda/runningTotal.png" width="1000px"/>
 </figure>
 
 <p>Oh, wait, that lambda is a very important case: it&rsquo;s a <code>closure</code>.</p>
@@ -366,12 +366,12 @@ a closure is the first step to becoming a professional lisp
 programmer. In fact, this skill is vital for the proper use of
 many modern programming languages, even ones that don&rsquo;t
 explicitly contain let or lambda, such as Perl or Javascript.&rdquo;
-– <a href="https://letoverlambda.com/index.cl/guest/chap2.html">Doug Hoyte</a></p>
+&ndash; <a href="https://letoverlambda.com/index.cl/guest/chap2.html">Doug Hoyte</a></p>
 </blockquote>
 <p>Among the modern programming languages that Hoyte didn&rsquo;t mention at
 the time of his writing, but could now, is Java.</p>
 <p>Let&rsquo;s a define a function.</p>
-<figure><img src="/ox-hugo/closure1.png" width="1000px"/>
+<figure><img src="~/Pictures/whatsalambda/closure1.png" width="1000px"/>
 </figure>
 
 <p>What does this function do?</p>
@@ -393,34 +393,34 @@ world, is sometimes referred to as a <code>let over lambda</code>.</li>
 <li>Why the word <code>closure</code>? Because the lambda &ldquo;has closed&rdquo; over
 (or &ldquo;enclosed&rdquo;) the local variable. The lambda &ldquo;has closed&rdquo;
 (verb), and if you want to label something that &ldquo;has closed&rdquo;
-it sounds like &ldquo;closure&rdquo; (a noun) would do it – or maybe we
-should say, &ldquo;enclosure&rdquo; — or perhaps, we should just call it
+it sounds like &ldquo;closure&rdquo; (a noun) would do it &ndash; or maybe we
+should say, &ldquo;enclosure&rdquo; &mdash; or perhaps, we should just call it
 an &ldquo;encapsulation&rdquo; because it &ldquo;encapsulates&rdquo; local variables?</li>
 </ul>
 </li>
 </ol>
-<p>Okay, we have a function, and a named one at that – a named function
+<p>Okay, we have a function, and a named one at that &ndash; a named function
 that creates unnamed functions. Let&rsquo;s invoke it.</p>
-<figure><img src="/ox-hugo/closure1.1.png" width="1000px"/>
+<figure><img src="~/Pictures/whatsalambda/closure1.1.png" width="1000px"/>
 </figure>
 
 <p>Notice that the &ldquo;printed representation&rdquo; of the lambda now includes
 the word &ldquo;closure.&rdquo; Fine, let&rsquo;s use <code>funcall</code> on the closure from
 <code>makeClosure</code>.</p>
-<figure><img src="/ox-hugo/closure1.2.png" width="1000px"/>
+<figure><img src="~/Pictures/whatsalambda/closure1.2.png" width="1000px"/>
 </figure>
 
-<p>Well … now what?</p>
-<figure><img src="/ox-hugo/closure1.3.png" width="1000px"/>
+<p>Well &hellip; now what?</p>
+<figure><img src="~/Pictures/whatsalambda/closure1.3.png" width="1000px"/>
 </figure>
 
 <p>This doesn&rsquo;t seem to be getting anywhere.</p>
 <p>Wait! Assign the closure to a variable!</p>
-<figure><img src="/ox-hugo/closure2.png" width="1000px"/>
+<figure><img src="~/Pictures/whatsalambda/closure2.png" width="1000px"/>
 </figure>
 
 <p>Now use <code>funcall</code> on it.</p>
-<figure><img src="/ox-hugo/closure3.png" width="1000px"/>
+<figure><img src="~/Pictures/whatsalambda/closure3.png" width="1000px"/>
 </figure>
 
 <p>Cool! Even though <code>counter</code> is a local variable in makeClosure, it
@@ -431,10 +431,10 @@ closed around it. Is there any way to access <code>counter</code>?</p>
 no nothing. And other than invoking the lambda and causing it to be
 modified, there is no way to access it. (Now, we could have defined
 an interface, we could have defined various getters and setters and
-ways to invoke them — but … we didn&rsquo;t).</p>
+ways to invoke them &mdash; but &hellip; we didn&rsquo;t).</p>
 <p>What about getting another instance of a closure from
 <code>makeClosure</code>? Can we? And then call it? What will happen?</p>
-<figure><img src="/ox-hugo/closure4.png" width="1000px"/>
+<figure><img src="~/Pictures/whatsalambda/closure4.png" width="1000px"/>
 </figure>
 
 <p>Clearly, <code>myClosure2</code> and <code>myClosure1</code> are different instantiations
@@ -444,7 +444,7 @@ variable and update.</p>
 <p>Assume that we have a sensor that has upper and lower limits of 100
 and 0, and we will want to send it a delta value so the sensor can
 update its state. Like this:</p>
-<figure><img src="/ox-hugo/closure5.png" width="1000px"/>
+<figure><img src="~/Pictures/whatsalambda/closure5.png" width="1000px"/>
 </figure>
 
 <p>That&rsquo;s enough Lisp for now.</p>
@@ -751,13 +751,13 @@ Williams</p>
 <p>And you want to put this into some sort of structure and search
 it. So, you come up with a baseball player class for this data
 something like this:</p>
-<figure><img src="/ox-hugo/baseballPlayer.png" width="1000px"/>
+<figure><img src="~/Pictures/whatsalambda/baseballPlayer.png" width="1000px"/>
 </figure>
 
 <p>And you create another class to aggregate players into a list of some
 kind, and you provide a method that will do one of the many searches
 that you know you&rsquo;ll want to do. Like this:</p>
-<figure><img src="/ox-hugo/classPlayersDB.png" width="1000px"/>
+<figure><img src="~/Pictures/whatsalambda/classPlayersDB.png" width="1000px"/>
 </figure>
 
 <p>So it&rsquo;s a start.</p>
@@ -767,7 +767,7 @@ want to do, and you realize that you&rsquo;re going to need a lot of
 <p>And you realize that the only difference between all these methods
 is going to be one line, one statement of code, in fact, one
 expression:</p>
-<figure><img src="/ox-hugo/classPlayersDBAnnotated.png" width="1000px"/>
+<figure><img src="~/Pictures/whatsalambda/classPlayersDBAnnotated.png" width="1000px"/>
 </figure>
 
 <h2 id="abstract-classes">Abstract Classes<a href="#abstract-classes" class="hanchor" ariaLabel="Anchor">#</a> </h2>
@@ -775,114 +775,114 @@ expression:</p>
 <p>So, what if we add a new method to the <code>PlayersDB</code> class,
 <code>getPlayersWithTest</code>, and experiment with what the signature could
 look like? Like this:</p>
-<figure><img src="/ox-hugo/classPlayersDB-firstmod.png" width="1000px"/>
+<figure><img src="~/Pictures/whatsalambda/classPlayersDB-firstmod.png" width="1000px"/>
 </figure>
 
 <p>And the conditional would then become something like this:</p>
-<figure><img src="/ox-hugo/classPlayersDB-secondmod.png" width="1000px"/>
+<figure><img src="~/Pictures/whatsalambda/classPlayersDB-secondmod.png" width="1000px"/>
 </figure>
 
 <p>So, the idea is to instantiate a <code>Tester</code> class with the test
-method (<code>testPlayer</code>) to run – but really we&rsquo;ll need a subclass of
+method (<code>testPlayer</code>) to run &ndash; but really we&rsquo;ll need a subclass of
 <code>Tester</code> for each test, and then we can override the test method
-– this sounds like an abstract class.</p>
+&ndash; this sounds like an abstract class.</p>
 <p>Like this:</p>
-<figure><img src="/ox-hugo/classPlayersDB-thirdmod.png" width="1000px"/>
+<figure><img src="~/Pictures/whatsalambda/classPlayersDB-thirdmod.png" width="1000px"/>
 </figure>
 
-<p>Logging seems like a reasonable idea … maybe? Or other methods
+<p>Logging seems like a reasonable idea &hellip; maybe? Or other methods
 will be added later? Maybe these details will be important later,
 but for now, looks good!</p>
 <p>And notice that just by adding this abstract class, all the &ldquo;red
-underlines&rdquo; in the editor go away – this has got to be the right
+underlines&rdquo; in the editor go away &ndash; this has got to be the right
 approach!</p>
 <p>What now?</p>
 <p>Well, you cannot instantiate an abstract class. But you can extend
 it. Like this.</p>
-<figure><img src="/ox-hugo/moreAtBatsClass.png" width="1000px"/>
+<figure><img src="~/Pictures/whatsalambda/moreAtBatsClass.png" width="1000px"/>
 </figure>
 
-<p>So, how does it work? You add a test for it …</p>
-<figure><img src="/ox-hugo/testerTest-zero.png" width="1000px"/>
+<p>So, how does it work? You add a test for it &hellip;</p>
+<figure><img src="~/Pictures/whatsalambda/testerTest-zero.png" width="1000px"/>
 </figure>
 
-<p>… and it works.</p>
+<p>&hellip; and it works.</p>
 <p>Cool!</p>
-<p>But …</p>
-<p>… there are going to be a lot of extensions of Tester.</p>
+<p>But &hellip;</p>
+<p>&hellip; there are going to be a lot of extensions of Tester.</p>
 <p>Yeah, and so at this point, it feels like a rock-and-a-hard-spot
-situation – either multiply the number of extensions of Tester, or
+situation &ndash; either multiply the number of extensions of Tester, or
 multiply the number of methods to <code>PlayersDB</code>.</p>
-<p>If only there was some way …</p>
+<p>If only there was some way &hellip;</p>
 <h3 id="anonymous-classes">Anonymous Classes<a href="#anonymous-classes" class="hanchor" ariaLabel="Anchor">#</a> </h3>
-<p>Another technique does exist – anonymous classes.</p>
+<p>Another technique does exist &ndash; anonymous classes.</p>
 <p>So, adding another test, but this time we&rsquo;ll do this:</p>
-<figure><img src="/ox-hugo/testerTest-first.png" width="1000px"/>
+<figure><img src="~/Pictures/whatsalambda/testerTest-first.png" width="1000px"/>
 </figure>
 
 <p>So, on the left hand side we&rsquo;ve specified the type <code>Tester</code>. That&rsquo;s
 perfectly legal in the &ldquo;type system&rdquo; because <code>MoreAtBats</code> is an
 <code>is_a</code> in relation to <code>Tester</code>.</p>
-<p>But let&rsquo;s not select <code>MoreAtBats</code> — instead select the <code>Tester</code>
+<p>But let&rsquo;s not select <code>MoreAtBats</code> &mdash; instead select the <code>Tester</code>
 abstract class itself.</p>
 <p>Wait. What?? You <strong>cannot</strong> instantiate an abstract class.</p>
 <p>Absolutely correct. You cannot. And we&rsquo;re not.</p>
-<p>Selecting <code>Tester</code> …</p>
-<figure><img src="/ox-hugo/testAnonymous-create.png" width="1000px"/>
+<p>Selecting <code>Tester</code> &hellip;</p>
+<figure><img src="~/Pictures/whatsalambda/testAnonymous-create.png" width="1000px"/>
 </figure>
 
-<p>… IntelliJ fills in what looks suspiciously like a class
+<p>&hellip; IntelliJ fills in what looks suspiciously like a class
 definition that extends <code>Tester</code>. And in fact, that&rsquo;s exactly what
 we&rsquo;re doing.</p>
-<p>Do not think that we are instantiating <code>Tester</code> – we are not —
+<p>Do not think that we are instantiating <code>Tester</code> &ndash; we are not &mdash;
 this is an anonymous class that extends Tester.</p>
 <p>What is the name of this class?</p>
 <p>It doesn&rsquo;t have a name. It&rsquo;s anonymous.</p>
-<p>So, let&rsquo;s fill it in  …</p>
-<figure><img src="/ox-hugo/testAnonymous-create-2.png" width="1000px"/>
+<p>So, let&rsquo;s fill it in  &hellip;</p>
+<figure><img src="~/Pictures/whatsalambda/testAnonymous-create-2.png" width="1000px"/>
 </figure>
 
-<p>… and we run the test, and it works.</p>
+<p>&hellip; and we run the test, and it works.</p>
 <p>And then, it should be apparent that we can do this in the call to
 <code>getPlayersWithTest</code>. Like this:</p>
-<figure><img src="/ox-hugo/testAnonymous-create-3.png" width="1000px"/>
+<figure><img src="~/Pictures/whatsalambda/testAnonymous-create-3.png" width="1000px"/>
 </figure>
 
-<p>And you can also use local variables … a local variable over an
-anonymous class …</p>
-<figure><img src="/ox-hugo/testAnonymous-create-4.png" width="1000px"/>
+<p>And you can also use local variables &hellip; a local variable over an
+anonymous class &hellip;</p>
+<figure><img src="~/Pictures/whatsalambda/testAnonymous-create-4.png" width="1000px"/>
 </figure>
 
-<p>Pretty cool – anonymous classes – yes, they are.</p>
+<p>Pretty cool &ndash; anonymous classes &ndash; yes, they are.</p>
 <p>It can&rsquo;t possibly get any better, can it?</p>
 <h2 id="lambda">Lambda<a href="#lambda" class="hanchor" ariaLabel="Anchor">#</a> </h2>
 <p>We should realize that our abstract <code>Tester</code> class exists for one
-reason – to ensure that all extensions supply a <code>boolean testPlayer(Player p)</code> method. That&rsquo;s it! (And as far as that logging
+reason &ndash; to ensure that all extensions supply a <code>boolean testPlayer(Player p)</code> method. That&rsquo;s it! (And as far as that logging
 idea?</p>
 <p>So, let&rsquo;s define an interface that does just that (and we&rsquo;ll name it
 <code>Lambda</code> but the name doesn&rsquo;t matter).</p>
-<figure><img src="/ox-hugo/lambda-1.png" width="1000px"/>
+<figure><img src="~/Pictures/whatsalambda/lambda-1.png" width="1000px"/>
 </figure>
 
 <p>And let&rsquo;s modify our <code>PlayersDB</code> and add the following method:</p>
-<figure><img src="/ox-hugo/lambda-2.png" width="1000px"/>
+<figure><img src="~/Pictures/whatsalambda/lambda-2.png" width="1000px"/>
 </figure>
 
 <p>Now, in test, we can &ldquo;new up&rdquo; our Lambda interface just like we did
 with the abstract class and get an anonymous class.</p>
-<figure><img src="/ox-hugo/lambda-3.png" width="1000px"/>
+<figure><img src="~/Pictures/whatsalambda/lambda-3.png" width="1000px"/>
 </figure>
 
 <p>Wait. So we&rsquo;re just going to create an anonymous class??</p>
-<p>No – that was just for demo.</p>
+<p>No &ndash; that was just for demo.</p>
 <p>We have more expressive possibilities available to us.</p>
 <p>Like this:</p>
-<figure><img src="/ox-hugo/lambda-4.png" width="1000px"/>
+<figure><img src="~/Pictures/whatsalambda/lambda-4.png" width="1000px"/>
 </figure>
 
 <p>Wait. What??</p>
-<p>Pressing enter …</p>
-<figure><img src="/ox-hugo/lambda-5.png" width="1000px"/>
+<p>Pressing enter &hellip;</p>
+<figure><img src="~/Pictures/whatsalambda/lambda-5.png" width="1000px"/>
 </figure>
 
 <p>Stop! What is IntelliJ doing? What does <code>p -&gt;</code> mean??</p>
@@ -906,29 +906,29 @@ method.</p>
 (and can only be a type Player). So, let&rsquo;s use <code>p</code>  in an expression
 that results in a <code>boolean</code>.</p>
 <p>Like this:</p>
-<figure><img src="/ox-hugo/lambda-6.png" width="1000px"/>
+<figure><img src="~/Pictures/whatsalambda/lambda-6.png" width="1000px"/>
 </figure>
 
 <p>Here, we are saving the lambda in the variable <code>l</code> and then using
 that in the call to <code>getPlayersWithLambda</code>. Not that unusual, but of
 course, we can put the lambda expression in the call to
 <code>getPlayersWithLambda</code>.</p>
-<figure><img src="/ox-hugo/lambda-7.png" width="1000px"/>
+<figure><img src="~/Pictures/whatsalambda/lambda-7.png" width="1000px"/>
 </figure>
 
 <p>And there&rsquo;s nothing to stop us from using a local variable over the
-lambda …</p>
-<figure><img src="/ox-hugo/lambda-8.png" width="1000px"/>
+lambda &hellip;</p>
+<figure><img src="~/Pictures/whatsalambda/lambda-8.png" width="1000px"/>
 </figure>
 
-<p>A local variable over a lambda … in Java …  Cool, huh?</p>
-<p>So …  what&rsquo;s a lambda?</p>
+<p>A local variable over a lambda &hellip; in Java &hellip;  Cool, huh?</p>
+<p>So &hellip;  what&rsquo;s a lambda?</p>
 <h2 id="conclusion">Conclusion<a href="#conclusion" class="hanchor" ariaLabel="Anchor">#</a> </h2>
 <p>This document doesn&rsquo;t really have a conclusion.</p>
 <p>I hope the lambda examples in Lisp, and then working through lambda in Java, has
 led to a better understanding and appreciation of this remarkable conception.
 And that the journey was fun, too.</p>
-<p>Other than that …</p>
+<p>Other than that &hellip;</p>
 <p>So common is the passing of a &ldquo;tester,&rdquo; as in the examples above, that there&rsquo;s
 already an interface defined for the purpose: <code>Predicate</code>. You&rsquo;ll want to use
 that rather than define your own.</p>
@@ -966,7 +966,7 @@ given.</p>
   </div>
   <div class="pagination__buttons">
     
-      <a href="//localhost:1313/posts/computational-documents/" class="button inline prev">
+      <a href="http://localhost:1313/posts/computational-documents/" class="button inline prev">
         &lt; [<span class="button__text">Computational Documents</span>]
       </a>
     

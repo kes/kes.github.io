@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>ChatGPT on </title>
-    <link>//localhost:1313/tags/chatgpt/</link>
+    <link>http://localhost:1313/tags/chatgpt/</link>
     <description>Recent content in ChatGPT on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Sat, 08 Nov 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="//localhost:1313/tags/chatgpt/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/chatgpt/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>C Programming with ChatGPT</title>
-      <link>//localhost:1313/posts/programming-with-chatgpt/</link>
+      <link>http://localhost:1313/posts/programming-with-chatgpt/</link>
       <pubDate>Sat, 08 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/posts/programming-with-chatgpt/</guid>
+      <guid>http://localhost:1313/posts/programming-with-chatgpt/</guid>
       <description>I wanted to experiment with ChatGPT and programming. So, I thought I would just start with an exercise from Kernighan and Ritchie&amp;rsquo;s The C Programming Language.&#xA;I prompted ChatGPT with the following:&#xA;In C write a program called detab that replaces tabs in the input with the proper number of spaces to reach the next tabstop. Assume tab stops every eight columns. This is exercise 1.20 from The C Programming Language by Kernighan and Ritchie.</description>
     </item>
   </channel>

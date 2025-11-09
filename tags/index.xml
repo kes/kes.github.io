@@ -2,129 +2,129 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on </title>
-    <link>//localhost:1313/tags/</link>
+    <link>http://localhost:1313/tags/</link>
     <description>Recent content in Tags on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Sat, 08 Nov 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="//localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About</title>
-      <link>//localhost:1313/tags/about/</link>
+      <link>http://localhost:1313/tags/about/</link>
       <pubDate>Sat, 08 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/tags/about/</guid>
+      <guid>http://localhost:1313/tags/about/</guid>
       <description></description>
     </item>
     <item>
       <title>C</title>
-      <link>//localhost:1313/tags/c/</link>
+      <link>http://localhost:1313/tags/c/</link>
       <pubDate>Sat, 08 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/tags/c/</guid>
+      <guid>http://localhost:1313/tags/c/</guid>
       <description></description>
     </item>
     <item>
       <title>ChatGPT</title>
-      <link>//localhost:1313/tags/chatgpt/</link>
+      <link>http://localhost:1313/tags/chatgpt/</link>
       <pubDate>Sat, 08 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/tags/chatgpt/</guid>
+      <guid>http://localhost:1313/tags/chatgpt/</guid>
       <description></description>
     </item>
     <item>
       <title>Programming</title>
-      <link>//localhost:1313/tags/programming/</link>
+      <link>http://localhost:1313/tags/programming/</link>
       <pubDate>Sat, 08 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/tags/programming/</guid>
+      <guid>http://localhost:1313/tags/programming/</guid>
       <description></description>
     </item>
     <item>
       <title>Cpp</title>
-      <link>//localhost:1313/tags/cpp/</link>
+      <link>http://localhost:1313/tags/cpp/</link>
       <pubDate>Fri, 29 Nov 2024 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/tags/cpp/</guid>
+      <guid>http://localhost:1313/tags/cpp/</guid>
       <description></description>
     </item>
     <item>
       <title>Leetcode</title>
-      <link>//localhost:1313/tags/leetcode/</link>
+      <link>http://localhost:1313/tags/leetcode/</link>
       <pubDate>Fri, 29 Nov 2024 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/tags/leetcode/</guid>
+      <guid>http://localhost:1313/tags/leetcode/</guid>
       <description></description>
     </item>
     <item>
       <title>Ham</title>
-      <link>//localhost:1313/tags/ham/</link>
+      <link>http://localhost:1313/tags/ham/</link>
       <pubDate>Tue, 19 Nov 2024 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/tags/ham/</guid>
+      <guid>http://localhost:1313/tags/ham/</guid>
       <description></description>
     </item>
     <item>
       <title>Emacs</title>
-      <link>//localhost:1313/tags/emacs/</link>
+      <link>http://localhost:1313/tags/emacs/</link>
       <pubDate>Mon, 18 Nov 2024 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/tags/emacs/</guid>
+      <guid>http://localhost:1313/tags/emacs/</guid>
       <description></description>
     </item>
     <item>
       <title>Lisp</title>
-      <link>//localhost:1313/tags/lisp/</link>
+      <link>http://localhost:1313/tags/lisp/</link>
       <pubDate>Mon, 18 Nov 2024 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/tags/lisp/</guid>
+      <guid>http://localhost:1313/tags/lisp/</guid>
       <description></description>
     </item>
     <item>
       <title>Java</title>
-      <link>//localhost:1313/tags/java/</link>
+      <link>http://localhost:1313/tags/java/</link>
       <pubDate>Thu, 12 Sep 2024 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/tags/java/</guid>
+      <guid>http://localhost:1313/tags/java/</guid>
       <description></description>
     </item>
     <item>
       <title>Compiler</title>
-      <link>//localhost:1313/tags/compiler/</link>
+      <link>http://localhost:1313/tags/compiler/</link>
       <pubDate>Sat, 07 Sep 2024 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/tags/compiler/</guid>
+      <guid>http://localhost:1313/tags/compiler/</guid>
       <description></description>
     </item>
     <item>
       <title>Make</title>
-      <link>//localhost:1313/tags/make/</link>
+      <link>http://localhost:1313/tags/make/</link>
       <pubDate>Sat, 31 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/tags/make/</guid>
+      <guid>http://localhost:1313/tags/make/</guid>
       <description></description>
     </item>
     <item>
       <title>Euler</title>
-      <link>//localhost:1313/tags/euler/</link>
+      <link>http://localhost:1313/tags/euler/</link>
       <pubDate>Wed, 28 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/tags/euler/</guid>
+      <guid>http://localhost:1313/tags/euler/</guid>
       <description></description>
     </item>
     <item>
       <title>Babel</title>
-      <link>//localhost:1313/tags/babel/</link>
+      <link>http://localhost:1313/tags/babel/</link>
       <pubDate>Sun, 04 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/tags/babel/</guid>
+      <guid>http://localhost:1313/tags/babel/</guid>
       <description></description>
     </item>
     <item>
       <title>Literate</title>
-      <link>//localhost:1313/tags/literate/</link>
+      <link>http://localhost:1313/tags/literate/</link>
       <pubDate>Sun, 04 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/tags/literate/</guid>
+      <guid>http://localhost:1313/tags/literate/</guid>
       <description></description>
     </item>
     <item>
       <title>Org</title>
-      <link>//localhost:1313/tags/org/</link>
+      <link>http://localhost:1313/tags/org/</link>
       <pubDate>Sun, 04 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/tags/org/</guid>
+      <guid>http://localhost:1313/tags/org/</guid>
       <description></description>
     </item>
     <item>
       <title>Lambda</title>
-      <link>//localhost:1313/tags/lambda/</link>
+      <link>http://localhost:1313/tags/lambda/</link>
       <pubDate>Tue, 14 Sep 2021 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/tags/lambda/</guid>
+      <guid>http://localhost:1313/tags/lambda/</guid>
       <description></description>
     </item>
   </channel>
