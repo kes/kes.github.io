@@ -445,36 +445,53 @@ In C write a program called detab that replaces tabs in the input with the prope
 <p>Great prompt—yes, Exercise 1.21 is entab: replace runs of blanks with the minimum number of tabs and spaces to get the same alignment (assume tab stops every 8 columns). Below is a drop-in implementation that mirrors the detab architecture you just built: a pure function (entab_line) + a tiny CLI wrapper + cmocka tests + Makefile targets.</p>
 </blockquote>
 <p>I take it that with the &ldquo;Great prompt&rdquo; that <code>ChatGPT</code> is indicating that it knows all the exercises in the book. Amazing.</p>
-<p>I won&rsquo;t give the code here, since you can see it in the repository.</p>
-<p>Additional testing, property tests were requested, and this resulted in the following response:</p>
+<p>From here on, I won&rsquo;t go into a lot of details, just things that stood aout to me. If interested you can see all the details in the repository.</p>
+<p>Additional property tests were requested, and this resulted in the following response:</p>
 <blockquote>
-<p>Love it—property-style tests are perfect here. We’ll add a cmocka test module that generates randomized lines and checks invariants that should always hold for any string under detab_line and entab_line.</p>
+<p>Love it—property-style tests are perfect here. We’ll add a cmocka test module that generates randomized lines and checks invariants that should always hold for any string under <code>detab_line</code> and <code>entab_line</code>.</p>
 </blockquote>
-<p>And then the following from <code>ChatGPT</code>:</p>
+<p>&ldquo;Love it&rdquo; &ndash; amazing. What a neat response!</p>
+<p>And then the following details from <code>ChatGPT</code>:</p>
 <blockquote>
 <p><strong>Chosen invariants</strong></p>
 <ol>
 <li>
 <p>Round-trip visual equivalence via detab:
 For any input s, expanding tabs to spaces once gives a concrete, canonical layout:</p>
-<p>D(s) = detab_line(s)</p>
+<p>\( D(s) = detab_line(s) \)</p>
 <p>If we entab and then detab again, the fully expanded view should be identical:</p>
-<p>detab_line(entab_line(D(s))) == D(s)</p>
-<p>(Equivalently: detab(entab(detab(s))) == detab(s).)
+<p>\( detab_line(entab_line(D(s))) == D(s) \)</p>
+<p>(Equivalently: \( detab(entab(detab(s))) == detab(s) \) . )
 This asserts that entab_line preserves alignment and detab_line is idempotent on already-detabbed strings.</p>
 </li>
 <li>
 <p>No tabs after detab:
-Output of detab_line must not contain &lsquo;\t&rsquo;.</p>
+Output of <code>detab_line</code> must not contain <code>'\t'</code>.</p>
 </li>
 <li>
 <p>Optional sanity: bounded growth
-entab_line never increases the count of spaces for runs that cross tab stops when using same tab width and no literal \t present (not strictly required, so we won’t assert it globally—just FYI).</p>
+<code>entab_line</code> never increases the count of spaces for runs that cross tab stops when using same tab width and no literal \t present (not strictly required, so we won’t assert it globally—just FYI).</p>
 </li>
 </ol>
 <p>Below is a new <code>cmocka</code> test file plus <code>Makefile</code> additions. It reuses your existing detab_lib.c and entab_lib.c (no CLI/main linked).</p>
 </blockquote>
-<p>This is fantastic. Again, if you want the details see the repository.</p>
+<p>And more details from <code>ChatGPT</code>:</p>
+<blockquote>
+<p><strong>Why these properties are strong</strong></p>
+<ol>
+<li>
+<p>\( D(E(D(s))) == D(s) \) is a robust alignment invariant: anything entab does must be lossless with respect to the “visual layout” that detab defines. If this ever fails, either <code>entab</code> emitted an incorrect mix of tabs/spaces, or <code>detab</code> miscomputed column movement.</p>
+</li>
+<li>
+<p>No tabs after <code>detab</code> confirms that detab truly expands.</p>
+</li>
+<li>
+<p><code>Idempotence</code> ensures <code>detab</code> is stable on tab-free input.</p>
+</li>
+</ol>
+</blockquote>
+<p>And to be sure, <code>idempotence</code> is: for some function \( f(x) \), then   \[ f(f(x))=f(x) \]</p>
+<p>This is totally fantastic. Again, if you want the details see the repository.</p>
 <p>After all is said and done, here is a run of the tests:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>make test
 </span></span><span style="display:flex;"><span>./test_cmocka_detab
