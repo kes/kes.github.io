@@ -30,6 +30,20 @@
       <description></description>
     </item>
     <item>
+      <title>Java</title>
+      <link>https://kes.github.io/tags/java/</link>
+      <pubDate>Sat, 08 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://kes.github.io/tags/java/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Lambda</title>
+      <link>https://kes.github.io/tags/lambda/</link>
+      <pubDate>Sat, 08 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://kes.github.io/tags/lambda/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>Programming</title>
       <link>https://kes.github.io/tags/programming/</link>
       <pubDate>Sat, 08 Nov 2025 00:00:00 +0000</pubDate>
@@ -72,13 +86,6 @@
       <description></description>
     </item>
     <item>
-      <title>Java</title>
-      <link>https://kes.github.io/tags/java/</link>
-      <pubDate>Thu, 12 Sep 2024 00:00:00 +0000</pubDate>
-      <guid>https://kes.github.io/tags/java/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Compiler</title>
       <link>https://kes.github.io/tags/compiler/</link>
       <pubDate>Sat, 07 Sep 2024 00:00:00 +0000</pubDate>
@@ -118,13 +125,6 @@
       <link>https://kes.github.io/tags/org/</link>
       <pubDate>Sun, 04 Aug 2024 00:00:00 +0000</pubDate>
       <guid>https://kes.github.io/tags/org/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Lambda</title>
-      <link>https://kes.github.io/tags/lambda/</link>
-      <pubDate>Tue, 14 Sep 2021 00:00:00 +0000</pubDate>
-      <guid>https://kes.github.io/tags/lambda/</guid>
       <description></description>
     </item>
   </channel>

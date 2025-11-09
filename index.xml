@@ -23,6 +23,13 @@
       <description>I wanted to experiment with ChatGPT and programming. So, I thought I would just start with an exercise from Kernighan and Ritchie&amp;rsquo;s The C Programming Language.&#xA;I prompted ChatGPT with the following:&#xA;In C write a program called detab that replaces tabs in the input with the proper number of spaces to reach the next tabstop. Assume tab stops every eight columns. This is exercise 1.20 from The C Programming Language by Kernighan and Ritchie.</description>
     </item>
     <item>
+      <title>What&#39;s a Lambda?</title>
+      <link>https://kes.github.io/posts/whatisalambda/</link>
+      <pubDate>Sat, 08 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://kes.github.io/posts/whatisalambda/</guid>
+      <description>NOTE: this document was originally written for seasoned software engineers who were transitioning into Java and beginning to use lambdas. Whether it helps in understanding the concept of lambda, or how lambdas appear in Java, is, I think, very much in the eye of the beholder. I place it here with only slight modification.&#xA;This document is a brief investigation into the question:&#xA;What is a lambda?&#xA;And, in our context, more specifically, what is lambda in computer languages, and even more specifically, what is a lambda in Java.</description>
+    </item>
+    <item>
       <title>Mathjax Working</title>
       <link>https://kes.github.io/posts/my-great-test/</link>
       <pubDate>Fri, 07 Nov 2025 00:00:00 +0000</pubDate>
@@ -217,13 +224,6 @@
       <pubDate>Sun, 04 Aug 2024 00:00:00 +0000</pubDate>
       <guid>https://kes.github.io/posts/computational-documents/</guid>
       <description>Not all the documents that I create are computational — but when they are I use Emacs, Org Mode, and Babel&#xA;Computational documents are a mixture of text and executable code. And the process of creating them, bringing together the text and code is called &amp;ldquo;weaving.&amp;rdquo; But sometimes, you want to separate the text and code. This is called &amp;ldquo;tangling.&amp;rdquo; For more see, extracting source code.&#xA;This turns out that tangling is pretty useful when you want to maintain one source of code for display and for processing, maintaining the DRY principle</description>
-    </item>
-    <item>
-      <title>What&#39;s a Lambda?</title>
-      <link>https://kes.github.io/posts/whatisalambda/</link>
-      <pubDate>Tue, 14 Sep 2021 00:00:00 +0000</pubDate>
-      <guid>https://kes.github.io/posts/whatisalambda/</guid>
-      <description>This document is a brief investigation into the question:&#xA;?&#xA;And, in our context, more specifically, what is lambda in computer languages, and even more specifically, what is lambda in Java.&#xA;Java added lambda expressions in 2014 (see Java SE 8).&#xA;Caveat: Nothing in this document is meant to be exhaustive. It&amp;rsquo;s not the final word on anything. And there most likely are errors in it &amp;ndash; in fact, most definitely.</description>
     </item>
   </channel>
 </rss>
