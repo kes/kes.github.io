@@ -273,8 +273,8 @@ In C write a program called detab that replaces tabs in the input with the prope
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> EXIT_FAILURE;
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> EXIT_SUCCESS;
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
-<p>Utterly fantastic. What else? A <code>Makefile</code>, of course.</p>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Utterly fantastic. What else? A <code>Makefile</code>, of course.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-makefile" data-lang="makefile"><span style="display:flex;"><span>CC      <span style="color:#f92672">:=</span> gcc
 </span></span><span style="display:flex;"><span>CFLAGS  <span style="color:#f92672">:=</span> -std<span style="color:#f92672">=</span>c17 -O2 -Wall -Wextra -Wpedantic
 </span></span><span style="display:flex;"><span>
@@ -289,8 +289,7 @@ In C write a program called detab that replaces tabs in the input with the prope
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">test</span><span style="color:#f92672">:</span> detab
 </span></span><span style="display:flex;"><span>	./tests/run.sh
-</span></span></code></pre></div>
-<p>Perfect! What about testing? The following <code>bash</code> test harness was created.</p>
+</span></span></code></pre></div><p>Perfect! What about testing? The following <code>bash</code> test harness was created.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>  <span style="color:#75715e">#!/usr/bin/env bash</span>
 </span></span><span style="display:flex;"><span>set -euo pipefail
 </span></span><span style="display:flex;"><span>
@@ -353,14 +352,14 @@ In C write a program called detab that replaces tabs in the input with the prope
 </span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#34;ABC        Z\n&#34;</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>printf <span style="color:#e6db74">&#34;\nSummary: %d passed, %d failed\n&#34;</span> <span style="color:#e6db74">&#34;</span>$pass<span style="color:#e6db74">&#34;</span> <span style="color:#e6db74">&#34;</span>$fail<span style="color:#e6db74">&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">[[</span> $fail -eq <span style="color:#ae81ff">0</span> <span style="color:#f92672">]]</span></span></span></code></pre></div>
-<p>And helpfully, <code>ChatGPT</code> also gave me a, &ldquo;How to Run:&rdquo;</p>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[[</span> $fail -eq <span style="color:#ae81ff">0</span> <span style="color:#f92672">]]</span>
+</span></span></code></pre></div><p>And helpfully, <code>ChatGPT</code> also gave me a, &ldquo;How to Run:&rdquo;</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkdir -p tests
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># save detab.c, Makefile, tests/run.sh as shown</span>
 </span></span><span style="display:flex;"><span>chmod +x tests/run.sh
 </span></span><span style="display:flex;"><span>make
-</span></span><span style="display:flex;"><span>make test</span></span></code></pre></div>
-<p><code>ChatGPT</code> also gave me a &ldquo;Notes and Gotchas&rdquo; section:</p>
+</span></span><span style="display:flex;"><span>make test
+</span></span></code></pre></div><p><code>ChatGPT</code> also gave me a &ldquo;Notes and Gotchas&rdquo; section:</p>
 <blockquote>
 <p>Notes &amp; gotchas</p>
 <p>Column math: spaces = tabWidth - (col % tabWidth). Reset col on \n (and optionally \r).</p>
@@ -435,8 +434,8 @@ In C write a program called detab that replaces tabs in the input with the prope
 </span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">cmocka_unit_test</span>(test_cr_resets_column),
 </span></span><span style="display:flex;"><span>    };
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">cmocka_run_group_tests</span>(tests, NULL, NULL);
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
-<p>This was so easy, the code, the makefile, the tests, that I decide to do the next problem in the <code>K&amp;R</code> book. Counting on <code>ChaptGPT</code>&rsquo;s familiarity with the problems in the <code>K&amp;R</code> book, here&rsquo;s the prompt I used:</p>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>This was so easy, the code, the makefile, the tests, that I decide to do the next problem in the <code>K&amp;R</code> book. Counting on <code>ChaptGPT</code>&rsquo;s familiarity with the problems in the <code>K&amp;R</code> book, here&rsquo;s the prompt I used:</p>
 <blockquote>
 <p>Using a similiar code architecture and testing with cmocka, let&rsquo;s do the next exercise in the book, The C Programming language. Exercise 1.21. Do you know this exercise, or should I paste it in?</p>
 </blockquote>
@@ -537,8 +536,8 @@ Output of <code>detab_line</code> must not contain <code>'\t'</code>.</p>
 </span></span><span style="display:flex;"><span>[ RUN      ] prop_detab_idempotent
 </span></span><span style="display:flex;"><span>[       OK ] prop_detab_idempotent
 </span></span><span style="display:flex;"><span>[==========] tests: 3 test(s) run.
-</span></span><span style="display:flex;"><span>[  PASSED  ] 3 test(s).</span></span></code></pre></div>
-<p>Quite productive!</p>
+</span></span><span style="display:flex;"><span>[  PASSED  ] 3 test(s).
+</span></span></code></pre></div><p>Quite productive!</p>
 
       </div></div>
 
