@@ -153,7 +153,7 @@
       <link>https://kes.github.io/posts/java-counting-non-duplicate-items/</link>
       <pubDate>Thu, 12 Sep 2024 00:00:00 +0000</pubDate>
       <guid>https://kes.github.io/posts/java-counting-non-duplicate-items/</guid>
-      <description>This problem came up at codewars.com.&#xA;Given the goal to count items in a list, and with the caveat that some of the items will be duplicated, and these additional duplicates are not to be counted. So, a count of unique items is what is wanted.&#xA;Such problems always make me think of a hash table, or an &amp;ldquo;associative array.&amp;rdquo;&#xA;But there are more details: the items to count are in an array, and the items themselves are also an array – so a two dimensional array, something like:</description>
+      <description>This problem came up at codewars.com.&#xA;Given the goal to count items in a list, and with the caveat that some of the items will be duplicated, and these additional duplicates are not to be counted. So, a count of unique items is what is wanted.&#xA;Such problems always make me think of a hash table, or an &amp;ldquo;associative array.&amp;rdquo;&#xA;But there are more details: the items to count are in an array, and the items themselves are also an array &amp;ndash; so a two dimensional array, something like:</description>
     </item>
     <item>
       <title>Setting up g&#43;&#43;</title>

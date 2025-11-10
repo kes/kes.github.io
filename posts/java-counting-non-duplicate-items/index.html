@@ -9,7 +9,7 @@
 <meta name="description" content="This problem came up at codewars.com.
 Given the goal to count items in a list, and with the caveat that some of the items will be duplicated, and these additional duplicates are not to be counted. So, a count of unique items is what is wanted.
 Such problems always make me think of a hash table, or an &amp;ldquo;associative array.&amp;rdquo;
-But there are more details: the items to count are in an array, and the items themselves are also an array – so a two dimensional array, something like:" />
+But there are more details: the items to count are in an array, and the items themselves are also an array &amp;ndash; so a two dimensional array, something like:" />
 <meta name="keywords" content="" />
 
   <meta name="robots" content="noodp" />
@@ -79,7 +79,7 @@ But there are more details: the items to count are in an array, and the items th
 <meta property="og:description" content="This problem came up at codewars.com.
 Given the goal to count items in a list, and with the caveat that some of the items will be duplicated, and these additional duplicates are not to be counted. So, a count of unique items is what is wanted.
 Such problems always make me think of a hash table, or an &amp;ldquo;associative array.&amp;rdquo;
-But there are more details: the items to count are in an array, and the items themselves are also an array – so a two dimensional array, something like:" />
+But there are more details: the items to count are in an array, and the items themselves are also an array &amp;ndash; so a two dimensional array, something like:" />
 <meta property="og:url" content="https://kes.github.io/posts/java-counting-non-duplicate-items/" />
 <meta property="og:site_name" content="" />
 
@@ -202,44 +202,40 @@ duplicated, and these additional duplicates are not to be counted. So, a count o
 what is wanted.</p>
 <p>Such problems always make me think of a hash table, or an &ldquo;associative array.&rdquo;</p>
 <p>But there are more details: the items to count are in an array, and the items themselves
-are also an array – so a two dimensional array, something like:</p>
+are also an array &ndash; so a two dimensional array, something like:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>[[1,2,3,4], ...]
 </span></span></code></pre></div><p>To be intrepreted as:</p>
-<p><img src="/ltximg/whatisalambda_d1e5692a115d7e2848cbdb27a0786fa743b5fdea.png" alt="\(\LARGE\begin{pmatrix}
-1 &amp;amp; 2 \\
-3 &amp;amp; 4
-\end{pmatrix}
-\)" /></p>
+<p>\[\Large \begin{pmatrix} 1 &amp; 2 \\ 3 &amp; 4 \end{pmatrix}  \]</p>
 <p>So, then the question becomes, in what way are matrices to be regarded as the same?</p>
 <p>Matrices are to be regarded as the same, if they match through any &ldquo;rotations.&rdquo;</p>
 <p>What&rsquo;s a rotation?</p>
 <p>If we consider that this matrix is at 0 degrees:</p>
-<p><img src="/ltximg/whatisalambda_5cad1313cdd8087f556b46806908dbdf2490ee6e.png" alt="\(\LARGE\begin{pmatrix}
-1 &amp;amp; 2 \\
-3 &amp;amp; 4
+<p>\[ \Large \begin{pmatrix}
+1 &amp; 2 \\
+3 &amp; 4
 \end{pmatrix}
-\)" /></p>
+\]</p>
 <p>Then, rotated 90 degress (clockwise) would be:</p>
-<p><img src="/ltximg/whatisalambda_d126427ad023c839a760bfe1c92da76c9026347a.png" alt="\(
-\LARGE\begin{pmatrix}
-3 &amp;amp; 1 \\
-4 &amp;amp; 2
+<p>\[
+\Large \begin{pmatrix}
+3 &amp; 1 \\
+4 &amp; 2
 \end{pmatrix}
-\)" /></p>
+\]</p>
 <p>And, rotated 90 more degrees (180 degrees in total) would be:</p>
-<p><img src="/ltximg/whatisalambda_6eca06b3f1d714024f610b0696f467c760039cd8.png" alt="\(
-\LARGE\begin{pmatrix}
-4 &amp;amp; 3 \\
-2 &amp;amp; 1
+<p>\[
+\Large \begin{pmatrix}
+4 &amp; 3 \\
+2 &amp; 1
 \end{pmatrix}
-\)" /></p>
+\]</p>
 <p>And, again rotated 90 more degrees (270 degrees in total) would be:</p>
-<p><img src="/ltximg/whatisalambda_33c366941654885450c502307deec958524de0de.png" alt="\(
-\LARGE\begin{pmatrix}
-2 &amp;amp; 4 \\
-1 &amp;amp; 3
+<p>\[
+\Large \begin{pmatrix}
+2 &amp; 4 \\
+1 &amp; 3
 \end{pmatrix}
-\)" /></p>
+\]</p>
 <p>All of these matrices are to be regarded as the same, and counted only once.</p>
 <h2 id="rotation">Rotation<a href="#rotation" class="hanchor" ariaLabel="Anchor">#</a> </h2>
 <p>My first thought was that I needed to actually rotate an array, moving values around. But a moments reflection
@@ -247,31 +243,31 @@ disabuses one of that notion. So, I came up with four groups of comparisons, to 
 arrays were the same.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">same</span>(<span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span> <span style="color:#f92672">[]</span>m1, <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> m2){
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (( <span style="color:#75715e">// 0 degrees</span>
-</span></span><span style="display:flex;"><span>          m1<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> m2<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> m1<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> m2<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span>
-</span></span><span style="display:flex;"><span>          m1<span style="color:#f92672">[</span>2<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> m2<span style="color:#f92672">[</span>2<span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> m1<span style="color:#f92672">[</span>3<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> m2<span style="color:#f92672">[</span>3<span style="color:#f92672">]</span>
-</span></span><span style="display:flex;"><span>          ) <span style="color:#f92672">||</span>
+</span></span><span style="display:flex;"><span>	  m1<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> m2<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> m1<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> m2<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span>
+</span></span><span style="display:flex;"><span>	  m1<span style="color:#f92672">[</span>2<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> m2<span style="color:#f92672">[</span>2<span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> m1<span style="color:#f92672">[</span>3<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> m2<span style="color:#f92672">[</span>3<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>	  ) <span style="color:#f92672">||</span>
 </span></span><span style="display:flex;"><span>        ( <span style="color:#75715e">// 90 degrees</span>
-</span></span><span style="display:flex;"><span>          m1<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> m2<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> m1<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> m2<span style="color:#f92672">[</span>3<span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span>
-</span></span><span style="display:flex;"><span>          m1<span style="color:#f92672">[</span>2<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> m2<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> m1<span style="color:#f92672">[</span>3<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> m2<span style="color:#f92672">[</span>2<span style="color:#f92672">]</span>
-</span></span><span style="display:flex;"><span>          ) <span style="color:#f92672">||</span>
+</span></span><span style="display:flex;"><span>	  m1<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> m2<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> m1<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> m2<span style="color:#f92672">[</span>3<span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span>
+</span></span><span style="display:flex;"><span>	  m1<span style="color:#f92672">[</span>2<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> m2<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> m1<span style="color:#f92672">[</span>3<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> m2<span style="color:#f92672">[</span>2<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>	  ) <span style="color:#f92672">||</span>
 </span></span><span style="display:flex;"><span>        ( <span style="color:#75715e">// 180 degrees</span>
-</span></span><span style="display:flex;"><span>          m1<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> m2<span style="color:#f92672">[</span>3<span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> m1<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> m2<span style="color:#f92672">[</span>2<span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span>
-</span></span><span style="display:flex;"><span>          m1<span style="color:#f92672">[</span>2<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> m2<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> m1<span style="color:#f92672">[</span>3<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> m2<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span>
-</span></span><span style="display:flex;"><span>          ) <span style="color:#f92672">||</span>
+</span></span><span style="display:flex;"><span>	  m1<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> m2<span style="color:#f92672">[</span>3<span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> m1<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> m2<span style="color:#f92672">[</span>2<span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span>
+</span></span><span style="display:flex;"><span>	  m1<span style="color:#f92672">[</span>2<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> m2<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> m1<span style="color:#f92672">[</span>3<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> m2<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>	  ) <span style="color:#f92672">||</span>
 </span></span><span style="display:flex;"><span>        ( <span style="color:#75715e">// 270 degrees</span>
-</span></span><span style="display:flex;"><span>          m1<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> m2<span style="color:#f92672">[</span>2<span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> m1<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> m2<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span>
-</span></span><span style="display:flex;"><span>          m1<span style="color:#f92672">[</span>2<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> m2<span style="color:#f92672">[</span>3<span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> m1<span style="color:#f92672">[</span>3<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> m2<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span>
-</span></span><span style="display:flex;"><span>          ))
+</span></span><span style="display:flex;"><span>	  m1<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> m2<span style="color:#f92672">[</span>2<span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> m1<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> m2<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span>
+</span></span><span style="display:flex;"><span>	  m1<span style="color:#f92672">[</span>2<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> m2<span style="color:#f92672">[</span>3<span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> m1<span style="color:#f92672">[</span>3<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> m2<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>	  ))
 </span></span><span style="display:flex;"><span>        {
 </span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
 </span></span><span style="display:flex;"><span>        }<span style="color:#66d9ef">else</span>{
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
 </span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
-<p>That seems to work quite well.</p>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>That seems to work quite well.</p>
 <h2 id="counting-non-duplicates">Counting non duplicates<a href="#counting-non-duplicates" class="hanchor" ariaLabel="Anchor">#</a> </h2>
 <p>Java provides us with a nice way to filter a stream. (Well, Java provides a nice way to stream an
-array and then filter it… It all gets down to LISt Processing, I suppose.) For the predicate of
+array and then filter it&hellip; it all gets down to List Processing, I suppose.) For the predicate of
 the filter the <code>same</code> method will do nicely. Having filtered the stream, it will be turned back
 into an array, and one with all those items deleted.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// let m be: int [][] passed into be counted</span>
@@ -280,15 +276,15 @@ into an array, and one with all those items deleted.</p>
 </span></span><span style="display:flex;"><span>    counter<span style="color:#f92672">++</span>;
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> <span style="color:#f92672">[]</span> testThis <span style="color:#f92672">=</span> m<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span>;
 </span></span><span style="display:flex;"><span>    m <span style="color:#f92672">=</span> Arrays.<span style="color:#a6e22e">stream</span>(m)
-</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">filter</span>(s<span style="color:#f92672">-&gt;</span> <span style="color:#f92672">!</span>same(testThis,s))
-</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">toArray</span>(<span style="color:#66d9ef">int</span><span style="color:#f92672">[][]</span>::<span style="color:#66d9ef">new</span>);
+</span></span><span style="display:flex;"><span>	.<span style="color:#a6e22e">filter</span>(s<span style="color:#f92672">-&gt;</span> <span style="color:#f92672">!</span>same(testThis,s))
+</span></span><span style="display:flex;"><span>	.<span style="color:#a6e22e">toArray</span>(<span style="color:#66d9ef">int</span><span style="color:#f92672">[][]</span>::<span style="color:#66d9ef">new</span>);
 </span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">return</span> counter;</span></span></code></pre></div>
-<p>Nice!</p>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">return</span> counter;
+</span></span></code></pre></div><p>Nice!</p>
 <p>In one pass not only do we count (that&rsquo;s just incrementing the counter), but we remove <strong>all</strong> the
 duplicates, including the current matrix (the <code>testThis</code> one), so none of them will cause any
 bother. And so, the array <code>m</code> will continue to grow smaller and smaller, until there&rsquo;s nothing in it.</p>
-<p>The more duplicates we have the better this approach works. Of course, worst-case ….</p>
+<p>The more duplicates we have the better this approach works. Of course, worst-case &hellip;.</p>
 <p>Initially, I was doing a loop with a control variable (your typical, <code>i</code> or <code>j)</code> but then it became
 clear that it was not needed. I decided to leave the <code>for</code> anyway, although a <code>while</code> might be
 preferable. The <code>for</code> with the first and third expressions omitted does focus one&rsquo;s attention. (And,
@@ -318,47 +314,46 @@ there&rsquo;s no reason to reinvent the wheel. Here&rsquo;s what the definition 
 </span></span><span style="display:flex;"><span>    ( <span style="color:#75715e">// 270 degrees</span>
 </span></span><span style="display:flex;"><span>      m1<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> m2<span style="color:#f92672">[</span>2<span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> m1<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> m2<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span>
 </span></span><span style="display:flex;"><span>      m1<span style="color:#f92672">[</span>2<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> m2<span style="color:#f92672">[</span>3<span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> m1<span style="color:#f92672">[</span>3<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> m2<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span>
-</span></span><span style="display:flex;"><span>      );</span></span></code></pre></div>
-<p>And then, the <code>for</code> looks like this:</p>
+</span></span><span style="display:flex;"><span>      );
+</span></span></code></pre></div><p>And then, the <code>for</code> looks like this:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">for</span>( ; 0 <span style="color:#f92672">&lt;</span> matrices.<span style="color:#a6e22e">length</span> ;){
 </span></span><span style="display:flex;"><span>    counter<span style="color:#f92672">++</span>;
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> <span style="color:#f92672">[]</span> testThis <span style="color:#f92672">=</span> matrices<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span>;
 </span></span><span style="display:flex;"><span>    matrices <span style="color:#f92672">=</span> Arrays.<span style="color:#a6e22e">stream</span>(matrices)
-</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">filter</span>(s<span style="color:#f92672">-&gt;</span> <span style="color:#f92672">!</span>p.<span style="color:#a6e22e">test</span>(testThis,s))
-</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">toArray</span>(<span style="color:#66d9ef">int</span><span style="color:#f92672">[][]</span>::<span style="color:#66d9ef">new</span>);
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
-<p>Of course, the results are the same. But there is some gained clarity and readability.</p>
+</span></span><span style="display:flex;"><span>	.<span style="color:#a6e22e">filter</span>(s<span style="color:#f92672">-&gt;</span> <span style="color:#f92672">!</span>p.<span style="color:#a6e22e">test</span>(testThis,s))
+</span></span><span style="display:flex;"><span>	.<span style="color:#a6e22e">toArray</span>(<span style="color:#66d9ef">int</span><span style="color:#f92672">[][]</span>::<span style="color:#66d9ef">new</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Of course, the results are the same. But there is some gained clarity and readability.</p>
 <h2 id="other-possibilities">Other Possibilities<a href="#other-possibilities" class="hanchor" ariaLabel="Anchor">#</a> </h2>
 <p>But we&rsquo;ve go some nested loops here don&rsquo;t we?</p>
 <p>Filter, as optimized as it may be, will be going through the entire list on each iteration. For
 shorter arrays this will not be a problem. And for arrays with a high degree of duplication, and a
 greatly shrinking list on each iteration, this will not be a problem. Even so, it&rsquo;s hard to get away
-from the fear of <img src="/ltximg/whatisalambda_c0079969b7cdf0d140bd75815ecca9f116ee8fa5.png" alt="\(\mathcal{O}(n^2)\)" />. And, well, if that&rsquo;s the best we can do, that&rsquo;s the best we
+from the fear of \(\mathcal{O}(n^2)\). And, well, if that&rsquo;s the best we can do, that&rsquo;s the best we
 can do. But it&rsquo;s not.</p>
 <p>There is a better way. And it gets back to a hash table. If we could
 form a hash from the four rotations of a matrix, then we&rsquo;d only touch
 each matrix one.</p>
 <p>So the idea is, get a matrix, form a hash value from the four rotational positions, and save the
-hash. For the next matrix, we do the same, get a hash value – if the hash value matches any previously
+hash. For the next matrix, we do the same, get a hash value &ndash; if the hash value matches any previously
 saved hash values, then we don&rsquo;t count it. Continue like that through the array.</p>
 <p>How to form the hash? We can form a unique hash by considering each of the four places
-a power of ten. So, <code>m[0]</code> could be 10<sup>0</sup>. <code>m[1]</code> 10<sup>1</sup>, <code>m[2]</code> 10<sup>2</sup>, and finally, <code>m[3]</code> 10<sup>3</sup>.</p>
+a power of ten. So, <code>m[0]</code> could be 10^0. <code>m[1]</code> 10^1, <code>m[2]</code> 10^2, and finally, <code>m[3]</code> 10^3.</p>
 <p>So,</p>
-<p><img src="/ltximg/whatisalambda_d1e5692a115d7e2848cbdb27a0786fa743b5fdea.png" alt="\(\LARGE\begin{pmatrix}
-1 &amp;amp; 2 \\
-3 &amp;amp; 4
+<p>\[ \Large \begin{pmatrix}
+1 &amp; 2 \\
+3 &amp; 4
 \end{pmatrix}
-\)" /></p>
+\]</p>
 <p>At zero degree rotation this matrix has a hash value of:</p>
-<p>1 x 10<sup>0</sup> + 2 x 10<sup>1</sup> + 3 x 10<sup>2</sup> + 4 * 10<sup>3</sup> = 4321</p>
+<p>\( 1 x 10^0 + 2 x 10^1 + 3 x 10^2 + 4 * 10^3 = 4321 \)</p>
 <p>And, as we rotate (90 degrees) the matrix we get:</p>
-<p>3 x 10<sup>0</sup> + 1 x 10<sup>1</sup> + 4 x 10<sup>2</sup> + 2 * 10<sup>3</sup> = 2413</p>
+<p>\( 3 x 10^0 + 1 x 10^1 + 4 x 10^2 + 2 * 10^3 = 2413 \)</p>
 <p>And, again rotating (180 degrees) we get:</p>
-<p>4 x 10<sup>0</sup> + 3 x 10<sup>1</sup> + 2 x 10<sup>2</sup> + 1 * 10<sup>3</sup> = 1234</p>
+<p>\( 4 x 10^0 + 3 x 10^1 + 2 x 10^2 + 1 * 10^3 = 1234 \)</p>
 <p>And, finally rotate again (270 degrees) we get:</p>
-<p>2 x 10<sup>0</sup> + 4 x 10<sup>1</sup> + 1 x 10<sup>2</sup> + 3 * 10<sup>3</sup> = 3142</p>
-<p>So, we can simply take the maximum. All matrices
-that have the same maximum hash value are the duplicates.</p>
+<p>\( 2 x 10^0 + 4 x 10^1 + 1 x 10^2 + 3 * 10^3 = 3142 \)</p>
+<p>So, we can simply take the maximum. All matrices that have the same maximum hash value are the duplicates.</p>
 <p>So, like this:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">calculateHash</span> (<span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> m){
 </span></span><span style="display:flex;"><span>  <span style="color:#75715e">// zero degrees</span>
@@ -371,23 +366,23 @@ that have the same maximum hash value are the duplicates.</p>
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> hash270 <span style="color:#f92672">=</span> m<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span> <span style="color:#f92672">+</span> (m<span style="color:#f92672">[</span>3<span style="color:#f92672">]</span> <span style="color:#f92672">*</span> 10) <span style="color:#f92672">+</span> (m<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span> <span style="color:#f92672">*</span> 100) <span style="color:#f92672">+</span> (m<span style="color:#f92672">[</span>2<span style="color:#f92672">]</span> <span style="color:#f92672">*</span> 1000);
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> maxHash <span style="color:#f92672">=</span> Math.<span style="color:#a6e22e">max</span>(Math.<span style="color:#a6e22e">max</span>(Math.<span style="color:#a6e22e">max</span>(hash0, hash90),hash180), hash270);
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> maxHash;
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
-<p>And then the body of the main function becomes simply:</p>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>And then the body of the main function becomes simply:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Set<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> set <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HashSet<span style="color:#f92672">&lt;&gt;</span>();
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> <span style="color:#f92672">[]</span> x : matrices){
 </span></span><span style="display:flex;"><span>    set.<span style="color:#a6e22e">add</span>(calculateHash(x));
 </span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Set Count: &#34;</span> <span style="color:#f92672">+</span> set.<span style="color:#a6e22e">size</span>());</span></span></code></pre></div>
-<p>And of course, set.add does not add duplicates.</p>
+</span></span><span style="display:flex;"><span>System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Set Count: &#34;</span> <span style="color:#f92672">+</span> set.<span style="color:#a6e22e">size</span>());
+</span></span></code></pre></div><p>And of course, set.add does not add duplicates.</p>
 <p>Using 25000 randomly generate matrices I compared time. For the filter method:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>real	0m0.310s
 </span></span><span style="display:flex;"><span>user	0m0.317s
-</span></span><span style="display:flex;"><span>sys	0m0.087s</span></span></code></pre></div>
-<p>And for the hash method:</p>
+</span></span><span style="display:flex;"><span>sys	0m0.087s
+</span></span></code></pre></div><p>And for the hash method:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>real	0m0.122s
 </span></span><span style="display:flex;"><span>user	0m0.135s
-</span></span><span style="display:flex;"><span>sys	0m0.050s</span></span></code></pre></div>
-<p>The user row is what you want to look at. And that&rsquo;s a pretty significant difference.</p>
+</span></span><span style="display:flex;"><span>sys	0m0.050s
+</span></span></code></pre></div><p>The user row is what you want to look at. And that&rsquo;s a pretty significant difference.</p>
 <p>UPDATE: I went ahead and implemented the hash approach in C. The main loop is:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> MSIZE; i<span style="color:#f92672">++</span>){
 </span></span><span style="display:flex;"><span>  hashValue <span style="color:#f92672">=</span> <span style="color:#a6e22e">calculateHash</span>(matrices[i]);
@@ -395,13 +390,12 @@ that have the same maximum hash value are the duplicates.</p>
 </span></span><span style="display:flex;"><span>    counter<span style="color:#f92672">++</span>;
 </span></span><span style="display:flex;"><span>    hashStore[hashValue] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
 </span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span> }</span></span></code></pre></div>
-<p>and timing 25000 randomly generatated
-matrices yields:</p>
+</span></span><span style="display:flex;"><span> }
+</span></span></code></pre></div><p>and timing 25000 randomly generated matrices yields:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>real	0m0.008s
 </span></span><span style="display:flex;"><span>user	0m0.008s
-</span></span><span style="display:flex;"><span>sys	0m0.001s</span></span></code></pre></div>
-<p>… and that&rsquo;s more than &ldquo;pretty significant.&rdquo; Wow!</p>
+</span></span><span style="display:flex;"><span>sys	0m0.001s
+</span></span></code></pre></div><p>&hellip; and that&rsquo;s more than &ldquo;pretty significant.&rdquo; Wow!</p>
 <p>Okay, that&rsquo;s (really) enough.</p>
 <p>That was fun!</p>
 <div class="footnotes" role="doc-endnotes">
