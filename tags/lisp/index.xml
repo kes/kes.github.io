@@ -6,8 +6,15 @@
     <description>Recent content in Lisp on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 18 Nov 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 12 Nov 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://kes.github.io/tags/lisp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Common Lisp Lambdas and Macros</title>
+      <link>https://kes.github.io/posts/common-lisp-lambda-macros/</link>
+      <pubDate>Wed, 12 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://kes.github.io/posts/common-lisp-lambda-macros/</guid>
+      <description>I was thinking about lambdas and closures the other day (&amp;lsquo;cause after all, why not?), and I was looking at Paul Graham&amp;rsquo;s excellent ANSI Common Lisp &amp;ndash; in chapter one he begins by asking, &amp;ldquo;why learn Lisp?&amp;rdquo; And he shows some C and Lisp code for summing the integers less than n, like so:&#xA;int sum (int n){ int i, s = 0; for (i=0; i&amp;lt; n; i++) s += i; return s; } And, then Common Lisp:</description>
+    </item>
     <item>
       <title>Emacs Modules</title>
       <link>https://kes.github.io/posts/emacs-modules/</link>

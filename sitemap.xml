@@ -3,7 +3,22 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://kes.github.io/</loc>
-    <lastmod>2025-11-08T00:00:00+00:00</lastmod>
+    <lastmod>2025-11-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://kes.github.io/posts/common-lisp-lambda-macros/</loc>
+    <lastmod>2025-11-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://kes.github.io/tags/java/</loc>
+    <lastmod>2025-11-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://kes.github.io/tags/lisp/</loc>
+    <lastmod>2025-11-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://kes.github.io/posts/</loc>
+    <lastmod>2025-11-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://kes.github.io/tags/</loc>
+    <lastmod>2025-11-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://kes.github.io/tags/about/</loc>
     <lastmod>2025-11-08T00:00:00+00:00</lastmod>
@@ -23,19 +38,10 @@
     <loc>https://kes.github.io/tags/chatgpt/</loc>
     <lastmod>2025-11-08T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://kes.github.io/tags/java/</loc>
-    <lastmod>2025-11-08T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://kes.github.io/tags/lambda/</loc>
     <lastmod>2025-11-08T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://kes.github.io/posts/</loc>
-    <lastmod>2025-11-08T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://kes.github.io/tags/programming/</loc>
-    <lastmod>2025-11-08T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://kes.github.io/tags/</loc>
     <lastmod>2025-11-08T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://kes.github.io/posts/whatisalambda/</loc>
@@ -105,9 +111,6 @@
     <lastmod>2024-11-18T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://kes.github.io/posts/emacs-modules/</loc>
-    <lastmod>2024-11-18T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://kes.github.io/tags/lisp/</loc>
     <lastmod>2024-11-18T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://kes.github.io/posts/java-counting-non-duplicate-items/</loc>

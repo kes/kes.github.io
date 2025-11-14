@@ -282,13 +282,13 @@ In C write a program called detab that replaces tabs in the input with the prope
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">all</span><span style="color:#f92672">:</span> detab
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">detab</span><span style="color:#f92672">:</span> detab.c
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">$(</span>CC<span style="color:#66d9ef">)</span> <span style="color:#66d9ef">$(</span>CFLAGS<span style="color:#66d9ef">)</span> -o $@ $&lt;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">$(</span>CC<span style="color:#66d9ef">)</span> <span style="color:#66d9ef">$(</span>CFLAGS<span style="color:#66d9ef">)</span> -o $@ $&lt;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">clean</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span>	rm -f detab
+</span></span><span style="display:flex;"><span>        rm -f detab
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">test</span><span style="color:#f92672">:</span> detab
-</span></span><span style="display:flex;"><span>	./tests/run.sh
+</span></span><span style="display:flex;"><span>        ./tests/run.sh
 </span></span></code></pre></div><p>Perfect! What about testing? The following <code>bash</code> test harness was created.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>  <span style="color:#75715e">#!/usr/bin/env bash</span>
 </span></span><span style="display:flex;"><span>set -euo pipefail
@@ -374,7 +374,7 @@ In C write a program called detab that replaces tabs in the input with the prope
 <p>For this specific tool, the Bash golden tests above are usually the simplest and clearest: pipe input → compare expected output.</p>
 <p>If you’d like, I can convert the Bash tests into a CUnit/cmocka test suite, or wrap the tests with ctest (CMake) — but the current Makefile + Bash keeps dependencies minimal.</p>
 </blockquote>
-<p>While I like the bash test harness, I did not feel that it was best to go in that direction. So, after some discussion with <code>ChatGPT</code>, I opted to go with <code>cmocka</code> (and admittedly, it was a bit of a &ldquo;flip o&rsquo; the coin&rdquo;). This required some changes to the Makefile and the source, which, if interested you can see my repository. Here are the resulting tests:</p>
+<p>While I like the bash test harness, I did not feel that it was best to go in that direction. So, after some discussion with <code>ChatGPT</code>, I opted to go with <code>cmocka</code> (and admittedly, it was a bit of a &ldquo;flip o&rsquo; the coin&rdquo;). This required some changes to the Makefile and the source, which, if interested you can see my <a href="https://github.com/kes/k-r-ai">repository</a>. Here are the resulting tests:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdarg.h&gt;</span><span style="color:#75715e">
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stddef.h&gt;</span><span style="color:#75715e">
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;setjmp.h&gt;</span><span style="color:#75715e">
@@ -444,7 +444,7 @@ In C write a program called detab that replaces tabs in the input with the prope
 <p>Great prompt—yes, Exercise 1.21 is entab: replace runs of blanks with the minimum number of tabs and spaces to get the same alignment (assume tab stops every 8 columns). Below is a drop-in implementation that mirrors the detab architecture you just built: a pure function (entab_line) + a tiny CLI wrapper + cmocka tests + Makefile targets.</p>
 </blockquote>
 <p>I take it that with the &ldquo;Great prompt&rdquo; that <code>ChatGPT</code> is indicating that it knows all the exercises in the book. Amazing.</p>
-<p>From here on, I won&rsquo;t go into a lot of details, just things that stood aout to me. If interested you can see all the details in the repository.</p>
+<p>From here on, I won&rsquo;t go into a lot of details, just things that stood aout to me. If interested you can see all the details in the <a href="https://github.com/kes/k-r-ai">repository</a>.</p>
 <p>Additional property tests were requested, and this resulted in the following response:</p>
 <blockquote>
 <p>Love it—property-style tests are perfect here. We’ll add a cmocka test module that generates randomized lines and checks invariants that should always hold for any string under <code>detab_line</code> and <code>entab_line</code>.</p>
@@ -490,7 +490,7 @@ Output of <code>detab_line</code> must not contain <code>'\t'</code>.</p>
 </ol>
 </blockquote>
 <p>And to be sure, <code>idempotence</code> is: for some function \( f(x) \), then   \[ f(f(x))=f(x) \]</p>
-<p>This is totally fantastic. Again, if you want the details see the repository.</p>
+<p>This is totally fantastic. Again, if you want the details see the <a href="https://github.com/kes/k-r-ai">repository</a>.</p>
 <p>After all is said and done, here is a run of the tests:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>make test
 </span></span><span style="display:flex;"><span>./test_cmocka_detab
@@ -550,6 +550,12 @@ Output of <code>detab_line</code> must not contain <code>'\t'</code>.</p>
   </div>
   <div class="pagination__buttons">
     
+      <a href="https://kes.github.io/posts/common-lisp-lambda-macros/" class="button inline prev">
+        &lt; [<span class="button__text">Common Lisp Lambdas and Macros</span>]
+      </a>
+    
+    
+      ::
     
     
       <a href="https://kes.github.io/posts/whatisalambda/" class="button inline next">
