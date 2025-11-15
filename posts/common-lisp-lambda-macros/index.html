@@ -212,29 +212,7 @@ int sum (int n){ int i, s = 0; for (i=0; i&amp;lt; n; i&#43;&#43;) s &#43;= i; r
 </blockquote>
 <p>And that&rsquo;s a great observation.</p>
 <p>There may be any number of reasons for choosing one language over another. Everything from the number of available developers to code in the language, to the speed of the resulting executable code. Among various reasons, is also the important question, &ldquo;what can I do with it?&rdquo;</p>
-<h2 id="lambda">Lambda<a href="#lambda" class="hanchor" ariaLabel="Anchor">#</a> </h2>
-<p>Graham then demonstrates a lexical closure in <code>Lisp</code>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span>(defun addn (n)
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">#&#39;</span>(lambda (x)
-</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">+</span> x n)))
-</span></span></code></pre></div><p>This type of thing, the lambda, and further a closure, really is the bread-and-butter of <code>Lisp</code> programming. The fact that many programmers do know about them, much less, feel a need for them ties into one of Graham&rsquo;s themes: &ldquo;programming languages teach you not to want what they cannot provide.&rdquo;</p>
-<p>Lambdas have been in Lisp since 1959.</p>
-<p>Java introduced lambda expressions in version 8 (2014).</p>
-<p>And here is Oracle&rsquo;s page on  <a href="https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html">Lambda Expressions</a>. What is clear, at least to me, is that Lambdas were meant to be a convenience for the verbose anonymous class, particularly when that class is very simple, the interface providing only one method. In that case, Java provides a lambda. (But even so it never provided closures, although some might debate that; i.e., what is the definition of a closure?)</p>
-<p>At the time, there was a lot of excitement. But, maybe the lambda was not all that it was cracked up to be??</p>
-<p>According to some Lambdas have died: <a href="https://medium.com/@kotiavula6/rip-java-lambdas-2014-2025-you-were-cool-until-you-werent-4ab9bac644c8">RIP Java Lambdas</a>, and according to that post the reasons are:</p>
-<ol>
-<li>Debugging hell</li>
-<li>Unreadable for Junior Devs</li>
-<li>Harder to Unit Test</li>
-<li>Performance Hit</li>
-<li>False Promise of Functional Purity</li>
-</ol>
-<p>Definitely worth a look.</p>
-<p>The problem is, IMO (you do notice the IMO, right?), the problem is that Lambdas don&rsquo;t really belong in Java. That might be a controversial opinion. But really, lambdas are simply not where the soul of Java is found. This is not to say that the syntactic sugar for an anonymous class in Java is not a nice thing. It totally is. I love it, and I use it.</p>
-<p>It should be noted that lambdas and closure are not the same thing. A lambda is an anonymous function. A closure, on the other hand, is an a function that captures and retains access to variable outside of its lexical scope &ndash; even when executed outside that scope. See <a href="https://calledges.com/computer/closure-vs-lambda">Closure vs Lambda</a></p>
-<p>In Lisp the lambda <em>is</em> a closure. And in Java it&rsquo;s not. And that&rsquo;s okay. In fact, lambda might not even be the strongest paradigm in <code>Lisp</code>.</p>
-<p>The really key strength of <code>Lisp</code> is found in what most coders dislike most on encountering <code>Lisp</code> and that is parentheses. Well, not parentheses exactly but something called <a href="https://en.wikipedia.org/wiki/Homoiconicity">homoiconicity</a>. Because of this property, <code>Lisp</code> allows the developer to write programs that write programs, using a rather unique feature in <code>Lisp</code> called <code>macros</code>.  With &ldquo;run-time typing&rdquo; thrown in Graham, rhapsodizes:</p>
+<p>The two features of Lisp that made it unique were closures and macros. Add in strong run-time typing, Graham could write eloquently:</p>
 <blockquote>
 <p>With macros, closures, and run-time typing, Lisp transcends object oriented programming.</p>
 </blockquote>
@@ -243,6 +221,29 @@ int sum (int n){ int i, s = 0; for (i=0; i&amp;lt; n; i&#43;&#43;) s &#43;= i; r
 <p>One of the aims of this book is to explain not just the Lisp language, but the new approach to programming that Lisp makes possible. This approach is one that you will see more of in the future.</p>
 </blockquote>
 <p>As noble as his sentiment was, and is, and whatever the benefits of <code>Lisp</code> for programming, it is still nevertheless a fact that <code>Lisp</code> never caught on.</p>
+<h2 id="lambda">Lambda<a href="#lambda" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>Graham demonstrates a lexical closure in <code>Lisp</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span>(defun addn (n)
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">#&#39;</span>(lambda (x)
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">+</span> x n)))
+</span></span></code></pre></div><p>This type of thing, the lambda, and further a closure, really is the bread-and-butter of <code>Lisp</code> programming. The fact that many programmers do know about them, much less, feel a need for them ties into one of Graham&rsquo;s themes: &ldquo;programming languages teach you not to want what they cannot provide.&rdquo;</p>
+<p>Lambdas have been in Lisp since 1959.</p>
+<p>Java introduced lambda expressions in version 8 (2014).</p>
+<p>And here is Oracle&rsquo;s page on  <a href="https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html">Lambda Expressions</a>.</p>
+<p>But <a href="https://kes.github.io/posts/whatisalambda/">what is a lambda</a>. Quite simply it&rsquo;s an anonymous function.</p>
+<p>At the time, there was a lot of excitement. But, now, maybe the lambda in Java was not all that it was cracked up to be??</p>
+<p>According to some lambdas have died: <a href="https://medium.com/@kotiavula6/rip-java-lambdas-2014-2025-you-were-cool-until-you-werent-4ab9bac644c8">RIP Java Lambdas</a>, and according to that post the reasons are:</p>
+<ol>
+<li>Debugging hell</li>
+<li>Unreadable for Junior Devs</li>
+<li>Harder to Unit Test</li>
+<li>Performance Hit</li>
+<li>False Promise of Functional Purity</li>
+</ol>
+<p>Definitely worth a look.</p>
+<p>The problem is, IMO (you do notice the IMO, right?), the problem is that lambdas don&rsquo;t really belong in Java. That might be a controversial opinion. But really, lambdas are simply not where the soul of Java is found. This is not to say that the syntactic sugar for an anonymous class in Java is not a nice thing. It totally is. I love it, and I use it.</p>
+<p>It should be noted that lambdas and closure are not the same thing. A lambda is an anonymous function. A closure, on the other hand, is a function that captures and retains access to variables from its lexical scope &ndash; even when executed outside that scope. See <a href="https://calledges.com/computer/closure-vs-lambda">Closure vs Lambda</a></p>
+<p>In Lisp the lambda <em>is</em> a closure. And in Java it&rsquo;s not. And that&rsquo;s okay. In fact, lambda might not even be the strongest paradigm in <code>Lisp</code>.</p>
 <p>In Java, if you want to define a Lambda, you&rsquo;ll start with an Interface:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@FunctionalInterface</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Operation</span> {
@@ -277,10 +278,9 @@ int sum (int n){ int i, s = 0; for (i=0; i&amp;lt; n; i&#43;&#43;) s &#43;= i; r
 </span></span><span style="display:flex;"><span>        <span style="color:#75715e">// prints the result</span>
 </span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Result is: &#34;</span> <span style="color:#f92672">+</span> (n <span style="color:#f92672">+</span> b));
 </span></span><span style="display:flex;"><span>    });
-</span></span></code></pre></div><p>And boom! That strange and scary <code>-&gt;</code> &ndash; but it&rsquo;s lambda! And that is readable.</p>
-<p>So, I agree. It&rsquo;s a lambda. But is it a closure? Typically a closure is define as a lambda enclosing over a local variable in the scope of the defined lambda. In this example, the local <code>b</code> is in the scope of the lambda. But there&rsquo;s only so much that you can do with it.</p>
-<p>So, in my opinion, Java does have closures. The use of the local variable <code>b</code> in the code is very much limited. It cannot be modified. And while there might be any number of technical reasons why this is so, the point is that <code>b</code> cannot be modified.</p>
-<p>In my view a closure must allow the enclosed local variables to be modified. Perhaps I&rsquo;m wrong?</p>
+</span></span></code></pre></div><p>And boom! That strange and scary <code>-&gt;</code> &ndash; behold, lambda! Neat, and readable.</p>
+<p>It&rsquo;s a lambda. But is it a closure? Typically a closure is defined as a lambda enclosing over a local variable in the scope of the defined lambda. In this example, the local <code>b</code> is in the scope of the lambda. But there&rsquo;s only so much that you can do with it.</p>
+<p>So, in my opinion, Java does have closures. The use of the local variable <code>b</code> in the method is very much limited. It cannot be modified. And while there might be any number of technical reasons why this is so, all well and good, but the point is that <code>b</code> cannot be modified. In my view a closure must allow the enclosed local variables to be modified. Perhaps I&rsquo;m wrong?</p>
 <p>In any event, in <code>Lisp</code> this is easily done:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span>(defun adjust (meter)
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">#&#39;</span>(lambda (x)
@@ -293,11 +293,19 @@ int sum (int n){ int i, s = 0; for (i=0; i&amp;lt; n; i&#43;&#43;) s &#43;= i; r
 </span></span><span style="display:flex;"><span>            ((<span style="color:#a6e22e">eq</span> x <span style="color:#e6db74">:decr</span>) (<span style="color:#66d9ef">setq</span> meter (<span style="color:#a6e22e">-</span> meter parm)))
 </span></span><span style="display:flex;"><span>            ((<span style="color:#a6e22e">eq</span> x <span style="color:#e6db74">:get</span>) meter)
 </span></span><span style="display:flex;"><span>            (<span style="color:#66d9ef">t</span> <span style="color:#e6db74">&#34;command unrecognized&#34;</span>))))
-</span></span></code></pre></div><p>That&rsquo;s all good. But again, here&rsquo;s a secret: lambda and closures, while very strong, are the not the strongest feature of <code>Lisp</code>.</p>
+</span></span></code></pre></div><p>That&rsquo;s all good. But again, here&rsquo;s a secret: lambda and closures, while very strong, are the not the strongest feature of <code>Lisp</code>. The real power of <code>Lisp</code> is in its macros.</p>
 <h2 id="macros">Macros<a href="#macros" class="hanchor" ariaLabel="Anchor">#</a> </h2>
-<p>The real power of <code>Lisp</code> is in its macros.</p>
+<p>The really key strength of <code>Lisp</code> is found in what most coders dislike most on encountering <code>Lisp</code> and that is parentheses. Well, not parentheses exactly but something called <a href="https://en.wikipedia.org/wiki/Homoiconicity">homoiconicity</a>. Because of this property, in <code>Lisp</code> the developer can write programs that write programs, using a rather unique feature in <code>Lisp</code> called <code>macros</code>.</p>
+<blockquote>
+<p>Macros are the single greatest advantage that lisp has as a programming language and the single greatest advantage of any programming language. With them you can do things that you simply cannot do in other languages. (Doug Hoyte, <a href="https://letoverlambda.com/index.cl">Let Over Lambda</a>)</p>
+</blockquote>
 <p>Note: This is simply touching upon the topic of macros, not a deep dive. Someday, I&rsquo;ll &hellip;</p>
-<p>Unfortunately, when the word &ldquo;macro&rdquo; is used most will think of a sort of &ldquo;basic&rdquo; substitution. But in <code>Lisp</code> the macro facility has the full power of the <code>Lisp</code> language. You are able to control, using the power of <code>Lisp</code>, what the compiler sees, and so, the macro, is the defining of a new language, or a DSL, or simply making language additions. These additions can greatly aid in writing code, understanding code, and in abstracting away boilerplate. It is, or should be, a programmer&rsquo;s dream.</p>
+<p>Unfortunately, when the word &ldquo;macro&rdquo; is used most will think of a sort of basic substitution.</p>
+<blockquote>
+<p>I can&rsquo;t emphasize enough that the Common Lisp macro shares essentially nothing but the name with the text-based macros found in C and C++. Where the C pre-processor operates by textual substitution and understands almost nothing of the structure of C and C++, a Lisp macro is essentially a code generator that gets run for you automatically by the compiler. (Peter Seibel, <a href="https://gigamonkeys.com/book/">Practical Common Lisp</a>)</p>
+</blockquote>
+<p>In <code>Lisp</code> the macro facility has the full power of the <code>Lisp</code> language. You are able to control, using the power of <code>Lisp</code>, what the compiler sees, and so, the macro, is the defining of a new language, or a DSL, or simply making language additions. These additions can greatly aid in writing code, understanding code, and in abstracting away boilerplate. It is, or should be, a programmer&rsquo;s dream.</p>
+<p>So powerful are Lisp macros that it is usual considered an advanced feature, to be introduced after the language has been thoroughly covered. Peter Seible takes a different view and in his book, <a href="https://gigamonkeys.com/book/">Practical Common Lisp</a>, introduces macros in chapter three. Only four chapters later, Seibel devotes three chapters to macros: <a href="https://gigamonkeys.com/book/macros-standard-control-constructs">7.Macros: Standard Control Constructs</a>, <a href="https://gigamonkeys.com/book/macros-defining-your-own">8.Macros: Defining Your Own</a>, <a href="https://gigamonkeys.com/book/practical-building-a-unit-test-framework">9.Practical: Building a Unit Test Framework</a></p>
 <p>And I could be wrong, but the &ldquo;enlightenment&rdquo; that is often spoken about when learning <code>Lisp</code> is I think found here in the idea of &ldquo;code that writes code.&rdquo; I could be wrong.</p>
 <blockquote>
 <p>The most common way to write programs that write programs is by defining macros. Macros are operators that are implemented by transformation. You define a macro by saying how a call to it should be translated. This translation, called macro-expansion, is done automatically by the compiler. So the code generated by your macros becomes an integral part of your program, just as if you had typed it in yourself.</p>
@@ -328,6 +336,7 @@ int sum (int n){ int i, s = 0; for (i=0; i&amp;lt; n; i&#43;&#43;) s &#43;= i; r
 <blockquote>
 <p>Meanwhile, ideas borrowed from Lisp increasingly turn up in the mainstream: interactive programming environments, garbage collection, and run-time typing, to name a few.</p>
 </blockquote>
+<p><a href="https://common-lisp.net/">Common-Lisp.net</a></p>
 
       </div></div>
 
