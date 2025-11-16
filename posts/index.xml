@@ -6,8 +6,15 @@
     <description>Recent content in Posts on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 12 Nov 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 14 Nov 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://kes.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Learning Never Stop</title>
+      <link>https://kes.github.io/posts/learning-never-stops/</link>
+      <pubDate>Fri, 14 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://kes.github.io/posts/learning-never-stops/</guid>
+      <description>Does it all really come down to Cogito, ergo sum?&#xA;“I think, therefore I am,” Descartes wrote that as he wrestled with radical skepticism.&#xA;For me, it’s just as true—maybe truer—to say: “I learn, therefore I am.”&#xA;The other day, I was reading part of the SBCL manual.&#xA;I was struck by how difficult it was to understand—not because the manual is poorly written, but because manuals, like textbooks, assume a certain level of knowledge.</description>
+    </item>
     <item>
       <title>Common Lisp Lambdas and Macros</title>
       <link>https://kes.github.io/posts/common-lisp-lambda-macros/</link>

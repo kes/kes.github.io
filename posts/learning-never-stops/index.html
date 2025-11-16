@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Learning Never Stop :: </title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Does it all really come down to Cogito, ergo sum?
+“I think, therefore I am,” Descartes wrote that as he wrestled with radical skepticism.
+For me, it’s just as true—maybe truer—to say: “I learn, therefore I am.”
+The other day, I was reading part of the SBCL manual.
+I was struck by how difficult it was to understand—not because the manual is poorly written, but because manuals, like textbooks, assume a certain level of knowledge." />
+<meta name="keywords" content="" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="https://kes.github.io/posts/learning-never-stops/" />
+
+
+
+
+
+  
+  <link rel="stylesheet" href="https://kes.github.io/css/buttons.min.86f6b4c106b6c6eb690ae5203d36b442c1f66f718ff4e8164fa86cf6c61ad641.css">
+
+  
+  <link rel="stylesheet" href="https://kes.github.io/css/code.min.d529ea4b2fb8d34328d7d31afc5466d5f7bc2f0bc9abdd98b69385335d7baee4.css">
+
+  
+  <link rel="stylesheet" href="https://kes.github.io/css/fonts.min.5bb7ed13e1d00d8ff39ea84af26737007eb5051b157b86fc24487c94f3dc8bbe.css">
+
+  
+  <link rel="stylesheet" href="https://kes.github.io/css/footer.min.eb8dfc2c6a7eafa36cd3ba92d63e69e849e2200e0002a228d137f236b09ecd75.css">
+
+  
+  <link rel="stylesheet" href="https://kes.github.io/css/gist.min.a751e8b0abe1ba8bc53ced52a38b19d8950fe78ca29454ea8c2595cf26aad5c0.css">
+
+  
+  <link rel="stylesheet" href="https://kes.github.io/css/header.min.75c7eb0e2872d95ff48109c6647d0223a38db52e2561dd87966eb5fc7c6bdac6.css">
+
+  
+  <link rel="stylesheet" href="https://kes.github.io/css/main.min.36833afd348409fc6c3d09d0897c5833d9d5bf1ff31f5e60ea3ee42ce2b1268c.css">
+
+  
+  <link rel="stylesheet" href="https://kes.github.io/css/menu.min.3c17467ebeb3d38663dce68f71f519901124fa5cbb4519b2fb0667a21e9aca39.css">
+
+  
+  <link rel="stylesheet" href="https://kes.github.io/css/pagination.min.bbb986dbce00a5ce5aca0504b7925fc1c581992a4bf57f163e5d69cc1db7d836.css">
+
+  
+  <link rel="stylesheet" href="https://kes.github.io/css/post.min.e6dddd258e64c83e05cec0cd49c05216742d42fc8ecbfbe6b67083412b609bd3.css">
+
+  
+  <link rel="stylesheet" href="https://kes.github.io/css/syntax.min.a0773cce9310cb6d8ed23e50f005448facf29a53001b57e038828daa466b25c0.css">
+
+  
+  <link rel="stylesheet" href="https://kes.github.io/css/terminal.min.e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css">
+
+  
+  <link rel="stylesheet" href="https://kes.github.io/css/terms.min.b81791663c3790e738e571cdbf802312390d30e4b1d8dc9d814a5b5454d0ac11.css">
+
+
+
+
+<link rel="stylesheet" href="https://kes.github.io/style.css">
+
+
+<link rel="shortcut icon" href="https://kes.github.io/favicon.png">
+<link rel="apple-touch-icon" href="https://kes.github.io/apple-touch-icon.png">
+
+
+<meta name="twitter:card" content="summary" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Learning Never Stop">
+<meta property="og:description" content="Does it all really come down to Cogito, ergo sum?
+“I think, therefore I am,” Descartes wrote that as he wrestled with radical skepticism.
+For me, it’s just as true—maybe truer—to say: “I learn, therefore I am.”
+The other day, I was reading part of the SBCL manual.
+I was struck by how difficult it was to understand—not because the manual is poorly written, but because manuals, like textbooks, assume a certain level of knowledge." />
+<meta property="og:url" content="https://kes.github.io/posts/learning-never-stops/" />
+<meta property="og:site_name" content="" />
+
+  <meta property="og:image" content="https://kes.github.io/og-image.png">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2025-11-14 00:00:00 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="https://kes.github.io/js/mathjax-config.js"></script>
+
+  
+  <script
+    id="MathJax-script"
+    async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+  </script>
+
+
+
+
+</head>
+<body>
+
+
+<div class="container center">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    Karl Stump
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/about/about/">About</a></li>
+        
+      
+        
+          <li><a href="/leetcode/">Leet Code</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        
+          <li><a href="/about/about/" >About</a></li>
+        
+      
+        
+          <li><a href="/leetcode/" >Leet Code</a></li>
+        
+      
+      
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="https://kes.github.io/posts/learning-never-stops/">Learning Never Stop</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2025-11-14</time><span class="post-author">[Karl Stump]</span></div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="https://kes.github.io/tags/programming/">programming</a>&nbsp;
+      
+      #<a href="https://kes.github.io/tags/lisp/">lisp</a>&nbsp;
+      
+    </span>
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <p>Does it all really come down to <em>Cogito, ergo sum</em>?</p>
+<p>“I think, therefore I am,” Descartes wrote that as he wrestled with radical skepticism.</p>
+<p>For me, it’s just as true—maybe truer—to say: “I learn, therefore I am.”</p>
+<p>The other day, I was reading part of the SBCL manual.</p>
+<p>I was struck by how difficult it was to understand—not because the manual is poorly written, but because manuals, like textbooks, assume a certain level of knowledge. That’s what they’re for.</p>
+<ul>
+<li>A first-grader doesn’t read at a fourth-grade level.</li>
+<li>A fourth-grade math book isn’t the same as a tenth-grade one.</li>
+<li>And someone with no algebra simply cannot pick up a university calculus text.</li>
+</ul>
+<p>Books, manuals, courses—everything in the world of knowledge—is written for a particular level of understanding.</p>
+<p>There are always the <em>cognoscenti</em> and the <em>incognoscenti</em>.</p>
+<p>And the truth is: even if you are one of the cognoscenti in one field, you will be the incognoscenti in another. No one escapes this. We move fluidly between knowing and not knowing throughout our entire lives.</p>
+<p>I’ve had the mixed blessing (depending on your perspective) of studying in several very different fields. I have an M.S. in Computer Science and two degrees in theology. I also have a B.F.A. in Acting. I’m not proud or ashamed of any of this—it’s simply the path my life took.</p>
+<p>I’ve worked in technical support, software engineering, and academia.</p>
+<p>Here’s the one thing I know with absolute certainty: The most important skill you can ever learn is learning how to learn.</p>
+<p>When I finished my M.S., after making the improbable transition from acting into computer science, a professor told me that another faculty member had once said he would do backflips if I ever actually completed the degree.</p>
+<p>Ironically, that professor was my favorite one—despite the fact that he once failed me in one of his courses.</p>
+<p>Yes, you read that correctly: he failed me.</p>
+<p>And he was right to do it.</p>
+<p>It was my responsibility to meet the requirements of the course and the standards of the degree. He wasn’t there to lower the bar for me. He was there to teach—and I was there to learn.</p>
+<p>So I swallowed my pride (it was a large gulp), retook the course, and passed.</p>
+<p>But the point is, and most importantly, I learned how to learn.</p>
+<p>Years later, after I’d entered academia, I remember preparing during the summer for an advanced course I was scheduled to teach in just a few weeks. As I studied the textbook, panic set in. The material felt too complex—beyond me. I wondered if I was in over my head.</p>
+<p>I closed the book, convinced, for a moment, that I should resign from my tenure-track position.</p>
+<p>Surely I was a fraud.</p>
+<p>The building was quiet. My office was quiet.</p>
+<p>I asked myself a few simple questions:</p>
+<ul>
+<li>Is the author trying to be confusing?</li>
+<li>Is he trying to write so no one can understand him?</li>
+<li>Or is he actually trying to be clear?</li>
+</ul>
+<p>I had to admit the truth: the author was doing everything he could to communicate clearly. He wasn’t the problem. He was simply ahead of me—and calling me forward.</p>
+<p>So I opened the book again and began learning, one sentence at a time. By the end of the day, the subject opened up. I remembered, again, how to learn.</p>
+<p>And that’s the point: it never stops.</p>
+<ul>
+<li>Not in school.</li>
+<li>Not in industry.</li>
+<li>Not in life.</li>
+</ul>
+<p>Reading the SBCL manual brought that back to me.</p>
+<p>Learning never stops.</p>
+<figure class="center"><img src="/ox-hugo/learning-never-stops.png"/>
+</figure>
+
+<p><em>Cogito, ergo sum</em>.</p>
+<p>I learn, therefore I am.</p>
+
+      </div></div>
+
+  
+    
+<div class="pagination">
+  <div class="pagination__title">
+    <span class="pagination__title-h">Read other posts</span>
+    <hr />
+  </div>
+  <div class="pagination__buttons">
+    
+    
+    
+      <a href="https://kes.github.io/posts/common-lisp-lambda-macros/" class="button inline next">
+         [<span class="button__text">Common Lisp Lambdas and Macros</span>] &gt;
+      </a>
+    
+  </div>
+</div>
+
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2025 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>
