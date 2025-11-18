@@ -259,13 +259,27 @@ Find the first fraction \( f_i \) in the list such that \( n \cdot f_i \) is an 
 </span></span><span style="display:flex;"><span>      collect (<span style="color:#a6e22e">list</span> i state) into results
 </span></span><span style="display:flex;"><span>      finally (return (<span style="color:#a6e22e">cons</span> <span style="color:#f92672">&#39;</span>(iteration state) results)))
 </span></span></code></pre></div><p>Running the above code gives us the following:</p>
+<p>#+begin_export html</p>
 <style>
-.my-table-1 th{
-text-align: center;
+.my-table-1 tr:nth-child(even){
+background-color: #3b3f4a;
 }
-.my-table td {
-    padding: 20px;
-    text-align: center;
+/*
+.my-table-1 thead tr th:nth-child(12) {
+  background-color:red;
+}
+*/
+.my-table-1 th{
+font-weight:normal;
+text-align: center;
+background-color: #3b3f4a;
+padding:5px;
+border: 0;
+}
+/* Body cells */
+.my-table-1 td{
+padding:5px;
+border: 1px black solid;
 }
 </style>
 <style>.my-table-1 table { text-align: center;  width: 60%;  margin: 0 auto;  }</style>
@@ -373,14 +387,46 @@ text-align: center;
 <p>Clearly, this is not an integer. Let&rsquo;s move on to the next fraction, \(\dfrac{2 \times 3 \times 13}{5 \times 17} \), and multiplying by 2, we get</p>
 <p>\[ \dfrac{2^2 \times 3 \times 13}{5 \times 17} \]</p>
 <p>Also, not an integer.</p>
-<p>Let&rsquo;s put the process in tabular form:</p>
+<p>Let&rsquo;s back up and put this process in tabular form:</p>
 <style>
-.my-table-2 th{
-text-align: center;
+.my-table-2 {
+  border-collapse: collapse;
+  margin: 0 auto;
+  font-size: 0.95rem;        /* slightly smaller, feels more “set” */
 }
-.my-table td {
-    padding: 20px;
-    text-align: center;
+
+/* Header row */
+.my-table-2 thead th {
+  background-color: #163515; /* light grey, like LaTeX booktabs header */
+  color: #dfe61b;
+  font-weight: normal;
+  text-align: center;
+  padding: 6px 10px;
+  border: 0;
+  /* border-bottom: 1px solid #cccccc; */
+}
+
+/* Body cells */
+.my-table-2 tbody td {
+  padding: 6px 10px;
+  text-align: center;
+  border: 0;
+  /* border-bottom: 1px solid #e0e0e0; */
+}
+
+/* Subtle row striping */
+.my-table-2 tbody tr:nth-child(even) {
+  background-color: #3b3f4a;
+}
+
+/* Optional: first column slightly left-aligned to feel “texty” */
+.my-table-2 tbody td:first-child {
+/*text-align: left; */
+}
+/* Optional: narrower arrow column */
+.my-table-2 tbody td:nth-child(2),
+.my-table-2 thead th:nth-child(2) {
+  /*width: 2.5rem; */
 }
 </style>
 <style>.my-table-2 table { text-align: center;  width: 60%;  margin: 0 auto;  }</style>
@@ -388,61 +434,84 @@ text-align: center;
 <table>
 <thead>
 <tr>
-<th>Program Fraction</th>
-<th>Becomes</th>
+<th>\(2 \times \cdots \)</th>
+<th></th>
 <th>Result</th>
+<th></th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<td>\( \dfrac{17}{7 \times 13} \)</td>
+<td>\(\longrightarrow \)</td>
+<td>\( \dfrac{2 \times 17}{7 \times 13} \)</td>
+<td>\( \bbox[5px, border:2px solid green]{\unicode{x274c}} \)</td>
+</tr>
+<tr>
+<td>\( \dfrac{2 \times 3 \times 13}{5 \times 17}\)</td>
+<td>\(\longrightarrow \)</td>
+<td>\( \dfrac{2^2 \times 3 \times 13}{5 \times 17} \)</td>
+<td>\( \bbox[5px, border:2px solid green]{\unicode{x274c}} \)</td>
+</tr>
+<tr>
 <td>\( \dfrac{19}{3 \times 17} \)</td>
-<td>\( \longrightarrow \)</td>
-<td>\( \dfrac{ 2 \times 19}{3 \times 17}\)</td>
+<td>\(\longrightarrow \)</td>
+<td>\(  \dfrac{ 2 \times 19}{3 \times 17}\)</td>
+<td>\( \bbox[5px, border:2px solid green]{\unicode{x274c}} \)</td>
 </tr>
 <tr>
 <td>\( \dfrac{23}{2 \times 19} \)</td>
-<td>\( \longrightarrow \)</td>
+<td>\(\longrightarrow \)</td>
 <td>\( \dfrac{ \cancel{2} \times 23}{\cancel{2} \times 19} \)</td>
+<td>\( \bbox[5px, border:2px solid green]{\unicode{x274c}} \)</td>
 </tr>
 <tr>
 <td>\( \dfrac{29}{3 \times 11} \)</td>
-<td>\( \longrightarrow \)</td>
+<td>\(\longrightarrow \)</td>
 <td>\( \dfrac{ 2 \times 29}{3 \times 11} \)</td>
+<td>\( \bbox[5px, border:2px solid green]{\unicode{x274c}} \)</td>
 </tr>
 <tr>
 <td>\( \dfrac{7 \times 11}{29} \)</td>
-<td>\( \longrightarrow \)</td>
+<td>\(\longrightarrow \)</td>
 <td>\( \dfrac{ 2 \times 7 \times 11}{29} \)</td>
+<td>\( \bbox[5px, border:2px solid green]{\unicode{x274c}} \)</td>
 </tr>
 <tr>
 <td>\( \dfrac{5 \times 19}{23} \)</td>
-<td>\( \longrightarrow \)</td>
+<td>\(\longrightarrow \)</td>
 <td>\( \dfrac{ 2 \times 5 \times 19}{23} \)</td>
+<td>\( \bbox[5px, border:2px solid green]{\unicode{x274c}} \)</td>
 </tr>
 <tr>
 <td>\( \dfrac{7 \times 11}{19} \)</td>
-<td>\( \longrightarrow \)</td>
+<td>\(\longrightarrow \)</td>
 <td>\( \dfrac{ 2 \times 7 \times 11}{19} \)</td>
+<td>\( \bbox[5px, border:2px solid green]{\unicode{x274c}} \)</td>
 </tr>
 <tr>
-<td>\( \dfrac{1}{17} \)</td>
-<td>\( \longrightarrow \)</td>
+<td>\( \dfrac{1}{17}           \)</td>
+<td>\(\longrightarrow \)</td>
 <td>\( \dfrac{ 2 \times 1}{17} \)</td>
+<td>\( \bbox[5px, border:2px solid green]{\unicode{x274c}} \)</td>
 </tr>
 <tr>
-<td>\( \dfrac{11}{13} \)</td>
-<td>\( \longrightarrow \)</td>
+<td>\( \dfrac{11}{13}          \)</td>
+<td>\(\longrightarrow \)</td>
 <td>\( \dfrac{ 2 \times 11}{13} \)</td>
+<td>\( \bbox[5px, border:2px solid green]{\unicode{x274c}} \)</td>
 </tr>
 <tr>
-<td>\( \dfrac{13}{11} \)</td>
-<td>\( \longrightarrow \)</td>
+<td>\( \dfrac{13}{11}          \)</td>
+<td>\(\longrightarrow \)</td>
 <td>\( \dfrac{ 2 \times 13}{11} \)</td>
+<td>\( \bbox[5px, border:2px solid green]{\unicode{x274c}} \)</td>
 </tr>
 <tr>
-<td>\( \dfrac{3 \times 5}{2} \)</td>
-<td>\( \longrightarrow \)</td>
+<td>\( \dfrac{3 \times 5}{2}   \)</td>
+<td>\(\longrightarrow \)</td>
 <td>\( \dfrac{ \cancel{2} \times 3 \times 5}{\cancel{2}} \)</td>
+<td>\( \bbox[5px, border:2px solid green;color:green]{\unicode{x2714}} \)</td>
 </tr>
 </tbody>
 </table>
@@ -502,7 +571,7 @@ text-align: center;
 </span></span></code></pre></div><p>And this gives:</p>
 <style>
 .fractran-factors-table-no-header tr:nth-child(even){
-background-color: #575551;
+background-color: #3b3f4a;
 }
 /*
 .fractran-factors-table-no-header thead tr th:nth-child(12) {
@@ -512,13 +581,15 @@ background-color: #575551;
 .fractran-factors-table-no-header th{
 font-weight:normal;
 text-align: center;
-background-color: #575551;
+background-color: #3b3f4a;
 padding:5px;
+border: 0;
 }
+/* Body cells */
 .fractran-factors-table-no-header td{
 padding:5px;
+border: 1px black solid;
 }
-
 </style>
 <style>.fractran-factors-table-no-header table { text-align: center;  width: 80%;  margin: 0 auto;  }</style>
 <div class="ox-hugo-table fractran-factors-table-no-header">
@@ -837,12 +908,17 @@ padding:5px;
   background-color: #575551;   /* overall header background */
   color: #f0f0f0;
   padding: 6px 8px;
+  border-bottom: 1px white solid;
+  border-top: 2px white solid;
+  border-right: 2px white solid;
+  border-left: 2px white solid;
 }
 
 /* Body cells */
 .fractran-factors-with-header td {
   padding: 4px 8px;
   text-align: center;
+  border: 1px black solid;
 }
 
 /* Row striping (body only) */
@@ -1385,13 +1461,27 @@ S29 -&gt; S11[label=&#34;(1) +7&#34;;color=blue];
 </span></span><span style="display:flex;"><span>	  (fr <span style="color:#ae81ff">13</span>) (fr <span style="color:#ae81ff">17</span>) (fr <span style="color:#ae81ff">19</span>) (fr <span style="color:#ae81ff">23</span>) (fr <span style="color:#ae81ff">29</span>) (calc-amount))))
 </span></span><span style="display:flex;"><span>(init-fr)
 </span></span><span style="display:flex;"><span>(iterate <span style="color:#ae81ff">20</span>)
-</span></span></code></pre></div><style>
-.my-table-5 th{
-text-align: center;
+</span></span></code></pre></div><p>#+begin_export html</p>
+<style>
+.my-table-5 tr:nth-child(even){
+background-color: #3b3f4a;
 }
-.my-table td {
-    padding: 20px;
-    text-align: center;
+/*
+.my-table-5 thead tr th:nth-child(12) {
+  background-color:red;
+}
+*/
+.my-table-5 th{
+font-weight:normal;
+text-align: center;
+background-color: #3b3f4a;
+padding:5px;
+border: 0;
+}
+/* Body cells */
+.my-table-5 td{
+padding:5px;
+border: 1px black solid;
 }
 </style>
 <style>.my-table-5 table { text-align: center;  width: 80%;  margin: 0 auto;  }</style>
@@ -2167,13 +2257,27 @@ text-align: center;
 </span></span><span style="display:flex;"><span>  (setf value (<span style="color:#a6e22e">reverse</span> value))
 </span></span><span style="display:flex;"><span>  (setf value (<span style="color:#a6e22e">cons</span> <span style="color:#e6db74">&#39;hline</span> value))
 </span></span><span style="display:flex;"><span>  (setf value (<span style="color:#a6e22e">cons</span> <span style="color:#f92672">&#39;</span>(Iteration State <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">5</span> <span style="color:#ae81ff">7</span> <span style="color:#ae81ff">11</span> <span style="color:#ae81ff">13</span> <span style="color:#ae81ff">17</span> <span style="color:#ae81ff">19</span> <span style="color:#ae81ff">23</span> <span style="color:#ae81ff">29</span> Amount) value)))
-</span></span></code></pre></div><style>
-.my-table-6 th{
-text-align: center;
+</span></span></code></pre></div><p>#+begin_export html</p>
+<style>
+.my-table-6 tr:nth-child(even){
+background-color: #3b3f4a;
 }
-.my-table td {
-    padding: 20px;
-    text-align: center;
+/*
+.my-table-6 thead tr th:nth-child(12) {
+  background-color:red;
+}
+*/
+.my-table-6 th{
+font-weight:normal;
+text-align: center;
+background-color: #3b3f4a;
+padding:5px;
+border: 0;
+}
+/* Body cells */
+.my-table-6 td{
+padding:5px;
+border: 1px black solid;
 }
 </style>
 <style>.my-table-6 table { text-align: center;  width: 90%;  margin: 0 auto;  }</style>
