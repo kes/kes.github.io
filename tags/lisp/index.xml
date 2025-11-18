@@ -9,11 +9,11 @@
     <lastBuildDate>Sun, 16 Nov 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://kes.github.io/tags/lisp/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>FRACTRAN: John Conway&#39;s Programming Language Fun</title>
+      <title>FRACTRAN: John Conway’s Ridiculous Little Programming Language</title>
       <link>https://kes.github.io/posts/project-euler-num-308/</link>
       <pubDate>Sun, 16 Nov 2025 00:00:00 +0000</pubDate>
       <guid>https://kes.github.io/posts/project-euler-num-308/</guid>
-      <description>Some months back I learned of an esoteric programming languages created by mathematician John Conway. Conway also created the well known Game of Life.&#xA;The language is called FRACTRAN (see here for a Conway lecture).&#xA;Very simply a FRACTRAN program is an ordered list of positive fractions \[ f_1, f_2, &amp;hellip; f_a \] and an initial integer, \( n \).&#xA;A FRACTRAN program is run in the following manner:&#xA;for the first fraction \( f_i \) in the list for which \( n * f_i \) is an integer, replace \( n \) by \( n * f_i \) repeat the first rule until no fraction in the list produces an integer when multiplied by \( n \), then halt.</description>
+      <description>Some months back I learned about an esoteric programming language created by mathematician John Conway. Conway also created the well-known Game of Life.&#xA;The language is called FRACTRAN (there’s a wonderful introductory lecture by Conway himself here).&#xA;Very simply, a FRACTRAN program is an ordered list of positive fractions&#xA;\[ f_1, f_2, \ldots, f_k \]&#xA;and an initial integer \( n \).&#xA;The program runs like this:&#xA;Find the first fraction \( f_i \) in the list such that \( n \cdot f_i \) is an integer, and replace \( n \) with that new integer.</description>
     </item>
     <item>
       <title>Learning Never Stop</title>

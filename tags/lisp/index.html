@@ -177,7 +177,7 @@
     
       <article class="post on-list">
         <h1 class="post-title">
-          <a href="https://kes.github.io/posts/project-euler-num-308/">FRACTRAN: John Conway&rsquo;s Programming Language Fun</a>
+          <a href="https://kes.github.io/posts/project-euler-num-308/">FRACTRAN: John Conway’s Ridiculous Little Programming Language</a>
         </h1>
         <div class="post-meta"><time class="post-date">2025-11-16</time><span class="post-author">[Karl Stump]</span></div>
 
@@ -196,11 +196,13 @@
 
         <div class="post-content">
           
-            Some months back I learned of an esoteric programming languages created by mathematician John Conway. Conway also created the well known Game of Life.
-The language is called FRACTRAN (see here for a Conway lecture).
-Very simply a FRACTRAN program is an ordered list of positive fractions \[ f_1, f_2, &hellip; f_a \] and an initial integer, \( n \).
-A FRACTRAN program is run in the following manner:
-for the first fraction \( f_i \) in the list for which \( n * f_i \) is an integer, replace \( n \) by \( n * f_i \) repeat the first rule until no fraction in the list produces an integer when multiplied by \( n \), then halt.
+            Some months back I learned about an esoteric programming language created by mathematician John Conway. Conway also created the well-known Game of Life.
+The language is called FRACTRAN (there’s a wonderful introductory lecture by Conway himself here).
+Very simply, a FRACTRAN program is an ordered list of positive fractions
+\[ f_1, f_2, \ldots, f_k \]
+and an initial integer \( n \).
+The program runs like this:
+Find the first fraction \( f_i \) in the list such that \( n \cdot f_i \) is an integer, and replace \( n \) with that new integer.
           
         </div>
 
