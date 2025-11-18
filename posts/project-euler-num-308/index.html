@@ -501,16 +501,27 @@ text-align: center;
 </span></span><span style="display:flex;"><span>      collect (get-status i (setf state (fractran-simulator state *fp*))))
 </span></span></code></pre></div><p>And this gives:</p>
 <style>
-.my-table-3 th{
+.fractran-factors-table-no-header tr:nth-child(even){
+background-color: #575551;
+}
+/*
+.fractran-factors-table-no-header thead tr th:nth-child(12) {
+  background-color:red;
+}
+*/
+.fractran-factors-table-no-header th{
+font-weight:normal;
 text-align: center;
+background-color: #575551;
+padding:5px;
 }
-.my-table td {
-    padding: 20px;
-    text-align: center;
+.fractran-factors-table-no-header td{
+padding:5px;
 }
+
 </style>
-<style>.my-table-3 table { text-align: center;  width: 60%;  margin: 0 auto;  }</style>
-<div class="ox-hugo-table my-table-3">
+<style>.fractran-factors-table-no-header table { text-align: center;  width: 80%;  margin: 0 auto;  }</style>
+<div class="ox-hugo-table fractran-factors-table-no-header">
 <table>
 <thead>
 <tr>
@@ -814,16 +825,46 @@ text-align: center;
 </span></span><span style="display:flex;"><span>  (setf value (<span style="color:#a6e22e">cons</span> <span style="color:#f92672">&#39;</span>(Iteration <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">5</span> <span style="color:#ae81ff">7</span> <span style="color:#ae81ff">11</span> <span style="color:#ae81ff">13</span> <span style="color:#ae81ff">17</span> <span style="color:#ae81ff">19</span> <span style="color:#ae81ff">23</span> <span style="color:#ae81ff">29</span> Value) value)))
 </span></span></code></pre></div><p>This gives:</p>
 <style>
-.my-table-4 th{
-text-align: center;
+/* Base table styling */
+.fractran-factors-with-header {
+  border-collapse: collapse;
 }
-.my-table td {
-    padding: 20px;
-    text-align: center;
+
+/* Header cells */
+.fractran-factors-with-header thead th {
+  font-weight: normal;
+  text-align: center;
+  background-color: #575551;   /* overall header background */
+  color: #f0f0f0;
+  padding: 6px 8px;
+}
+
+/* Body cells */
+.fractran-factors-with-header td {
+  padding: 4px 8px;
+  text-align: center;
+}
+
+/* Row striping (body only) */
+.fractran-factors-with-header tbody tr:nth-child(even) {
+  background-color: #2f2f2f;
+}
+
+/* Highlight factor columns 11–29: columns 6–11 (header + body) */
+.fractran-factors-with-header thead th:nth-child(n+6):nth-child(-n+11),
+.fractran-factors-with-header tbody td:nth-child(n+6):nth-child(-n+11) {
+  background-color: #42403c;  /* slightly different tone */
+}
+
+/* Optional: make the "Value" column pop a bit */
+.fractran-factors-with-header thead th:nth-child(12),
+.fractran-factors-with-header tbody td:nth-child(12) {
+  background-color: #3b3f4a;
+  font-weight: bold;
 }
 </style>
-<style>.my-table-4 table { text-align: center;  width: 80%;  margin: 0 auto;  }</style>
-<div class="ox-hugo-table my-table-4">
+<style>.fractran-factors-with-header table { text-align: center;  width: 80%;  margin: 0 auto;  }</style>
+<div class="ox-hugo-table fractran-factors-with-header">
 <table>
 <thead>
 <tr>
