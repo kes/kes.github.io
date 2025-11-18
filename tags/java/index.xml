@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Java on </title>
-    <link>https://kes.github.io/tags/java/</link>
+    <link>http://localhost:1313/tags/java/</link>
     <description>Recent content in Java on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Wed, 12 Nov 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://kes.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/java/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Common Lisp Lambdas and Macros</title>
-      <link>https://kes.github.io/posts/common-lisp-lambda-macros/</link>
+      <link>http://localhost:1313/posts/common-lisp-lambda-macros/</link>
       <pubDate>Wed, 12 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>https://kes.github.io/posts/common-lisp-lambda-macros/</guid>
+      <guid>http://localhost:1313/posts/common-lisp-lambda-macros/</guid>
       <description>I was thinking about lambdas and closures the other day (&amp;lsquo;cause after all, why not?), and I was looking at Paul Graham&amp;rsquo;s excellent ANSI Common Lisp &amp;ndash; in chapter one he begins by asking, &amp;ldquo;why learn Lisp?&amp;rdquo; And he shows some C and Lisp code for summing the integers less than n, like so:&#xA;int sum (int n){ int i, s = 0; for (i=0; i&amp;lt; n; i++) s += i; return s; } And, then Common Lisp:</description>
     </item>
     <item>
       <title>What&#39;s a Lambda?</title>
-      <link>https://kes.github.io/posts/whatisalambda/</link>
+      <link>http://localhost:1313/posts/whatisalambda/</link>
       <pubDate>Sat, 08 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>https://kes.github.io/posts/whatisalambda/</guid>
+      <guid>http://localhost:1313/posts/whatisalambda/</guid>
       <description>NOTE: this document was originally written for seasoned software engineers who were transitioning into Java and beginning to use lambdas. Whether it helps in understanding the concept of lambda, or how lambdas appear in Java, is, I think, very much in the eye of the beholder. I place it here with only slight modification.&#xA;This document is a brief investigation into the question:&#xA;What is a lambda?&#xA;And, in our context, more specifically, what is lambda in computer languages, and even more specifically, what is a lambda in Java.</description>
     </item>
     <item>
       <title>Java: Counting non-Duplicate Items</title>
-      <link>https://kes.github.io/posts/java-counting-non-duplicate-items/</link>
+      <link>http://localhost:1313/posts/java-counting-non-duplicate-items/</link>
       <pubDate>Thu, 12 Sep 2024 00:00:00 +0000</pubDate>
-      <guid>https://kes.github.io/posts/java-counting-non-duplicate-items/</guid>
+      <guid>http://localhost:1313/posts/java-counting-non-duplicate-items/</guid>
       <description>This problem came up at codewars.com.&#xA;Given the goal to count items in a list, and with the caveat that some of the items will be duplicated, and these additional duplicates are not to be counted. So, a count of unique items is what is wanted.&#xA;Such problems always make me think of a hash table, or an &amp;ldquo;associative array.&amp;rdquo;&#xA;But there are more details: the items to count are in an array, and the items themselves are also an array &amp;ndash; so a two dimensional array, something like:</description>
     </item>
   </channel>

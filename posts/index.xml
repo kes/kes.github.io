@@ -2,136 +2,136 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on </title>
-    <link>https://kes.github.io/posts/</link>
+    <link>http://localhost:1313/posts/</link>
     <description>Recent content in Posts on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 14 Nov 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://kes.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 16 Nov 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>FRACTRAN: John Conway&#39;s Programming Language Fun</title>
+      <link>http://localhost:1313/posts/project-euler-num-308/</link>
+      <pubDate>Sun, 16 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/project-euler-num-308/</guid>
+      <description>Some months back I learned of an esoteric programming languages created by mathematician John Conway. Conway also created the well known Game of Life.&#xA;The language is called FRACTRAN (see here for a Conway lecture).&#xA;Very simply a FRACTRAN program is an ordered list of positive fractions \[ f_1, f_2, &amp;hellip; f_a \] and an initial integer, \( n \).&#xA;A FRACTRAN program is run in the following manner:&#xA;for the first fraction \( f_i \) in the list for which \( n * f_i \) is an integer, replace \( n \) by \( n * f_i \) repeat the first rule until no fraction in the list produces an integer when multiplied by \( n \), then halt.</description>
+    </item>
     <item>
       <title>Learning Never Stop</title>
-      <link>https://kes.github.io/posts/learning-never-stops/</link>
+      <link>http://localhost:1313/posts/learning-never-stops/</link>
       <pubDate>Fri, 14 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>https://kes.github.io/posts/learning-never-stops/</guid>
+      <guid>http://localhost:1313/posts/learning-never-stops/</guid>
       <description>Does it all really come down to Cogito, ergo sum?&#xA;“I think, therefore I am,” Descartes wrote that as he wrestled with radical skepticism.&#xA;For me, it’s just as true—maybe truer—to say: “I learn, therefore I am.”&#xA;The other day, I was reading part of the SBCL manual.&#xA;I was struck by how difficult it was to understand—not because the manual is poorly written, but because manuals, like textbooks, assume a certain level of knowledge.</description>
     </item>
     <item>
       <title>Common Lisp Lambdas and Macros</title>
-      <link>https://kes.github.io/posts/common-lisp-lambda-macros/</link>
+      <link>http://localhost:1313/posts/common-lisp-lambda-macros/</link>
       <pubDate>Wed, 12 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>https://kes.github.io/posts/common-lisp-lambda-macros/</guid>
+      <guid>http://localhost:1313/posts/common-lisp-lambda-macros/</guid>
       <description>I was thinking about lambdas and closures the other day (&amp;lsquo;cause after all, why not?), and I was looking at Paul Graham&amp;rsquo;s excellent ANSI Common Lisp &amp;ndash; in chapter one he begins by asking, &amp;ldquo;why learn Lisp?&amp;rdquo; And he shows some C and Lisp code for summing the integers less than n, like so:&#xA;int sum (int n){ int i, s = 0; for (i=0; i&amp;lt; n; i++) s += i; return s; } And, then Common Lisp:</description>
     </item>
     <item>
       <title>C Programming with ChatGPT</title>
-      <link>https://kes.github.io/posts/programming-with-chatgpt/</link>
+      <link>http://localhost:1313/posts/programming-with-chatgpt/</link>
       <pubDate>Sat, 08 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>https://kes.github.io/posts/programming-with-chatgpt/</guid>
+      <guid>http://localhost:1313/posts/programming-with-chatgpt/</guid>
       <description>I wanted to experiment with ChatGPT and programming. So, I thought I would just start with an exercise from Kernighan and Ritchie&amp;rsquo;s The C Programming Language.&#xA;I prompted ChatGPT with the following:&#xA;In C write a program called detab that replaces tabs in the input with the proper number of spaces to reach the next tabstop. Assume tab stops every eight columns. This is exercise 1.20 from The C Programming Language by Kernighan and Ritchie.</description>
     </item>
     <item>
       <title>What&#39;s a Lambda?</title>
-      <link>https://kes.github.io/posts/whatisalambda/</link>
+      <link>http://localhost:1313/posts/whatisalambda/</link>
       <pubDate>Sat, 08 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>https://kes.github.io/posts/whatisalambda/</guid>
+      <guid>http://localhost:1313/posts/whatisalambda/</guid>
       <description>NOTE: this document was originally written for seasoned software engineers who were transitioning into Java and beginning to use lambdas. Whether it helps in understanding the concept of lambda, or how lambdas appear in Java, is, I think, very much in the eye of the beholder. I place it here with only slight modification.&#xA;This document is a brief investigation into the question:&#xA;What is a lambda?&#xA;And, in our context, more specifically, what is lambda in computer languages, and even more specifically, what is a lambda in Java.</description>
     </item>
     <item>
       <title>Mathjax Working</title>
-      <link>https://kes.github.io/posts/my-great-test/</link>
+      <link>http://localhost:1313/posts/my-great-test/</link>
       <pubDate>Fri, 07 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>https://kes.github.io/posts/my-great-test/</guid>
+      <guid>http://localhost:1313/posts/my-great-test/</guid>
       <description>Will this work now?&#xA;\(E = mc^2\)&#xA;\[ \int_0^1 x^2\,dx \]&#xA;Excellent!&#xA;More on this later!</description>
     </item>
     <item>
       <title>Amateur Extra Class</title>
-      <link>https://kes.github.io/posts/amateur-extra-class/</link>
+      <link>http://localhost:1313/posts/amateur-extra-class/</link>
       <pubDate>Tue, 19 Nov 2024 00:00:00 +0000</pubDate>
-      <guid>https://kes.github.io/posts/amateur-extra-class/</guid>
+      <guid>http://localhost:1313/posts/amateur-extra-class/</guid>
       <description>Recently (11/16/2024) I upgraded my amateur radio (ham) license from General to Amateur Extra.&#xA;Over the years, the FCC Amateur Radio Service has had a number of license classes, each providing different privileges. Currently there are three classes: Technician, General, and the Amateur Extra. (And for those who are old enough to remember such things, there is no longer a Morse code requirement – though this mode is still popular on the amateur radio bands where Morse code enthusiasts will find a warm reception.</description>
     </item>
     <item>
       <title>Emacs Modules</title>
-      <link>https://kes.github.io/posts/emacs-modules/</link>
+      <link>http://localhost:1313/posts/emacs-modules/</link>
       <pubDate>Mon, 18 Nov 2024 00:00:00 +0000</pubDate>
-      <guid>https://kes.github.io/posts/emacs-modules/</guid>
+      <guid>http://localhost:1313/posts/emacs-modules/</guid>
       <description>Emacs is implemented in elisp (most of it). Extending, modifying or customizing emacs is also done in elisp. (However, some of emacs is written in C.),&#xA;As of Emacs 25 it is possible to extend emacs by writing modules in C.&#xA;Let&amp;rsquo;s look at a simple example using the notes from https://www.gnu.org/software/emacs/manual/html_node/elisp/Module-Initialization.html&#xA;Start the Module A module must start with the following:&#xA;#include &amp;lt;emacs-module.h&amp;gt; int plugin_is_GPL_compatible; After that, it&amp;rsquo;s pretty easy to create a test function.</description>
     </item>
     <item>
       <title>Java: Counting non-Duplicate Items</title>
-      <link>https://kes.github.io/posts/java-counting-non-duplicate-items/</link>
+      <link>http://localhost:1313/posts/java-counting-non-duplicate-items/</link>
       <pubDate>Thu, 12 Sep 2024 00:00:00 +0000</pubDate>
-      <guid>https://kes.github.io/posts/java-counting-non-duplicate-items/</guid>
+      <guid>http://localhost:1313/posts/java-counting-non-duplicate-items/</guid>
       <description>This problem came up at codewars.com.&#xA;Given the goal to count items in a list, and with the caveat that some of the items will be duplicated, and these additional duplicates are not to be counted. So, a count of unique items is what is wanted.&#xA;Such problems always make me think of a hash table, or an &amp;ldquo;associative array.&amp;rdquo;&#xA;But there are more details: the items to count are in an array, and the items themselves are also an array &amp;ndash; so a two dimensional array, something like:</description>
     </item>
     <item>
       <title>Setting up g&#43;&#43;</title>
-      <link>https://kes.github.io/posts/setting-up-g&#43;&#43;/</link>
+      <link>http://localhost:1313/posts/setting-up-g&#43;&#43;/</link>
       <pubDate>Sat, 07 Sep 2024 00:00:00 +0000</pubDate>
-      <guid>https://kes.github.io/posts/setting-up-g&#43;&#43;/</guid>
+      <guid>http://localhost:1313/posts/setting-up-g&#43;&#43;/</guid>
       <description>I want to use std::format in C++. If I just compile with g++ without any command line options, I get an error – format is not found. I&amp;rsquo;m using GCC version 13, and C++20 is supported. What gives? (GCC supports different C++ standards, for details see: https://gcc.gnu.org/projects/cxx-status.html.)&#xA;(Oh, and don&amp;rsquo;t be confused by the GCC version and the C++ standard – these are different things. You can use the GCC version 13 compiling to C++ Standard 17 (for example; or 11, or 20, or…).</description>
     </item>
     <item>
       <title>Compiler Project</title>
-      <link>https://kes.github.io/posts/compiler-project/</link>
+      <link>http://localhost:1313/posts/compiler-project/</link>
       <pubDate>Tue, 03 Sep 2024 00:00:00 +0000</pubDate>
-      <guid>https://kes.github.io/posts/compiler-project/</guid>
+      <guid>http://localhost:1313/posts/compiler-project/</guid>
       <description>I&amp;rsquo;ve started writing a C compiler, and I&amp;rsquo;m using Nora Sandler&amp;rsquo;s book, Writing a C Compiler.1 Recommended. Created github repository for the project: https://github.com/kes/c-compiler.&#xA;Back in the day, I was taught compilers using the &amp;ldquo;Dragon book.&amp;rdquo; (Compilers2)&#xA;After a brief examination of Sandler&amp;rsquo;s book, what I like is that while it&amp;rsquo;s a &amp;ldquo;detailed guide,&amp;rdquo; and (so far at least) with plenty of technical insight, nevertheless the reader is left to his own devices.</description>
     </item>
     <item>
       <title>CMake</title>
-      <link>https://kes.github.io/posts/cmake-tutorial/</link>
+      <link>http://localhost:1313/posts/cmake-tutorial/</link>
       <pubDate>Sat, 31 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>https://kes.github.io/posts/cmake-tutorial/</guid>
+      <guid>http://localhost:1313/posts/cmake-tutorial/</guid>
       <description>Working through the CMake tutorial: https://cmake.org/cmake/help/latest/guide/tutorial/index.html&#xA;Step 1 Exercise 1 The first step (Step1) and this is the directory stucture:&#xA;Step1 ├── CMakeLists.txt ├── CMakeLists.txt~ ├── TutorialConfig.h.in └── tutorial.cxx A minumum requirement for CMake, in CMakeLists.txt is the following.&#xA;Required version cmake_minimum_required(VERSION 3.23) Project name and version project(Tutorial VERSION 1.0) Executable add_executable(Tutorial tutorial.cxx) So, for this tutorial this becomes:&#xA;# TODO 1: Set the minimum required version of CMake to be 3.</description>
     </item>
     <item>
-      <title>Project Euler - Number 308</title>
-      <link>https://kes.github.io/posts/project-euler-num-308/</link>
-      <pubDate>Wed, 28 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>https://kes.github.io/posts/project-euler-num-308/</guid>
-      <description>Project Euler has a Fractran problem. this will do it&#xA;If you don&amp;rsquo;t know about John Conway&amp;rsquo;s Fractran you can look here and here.&#xA;You can find the problem here: https://projecteuler.net/problem=308&#xA;I have reproduced it here:&#xA;A program written in the programming language Fractran consists of a list of fractions.&#xA;The internal state of the Fractran Virtual Machine is a positive integer, which is initially set to a seed value. Each iteration of a Fractran program multiplies the state integer by the first fraction in the list which will leave it an integer.</description>
-    </item>
-    <item>
       <title>Understanding Loop</title>
-      <link>https://kes.github.io/posts/understanding-loop/</link>
+      <link>http://localhost:1313/posts/understanding-loop/</link>
       <pubDate>Fri, 23 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>https://kes.github.io/posts/understanding-loop/</guid>
+      <guid>http://localhost:1313/posts/understanding-loop/</guid>
       <description>Loop is a massive DSL buried in Common Lisp. It&amp;rsquo;s possible because of Lisp&amp;rsquo;s macro facility, but that&amp;rsquo;s for another time.&#xA;I&amp;rsquo;ll try to explain it a bit, but nothing exhaustive. Just enough to give a foundation for additional exploring loop in the hyperspec.&#xA;The Fundamental Idea From https://www.lispworks.com/documentation/HyperSpec/Body/06_aaaa.htm&#xA;A simple loop form is one that has a body containing only compound forms. Each form is evaluated in turn from left to right.</description>
     </item>
     <item>
       <title>Project Euler - Number 6</title>
-      <link>https://kes.github.io/posts/project-euler-num-6/</link>
+      <link>http://localhost:1313/posts/project-euler-num-6/</link>
       <pubDate>Thu, 22 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>https://kes.github.io/posts/project-euler-num-6/</guid>
+      <guid>http://localhost:1313/posts/project-euler-num-6/</guid>
       <description>The problem can be found here: https://projecteuler.net/problem=6&#xA;Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.&#xA;Once the formula for both is known, the sum of the squares, [n(n+1)(2n+1)]/6 and the sun of the first n numbers, (2n(n+1))/2 the solution is trival:&#xA;(defun formula/sum-of-squares (n) (/ (* n (+ n 1) (+ (* 2 n) 1)) 6)) (defun formula/square-of-the-sum (n) (expt (/ (* n (+ n 1)) 2) 2)) (defun formula/diff (n) (- (formula/square-of-the-sum n) (formula/sum-of-squares n))) (formula/diff 100)</description>
     </item>
     <item>
       <title>Project Euler - Number 7</title>
-      <link>https://kes.github.io/posts/project-euler-num-7/</link>
+      <link>http://localhost:1313/posts/project-euler-num-7/</link>
       <pubDate>Thu, 22 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>https://kes.github.io/posts/project-euler-num-7/</guid>
+      <guid>http://localhost:1313/posts/project-euler-num-7/</guid>
       <description>You can find the problem here: https://projecteuler.net/problem=7&#xA;The problem statement:&#xA;By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13 we can see that the 6th prime is 13.&#xA;What is the 10001st prime number?&#xA;Consider an array like this:&#xA;n a[n] 0 0 1 1 2 1 3 1 4 0 5 1 6 0 7 1 8 0 9 0 10 0 11 1 12 0 13 1 where n (the index of the array) is the number of interest – So, is the number prime?</description>
     </item>
     <item>
       <title>Project Euler - Number 5</title>
-      <link>https://kes.github.io/posts/project-euler-num-5/</link>
+      <link>http://localhost:1313/posts/project-euler-num-5/</link>
       <pubDate>Tue, 20 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>https://kes.github.io/posts/project-euler-num-5/</guid>
+      <guid>http://localhost:1313/posts/project-euler-num-5/</guid>
       <description>Problem number five can be found here: https://projecteuler.net/problem=5&#xA;Problem statement:&#xA;2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.&#xA;What is the smallest positive number that is evenly divisible by all the numbers 1 to 20?&#xA;What&amp;rsquo;s wanted is the least common multiple of all numbers 2-20.&#xA;If you would like see a number of different ways the LCM can be calculated, go to: Calculator Soup</description>
     </item>
     <item>
       <title>The C Programming Language</title>
-      <link>https://kes.github.io/posts/this-is-now/</link>
+      <link>http://localhost:1313/posts/this-is-now/</link>
       <pubDate>Sat, 10 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>https://kes.github.io/posts/this-is-now/</guid>
+      <guid>http://localhost:1313/posts/this-is-now/</guid>
       <description>Some time ago, I was on a reddit thread and someone commented that they knew python and wondered if they should learn C &amp;hellip;&#xA;I thought everybody knew C! ;)&#xA;Back in the day, C was my third or fourth programming language.&#xA;With the mention of C I just had to break out my copy of The C Programming Language. Unfortunately, my original copy is long gone but I have the second edition.</description>
     </item>
     <item>
       <title>Computational Documents</title>
-      <link>https://kes.github.io/posts/computational-documents/</link>
+      <link>http://localhost:1313/posts/computational-documents/</link>
       <pubDate>Sun, 04 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>https://kes.github.io/posts/computational-documents/</guid>
+      <guid>http://localhost:1313/posts/computational-documents/</guid>
       <description>Not all the documents that I create are computational — but when they are I use Emacs, Org Mode, and Babel&#xA;Computational documents are a mixture of text and executable code. And the process of creating them, bringing together the text and code is called &amp;ldquo;weaving.&amp;rdquo; But sometimes, you want to separate the text and code. This is called &amp;ldquo;tangling.&amp;rdquo; For more see, extracting source code.&#xA;This turns out that tangling is pretty useful when you want to maintain one source of code for display and for processing, maintaining the DRY principle</description>
     </item>
   </channel>
