@@ -2,171 +2,171 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/</loc>
+    <loc>https://kes.github.io/</loc>
     <lastmod>2025-11-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/euler/</loc>
+    <loc>https://kes.github.io/tags/euler/</loc>
     <lastmod>2025-11-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/project-euler-num-308/</loc>
+    <loc>https://kes.github.io/posts/project-euler-num-308/</loc>
     <lastmod>2025-11-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/lisp/</loc>
+    <loc>https://kes.github.io/tags/lisp/</loc>
     <lastmod>2025-11-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/</loc>
+    <loc>https://kes.github.io/posts/</loc>
     <lastmod>2025-11-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>https://kes.github.io/tags/</loc>
     <lastmod>2025-11-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/learning-never-stops/</loc>
+    <loc>https://kes.github.io/posts/learning-never-stops/</loc>
     <lastmod>2025-11-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/programming/</loc>
+    <loc>https://kes.github.io/tags/programming/</loc>
     <lastmod>2025-11-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/common-lisp-lambda-macros/</loc>
+    <loc>https://kes.github.io/posts/common-lisp-lambda-macros/</loc>
     <lastmod>2025-11-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/java/</loc>
+    <loc>https://kes.github.io/tags/java/</loc>
     <lastmod>2025-11-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/about/</loc>
+    <loc>https://kes.github.io/tags/about/</loc>
     <lastmod>2025-11-08T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/about/about/</loc>
+    <loc>https://kes.github.io/about/about/</loc>
     <lastmod>2025-11-08T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/about/</loc>
+    <loc>https://kes.github.io/about/</loc>
     <lastmod>2025-11-08T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/c/</loc>
+    <loc>https://kes.github.io/tags/c/</loc>
     <lastmod>2025-11-08T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/programming-with-chatgpt/</loc>
+    <loc>https://kes.github.io/posts/programming-with-chatgpt/</loc>
     <lastmod>2025-11-08T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/chatgpt/</loc>
+    <loc>https://kes.github.io/tags/chatgpt/</loc>
     <lastmod>2025-11-08T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/lambda/</loc>
+    <loc>https://kes.github.io/tags/lambda/</loc>
     <lastmod>2025-11-08T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/whatisalambda/</loc>
+    <loc>https://kes.github.io/posts/whatisalambda/</loc>
     <lastmod>2025-11-08T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/my-great-test/</loc>
+    <loc>https://kes.github.io/posts/my-great-test/</loc>
     <lastmod>2025-11-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/cpp/</loc>
+    <loc>https://kes.github.io/tags/cpp/</loc>
     <lastmod>2024-11-29T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/leetcode/</loc>
+    <loc>https://kes.github.io/tags/leetcode/</loc>
     <lastmod>2024-11-29T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/leetcode/leetcode-algorithms-15/</loc>
+    <loc>https://kes.github.io/leetcode/leetcode-algorithms-15/</loc>
     <lastmod>2024-11-29T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/leetcode/</loc>
+    <loc>https://kes.github.io/leetcode/</loc>
     <lastmod>2024-11-29T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/leetcode/leetcode-algorithms-14/</loc>
+    <loc>https://kes.github.io/leetcode/leetcode-algorithms-14/</loc>
     <lastmod>2024-11-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/leetcode/leetcode-algorithms-11/</loc>
+    <loc>https://kes.github.io/leetcode/leetcode-algorithms-11/</loc>
     <lastmod>2024-11-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/leetcode/leetcode-algorithms-13/</loc>
+    <loc>https://kes.github.io/leetcode/leetcode-algorithms-13/</loc>
     <lastmod>2024-11-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/leetcode/leetcode-algorithms-10/</loc>
+    <loc>https://kes.github.io/leetcode/leetcode-algorithms-10/</loc>
     <lastmod>2024-11-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/leetcode/leetcode-algorithms-7/</loc>
+    <loc>https://kes.github.io/leetcode/leetcode-algorithms-7/</loc>
     <lastmod>2024-11-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/leetcode/leetcode-algorithms-8/</loc>
+    <loc>https://kes.github.io/leetcode/leetcode-algorithms-8/</loc>
     <lastmod>2024-11-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/leetcode/leetcode-algorithms-9/</loc>
+    <loc>https://kes.github.io/leetcode/leetcode-algorithms-9/</loc>
     <lastmod>2024-11-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/leetcode/leetcode-algorithms-2/</loc>
+    <loc>https://kes.github.io/leetcode/leetcode-algorithms-2/</loc>
     <lastmod>2024-11-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/leetcode/leetcode-algorithms-3/</loc>
+    <loc>https://kes.github.io/leetcode/leetcode-algorithms-3/</loc>
     <lastmod>2024-11-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/leetcode/leetcode-algorithms-4/</loc>
+    <loc>https://kes.github.io/leetcode/leetcode-algorithms-4/</loc>
     <lastmod>2024-11-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/leetcode/leetcode-algorithms-5/</loc>
+    <loc>https://kes.github.io/leetcode/leetcode-algorithms-5/</loc>
     <lastmod>2024-11-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/leetcode/leetcode-algorithms-6/</loc>
+    <loc>https://kes.github.io/leetcode/leetcode-algorithms-6/</loc>
     <lastmod>2024-11-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/leetcode/leetcode-algorithms-1/</loc>
+    <loc>https://kes.github.io/leetcode/leetcode-algorithms-1/</loc>
     <lastmod>2024-11-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/amateur-extra-class/</loc>
+    <loc>https://kes.github.io/posts/amateur-extra-class/</loc>
     <lastmod>2024-11-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/ham/</loc>
+    <loc>https://kes.github.io/tags/ham/</loc>
     <lastmod>2024-11-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/emacs/</loc>
+    <loc>https://kes.github.io/tags/emacs/</loc>
     <lastmod>2024-11-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/emacs-modules/</loc>
+    <loc>https://kes.github.io/posts/emacs-modules/</loc>
     <lastmod>2024-11-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/java-counting-non-duplicate-items/</loc>
+    <loc>https://kes.github.io/posts/java-counting-non-duplicate-items/</loc>
     <lastmod>2024-09-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/compiler/</loc>
+    <loc>https://kes.github.io/tags/compiler/</loc>
     <lastmod>2024-09-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/setting-up-g&#43;&#43;/</loc>
+    <loc>https://kes.github.io/posts/setting-up-g&#43;&#43;/</loc>
     <lastmod>2024-09-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/compiler-project/</loc>
+    <loc>https://kes.github.io/posts/compiler-project/</loc>
     <lastmod>2024-09-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/cmake-tutorial/</loc>
+    <loc>https://kes.github.io/posts/cmake-tutorial/</loc>
     <lastmod>2024-08-31T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/make/</loc>
+    <loc>https://kes.github.io/tags/make/</loc>
     <lastmod>2024-08-31T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/understanding-loop/</loc>
+    <loc>https://kes.github.io/posts/understanding-loop/</loc>
     <lastmod>2024-08-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/project-euler-num-6/</loc>
+    <loc>https://kes.github.io/posts/project-euler-num-6/</loc>
     <lastmod>2024-08-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/project-euler-num-7/</loc>
+    <loc>https://kes.github.io/posts/project-euler-num-7/</loc>
     <lastmod>2024-08-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/project-euler-num-5/</loc>
+    <loc>https://kes.github.io/posts/project-euler-num-5/</loc>
     <lastmod>2024-08-20T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/this-is-now/</loc>
+    <loc>https://kes.github.io/posts/this-is-now/</loc>
     <lastmod>2024-08-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/babel/</loc>
+    <loc>https://kes.github.io/tags/babel/</loc>
     <lastmod>2024-08-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/computational-documents/</loc>
+    <loc>https://kes.github.io/posts/computational-documents/</loc>
     <lastmod>2024-08-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/literate/</loc>
+    <loc>https://kes.github.io/tags/literate/</loc>
     <lastmod>2024-08-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/org/</loc>
+    <loc>https://kes.github.io/tags/org/</loc>
     <lastmod>2024-08-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>https://kes.github.io/categories/</loc>
   </url>
 </urlset>

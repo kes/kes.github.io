@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Org on </title>
-    <link>http://localhost:1313/tags/org/</link>
+    <link>https://kes.github.io/tags/org/</link>
     <description>Recent content in Org on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Sun, 04 Aug 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/org/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://kes.github.io/tags/org/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Computational Documents</title>
-      <link>http://localhost:1313/posts/computational-documents/</link>
+      <link>https://kes.github.io/posts/computational-documents/</link>
       <pubDate>Sun, 04 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/computational-documents/</guid>
+      <guid>https://kes.github.io/posts/computational-documents/</guid>
       <description>Not all the documents that I create are computational — but when they are I use Emacs, Org Mode, and Babel&#xA;Computational documents are a mixture of text and executable code. And the process of creating them, bringing together the text and code is called &amp;ldquo;weaving.&amp;rdquo; But sometimes, you want to separate the text and code. This is called &amp;ldquo;tangling.&amp;rdquo; For more see, extracting source code.&#xA;This turns out that tangling is pretty useful when you want to maintain one source of code for display and for processing, maintaining the DRY principle</description>
     </item>
   </channel>
