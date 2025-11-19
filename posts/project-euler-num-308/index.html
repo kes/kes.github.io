@@ -277,11 +277,11 @@ border: 0;
 }
 /* Body cells */
 .my-table-1 td{
-padding:5px;
+padding:3px;
 border: 1px black solid;
 }
 </style>
-<style>.my-table-1 table { text-align: center;  width: 60%;  margin: 0 auto;  }</style>
+<style>.my-table-1 table { text-align: center;  width: 30%;  margin: 0 auto;  }</style>
 <div class="ox-hugo-table my-table-1">
 <table>
 <thead>
@@ -388,47 +388,27 @@ border: 1px black solid;
 <p>Also, not an integer.</p>
 <p>Let&rsquo;s back up and put this process in tabular form:</p>
 <style>
-.my-table-2 {
+
+.my-table-2 table {
+  /* background-color: #132d16;*/   /* chalkboard */
   border-collapse: collapse;
   margin: 0 auto;
-  font-size: 0.95rem;        /* slightly smaller, feels more “set” */
-}
-
-/* Header row */
-.my-table-2 thead th {
-  background-color: #163515; /* light grey, like LaTeX booktabs header */
-  color: #dfe61b;
-  font-weight: normal;
-  text-align: center;
-  padding: 6px 10px;
+  font-size: 0.95rem;
   border: 0;
-  /* border-bottom: 1px solid #cccccc; */
+  width: 90%;
+
+
 }
 
-/* Body cells */
-.my-table-2 tbody td {
+.my-table-2 td,
+.my-table-2 th {
+  color: #f7f7e5;              /* chalk */
   padding: 6px 10px;
   text-align: center;
   border: 0;
-  /* border-bottom: 1px solid #e0e0e0; */
-}
-
-/* Subtle row striping */
-.my-table-2 tbody tr:nth-child(even) {
-  background-color: #3b3f4a;
-}
-
-/* Optional: first column slightly left-aligned to feel “texty” */
-.my-table-2 tbody td:first-child {
-/*text-align: left; */
-}
-/* Optional: narrower arrow column */
-.my-table-2 tbody td:nth-child(2),
-.my-table-2 thead th:nth-child(2) {
-  /*width: 2.5rem; */
 }
 </style>
-<style>.my-table-2 table { text-align: center;  width: 60%;  margin: 0 auto;  }</style>
+<style>.my-table-2 table { width: 50%;  }</style>
 <div class="ox-hugo-table my-table-2">
 <table>
 <thead>
@@ -1460,7 +1440,7 @@ S29 -&gt; S11[label=&#34;(1) +7&#34;;color=blue];
 </span></span><span style="display:flex;"><span>	  (fr <span style="color:#ae81ff">13</span>) (fr <span style="color:#ae81ff">17</span>) (fr <span style="color:#ae81ff">19</span>) (fr <span style="color:#ae81ff">23</span>) (fr <span style="color:#ae81ff">29</span>) (calc-amount))))
 </span></span><span style="display:flex;"><span>(init-fr)
 </span></span><span style="display:flex;"><span>(iterate <span style="color:#ae81ff">20</span>)
-</span></span></code></pre></div><p>#+begin_export html</p>
+</span></span></code></pre></div><p>So, now, running the above, we get:</p>
 <style>
 .my-table-5 tr:nth-child(even){
 background-color: #3b3f4a;
@@ -1789,459 +1769,10 @@ border: 1px black solid;
 <td>0</td>
 <td>30</td>
 </tr>
-<tr>
-<td>21</td>
-<td>1</td>
-<td>0</td>
-<td>2</td>
-<td>2</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>225</td>
-</tr>
-<tr>
-<td>22</td>
-<td>11</td>
-<td>0</td>
-<td>2</td>
-<td>3</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>12375</td>
-</tr>
-<tr>
-<td>23</td>
-<td>29</td>
-<td>0</td>
-<td>1</td>
-<td>3</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-<td>10875</td>
-</tr>
-<tr>
-<td>24</td>
-<td>11</td>
-<td>0</td>
-<td>1</td>
-<td>3</td>
-<td>1</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>28875</td>
-</tr>
-<tr>
-<td>25</td>
-<td>29</td>
-<td>0</td>
-<td>0</td>
-<td>3</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-<td>25375</td>
-</tr>
-<tr>
-<td>26</td>
-<td>11</td>
-<td>0</td>
-<td>0</td>
-<td>3</td>
-<td>2</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>67375</td>
-</tr>
-<tr>
-<td>27</td>
-<td>13</td>
-<td>0</td>
-<td>0</td>
-<td>3</td>
-<td>2</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>79625</td>
-</tr>
-<tr>
-<td>28</td>
-<td>17</td>
-<td>0</td>
-<td>0</td>
-<td>3</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>14875</td>
-</tr>
-<tr>
-<td>29</td>
-<td>13</td>
-<td>1</td>
-<td>1</td>
-<td>2</td>
-<td>1</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>13650</td>
-</tr>
-<tr>
-<td>30</td>
-<td>17</td>
-<td>1</td>
-<td>1</td>
-<td>2</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>2550</td>
-</tr>
-<tr>
-<td>31</td>
-<td>13</td>
-<td>2</td>
-<td>2</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>2340</td>
-</tr>
-<tr>
-<td>32</td>
-<td>11</td>
-<td>2</td>
-<td>2</td>
-<td>1</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>1980</td>
-</tr>
-<tr>
-<td>33</td>
-<td>29</td>
-<td>2</td>
-<td>1</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-<td>1740</td>
-</tr>
-<tr>
-<td>34</td>
-<td>11</td>
-<td>2</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>4620</td>
-</tr>
-<tr>
-<td>35</td>
-<td>29</td>
-<td>2</td>
-<td>0</td>
-<td>1</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-<td>4060</td>
-</tr>
-<tr>
-<td>36</td>
-<td>11</td>
-<td>2</td>
-<td>0</td>
-<td>1</td>
-<td>2</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>10780</td>
-</tr>
-<tr>
-<td>37</td>
-<td>13</td>
-<td>2</td>
-<td>0</td>
-<td>1</td>
-<td>2</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>12740</td>
-</tr>
-<tr>
-<td>38</td>
-<td>17</td>
-<td>2</td>
-<td>0</td>
-<td>1</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>2380</td>
-</tr>
-<tr>
-<td>39</td>
-<td>13</td>
-<td>3</td>
-<td>1</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>2184</td>
-</tr>
-<tr>
-<td>40</td>
-<td>17</td>
-<td>3</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>408</td>
-</tr>
-<tr>
-<td>41</td>
-<td>19</td>
-<td>3</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>152</td>
-</tr>
-<tr>
-<td>42</td>
-<td>23</td>
-<td>2</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-<td>92</td>
-</tr>
-<tr>
-<td>43</td>
-<td>19</td>
-<td>2</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>380</td>
-</tr>
-<tr>
-<td>44</td>
-<td>23</td>
-<td>1</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-<td>230</td>
-</tr>
-<tr>
-<td>45</td>
-<td>19</td>
-<td>1</td>
-<td>0</td>
-<td>2</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>950</td>
-</tr>
-<tr>
-<td>46</td>
-<td>23</td>
-<td>0</td>
-<td>0</td>
-<td>2</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-<td>575</td>
-</tr>
-<tr>
-<td>47</td>
-<td>19</td>
-<td>0</td>
-<td>0</td>
-<td>3</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>2375</td>
-</tr>
-<tr>
-<td>48</td>
-<td>11</td>
-<td>0</td>
-<td>0</td>
-<td>3</td>
-<td>1</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>9625</td>
-</tr>
-<tr>
-<td>49</td>
-<td>13</td>
-<td>0</td>
-<td>0</td>
-<td>3</td>
-<td>1</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>11375</td>
-</tr>
-<tr>
-<td>50</td>
-<td>17</td>
-<td>0</td>
-<td>0</td>
-<td>3</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>2125</td>
-</tr>
 </tbody>
 </table>
 </div>
+<p>Looks good, but adding in headers now.</p>
 <p><a id="code-snippet--FORMAT-TABLE-for-iterate"></a></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elisp" data-lang="elisp"><span style="display:flex;"><span>(let (value)
 </span></span><span style="display:flex;"><span>  (dolist (p table value)
@@ -2256,27 +1787,48 @@ border: 1px black solid;
 </span></span><span style="display:flex;"><span>  (setf value (<span style="color:#a6e22e">reverse</span> value))
 </span></span><span style="display:flex;"><span>  (setf value (<span style="color:#a6e22e">cons</span> <span style="color:#e6db74">&#39;hline</span> value))
 </span></span><span style="display:flex;"><span>  (setf value (<span style="color:#a6e22e">cons</span> <span style="color:#f92672">&#39;</span>(Iteration State <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">5</span> <span style="color:#ae81ff">7</span> <span style="color:#ae81ff">11</span> <span style="color:#ae81ff">13</span> <span style="color:#ae81ff">17</span> <span style="color:#ae81ff">19</span> <span style="color:#ae81ff">23</span> <span style="color:#ae81ff">29</span> Amount) value)))
-</span></span></code></pre></div><p>#+begin_export html</p>
-<style>
-.my-table-6 tr:nth-child(even){
-background-color: #3b3f4a;
+</span></span></code></pre></div><style>
+/* Base table styling */
+.my-table-6 {
+  border-collapse: collapse;
 }
-/*
-.my-table-6 thead tr th:nth-child(12) {
-  background-color:red;
+
+/* Header cells */
+.my-table-6 thead th {
+  font-weight: normal;
+  text-align: center;
+  background-color: #575551;   /* overall header background */
+  color: #f0f0f0;
+  padding: 6px 8px;
+  border-bottom: 1px white solid;
+  border-top: 2px white solid;
+  border-right: 2px white solid;
+  border-left: 2px white solid;
 }
-*/
-.my-table-6 th{
-font-weight:normal;
-text-align: center;
-background-color: #3b3f4a;
-padding:5px;
-border: 0;
-}
+
 /* Body cells */
-.my-table-6 td{
-padding:5px;
-border: 1px black solid;
+.my-table-6 td {
+  padding: 4px 8px;
+  text-align: center;
+  border: 1px black solid;
+}
+
+/* Row striping (body only) */
+.my-table-6 tbody tr:nth-child(even) {
+  background-color: #2f2f2f;
+}
+
+/* Highlight factor columns 11–29: columns 6–11 (header + body) */
+.my-table-6 thead th:nth-child(n+6):nth-child(-n+11),
+.my-table-6 tbody td:nth-child(n+6):nth-child(-n+11) {
+  background-color: #42403c;  /* slightly different tone */
+}
+
+/* Optional: make the "Value" column pop a bit */
+.my-table-6 thead th:nth-child(12),
+.my-table-6 tbody td:nth-child(12) {
+  background-color: #3b3f4a;
+  font-weight: bold;
 }
 </style>
 <style>.my-table-6 table { text-align: center;  width: 90%;  margin: 0 auto;  }</style>
@@ -2600,460 +2152,11 @@ border: 1px black solid;
 <td>&ndash;</td>
 <td>30</td>
 </tr>
-<tr>
-<td>21</td>
-<td>1</td>
-<td>0</td>
-<td>2</td>
-<td>2</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>225</td>
-</tr>
-<tr>
-<td>22</td>
-<td>11</td>
-<td>0</td>
-<td>2</td>
-<td>3</td>
-<td>&ndash;</td>
-<td>1</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>12375</td>
-</tr>
-<tr>
-<td>23</td>
-<td>29</td>
-<td>0</td>
-<td>1</td>
-<td>3</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>1</td>
-<td>10875</td>
-</tr>
-<tr>
-<td>24</td>
-<td>11</td>
-<td>0</td>
-<td>1</td>
-<td>3</td>
-<td>1</td>
-<td>1</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>28875</td>
-</tr>
-<tr>
-<td>25</td>
-<td>29</td>
-<td>0</td>
-<td>0</td>
-<td>3</td>
-<td>1</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>1</td>
-<td>25375</td>
-</tr>
-<tr>
-<td>26</td>
-<td>11</td>
-<td>0</td>
-<td>0</td>
-<td>3</td>
-<td>2</td>
-<td>1</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>67375</td>
-</tr>
-<tr>
-<td>27</td>
-<td>13</td>
-<td>0</td>
-<td>0</td>
-<td>3</td>
-<td>2</td>
-<td>&ndash;</td>
-<td>1</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>79625</td>
-</tr>
-<tr>
-<td>28</td>
-<td>17</td>
-<td>0</td>
-<td>0</td>
-<td>3</td>
-<td>1</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>1</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>14875</td>
-</tr>
-<tr>
-<td>29</td>
-<td>13</td>
-<td>1</td>
-<td>1</td>
-<td>2</td>
-<td>1</td>
-<td>&ndash;</td>
-<td>1</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>13650</td>
-</tr>
-<tr>
-<td>30</td>
-<td>17</td>
-<td>1</td>
-<td>1</td>
-<td>2</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>1</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>2550</td>
-</tr>
-<tr>
-<td>31</td>
-<td>13</td>
-<td>2</td>
-<td>2</td>
-<td>1</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>1</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>2340</td>
-</tr>
-<tr>
-<td>32</td>
-<td>11</td>
-<td>2</td>
-<td>2</td>
-<td>1</td>
-<td>&ndash;</td>
-<td>1</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>1980</td>
-</tr>
-<tr>
-<td>33</td>
-<td>29</td>
-<td>2</td>
-<td>1</td>
-<td>1</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>1</td>
-<td>1740</td>
-</tr>
-<tr>
-<td>34</td>
-<td>11</td>
-<td>2</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>4620</td>
-</tr>
-<tr>
-<td>35</td>
-<td>29</td>
-<td>2</td>
-<td>0</td>
-<td>1</td>
-<td>1</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>1</td>
-<td>4060</td>
-</tr>
-<tr>
-<td>36</td>
-<td>11</td>
-<td>2</td>
-<td>0</td>
-<td>1</td>
-<td>2</td>
-<td>1</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>10780</td>
-</tr>
-<tr>
-<td>37</td>
-<td>13</td>
-<td>2</td>
-<td>0</td>
-<td>1</td>
-<td>2</td>
-<td>&ndash;</td>
-<td>1</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>12740</td>
-</tr>
-<tr>
-<td>38</td>
-<td>17</td>
-<td>2</td>
-<td>0</td>
-<td>1</td>
-<td>1</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>1</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>2380</td>
-</tr>
-<tr>
-<td>39</td>
-<td>13</td>
-<td>3</td>
-<td>1</td>
-<td>0</td>
-<td>1</td>
-<td>&ndash;</td>
-<td>1</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>2184</td>
-</tr>
-<tr>
-<td>40</td>
-<td>17</td>
-<td>3</td>
-<td>1</td>
-<td>0</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>1</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>408</td>
-</tr>
-<tr>
-<td>41</td>
-<td>19</td>
-<td>3</td>
-<td>0</td>
-<td>0</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>1</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>152</td>
-</tr>
-<tr>
-<td>42</td>
-<td>23</td>
-<td>2</td>
-<td>0</td>
-<td>0</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>1</td>
-<td>&ndash;</td>
-<td>92</td>
-</tr>
-<tr>
-<td>43</td>
-<td>19</td>
-<td>2</td>
-<td>0</td>
-<td>1</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>1</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>380</td>
-</tr>
-<tr>
-<td>44</td>
-<td>23</td>
-<td>1</td>
-<td>0</td>
-<td>1</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>1</td>
-<td>&ndash;</td>
-<td>230</td>
-</tr>
-<tr>
-<td>45</td>
-<td>19</td>
-<td>1</td>
-<td>0</td>
-<td>2</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>1</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>950</td>
-</tr>
-<tr>
-<td>46</td>
-<td>23</td>
-<td>0</td>
-<td>0</td>
-<td>2</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>1</td>
-<td>&ndash;</td>
-<td>575</td>
-</tr>
-<tr>
-<td>47</td>
-<td>19</td>
-<td>0</td>
-<td>0</td>
-<td>3</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>1</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>2375</td>
-</tr>
-<tr>
-<td>48</td>
-<td>11</td>
-<td>0</td>
-<td>0</td>
-<td>3</td>
-<td>1</td>
-<td>1</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>9625</td>
-</tr>
-<tr>
-<td>49</td>
-<td>13</td>
-<td>0</td>
-<td>0</td>
-<td>3</td>
-<td>1</td>
-<td>&ndash;</td>
-<td>1</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>11375</td>
-</tr>
-<tr>
-<td>50</td>
-<td>17</td>
-<td>0</td>
-<td>0</td>
-<td>3</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>1</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>&ndash;</td>
-<td>2125</td>
-</tr>
 </tbody>
 </table>
 </div>
-<p>So, the FSM works, but it&rsquo;s too slow.</p>
+<p>And this is exactly what we got before.</p>
+<p>So, the FSM works. But it&rsquo;s too slow.</p>
 <p>Building this first version was necessary in order to understand the problem.</p>
 <p>But now, we need speed.</p>
 <h2 id="fractran-for-real">FRACTRAN For Real<a href="#fractran-for-real" class="hanchor" ariaLabel="Anchor">#</a> </h2>
@@ -3257,9 +2360,9 @@ border: 1px black solid;
 </span></span><span style="display:flex;"><span>1539669807660924
 </span></span><span style="display:flex;"><span>1539669807660924
 </span></span><span style="display:flex;"><span>CL-USER&gt;
-</span></span></code></pre></div><p>Interesting results. <code>0 bytes consed</code> makes me smile a bit &ndash; clearly not doing much with lists!</p>
-<p>But most importantly, we get the correct answer. It takes \( 1,539,669,807,660,924 \) iterations to get the \( 2^{10001^{st}\text{ prime }} \).</p>
-<p>\( 90 \) seconds is not too bad, in my view. More speed can be had by setting optimizations:</p>
+</span></span></code></pre></div><p>Interesting results. <code>0 bytes consed</code> makes me smile a bit.</p>
+<p>But most importantly, we get the correct answer in a reasonable amount of time.  It takes \( 1,539,669,807,660,924 \) iterations to get the \( 2^{10001^{st}\text{ prime }} \).</p>
+<p>\( 90 \) seconds is not too bad. More speed can be had by setting optimizations. Let&rsquo;s do that.</p>
 <p><code>(declare (optimize (speed 3) (safety 0)))</code></p>
 <p>Let&rsquo;s see how we do now.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>
