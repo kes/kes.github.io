@@ -218,53 +218,42 @@ languages, and even more specifically, what is a lambda in Java.</p>
 <p>So, what&rsquo;s a lambda?</p>
 <h2 id="lambda-in-lisp">Lambda in Lisp<a href="#lambda-in-lisp" class="hanchor" ariaLabel="Anchor">#</a> </h2>
 <p>In demonstrating lambda in Lisp, I&rsquo;m going to assume that the examples are sufficiently clear that even someone with no experience with Lisp, yet knowledgeable in some other programming language, will have not much trouble following. As such, I will leave a lot of Lisp details unsaid.</p>
-<figure class="center"><img src="/ox-hugo/learning-never-stops.png"/>
-</figure>
-
-<p>In the REPL (Read, Eval, Print Loop; think of it as Lisp&rsquo;s interactive window, and, if severely interested, you might try <a href="https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop">REPL</a> on Wiki), let&rsquo;s define a lambda &hellip;</p>
+<p>Below is a screenshot of a Lisp REPL. A REPL is a read, eval, print loop &ndash; you can think of it as a Lisp interactive window. For details see the <a href="https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop">wiki entry</a>.</p>
+<p>So, it works like this. In the REPL, we begin to define our lambda:</p>
 <figure class="center"><img src="/ox-hugo/definingLambda.png"/>
 </figure>
 
-<p>Press <code>return</code>, and the REPL evaluates the expression, prints the &ldquo;printed representation&rdquo; of the lambda.</p>
+<p>And now when we press <code>return</code>, and the expression is read, evaluated, and the result is returned.</p>
 <figure class="center"><img src="/ox-hugo/lambdaDefined.png"/>
 </figure>
 
-<p>What is a lambda? It says it&rsquo;s a function.</p>
-<p>Is there more detail available?</p>
-<p>In fact, there is.</p>
-<p>Right-clicking on the presentation gives a context menu.</p>
-<p>Selecting inspect&hellip;</p>
+<p>So, what is a lambda?</p>
+<p>You can see that it says it&rsquo;s a <code>#&lt;Function ...&gt;</code>. This is called a printed representation. A representation of what? A representation of a function. A function object was returned, and the printed representation signals that fact.</p>
+<p>Now, we can inspect the object. Right-clicking on the presentation gives a context menu.</p>
 <figure class="center"><img src="/ox-hugo/inspectLambda.png"/>
 </figure>
 
-<p>&hellip; gives us some details.</p>
+<p>Now, selecting &ldquo;inspect&rdquo; gives us some details. Specifically, name, arglist, type, and code.</p>
 <figure class="center"><img src="/ox-hugo/inspectLambda2.png"/>
 </figure>
 
-<p>The CODE line looks interesting. Click it.</p>
+<p>Now, clicking the code line, we get \( \ldots \)</p>
 <figure class="center"><img src="/ox-hugo/disassembly.png"/>
 </figure>
 
-<p>Assembler?</p>
-<p>Yup, assembler.</p>
-<p>So, the lambda expression was typed into the REPL, and being evaluated, a function was created, and of course, a function at some point must be code on the machine, and yes, that assembler is the actual code.</p>
-<p>But if it&rsquo;s code, then let&rsquo;s execute it.</p>
-<p>Back in the REPL, invoke the lambda!</p>
-<p>Call it, run it. What are you waiting for?</p>
-<p>But how to call it?</p>
-<p>Ah, good point. Well, it can&rsquo;t be done, because it doesn&rsquo;t have a name. It&rsquo;s anonymous. Nope, you can&rsquo;t
-call it.</p>
-<p>Okay, so &hellip; ?</p>
-<p>Well, actually, I lied a bit. Here, fortunately, the REPL can help us.</p>
-<p>In the environment of the REPL, behind the scenes, a temporary name has, in fact, been given to the lambda. But please note that this is entirely a convenience feature supplied by the REPL.</p>
-<p>What is this temporary name? It&rsquo;s the symbol <code>=*=</code>. So, the lambda does have a name, temporarily. It&rsquo;s <code>=*=</code></p>
-<p>So, let&rsquo;s use it, and invoke the lambda. How?</p>
-<p>We can use <code>funcall</code>.</p>
-<p><code>funcall</code> is a function that takes a  function as it first parameter, and optionally takes additional arguments.</p>
+<p>An assembler listing, which may be surprising.</p>
+<p>So, the lambda expression &mdash; essentially a &ldquo;hello world&rdquo; program &mdash; was typed into the REPL, and then enter was pressed. This caused the code to be evaluated, and a function was created, and returned, and we can inspect it, even down to the assembler.</p>
+<p>But if it&rsquo;s code, if we have a &ldquo;function object&rdquo; returned to us, then we should be able to execute it. So, back in the REPL, we want to invoke, or call, the lambda.</p>
+<p>But how? We don&rsquo;t have a name for the function. It&rsquo;s anonymous. The function exists but we can&rsquo;t tell Lisp to evaluate it, because you don&rsquo;t have a name for it.</p>
+<p>This raises the question, then, what good is a lambda if it doesn&rsquo;t have a name?</p>
+<p>We will see how to deal with that problem in a bit. And, well, it&rsquo;s not exactly true that we can&rsquo;t invoke this function. The fact is that the REPL, behind the scenes, has given a temporary name to the lambda function, which is the symbol <code>*</code>. Note, this is only temporary.</p>
+<p>Now, how to use it?</p>
+<p>We can use <code>funcall</code>. <code>funcall</code> is a function that takes a function as it first parameter, and optionally takes additional arguments. Like this:</p>
 <figure class="center"><img src="/ox-hugo/useAsterisk.png"/>
 </figure>
 
-<p>The result of <code>funcall</code> invoking the lambda is returned, it&rsquo;s the string returned by the lambda, &ldquo;hello world&rdquo; &mdash; and note that now <code>*</code> refers to the string &ldquo;hello world&rdquo; &ndash; so, we can&rsquo;t use <code>*</code> to invoke the lambda (and with nothing referring to the lambda, the garbage collector will dispose of it).</p>
+<p>What just happened there?</p>
+<p>We passed the lambda, named <code>*</code> to the function <code>funcall</code>, which invoked the lambda. The lambda returned the string, and funcall returned the string, and we see it displayed in the REPL. (And note, now, <code>*</code> is no longer the name of the lambda).</p>
 <p>So, let&rsquo;s take a pause and ask the question: what&rsquo;s a lambda?</p>
 <ul>
 <li>In some languages, an expression that begins with &ldquo;(lambda &hellip;)&rdquo;</li>
@@ -275,45 +264,69 @@ call it.</p>
 <li>And it&rsquo;s a function created &ldquo;on the fly,&rdquo; at run time, and that will be garbage collected when it&rsquo;s done being used.</li>
 </ul>
 <p>That&rsquo;s a good start. Let&rsquo;s see how we might use a lambda.</p>
+<h2 id="using-lambda-in-lisp">Using Lambda in Lisp<a href="#using-lambda-in-lisp" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>Let&rsquo;s define a lambda, like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span>(lambda (x)
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">+</span> <span style="color:#ae81ff">1</span> x))
+</span></span></code></pre></div><p>What have we said? Create a function (a lambda) that takes one argument, &lsquo;x&rsquo; and adds one to it.</p>
+<p>Excellent, now in the REPL let&rsquo;s put this lambda directly in <code>funcall</code>, and also, let&rsquo;s make it so that <code>funcall</code> passes this value 100 to the lambda, like this:</p>
 <figure class="center"><img src="/ox-hugo/funcallLambda.png"/>
 </figure>
 
-<p>Wait &ndash; what?</p>
-<p>We just created a lambda &ndash; &ldquo;on the fly&rdquo; &ndash; it&rsquo;s anonymous, doesn&rsquo;t have a name, but since we&rsquo;re passing it to <code>funcall</code> it doesn&rsquo;t need a name. And when the evaluation of the lambda is complete it will be disposed of.</p>
+<p>And you see that we get the value 101 returned in the REPL.</p>
+<p>So, what just happened there?</p>
+<p>We just created a lambda &ndash; &ldquo;on the fly&rdquo; &ndash; it&rsquo;s anonymous, doesn&rsquo;t have a name, but since we&rsquo;re creating it in the <code>funcall</code> it doesn&rsquo;t need a name. <code>funcall</code> calls the anonymous function passing it the value 100, and the function does what we designed it to do, adds 1, and returns the result, which is displayed.</p>
 <p>Pretty neat.</p>
-<p>Note also that <code>funcall</code> is passed not only a lambda but also the value 100. When <code>funcall</code> calls the lambda it will pass it that value. The lambda is defined such that it takes a parameter.  The lambda code is executed and returns the value 101.</p>
 <p>Of course, we could just invoke the <code>plus</code> function using the symbol
-<code>+</code>.</p>
-<p>Or we could pass <code>+</code> to <code>funcall</code>, too.</p>
-<p>(Don&rsquo;t be confused by the <code>#'</code> prepended to the <code>+</code> symbol. This is simply the Lisp way of indicating that the function value of <code>+</code> is wanted.)</p>
+<code>+</code>. Or we could pass <code>+</code> to <code>funcall</code>, too.</p>
+<p>Like this:</p>
 <figure class="center"><img src="/ox-hugo/funcallPlus.png"/>
 </figure>
 
-<p>Interesting. And it gets you thinking: might some of this be useful?</p>
-<p>More specifically:</p>
+<p>(Don&rsquo;t be confused by the <code>#'</code> prepended to the <code>+</code> symbol. This is simply the Lisp way of indicating that the function value of <code>+</code> is wanted.)</p>
+<p>Sp. this is interesting. And it gets you thinking: might some of this, the lambda, and the passing functions around to other functions, might some of it be useful?</p>
+<p>More specifically is it useful to:</p>
 <ol>
-<li>Is defining a function without a name useful?</li>
-<li>Is passing around a function useful?</li>
+<li>Define a function without a name?</li>
+<li>To pass functions to other functions?</li>
 </ol>
-<p>The answer turns out to be emphatically yes.</p>
-<p>The myriad of applications and details is far beyond the scope of this brief discussion.</p>
+<p>The answer turns out to be emphatically yes. The myriad of applications and details is far beyond the scope of this brief discussion.</p>
 <p>However, in Lisp there are lots of functions that take a function as an argument, not just <code>funcall</code>.</p>
-<p>For example, <code>mapcar</code> is one such function. Rather than tell you what <code>mapcar</code> does, let&rsquo;s just see how it works.</p>
+<p>For example, <code>mapcar</code> is one such function.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span>(<span style="color:#a6e22e">mapcar</span> <span style="color:#a6e22e">#&#39;+</span> <span style="color:#f92672">&#39;</span>(<span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span>) <span style="color:#f92672">&#39;</span>(<span style="color:#ae81ff">3</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">3</span>) <span style="color:#f92672">&#39;</span>(<span style="color:#ae81ff">2</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">2</span>))
+</span></span></code></pre></div><p>The result is:</p>
+<p>(6 7 8)</p>
+<p><code>mapcar</code> has called the function <code>#'+</code> (&lsquo;plus&rsquo;) passing each list, and collected the results.</p>
+<p>But we can use other arithmetic functions too, which in the REPL looks like this:</p>
 <figure class="center"><img src="/ox-hugo/mapcar.png"/>
 </figure>
 
-<p>How would you describe it?</p>
-<p>It looks like <code>mapcar</code> passes the first element of each list to the given function, collecting the results from each iteration.</p>
 <p>Could a lambda be used? Let&rsquo;s try.</p>
-<p>Here&rsquo;s a lambda that computes averages. It takes the first number from the three lists, then adds them together and divides by three.</p>
+<p>Let&rsquo;s create a lambda that computers the average of three arguments, and pass that to <code>mapcar</code>, like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span>(<span style="color:#a6e22e">mapcar</span> (lambda (x y z)
+</span></span><span style="display:flex;"><span>          (<span style="color:#a6e22e">/</span> (<span style="color:#a6e22e">+</span> x y z) <span style="color:#ae81ff">3</span>)) <span style="color:#f92672">&#39;</span>(<span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span>) <span style="color:#f92672">&#39;</span>(<span style="color:#ae81ff">3</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">3</span>) <span style="color:#f92672">&#39;</span>(<span style="color:#ae81ff">2</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">2</span>))
+</span></span></code></pre></div><p>And the result is:</p>
+<p>(2 7/3 8/3)</p>
+<p>In the REPL it looks like this:</p>
 <figure class="center"><img src="/ox-hugo/average.png"/>
 </figure>
 
 <p>Here&rsquo;s one that rearranges the numbers in some way. Do you see how?</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span>(<span style="color:#a6e22e">mapcar</span> (lambda (x y z)
+</span></span><span style="display:flex;"><span>          (<span style="color:#a6e22e">list</span> x y z)) <span style="color:#f92672">&#39;</span>(<span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span>) <span style="color:#f92672">&#39;</span>(<span style="color:#ae81ff">3</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">3</span>) <span style="color:#f92672">&#39;</span>(<span style="color:#ae81ff">2</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">2</span>))
+</span></span></code></pre></div><p>Results:</p>
+<p>((1 3 2) (2 3 2) (3 3 2))</p>
+<p>Or in the REPL:</p>
 <figure class="center"><img src="/ox-hugo/rearrange.png"/>
 </figure>
 
-<p>Here&rsquo;s one that keeps a running total for each iteration.</p>
+<p>Here&rsquo;s one that&rsquo;s more complicated, keeping a running total:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span>(<span style="color:#66d9ef">let</span> ((running-total <span style="color:#ae81ff">0</span>))
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">mapcar</span> (lambda (x y z)
+</span></span><span style="display:flex;"><span>            (<span style="color:#66d9ef">setq</span> running-total (<span style="color:#a6e22e">+</span> x y z running-total)))
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#39;</span>(<span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span>) <span style="color:#f92672">&#39;</span>(<span style="color:#ae81ff">3</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">3</span>) <span style="color:#f92672">&#39;</span>(<span style="color:#ae81ff">2</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">2</span>)))
+</span></span></code></pre></div><p>(6 13 21)</p>
+<p>In the REPL</p>
 <figure class="center"><img src="/ox-hugo/runningTotal.png"/>
 </figure>
 
@@ -324,10 +337,12 @@ call it.</p>
 <p>&ldquo;Sometimes it&rsquo;s called a closure, other times a saved lexical environment. Or, as some of us like to say, let over lambda. Whatever terminology you use, mastering this concept of a closure is the first step to becoming a professional lisp programmer. In fact, this skill is vital for the proper use of many modern programming languages, even ones that don&rsquo;t explicitly contain let or lambda, such as Perl or Javascript.&rdquo;
 &ndash; <a href="https://letoverlambda.com/index.cl/guest/chap2.html">Doug Hoyte</a></p>
 </blockquote>
-<p>Among the modern programming languages that Hoyte didn&rsquo;t mention at
-the time of his writing, but could now, is Java.</p>
 <p>Let&rsquo;s a define a function.</p>
-<figure class="center"><img src="/ox-hugo/closure1.png"/>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span>(defun makeClosure ()
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">let</span> ((counter <span style="color:#ae81ff">0</span>))
+</span></span><span style="display:flex;"><span>    (lambda ()
+</span></span><span style="display:flex;"><span>      (<span style="color:#66d9ef">setq</span> counter (<span style="color:#a6e22e">1+</span> counter)))))
+</span></span></code></pre></div><figure class="center"><img src="/ox-hugo/closure1.png"/>
 </figure>
 
 <p>What does this function do?</p>
@@ -360,8 +375,6 @@ that creates and returns unnamed functions which are <code>closures</code>. Let&
 <figure class="center"><img src="/ox-hugo/closure1.1.png"/>
 </figure>
 
-<p>Notice that the &ldquo;printed representation&rdquo; of the lambda now includes
-the word <code>closure</code>.</p>
 <p>Now, let&rsquo;s use <code>funcall</code> on the <code>closure</code> from <code>makeClosure</code>.</p>
 <figure class="center"><img src="/ox-hugo/closure1.2.png"/>
 </figure>
@@ -395,6 +408,7 @@ the word <code>closure</code>.</p>
 </figure>
 
 <p>That&rsquo;s enough Lisp for now.</p>
+<p>We have seen lambda in Lisp. A lambda is an anonymous function. There&rsquo;s also a special type of lambda called a closure, which has enclosed over local variables.</p>
 <p>Now, how does this work out in Java?</p>
 <h2 id="baseball-players">Baseball Players<a href="#baseball-players" class="hanchor" ariaLabel="Anchor">#</a> </h2>
 <blockquote>
@@ -403,6 +417,30 @@ three times out of ten and be considered a good performer. - Ted
 Williams</p>
 </blockquote>
 <p>Suppose you have data in a file somewhere for baseball players. Like this sample:</p>
+<style>
+.baseball tr:nth-child(even){
+background-color: #3b3f4a;
+}
+/*
+.baseball thead tr th:nth-child(12) {
+  background-color:red;
+}
+*/
+.baseball th{
+font-weight:normal;
+text-align: center;
+background-color: #3b3f4a;
+padding:5px;
+border: 0;
+}
+/* Body cells */
+.baseball td{
+padding:5px;
+border: 1px black solid;
+}
+</style>
+<style>.baseball table { text-align: center;  width: 80%;  margin: 0 auto;  }</style>
+<div class="ox-hugo-table baseball">
 <table>
 <thead>
 <tr>
@@ -695,9 +733,8 @@ Williams</p>
 </tr>
 </tbody>
 </table>
-<p>And you want to put this into some sort of structure and search
-it. So, you come up with a baseball player class for this data
-something like this:</p>
+</div>
+<p>And you want to put this into some sort of structure and search it. So, you come up with a baseball player class for this data something like this:</p>
 <figure class="center"><img src="/ox-hugo/baseballPlayer.png"/>
 </figure>
 
