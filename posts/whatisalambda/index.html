@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
   
-    <title>What&#39;s a Lambda? :: </title>
+    <title>What&#39;s a Lambda? A Brief Walk from Lisp → Closures → Java :: </title>
   
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="NOTE: this document was originally written for seasoned software engineers who were transitioning into Java and beginning to use lambdas. Whether it helps in understanding the concept of lambda, or how lambdas appear in Java, is, I think, very much in the eye of the beholder. I place it here with only slight modification.
-This document is a brief investigation into the question:
-What is a lambda?
-And, in our context, more specifically, what is lambda in computer languages, and even more specifically, what is a lambda in Java." />
+<meta name="description" content="Note: This began as an explainer for seasoned engineers learning Java 8. It’s not exhaustive, but it is designed to make lambdas intuitive—and maybe even fun.
+TLDR; A lambda is an anonymous function—a piece of executable code you can create inline, pass around, and call later.
+Lisp created them decades ago. Java added them in 2014 (Java 8), built on top of functional interfaces.
+Let’s see how they work in Lisp first, then translate that understanding into Java." />
 <meta name="keywords" content="" />
 
   <meta name="robots" content="noodp" />
@@ -75,11 +75,11 @@ And, in our context, more specifically, what is lambda in computer languages, an
 
 <meta property="og:locale" content="en" />
 <meta property="og:type" content="article" />
-<meta property="og:title" content="What&#39;s a Lambda?">
-<meta property="og:description" content="NOTE: this document was originally written for seasoned software engineers who were transitioning into Java and beginning to use lambdas. Whether it helps in understanding the concept of lambda, or how lambdas appear in Java, is, I think, very much in the eye of the beholder. I place it here with only slight modification.
-This document is a brief investigation into the question:
-What is a lambda?
-And, in our context, more specifically, what is lambda in computer languages, and even more specifically, what is a lambda in Java." />
+<meta property="og:title" content="What&#39;s a Lambda? A Brief Walk from Lisp → Closures → Java">
+<meta property="og:description" content="Note: This began as an explainer for seasoned engineers learning Java 8. It’s not exhaustive, but it is designed to make lambdas intuitive—and maybe even fun.
+TLDR; A lambda is an anonymous function—a piece of executable code you can create inline, pass around, and call later.
+Lisp created them decades ago. Java added them in 2014 (Java 8), built on top of functional interfaces.
+Let’s see how they work in Lisp first, then translate that understanding into Java." />
 <meta property="og:url" content="https://kes.github.io/posts/whatisalambda/" />
 <meta property="og:site_name" content="" />
 
@@ -179,7 +179,7 @@ And, in our context, more specifically, what is lambda in computer languages, an
     
 <article class="post">
   <h1 class="post-title">
-    <a href="https://kes.github.io/posts/whatisalambda/">What&rsquo;s a Lambda?</a>
+    <a href="https://kes.github.io/posts/whatisalambda/">What&rsquo;s a Lambda? A Brief Walk from Lisp → Closures → Java</a>
   </h1>
   <div class="post-meta"><time class="post-date">2025-11-08</time><span class="post-author">[Karl Stump]</span></div>
 
@@ -200,149 +200,82 @@ And, in our context, more specifically, what is lambda in computer languages, an
   
 
   <div class="post-content"><div>
-        <p>NOTE: this document was originally written for seasoned software engineers who were transitioning into Java and beginning to use lambdas. Whether it helps in understanding the concept of lambda, or how lambdas appear in Java, is, I think, very much in the eye of the beholder. I place it here with only slight modification.</p>
-<p>This document is a brief investigation into the question:</p>
-<blockquote>
-<p>What is a lambda?</p>
-</blockquote>
-<p>And, in our context, more specifically, what is lambda in computer
-languages, and even more specifically, what is a lambda in Java.</p>
-<p>Java added lambda expressions in 2014 (see <a href="https://en.wikipedia.org/wiki/Java_version_history#Java_SE_8">Java SE 8</a>).</p>
-<p><strong>Caveat</strong>: Nothing in this document is meant to be exhaustive. It&rsquo;s not the final word on anything. And there most likely are errors in it &ndash; in fact, most definitely.  And there are certainly better ways that things could have been said, or demonstrated. But it is hoped that in some way some part of it can prove beneficial in thinking about lambda, and also along the way be fun.</p>
-<p>Lambda has been around for a long time in other programming languages, like <a href="https://en.wikipedia.org/wiki/Lisp_(programming_language)#Lambda_expressions_and_function_definition">Lisp</a>.</p>
-<p>So, here&rsquo;s the plan:</p>
-<ol>
-<li>Let&rsquo;s investigate lambda as it occurs in Common Lisp.</li>
-<li>Then with that as a foundation, we will move the investigation into Java.</li>
-</ol>
-<p>So, what&rsquo;s a lambda?</p>
+        <p>Note: This began as an explainer for seasoned engineers learning Java 8. It’s not exhaustive, but it is designed to make lambdas intuitive—and maybe even fun.</p>
+<h2 id="tldr">TLDR;<a href="#tldr" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>A lambda is an anonymous function—a piece of executable code you can create inline, pass around, and call later.</p>
+<p>Lisp created them decades ago. Java added them in 2014 (Java 8), built on top of functional interfaces.</p>
+<p>Let’s see how they work in Lisp first, then translate that understanding into Java.</p>
 <h2 id="lambda-in-lisp">Lambda in Lisp<a href="#lambda-in-lisp" class="hanchor" ariaLabel="Anchor">#</a> </h2>
-<p>In demonstrating lambda in Lisp, I&rsquo;m going to assume that the examples are sufficiently clear that even someone with no experience with Lisp, yet knowledgeable in some other programming language, will have not much trouble following. As such, I will leave a lot of Lisp details unsaid.</p>
-<p>Below is a screenshot of a Lisp REPL. A REPL is a read, eval, print loop &ndash; you can think of it as a Lisp interactive window. For details see the <a href="https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop">wiki entry</a>.</p>
-<p>So, it works like this. In the REPL, we begin to define our lambda:</p>
-<figure class="center"><img src="/ox-hugo/definingLambda.png"/>
+<p>We start with a simple lambda typed into a Lisp REPL:</p>
+<figure class="center"><img src="/ox-hugo/lambdaDefined.png" width="650px"/>
 </figure>
 
-<p>And now when we press <code>return</code>, and the expression is read, evaluated, and the result is returned.</p>
-<figure class="center"><img src="/ox-hugo/lambdaDefined.png"/>
+<p>Lisp returns a function object—displayed with a printed representation like:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#&lt;FUNCTION (LAMBDA ()) {…}&gt;</span>
+</span></span></code></pre></div><p>That printed form isn’t the function itself—it’s a representation of a runtime object created by evaluating the lambda expression.</p>
+<p>We can inspect it:</p>
+<figure class="center"><img src="/ox-hugo/inspectLambda.png" width="650px"/>
 </figure>
 
-<p>So, what is a lambda?</p>
-<p>You can see that it says it&rsquo;s a <code>#&lt;Function ...&gt;</code>. This is called a printed representation. A representation of what? A representation of a function. A function object was returned, and the printed representation signals that fact.</p>
-<p>Now, we can inspect the object. Right-clicking on the presentation gives a context menu.</p>
-<figure class="center"><img src="/ox-hugo/inspectLambda.png"/>
+<p>Now, selecting &ldquo;inspect&rdquo;</p>
+<figure class="center"><img src="/ox-hugo/inspectLambda2.png" width="650px"/>
 </figure>
 
-<p>Now, selecting &ldquo;inspect&rdquo; gives us some details. Specifically, name, arglist, type, and code.</p>
-<figure class="center"><img src="/ox-hugo/inspectLambda2.png"/>
+<p>And now, even disassemble it (clicking CODE line):</p>
+<figure class="center"><img src="/ox-hugo/disassembly.png" width="650px"/>
 </figure>
 
-<p>Now, clicking the code line, we get \( \ldots \)</p>
-<figure class="center"><img src="/ox-hugo/disassembly.png"/>
-</figure>
-
-<p>An assembler listing, which may be surprising.</p>
-<p>So, the lambda expression &mdash; essentially a &ldquo;hello world&rdquo; program &mdash; was typed into the REPL, and then enter was pressed. This caused the code to be evaluated, and a function was created, and returned, and we can inspect it, even down to the assembler.</p>
-<p>But if it&rsquo;s code, if we have a &ldquo;function object&rdquo; returned to us, then we should be able to execute it. So, back in the REPL, we want to invoke, or call, the lambda.</p>
-<p>But how? We don&rsquo;t have a name for the function. It&rsquo;s anonymous. The function exists but we can&rsquo;t tell Lisp to evaluate it, because you don&rsquo;t have a name for it.</p>
-<p>This raises the question, then, what good is a lambda if it doesn&rsquo;t have a name?</p>
-<p>We will see how to deal with that problem in a bit. And, well, it&rsquo;s not exactly true that we can&rsquo;t invoke this function. The fact is that the REPL, behind the scenes, has given a temporary name to the lambda function, which is the symbol <code>*</code>. Note, this is only temporary.</p>
-<p>Now, how to use it?</p>
-<p>We can use <code>funcall</code>. <code>funcall</code> is a function that takes a function as it first parameter, and optionally takes additional arguments. Like this:</p>
-<figure class="center"><img src="/ox-hugo/useAsterisk.png"/>
-</figure>
-
-<p>What just happened there?</p>
-<p>We passed the lambda, named <code>*</code> to the function <code>funcall</code>, which invoked the lambda. The lambda returned the string, and funcall returned the string, and we see it displayed in the REPL. (And note, now, <code>*</code> is no longer the name of the lambda).</p>
 <p>So, let&rsquo;s take a pause and ask the question: what&rsquo;s a lambda?</p>
 <ul>
-<li>In some languages, an expression that begins with &ldquo;(lambda &hellip;)&rdquo;</li>
-<li>In some environments, a printed representation, like <code>#&lt;FUNCTION (LAMBDA ()) {1002F5D59B}&gt;</code></li>
-<li>Code that, in some environments, we can inspect even down to the disassembly.</li>
-<li>Code that is &ldquo;anonymous&rdquo; &ndash; it doesn&rsquo;t have a name, or anything that points to it, leaving us unable to get to it.</li>
-<li>But also, code that could be executed if we could get to it.</li>
-<li>And it&rsquo;s a function created &ldquo;on the fly,&rdquo; at run time, and that will be garbage collected when it&rsquo;s done being used.</li>
+<li>A lambda expression evaluates to a <code>function object</code></li>
+<li>It may be <code>anonymous</code> (no global name)</li>
+<li>It can be <code>passed</code> to other functions</li>
+<li>It can be <code>called</code> (e.g., using funcall)</li>
+<li>It can <code>close over</code> local variables → <em>closures</em></li>
 </ul>
-<p>That&rsquo;s a good start. Let&rsquo;s see how we might use a lambda.</p>
+<p>Let’s invoke it. The REPL temporarily names the last result *:</p>
+<figure class="center"><img src="/ox-hugo/useAsterisk.png" width="650px"/>
+</figure>
+
+<p>A lambda is executable code—created at runtime—whether or not it has a name.</p>
 <h2 id="using-lambda-in-lisp">Using Lambda in Lisp<a href="#using-lambda-in-lisp" class="hanchor" ariaLabel="Anchor">#</a> </h2>
-<p>Let&rsquo;s define a lambda, like this:</p>
+<p>Here&rsquo;s a lambda that adds 1:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span>(lambda (x)
 </span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">+</span> <span style="color:#ae81ff">1</span> x))
-</span></span></code></pre></div><p>What have we said? Create a function (a lambda) that takes one argument, &lsquo;x&rsquo; and adds one to it.</p>
-<p>Excellent, now in the REPL let&rsquo;s put this lambda directly in <code>funcall</code>, and also, let&rsquo;s make it so that <code>funcall</code> passes this value 100 to the lambda, like this:</p>
-<figure class="center"><img src="/ox-hugo/funcallLambda.png"/>
+</span></span></code></pre></div><p>Pass it directly to funcall:</p>
+<figure class="center"><img src="/ox-hugo/funcallLambda.png" width="650px"/>
 </figure>
 
-<p>And you see that we get the value 101 returned in the REPL.</p>
-<p>So, what just happened there?</p>
-<p>We just created a lambda &ndash; &ldquo;on the fly&rdquo; &ndash; it&rsquo;s anonymous, doesn&rsquo;t have a name, but since we&rsquo;re creating it in the <code>funcall</code> it doesn&rsquo;t need a name. <code>funcall</code> calls the anonymous function passing it the value 100, and the function does what we designed it to do, adds 1, and returns the result, which is displayed.</p>
-<p>Pretty neat.</p>
-<p>Of course, we could just invoke the <code>plus</code> function using the symbol
-<code>+</code>. Or we could pass <code>+</code> to <code>funcall</code>, too.</p>
-<p>Like this:</p>
-<figure class="center"><img src="/ox-hugo/funcallPlus.png"/>
-</figure>
-
-<p>(Don&rsquo;t be confused by the <code>#'</code> prepended to the <code>+</code> symbol. This is simply the Lisp way of indicating that the function value of <code>+</code> is wanted.)</p>
-<p>Sp. this is interesting. And it gets you thinking: might some of this, the lambda, and the passing functions around to other functions, might some of it be useful?</p>
-<p>More specifically is it useful to:</p>
-<ol>
-<li>Define a function without a name?</li>
-<li>To pass functions to other functions?</li>
-</ol>
-<p>The answer turns out to be emphatically yes. The myriad of applications and details is far beyond the scope of this brief discussion.</p>
-<p>However, in Lisp there are lots of functions that take a function as an argument, not just <code>funcall</code>.</p>
-<p>For example, <code>mapcar</code> is one such function.</p>
+<p>You can also pass functions to functions—e.g., mapcar:</p>
+<p>Let&rsquo;s use the arithmetic <code>+</code></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span>(<span style="color:#a6e22e">mapcar</span> <span style="color:#a6e22e">#&#39;+</span> <span style="color:#f92672">&#39;</span>(<span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span>) <span style="color:#f92672">&#39;</span>(<span style="color:#ae81ff">3</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">3</span>) <span style="color:#f92672">&#39;</span>(<span style="color:#ae81ff">2</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">2</span>))
 </span></span></code></pre></div><p>The result is:</p>
 <p>(6 7 8)</p>
 <p><code>mapcar</code> has called the function <code>#'+</code> (&lsquo;plus&rsquo;) passing each list, and collected the results.</p>
 <p>But we can use other arithmetic functions too, which in the REPL looks like this:</p>
-<figure class="center"><img src="/ox-hugo/mapcar.png"/>
+<figure class="center"><img src="/ox-hugo/mapcar.png" width="650px"/>
 </figure>
 
 <p>Could a lambda be used? Let&rsquo;s try.</p>
 <p>Let&rsquo;s create a lambda that computers the average of three arguments, and pass that to <code>mapcar</code>, like this:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span>(<span style="color:#a6e22e">mapcar</span> (lambda (x y z)
-</span></span><span style="display:flex;"><span>          (<span style="color:#a6e22e">/</span> (<span style="color:#a6e22e">+</span> x y z) <span style="color:#ae81ff">3</span>)) <span style="color:#f92672">&#39;</span>(<span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span>) <span style="color:#f92672">&#39;</span>(<span style="color:#ae81ff">3</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">3</span>) <span style="color:#f92672">&#39;</span>(<span style="color:#ae81ff">2</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">2</span>))
+</span></span><span style="display:flex;"><span>	  (<span style="color:#a6e22e">/</span> (<span style="color:#a6e22e">+</span> x y z) <span style="color:#ae81ff">3</span>)) <span style="color:#f92672">&#39;</span>(<span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span>) <span style="color:#f92672">&#39;</span>(<span style="color:#ae81ff">3</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">3</span>) <span style="color:#f92672">&#39;</span>(<span style="color:#ae81ff">2</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">2</span>))
 </span></span></code></pre></div><p>And the result is:</p>
 <p>(2 7/3 8/3)</p>
 <p>In the REPL it looks like this:</p>
-<figure class="center"><img src="/ox-hugo/average.png"/>
+<figure class="center"><img src="/ox-hugo/average.png" width="650px"/>
 </figure>
 
-<p>Here&rsquo;s one that rearranges the numbers in some way. Do you see how?</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span>(<span style="color:#a6e22e">mapcar</span> (lambda (x y z)
-</span></span><span style="display:flex;"><span>          (<span style="color:#a6e22e">list</span> x y z)) <span style="color:#f92672">&#39;</span>(<span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span>) <span style="color:#f92672">&#39;</span>(<span style="color:#ae81ff">3</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">3</span>) <span style="color:#f92672">&#39;</span>(<span style="color:#ae81ff">2</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">2</span>))
-</span></span></code></pre></div><p>Results:</p>
-<p>((1 3 2) (2 3 2) (3 3 2))</p>
-<p>Or in the REPL:</p>
-<figure class="center"><img src="/ox-hugo/rearrange.png"/>
-</figure>
-
-<p>Here&rsquo;s one that&rsquo;s more complicated, keeping a running total:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span>(<span style="color:#66d9ef">let</span> ((running-total <span style="color:#ae81ff">0</span>))
-</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">mapcar</span> (lambda (x y z)
-</span></span><span style="display:flex;"><span>            (<span style="color:#66d9ef">setq</span> running-total (<span style="color:#a6e22e">+</span> x y z running-total)))
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#39;</span>(<span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span>) <span style="color:#f92672">&#39;</span>(<span style="color:#ae81ff">3</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">3</span>) <span style="color:#f92672">&#39;</span>(<span style="color:#ae81ff">2</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">2</span>)))
-</span></span></code></pre></div><p>(6 13 21)</p>
-<p>In the REPL</p>
-<figure class="center"><img src="/ox-hugo/runningTotal.png"/>
-</figure>
-
-<p>Oh, wait!</p>
-<p>That lambda is a very important case: it&rsquo;s a <code>closure</code>.</p>
-<h2 id="closure">Closure<a href="#closure" class="hanchor" ariaLabel="Anchor">#</a> </h2>
-<blockquote>
-<p>&ldquo;Sometimes it&rsquo;s called a closure, other times a saved lexical environment. Or, as some of us like to say, let over lambda. Whatever terminology you use, mastering this concept of a closure is the first step to becoming a professional lisp programmer. In fact, this skill is vital for the proper use of many modern programming languages, even ones that don&rsquo;t explicitly contain let or lambda, such as Perl or Javascript.&rdquo;
-&ndash; <a href="https://letoverlambda.com/index.cl/guest/chap2.html">Doug Hoyte</a></p>
-</blockquote>
-<p>Let&rsquo;s a define a function.</p>
+<p>Lisp encourages using lambdas anywhere you can use data.</p>
+<h2 id="closure--briefly">Closure (Briefly)<a href="#closure--briefly" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>A closure is a lambda that captures variables from its defining scope.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span>(defun makeClosure ()
-</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">let</span> ((counter <span style="color:#ae81ff">0</span>))
-</span></span><span style="display:flex;"><span>    (lambda ()
-</span></span><span style="display:flex;"><span>      (<span style="color:#66d9ef">setq</span> counter (<span style="color:#a6e22e">1+</span> counter)))))
-</span></span></code></pre></div><figure class="center"><img src="/ox-hugo/closure1.png"/>
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">let</span> ((counter <span style="color:#ae81ff">0</span>))
+</span></span><span style="display:flex;"><span>  (lambda ()
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">setq</span> counter (<span style="color:#a6e22e">1+</span> counter)))))
+</span></span></code></pre></div><p><code>makeClosure</code> returns a <strong>lambda with memory</strong> &ndash; its own counter.</p>
+<p>Each call to <code>makeClosure</code> creates a new closure with its own internal state.</p>
+<figure class="center"><img src="/ox-hugo/closure1.png" width="650px"/>
 </figure>
 
 <p>What does this function do?</p>
@@ -351,72 +284,48 @@ languages, and even more specifically, what is a lambda in Java.</p>
 to 0.
 <ul>
 <li>The Lisp syntax of <code>let</code> is used to introduce local lexical
-space. How variables function in this space, in terms of scope
-and extent, is exactly what you expect.</li>
+space.</li>
 </ul>
 </li>
-<li>It then creates and returns a lambda
+<li>Then a lambda is returned.
 <ul>
-<li>Notice that in the lambda the local variable <code>counter</code> is
-used. This pattern of a <code>let</code> and <code>lambda</code> is a closure, and
-as already mentioned in the Hoyte quote above, in the Lisp
-world, is sometimes referred to as a <code>let over lambda</code>.</li>
+<li>In the lambda the local variable <code>counter</code> is
+used. This pattern of a <code>let</code> and <code>lambda</code> is a closure, and in Lisp
+this is referred to as a <code>let over lambda</code>.</li>
 <li>Why the word <code>closure</code>? Because the lambda &ldquo;has closed&rdquo; over
-(or &ldquo;enclosed&rdquo;) the local variable. The lambda &ldquo;has closed&rdquo;
-(verb), and if you want to label something that &ldquo;has closed&rdquo;
-it sounds like &ldquo;closure&rdquo; (a noun) would do it &ndash; or maybe we
-should say, &ldquo;enclosure&rdquo; &mdash; or perhaps, we should just call it
-an &ldquo;encapsulation&rdquo; because it &ldquo;encapsulates&rdquo; local variables?</li>
+(or &ldquo;enclosed&rdquo;) the local variable.</li>
 </ul>
 </li>
 </ol>
-<p>Okay, we have a function, and a named one at that &ndash; a named function
-that creates and returns unnamed functions which are <code>closures</code>. Let&rsquo;s invoke it.</p>
-<figure class="center"><img src="/ox-hugo/closure1.1.png"/>
+<p>Okay, we have a function that creates and returns functions. Let&rsquo;s invoke it.</p>
+<figure class="center"><img src="/ox-hugo/closure1.1.png" width="650px"/>
 </figure>
 
 <p>Now, let&rsquo;s use <code>funcall</code> on the <code>closure</code> from <code>makeClosure</code>.</p>
-<figure class="center"><img src="/ox-hugo/closure1.2.png"/>
+<figure class="center"><img src="/ox-hugo/closure1.2.png" width="650px"/>
 </figure>
 
 <p>Well &hellip; now what?</p>
-<figure class="center"><img src="/ox-hugo/closure1.3.png"/>
+<figure class="center"><img src="/ox-hugo/closure1.3.png" width="650px"/>
 </figure>
 
 <p>This doesn&rsquo;t seem to be getting anywhere.</p>
 <p>Wait!</p>
 <p>Assign the <code>closure</code> to a variable!</p>
-<figure class="center"><img src="/ox-hugo/closure2.png"/>
+<figure class="center"><img src="/ox-hugo/closure2.png" width="650px"/>
 </figure>
 
 <p>Now use <code>funcall</code> on it.</p>
-<figure class="center"><img src="/ox-hugo/closure3.png"/>
+<figure class="center"><img src="/ox-hugo/closure3.png" width="650px"/>
 </figure>
 
-<p>Cool! Even though <code>counter</code> is a local variable in makeClosure, it seems to be hanging around. And that&rsquo;s because the lambda has closed around it.</p>
-<p>Is there any way to access <code>counter</code>?</p>
-<p>No.</p>
-<p><code>Counter</code> is encapsulated in the lambda. You have no name, no reference, no nothing. And other than invoking the lambda and causing it to be modified, there is no way to access it. Now, we could have defined an interface, we could have defined various getters and setters and ways to invoke them &mdash; but &hellip; we didn&rsquo;t.</p>
-<p>What about getting another instance of a closure from <code>makeClosure</code>? Can we? And then call it? What will happen?</p>
-<figure class="center"><img src="/ox-hugo/closure4.png"/>
-</figure>
-
-<p>Clearly, <code>myClosure2</code> and <code>myClosure1</code> are different instantiations of the lambda, and each lambda has its own counter.</p>
-<p>Let&rsquo;s do one more and show how we might initialize an enclosed variable and update.</p>
-<p>Assume that we have a sensor that has upper and lower limits of 100 and 0, and we will want to send it a delta value so the sensor can update its state. Like this:</p>
-<figure class="center"><img src="/ox-hugo/closure5.png"/>
-</figure>
-
-<p>That&rsquo;s enough Lisp for now.</p>
-<p>We have seen lambda in Lisp. A lambda is an anonymous function. There&rsquo;s also a special type of lambda called a closure, which has enclosed over local variables.</p>
-<p>Now, how does this work out in Java?</p>
-<h2 id="baseball-players">Baseball Players<a href="#baseball-players" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>Cool! The lambda really does have a counter.</p>
+<p>Closures matter because they let you create tiny bundles of behavior + data&ndash;this becomes extremely important when we pivot into Java.</p>
+<h2 id="from-lisp-java">From Lisp → Java<a href="#from-lisp-java" class="hanchor" ariaLabel="Anchor">#</a> </h2>
 <blockquote>
-<p>Baseball is the only field of endeavor where a man can succeed
-three times out of ten and be considered a good performer. - Ted
-Williams</p>
+<p>Baseball is the only field of endeavor where a man can succeed three times out of ten and be considered a good performer. - <em>Ted Williams</em></p>
 </blockquote>
-<p>Suppose you have data in a file somewhere for baseball players. Like this sample:</p>
+<p>Imagine you’re working with baseball player data:</p>
 <style>
 .baseball tr:nth-child(even){
 background-color: #3b3f4a;
@@ -577,318 +486,136 @@ border: 1px black solid;
 <td>1833</td>
 <td>283</td>
 </tr>
-<tr>
-<td>OmarVizquel</td>
-<td>SS</td>
-<td>2968</td>
-<td>10586</td>
-<td>1445</td>
-<td>2877</td>
-<td>80</td>
-<td>951</td>
-<td>272</td>
-</tr>
-<tr>
-<td>RustyStaub</td>
-<td>OF</td>
-<td>2951</td>
-<td>9720</td>
-<td>1189</td>
-<td>2716</td>
-<td>292</td>
-<td>1466</td>
-<td>279</td>
-</tr>
-<tr>
-<td>AdrianBeltre</td>
-<td>3B</td>
-<td>2933</td>
-<td>11068</td>
-<td>1524</td>
-<td>3166</td>
-<td>477</td>
-<td>1707</td>
-<td>286</td>
-</tr>
-<tr>
-<td>BrooksRobinson</td>
-<td>3B</td>
-<td>2896</td>
-<td>10654</td>
-<td>1232</td>
-<td>2848</td>
-<td>268</td>
-<td>1357</td>
-<td>267</td>
-</tr>
-<tr>
-<td>AlbertPujols</td>
-<td>1B</td>
-<td>2872</td>
-<td>10874</td>
-<td>1846</td>
-<td>3244</td>
-<td>663</td>
-<td>2104</td>
-<td>298</td>
-</tr>
-<tr>
-<td>RobinYount</td>
-<td>SS</td>
-<td>2856</td>
-<td>11008</td>
-<td>1632</td>
-<td>3142</td>
-<td>251</td>
-<td>1406</td>
-<td>285</td>
-</tr>
-<tr>
-<td>CraigBiggio</td>
-<td>2B</td>
-<td>2850</td>
-<td>10876</td>
-<td>1844</td>
-<td>3060</td>
-<td>291</td>
-<td>1175</td>
-<td>281</td>
-</tr>
-<tr>
-<td>AlKaline</td>
-<td>RF</td>
-<td>2834</td>
-<td>10116</td>
-<td>1622</td>
-<td>3007</td>
-<td>399</td>
-<td>1583</td>
-<td>297</td>
-</tr>
-<tr>
-<td>RafaelPalmeiro</td>
-<td>1B</td>
-<td>2831</td>
-<td>10472</td>
-<td>1663</td>
-<td>3020</td>
-<td>569</td>
-<td>1835</td>
-<td>288</td>
-</tr>
-<tr>
-<td>HaroldBaines</td>
-<td>DH</td>
-<td>2830</td>
-<td>9908</td>
-<td>1299</td>
-<td>2866</td>
-<td>384</td>
-<td>1628</td>
-<td>289</td>
-</tr>
-<tr>
-<td>EddieCollins</td>
-<td>2B</td>
-<td>2826</td>
-<td>9949</td>
-<td>1821</td>
-<td>3314</td>
-<td>47</td>
-<td>1300</td>
-<td>333</td>
-</tr>
-<tr>
-<td>ReggieJackson</td>
-<td>RF</td>
-<td>2820</td>
-<td>9864</td>
-<td>1551</td>
-<td>2584</td>
-<td>563</td>
-<td>1702</td>
-<td>262</td>
-</tr>
-<tr>
-<td>FrankRobinson</td>
-<td>RF</td>
-<td>2808</td>
-<td>10006</td>
-<td>1829</td>
-<td>2943</td>
-<td>586</td>
-<td>1812</td>
-<td>294</td>
-</tr>
-<tr>
-<td>HonusWagner</td>
-<td>SS</td>
-<td>2792</td>
-<td>10430</td>
-<td>1736</td>
-<td>3430</td>
-<td>101</td>
-<td>1732</td>
-<td>329</td>
-</tr>
 </tbody>
 </table>
 </div>
-<p>And you want to put this into some sort of structure and search it. So, you come up with a baseball player class for this data something like this:</p>
-<figure class="center"><img src="/ox-hugo/baseballPlayer.png"/>
+<p>You create a Player class, and a PlayersDB that holds a list and a method to search it:</p>
+<figure class="center"><img src="/ox-hugo/baseballPlayer.png" width="650px"/>
 </figure>
 
-<p>And you create another class to aggregate players into a list of some kind, and you provide a method that will do one of the many searches that you know you&rsquo;ll want to do. Like this:</p>
-<figure class="center"><img src="/ox-hugo/classPlayersDB.png"/>
+<p>And you create another class to aggregate players into a list and a method to search:</p>
+<figure class="center"><img src="/ox-hugo/classPlayersDB.png" width="650px"/>
 </figure>
 
-<p>So it&rsquo;s a start.</p>
-<p>But as you look at it you think about all the searches that you  want to do, and you realize that you&rsquo;re going to need a lot of &ldquo;getPlayers&rdquo; sort of  methods.</p>
-<p>And you realize that the only difference between all these methods is going to be one line, one statement of code, in fact, one expression:</p>
-<figure class="center"><img src="/ox-hugo/classPlayersDBAnnotated.png"/>
+<p>But quickly you realize:</p>
+<blockquote>
+<p>“I need many different kinds of searches… and each one differs only by one little test expression.”</p>
+</blockquote>
+<p>So you start thinking:</p>
+<p>How do I pass in that test?</p>
+<figure class="center"><img src="/ox-hugo/classPlayersDBAnnotated.png" width="650px"/>
 </figure>
 
-<h2 id="abstract-classes">Abstract Classes<a href="#abstract-classes" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<h2 id="attempt-1-abstract-classes">Attempt 1: Abstract Classes<a href="#attempt-1-abstract-classes" class="hanchor" ariaLabel="Anchor">#</a> </h2>
 <p>And so, how can we pass in that expression?</p>
-<p>So, what if we add a new method to the <code>PlayersDB</code> class,
-<code>getPlayersWithTest</code>, and experiment with what the signature could
-look like? Like this:</p>
-<figure class="center"><img src="/ox-hugo/classPlayersDB-firstmod.png"/>
+<p>Let&rsquo;s create a <code>Tester</code> that provides a <code>boolean testPlayer (Player p)</code> method. And <code>getPlayersWithTest</code> would look like this:</p>
+<figure class="center"><img src="/ox-hugo/classPlayersDB-secondmod.png" width="650px"/>
 </figure>
 
-<p>And the conditional would then become something like this:</p>
-<figure class="center"><img src="/ox-hugo/classPlayersDB-secondmod.png"/>
-</figure>
-
-<p>So, the idea is to instantiate a <code>Tester</code> class with the test method (<code>testPlayer</code>) to run &ndash; but really we&rsquo;ll need a subclass of <code>Tester</code> for each test, and then we can override the test method &ndash; this sounds like an abstract class.</p>
-<p>Like this:</p>
-<figure class="center"><img src="/ox-hugo/classPlayersDB-thirdmod.png"/>
+<p>There will be lots of different tests, so <code>Tester</code> should be an abstract class.</p>
+<figure class="center"><img src="/ox-hugo/classPlayersDB-thirdmod.png" width="650px"/>
 </figure>
 
 <p>For now, looks good!</p>
-<p>And notice that just by adding this abstract class, all the &ldquo;red underlines&rdquo; in the editor go away &ndash; this has got to be the right approach!</p>
-<p>What now?</p>
-<p>Well, you cannot instantiate an abstract class. But you can extend it. Like this.</p>
-<figure class="center"><img src="/ox-hugo/moreAtBatsClass.png"/>
+<p>You cannot instantiate an abstract class. But you can make a class and extend it with the abstract class. Like this.</p>
+<figure class="center"><img src="/ox-hugo/moreAtBatsClass.png" width="650px"/>
 </figure>
 
-<p>So, how does it work? You add a test for it &hellip;</p>
-<figure class="center"><img src="/ox-hugo/testerTest-zero.png"/>
+<p>Now, we instantiate <code>MoreAtBats</code> (which is a <code>Tester</code>) and use it in <code>getPlayersWithTest</code>:</p>
+<figure class="center"><img src="/ox-hugo/testerTest-zero.png" width="650px"/>
 </figure>
 
-<p>&hellip; and it works.</p>
-<p>Cool!</p>
-<p>But &hellip;</p>
-<p>&hellip; there are going to be a lot of extensions of Tester.</p>
-<p>Yeah, and so at this point, it feels like a rock-and-a-hard-spot
-situation &ndash; either multiply the number of extensions of Tester, or
-multiply the number of methods to <code>PlayersDB</code>.</p>
-<p>If only there was some way &hellip;</p>
-<h3 id="anonymous-classes">Anonymous Classes<a href="#anonymous-classes" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<p>This works.</p>
+<p>But (sadly) it scales poorly. We need new class for every test.</p>
+<h2 id="attempt-2-anonymous-classes">Attempt 2: Anonymous Classes<a href="#attempt-2-anonymous-classes" class="hanchor" ariaLabel="Anchor">#</a> </h2>
 <p>Another technique does exist &ndash; anonymous classes.</p>
-<p>So, adding another test, but this time we&rsquo;ll do this:</p>
-<figure class="center"><img src="/ox-hugo/testerTest-first.png"/>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  Tester t <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Tester() {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">testPlayer</span>(Player p) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> p.<span style="color:#a6e22e">getAtBats</span>() <span style="color:#f92672">&gt;</span> 10000;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>Now, we aren&rsquo;t instantiating the <em>abstract class</em> here. Rather an anonymous class is created that <em>extends Tester</em>.</p>
+<p>It&rsquo;s a nice technique. Powerful. But it&rsquo;s verbose.</p>
+<h2 id="lambda-in-java">Lambda In Java<a href="#lambda-in-java" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>We should realize that our abstract <code>Tester</code> class exists for one reason &ndash; to ensure that all extensions supply a <code>boolean testPlayer(Player p)</code> method. One method.</p>
+<p>So, we can simplify.</p>
+<p>Java has a rule:</p>
+<blockquote>
+<p>If an interface has exactly one abstract method, it is a functional interface.</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@FunctionalInterface</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Lambda</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">testPlayer</span>(Player p);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Note: I have picked the name <code>Lambda</code> for the interface only to make a point. Admittedly, a better name would be <code>PlayerTest</code></p>
+<p>Now, modify <code>PlayersDB</code>:</p>
+<figure class="center"><img src="/ox-hugo/lambda-2.png" width="650px"/>
 </figure>
 
-<p>So, on the left hand side we&rsquo;ve specified the type <code>Tester</code>. That&rsquo;s perfectly legal in the &ldquo;type system&rdquo; because <code>MoreAtBats</code> is an <code>is_a</code> in relation to <code>Tester</code>.</p>
-<p>But let&rsquo;s not select <code>MoreAtBats</code> &mdash; instead select the <code>Tester</code> abstract class itself.</p>
-<p>Wait. What?? You <strong>cannot</strong> instantiate an abstract class.</p>
-<p>Absolutely correct. You cannot. And we&rsquo;re not.</p>
-<p>Selecting <code>Tester</code> &hellip;</p>
-<figure class="center"><img src="/ox-hugo/testAnonymous-create.png"/>
+<p>Now, in test, we can &ldquo;new up&rdquo; our Lambda interface and IntellJ offers:</p>
+<figure class="center"><img src="/ox-hugo/lambda-4.png" width="650px"/>
 </figure>
 
-<p>&hellip; IntelliJ fills in what looks suspiciously like a class definition that extends <code>Tester</code>. And in fact, that&rsquo;s exactly what we&rsquo;re doing.</p>
-<p>Do not think that we are instantiating <code>Tester</code> &ndash; we are not &mdash; this is an anonymous class that extends Tester.</p>
-<p>What is the name of this class?</p>
-<p>It doesn&rsquo;t have a name. It&rsquo;s anonymous.</p>
-<p>So, let&rsquo;s fill it in  &hellip;</p>
-<figure class="center"><img src="/ox-hugo/testAnonymous-create-2.png"/>
-</figure>
-
-<p>&hellip; and we run the test, and it works.</p>
-<p>And then, it should be apparent that we can do this in the call to <code>getPlayersWithTest</code>. Like this:</p>
-<figure class="center"><img src="/ox-hugo/testAnonymous-create-3.png"/>
-</figure>
-
-<p>And you can also use local variables &hellip; a local variable over an anonymous class &hellip;</p>
-<figure class="center"><img src="/ox-hugo/testAnonymous-create-4.png"/>
-</figure>
-
-<p>Pretty cool &ndash; anonymous classes &ndash; yes, they are.</p>
-<p>It can&rsquo;t possibly get any better, can it?</p>
-<h2 id="lambda">Lambda<a href="#lambda" class="hanchor" ariaLabel="Anchor">#</a> </h2>
-<p>We should realize that our abstract <code>Tester</code> class exists for one reason &ndash; to ensure that all extensions supply a <code>boolean testPlayer(Player p)</code> method. That&rsquo;s it!</p>
-<p>So, let&rsquo;s define an interface that does just that (and we&rsquo;ll name it <code>Lambda</code> but the name doesn&rsquo;t matter).</p>
-<figure class="center"><img src="/ox-hugo/lambda-1.png"/>
-</figure>
-
-<p>And let&rsquo;s modify our <code>PlayersDB</code> and add the following method:</p>
-<figure class="center"><img src="/ox-hugo/lambda-2.png"/>
-</figure>
-
-<p>Now, in test, we can &ldquo;new up&rdquo; our Lambda interface just like we did with the abstract class and get an anonymous class.</p>
-<figure class="center"><img src="/ox-hugo/lambda-3.png"/>
-</figure>
-
-<p>Wait. So we&rsquo;re just going to create an anonymous class??</p>
-<p>No &ndash; that was just for demo.</p>
-<p>We have more expressive possibilities available to us.</p>
-<p>Like this:</p>
-<figure class="center"><img src="/ox-hugo/lambda-4.png"/>
-</figure>
-
-<p>Wait. What??</p>
+<p>Interesting.</p>
 <p>Pressing enter &hellip;</p>
-<figure class="center"><img src="/ox-hugo/lambda-5.png"/>
+<figure class="center"><img src="/ox-hugo/lambda-5.png" width="650px"/>
 </figure>
 
-<p>Stop! What is IntelliJ doing? What does <code>p -&gt;</code> mean??</p>
-<p>Java gives you the ability to enter a lambda expression, and IntelliJ is just prompting you to do what you obviously must (or at least can) do.</p>
-<p>Obvious?</p>
-<p>Think about what the interface <code>Lambda</code> requires.</p>
-<p>The interface <code>Lambda</code> requires that any implementation of it must (<strong>must</strong>) have one method that accepts a <code>Player</code> parameter and returns a <code>boolean</code>.</p>
-<p>And, that&rsquo;s <strong>all</strong> the interface requires.</p>
-<p>In these cases, Java allows you simply to give the expression that would obviously be inside the obvious method you would obviously create if required to do so. So, you are not required to create the obvious class, the obvious method, not required to do the obvious instantiating of it, etc.  You are only required to give what is not obvious, that is, the <code>boolean</code> expression that goes inside the method.</p>
-<p>So, <code>p</code> (which could be any legal variable name) is of type <code>Player</code> (and can only be a type Player). So, let&rsquo;s use <code>p</code>  in an expression that results in a <code>boolean</code>.</p>
-<p>Like this:</p>
-<figure class="center"><img src="/ox-hugo/lambda-6.png"/>
+<p>Stop! What does <code>p -&gt;</code> mean??</p>
+<p>Java knows:</p>
+<ul>
+<li>p must be a Player</li>
+<li>The body must return a boolean</li>
+<li>And there must be a class that implements the interface (which will be anonymous in this case)</li>
+</ul>
+<p>So</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>p <span style="color:#f92672">-&gt;</span> p.<span style="color:#a6e22e">getAtBats</span>() <span style="color:#f92672">&gt;</span> 10000
+</span></span></code></pre></div><p>is a lambda expression—a compact representation of:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">new</span> Lambda () {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">test</span>(Player p) { <span style="color:#66d9ef">return</span> p.<span style="color:#a6e22e">getAtBats</span>() <span style="color:#f92672">&gt;</span> 10000; }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>You can capture variables too:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> limit <span style="color:#f92672">=</span> 10000;
+</span></span><span style="display:flex;"><span>p <span style="color:#f92672">-&gt;</span> p.<span style="color:#a6e22e">getAtBats</span>() <span style="color:#f92672">&gt;</span> limit
+</span></span></code></pre></div><p>And that&rsquo;s a closure.</p>
+<figure class="center"><img src="/ox-hugo/lambda-8.png" width="650px"/>
 </figure>
 
-<p>Here, we are saving the lambda in the variable <code>l</code> and then using that in the call to <code>getPlayersWithLambda</code>. Not that unusual, but of course, we can put the lambda expression in the call to <code>getPlayersWithLambda</code>.</p>
-<figure class="center"><img src="/ox-hugo/lambda-7.png"/>
-</figure>
-
-<p>And there&rsquo;s nothing to stop us from using a local variable over the lambda &hellip;</p>
-<figure class="center"><img src="/ox-hugo/lambda-8.png"/>
-</figure>
-
-<p>A local variable over a lambda &hellip; in Java &hellip;  Cool, huh?</p>
-<p>So &hellip;  what&rsquo;s a lambda?</p>
-<h2 id="conclusion">Conclusion<a href="#conclusion" class="hanchor" ariaLabel="Anchor">#</a> </h2>
-<p>This document doesn&rsquo;t really have a conclusion.</p>
-<p>I hope the lambda examples in Lisp, and then working through lambda in Java, has led to a better understanding and appreciation of this remarkable conception. And that the journey was fun, too.</p>
-<p>Other than that &hellip;</p>
-<p>So common is the passing of a &ldquo;tester,&rdquo; as in the examples above, that there&rsquo;s already an interface defined for the purpose: <code>Predicate</code>. You&rsquo;ll want to use that rather than define your own.</p>
-<p>Lisp is cool, and can be helpful, as well as fun. If interested you&rsquo;ll find many Lisp resources for yourself, but, if you want to get a REPL up and running ASAP, you might start with either of the first two below. A third possibility is also given.</p>
-<h3 id="portacle">Portacle<a href="#portacle" class="hanchor" ariaLabel="Anchor">#</a> </h3>
-<p><a href="https://portacle.github.io/">Portacle</a> (Common Lisp)</p>
-<h3 id="racket">Racket<a href="#racket" class="hanchor" ariaLabel="Anchor">#</a> </h3>
-<p><a href="https://racket-lang.org/">Racket</a> (Scheme)</p>
-<p>The historic MIT 6.001 by Sussman and Abelson in Scheme is <a href="https://www.youtube.com/watch?v=-J_xL4IGhJA">here</a>.</p>
-<p>If you use <a href="https://www.gnu.org/software/emacs/">emacs</a>, M-x ielm, will bring up a REPL for emacs-lisp. Quite handy.</p>
-<h3 id="java">Java<a href="#java" class="hanchor" ariaLabel="Anchor">#</a> </h3>
-<p>Java has a REPL!  You can access it in IntelliJ! See their page on the <a href="https://www.jetbrains.com/help/idea/jshell-console.html">JConsole</a>.</p>
-<h3 id="oracle">Oracle<a href="#oracle" class="hanchor" ariaLabel="Anchor">#</a> </h3>
-<p>Oracle has a few things to say about these topics:</p>
-<ol>
+<h2 id="so-dot-dot-dot-what-s-a-lambda">So &hellip;  what&rsquo;s a lambda?<a href="#so-dot-dot-dot-what-s-a-lambda" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>Lambdas aren’t magic—they’re mechanics.</p>
+<p><code>Lisp</code> shows the idea (perhaps the &ldquo;raw idea&rdquo;): an anonymous function created at runtime, tiny bundles of behavior and data that you pass to other functions.</p>
+<p><code>Java</code> adopts the concept, wraps it in types, and offers lambda syntax so you don’t have to write an entire class just to supply a small piece of behavior.</p>
+<p>If you want to explore lambdas more deeply in Java, start with:</p>
+<ul>
+<li>
+<p>Java’s built-in <code>Predicate</code>, <code>Function</code>, <code>Supplier</code>, <code>Consumer</code></p>
+</li>
+<li>
+<p>Streams (filter, map, reduce)</p>
+</li>
+</ul>
+<p>For other points of interest, consider:</p>
+<ul>
+<li>Lisp
+<ul>
+<li><a href="https://portacle.github.io/">Portacle</a> (Common Lisp)</li>
+<li><a href="https://racket-lang.org/">Racket</a> (Scheme)</li>
+<li>The historic MIT 6.001 by Sussman and Abelson in Scheme is <a href="https://www.youtube.com/watch?v=-J_xL4IGhJA">here</a>.</li>
+</ul>
+</li>
+<li>Oracle
+<ul>
 <li><a href="https://docs.oracle.com/javase/tutorial/java/javaOO/anonymousclasses.html">Anonymous Classes</a></li>
 <li><a href="https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html">Lambda Expression</a></li>
-</ol>
-<h3 id="lambda-for-ever">Lambda for Ever<a href="#lambda-for-ever" class="hanchor" ariaLabel="Anchor">#</a> </h3>
-<p>Finally, <a href="https://en.wikipedia.org/wiki/Anonymous_function">Lambda</a> in many languages.</p>
-<p>Bye!
-:)</p>
+</ul>
+</li>
+<li>Java REPL can be accessed in IntelliJ! See their page on the <a href="https://www.jetbrains.com/help/idea/jshell-console.html">JConsole</a>.</li>
+<li>Finally, <a href="https://en.wikipedia.org/wiki/Anonymous_function">Lambda</a> in many languages.</li>
+</ul>
+<p>Happy coding—</p>
+<p>λ forever.</p>
+<p>:)</p>
 
       </div></div>
 

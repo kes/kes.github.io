@@ -37,11 +37,11 @@
       <description>I wanted to experiment with ChatGPT and programming. So, I thought I would just start with an exercise from Kernighan and Ritchie&amp;rsquo;s The C Programming Language.&#xA;I prompted ChatGPT with the following:&#xA;In C write a program called detab that replaces tabs in the input with the proper number of spaces to reach the next tabstop. Assume tab stops every eight columns. This is exercise 1.20 from The C Programming Language by Kernighan and Ritchie.</description>
     </item>
     <item>
-      <title>What&#39;s a Lambda?</title>
+      <title>What&#39;s a Lambda? A Brief Walk from Lisp → Closures → Java</title>
       <link>https://kes.github.io/posts/whatisalambda/</link>
       <pubDate>Sat, 08 Nov 2025 00:00:00 +0000</pubDate>
       <guid>https://kes.github.io/posts/whatisalambda/</guid>
-      <description>NOTE: this document was originally written for seasoned software engineers who were transitioning into Java and beginning to use lambdas. Whether it helps in understanding the concept of lambda, or how lambdas appear in Java, is, I think, very much in the eye of the beholder. I place it here with only slight modification.&#xA;This document is a brief investigation into the question:&#xA;What is a lambda?&#xA;And, in our context, more specifically, what is lambda in computer languages, and even more specifically, what is a lambda in Java.</description>
+      <description>Note: This began as an explainer for seasoned engineers learning Java 8. It’s not exhaustive, but it is designed to make lambdas intuitive—and maybe even fun.&#xA;TLDR; A lambda is an anonymous function—a piece of executable code you can create inline, pass around, and call later.&#xA;Lisp created them decades ago. Java added them in 2014 (Java 8), built on top of functional interfaces.&#xA;Let’s see how they work in Lisp first, then translate that understanding into Java.</description>
     </item>
     <item>
       <title>Mathjax Working</title>
