@@ -42,3 +42,22 @@ img {
   max-width: 100%;
 
 }
+/* Stripe even rows inside any ox-hugo-generated table */
+.ox-hugo-table tbody tr:nth-child(even) {
+  background-color: #3b3f4a;
+}
+
+/* Header cells */
+.ox-hugo-table th {
+  font-weight: normal;
+  text-align: center;
+  background-color: #3b3f4a;
+  padding: 5px;
+  border: 0;
+}
+
+/* Body cells */
+.ox-hugo-table td {
+  padding: 5px;
+  border: 1px solid black;
+}
