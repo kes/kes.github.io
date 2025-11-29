@@ -216,6 +216,8 @@ loss. Can we do better? What&rsquo;s the highest profit we can derive from this 
 <p>Here&rsquo;s a table showing profits for the given day purchased and sold. So, regarding the row labeled 7,
 imagine that you purchase on the day the price is 7, and then working across that row, each column
 shows the profit for the given sale price, which prices are occurring on successive days.</p>
+<style>.table-1 table { text-align: center;  width: 50%;  margin: 0 auto;  }</style>
+<div class="ox-hugo-table table-1">
 <table>
 <thead>
 <tr>
@@ -285,6 +287,7 @@ shows the profit for the given sale price, which prices are occurring on success
 </tr>
 </tbody>
 </table>
+</div>
 <p>It&rsquo;s easy to see that purchasing on the first day at a price of 7 does not lead to any
 profit. The most you can do is limit your losses by selling at price 6 for a mere -1 loss.</p>
 <p>But iterating over the list, that cannot possibly be known up-front.</p>
@@ -302,8 +305,10 @@ profit. The most you can do is limit your losses by selling at price 6 for a mer
 </span></span><span style="display:flex;"><span>      max_profit <span style="color:#f92672">=</span> profit;
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span> }</span></span></code></pre></div>
-<p>We can make an interesting chart, pretty self-explanatory:</p>
+</span></span><span style="display:flex;"><span> }
+</span></span></code></pre></div><p>We can make an interesting chart, pretty self-explanatory:</p>
+<style>.table-1 table { text-align: center;  width: 70%;  margin: 0 auto;  }</style>
+<div class="ox-hugo-table table-1">
 <table>
 <thead>
 <tr>
@@ -346,7 +351,8 @@ profit. The most you can do is limit your losses by selling at price 6 for a mer
 </tr>
 </tbody>
 </table>
-<p>And you can see, at step 5, we already are at 16 iterations – and that&rsquo;s O(n<sup>2</sup>) – as we expected
+</div>
+<p>And you can see, at step 5, we already are at 16 iterations &ndash; and that&rsquo;s O(n^2) &ndash; as we expected
 from such nested loops. In other words, the search space for finding the maximum profit is going to
 grow enormous very fast as the list size grows.</p>
 <p>Is there a better way?</p>
@@ -360,7 +366,7 @@ will be greater than a previously found profit. Only that future calculated prof
 this lower price than the higher price.</p>
 <p>This above point is obvious, after all, but easy to overlook.</p>
 <p>But there&rsquo;s an even greater significance, also easy to overlook, which is that using this observation, we can reduce our
-search space from O(n<sup>2</sup>) to O(n). Amazing.</p>
+search space from O(n^2) to O(n). Amazing.</p>
 <p>Here&rsquo;s the code and tests.</p>
 <p>Notice, there is only one loop. So, O(n) nirvana.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
@@ -375,7 +381,7 @@ search space from O(n<sup>2</sup>) to O(n). Amazing.</p>
 </span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (<span style="color:#f92672">*</span>sell <span style="color:#f92672">&gt;</span> buy)
 </span></span><span style="display:flex;"><span>        profit <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span><span style="color:#a6e22e">max</span>(profit, <span style="color:#f92672">*</span>sell <span style="color:#f92672">-</span> buy);
 </span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">else</span>
-</span></span><span style="display:flex;"><span>        buy <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>sell;
+</span></span><span style="display:flex;"><span>	buy <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>sell;
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> profit;
 </span></span><span style="display:flex;"><span>  }
@@ -411,20 +417,19 @@ search space from O(n<sup>2</sup>) to O(n). Amazing.</p>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">**</span>argv) {
 </span></span><span style="display:flex;"><span>  testing<span style="color:#f92672">::</span><span style="color:#a6e22e">InitGoogleTest</span>(<span style="color:#f92672">&amp;</span>argc, argv);
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">RUN_ALL_TESTS</span>();
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
-<p>I have a simple Makefile:</p>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>I have a simple Makefile:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-makefile" data-lang="makefile"><span style="display:flex;"><span>OBJS <span style="color:#f92672">=</span> max-profit.o
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">remove-element</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">$(</span>OBJS<span style="color:#66d9ef">)</span>
-</span></span><span style="display:flex;"><span>        g++ -Wall -g -o max-profit <span style="color:#66d9ef">$(</span>OBJS<span style="color:#66d9ef">)</span> -lgtest -lgtest_main
+</span></span><span style="display:flex;"><span>	g++ -Wall -g -o max-profit <span style="color:#66d9ef">$(</span>OBJS<span style="color:#66d9ef">)</span> -lgtest -lgtest_main
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">remove-element.o</span><span style="color:#f92672">:</span> max-profit.cpp
-</span></span><span style="display:flex;"><span>        g++ -Wall -g -c max-profit.cpp
+</span></span><span style="display:flex;"><span>	g++ -Wall -g -c max-profit.cpp
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">clean</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span>        rm max-profit <span style="color:#66d9ef">$(</span>OBJS<span style="color:#66d9ef">)</span>
-</span></span></code></pre></div>
-<p>Now, when I run, the tests are passing:</p>
+</span></span><span style="display:flex;"><span>	rm max-profit <span style="color:#66d9ef">$(</span>OBJS<span style="color:#66d9ef">)</span>
+</span></span></code></pre></div><p>Now, when I run, the tests are passing:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">[==========]</span> Running <span style="color:#ae81ff">2</span> tests from <span style="color:#ae81ff">1</span> test suite.
 </span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>----------<span style="color:#f92672">]</span> Global test environment set-up.
 </span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>----------<span style="color:#f92672">]</span> <span style="color:#ae81ff">2</span> tests from MaxProfit
@@ -436,8 +441,8 @@ search space from O(n<sup>2</sup>) to O(n). Amazing.</p>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>----------<span style="color:#f92672">]</span> Global test environment tear-down
 </span></span><span style="display:flex;"><span><span style="color:#f92672">[==========]</span> <span style="color:#ae81ff">2</span> tests from <span style="color:#ae81ff">1</span> test suite ran. <span style="color:#f92672">(</span><span style="color:#ae81ff">0</span> ms total<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>  PASSED  <span style="color:#f92672">]</span> <span style="color:#ae81ff">2</span> tests.</span></span></code></pre></div>
-<figure><img src="/ox-hugo/complexity-buy-sell.png"/>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>  PASSED  <span style="color:#f92672">]</span> <span style="color:#ae81ff">2</span> tests.
+</span></span></code></pre></div><figure><img src="/ox-hugo/complexity-buy-sell.png"/>
 </figure>
 
 <p>Heck, yeah!</p>

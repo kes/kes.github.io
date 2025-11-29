@@ -217,6 +217,8 @@ left. In whichever direction, you are always comparing with the child &lsquo;beh
 left-to-right, always compare with the child to the left (and the left-most child has no child to
 compare against). The same is true for moving right-to-left, where the comparison is made to the
 child on the right, and the rightmost child has no child to the right to compare against.</p>
+<style>.table-1 table { text-align: center;  width: 60%;  margin: 0 auto;  }</style>
+<div class="ox-hugo-table table-1">
 <table>
 <thead>
 <tr>
@@ -247,8 +249,11 @@ child on the right, and the rightmost child has no child to the right to compare
 </tr>
 </tbody>
 </table>
+</div>
 <p>Total = 5.</p>
 <p>Let&rsquo;s do another:</p>
+<style>.table-1 table { text-align: center;  width: 60%;  margin: 0 auto;  }</style>
+<div class="ox-hugo-table table-1">
 <table>
 <thead>
 <tr>
@@ -295,6 +300,7 @@ child on the right, and the rightmost child has no child to the right to compare
 </tr>
 </tbody>
 </table>
+</div>
 <p>Total = 13.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;gtest/gtest.h&gt;</span><span style="color:#75715e">
@@ -310,9 +316,9 @@ child on the right, and the rightmost child has no child to the right to compare
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// child has nothing to check
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span> ratings.<span style="color:#a6e22e">size</span>(); i<span style="color:#f92672">++</span>) {
 </span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (ratings[i] <span style="color:#f92672">&gt;</span> ratings[i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]) {
-</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// rating is higher, so
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (candyPerChild[i] <span style="color:#f92672">&lt;=</span> candyPerChild[i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]){
-</span></span><span style="display:flex;"><span>          candyPerChild[i] <span style="color:#f92672">=</span> candyPerChild[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// rating is higher, so
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span> (candyPerChild[i] <span style="color:#f92672">&lt;=</span> candyPerChild[i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]){
+</span></span><span style="display:flex;"><span>	  candyPerChild[i] <span style="color:#f92672">=</span> candyPerChild[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
 </span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>      }
 </span></span><span style="display:flex;"><span>    }
@@ -320,8 +326,8 @@ child on the right, and the rightmost child has no child to the right to compare
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// child has nothing to check
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> ratings.<span style="color:#a6e22e">size</span>() <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>; i <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>; i<span style="color:#f92672">--</span>) {
 </span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (ratings[i] <span style="color:#f92672">&gt;</span> ratings[i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]){
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (candyPerChild[i] <span style="color:#f92672">&lt;=</span> candyPerChild[i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]){
-</span></span><span style="display:flex;"><span>          candyPerChild[i] <span style="color:#f92672">=</span> candyPerChild[i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (candyPerChild[i] <span style="color:#f92672">&lt;=</span> candyPerChild[i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]){
+</span></span><span style="display:flex;"><span>	  candyPerChild[i] <span style="color:#f92672">=</span> candyPerChild[i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
 </span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>      }
 </span></span><span style="display:flex;"><span>    }
@@ -383,20 +389,19 @@ child on the right, and the rightmost child has no child to the right to compare
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">**</span>argv) {
 </span></span><span style="display:flex;"><span>  testing<span style="color:#f92672">::</span><span style="color:#a6e22e">InitGoogleTest</span>(<span style="color:#f92672">&amp;</span>argc, argv);
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">RUN_ALL_TESTS</span>();
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
-<p>I have a simple Makefile:</p>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>I have a simple Makefile:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-makefile" data-lang="makefile"><span style="display:flex;"><span>OBJS <span style="color:#f92672">=</span> candy.o
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">candy</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">$(</span>OBJS<span style="color:#66d9ef">)</span>
-</span></span><span style="display:flex;"><span>        g++ -Wall -g -o candy <span style="color:#66d9ef">$(</span>OBJS<span style="color:#66d9ef">)</span> -lgtest -lgtest_main
+</span></span><span style="display:flex;"><span>	g++ -Wall -g -o candy <span style="color:#66d9ef">$(</span>OBJS<span style="color:#66d9ef">)</span> -lgtest -lgtest_main
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">candy.o</span><span style="color:#f92672">:</span> candy.cpp
-</span></span><span style="display:flex;"><span>        g++ -Wall -g -c candy.cpp
+</span></span><span style="display:flex;"><span>	g++ -Wall -g -c candy.cpp
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">clean</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span>        rm candy <span style="color:#66d9ef">$(</span>OBJS<span style="color:#66d9ef">)</span>
-</span></span></code></pre></div>
-<p>And here are my google test results:</p>
+</span></span><span style="display:flex;"><span>	rm candy <span style="color:#66d9ef">$(</span>OBJS<span style="color:#66d9ef">)</span>
+</span></span></code></pre></div><p>And here are my google test results:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">[==========]</span> Running <span style="color:#ae81ff">4</span> tests from <span style="color:#ae81ff">1</span> test suite.
 </span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>----------<span style="color:#f92672">]</span> Global test environment set-up.
 </span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>----------<span style="color:#f92672">]</span> <span style="color:#ae81ff">4</span> tests from Candy
@@ -412,8 +417,8 @@ child on the right, and the rightmost child has no child to the right to compare
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>----------<span style="color:#f92672">]</span> Global test environment tear-down
 </span></span><span style="display:flex;"><span><span style="color:#f92672">[==========]</span> <span style="color:#ae81ff">4</span> tests from <span style="color:#ae81ff">1</span> test suite ran. <span style="color:#f92672">(</span><span style="color:#ae81ff">0</span> ms total<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>  PASSED  <span style="color:#f92672">]</span> <span style="color:#ae81ff">4</span> tests.</span></span></code></pre></div>
-<figure><img src="/ox-hugo/complexity-candy.png"/>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>  PASSED  <span style="color:#f92672">]</span> <span style="color:#ae81ff">4</span> tests.
+</span></span></code></pre></div><figure><img src="/ox-hugo/complexity-candy.png"/>
 </figure>
 
 <p>Yum!</p>

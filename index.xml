@@ -216,7 +216,7 @@
       <link>https://kes.github.io/posts/project-euler-num-7/</link>
       <pubDate>Thu, 22 Aug 2024 00:00:00 +0000</pubDate>
       <guid>https://kes.github.io/posts/project-euler-num-7/</guid>
-      <description>You can find the problem here: https://projecteuler.net/problem=7&#xA;The problem statement:&#xA;By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13 we can see that the 6th prime is 13.&#xA;What is the 10001st prime number?&#xA;Consider an array like this:&#xA;n a[n] 0 0 1 1 2 1 3 1 4 0 5 1 6 0 7 1 8 0 9 0 10 0 11 1 12 0 13 1 where n (the index of the array) is the number of interest – So, is the number prime?</description>
+      <description>You can find the problem here: https://projecteuler.net/problem=7&#xA;The problem statement:&#xA;By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13 we can see that the 6th prime is 13.&#xA;What is the 10001st prime number?&#xA;Consider an array like this:&#xA;n a[n] 0 0 1 1 2 1 3 1 4 0 5 1 6 0 7 1 8 0 9 0 10 0 11 1 12 0 13 1 where n (the index of the array) is the number of interest &amp;ndash; So, is the number prime?</description>
     </item>
     <item>
       <title>Project Euler - Number 5</title>
