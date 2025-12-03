@@ -6,8 +6,15 @@
     <description>Recent content in Emacs on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 18 Nov 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 08 Nov 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://kes.github.io/tags/emacs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Sorting in Emacs with Elisp</title>
+      <link>https://kes.github.io/posts/writing-an-elisp-sort/</link>
+      <pubDate>Sat, 08 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://kes.github.io/posts/writing-an-elisp-sort/</guid>
+      <description>How would you sort lines in a text file by length?&#xA;I came across a post on X with about thirty full names, mostly well-known authors. The OP asked which one was everyone’s favorite. The interesting part: the names weren’t sorted alphabetically, but by length. When asked how they did it, the OP said it was done by hand.&#xA;Manual is fine for short lists. It becomes tedious very quickly.</description>
+    </item>
     <item>
       <title>Emacs Modules</title>
       <link>https://kes.github.io/posts/emacs-modules/</link>

@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Sorting in Emacs with Elisp :: </title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="How would you sort lines in a text file by length?
+I came across a post on X with about thirty full names, mostly well-known authors. The OP asked which one was everyone’s favorite. The interesting part: the names weren’t sorted alphabetically, but by length. When asked how they did it, the OP said it was done by hand.
+Manual is fine for short lists. It becomes tedious very quickly." />
+<meta name="keywords" content="" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="https://kes.github.io/posts/writing-an-elisp-sort/" />
+
+
+
+
+
+  
+  <link rel="stylesheet" href="https://kes.github.io/css/buttons.min.86f6b4c106b6c6eb690ae5203d36b442c1f66f718ff4e8164fa86cf6c61ad641.css">
+
+  
+  <link rel="stylesheet" href="https://kes.github.io/css/code.min.d529ea4b2fb8d34328d7d31afc5466d5f7bc2f0bc9abdd98b69385335d7baee4.css">
+
+  
+  <link rel="stylesheet" href="https://kes.github.io/css/fonts.min.5bb7ed13e1d00d8ff39ea84af26737007eb5051b157b86fc24487c94f3dc8bbe.css">
+
+  
+  <link rel="stylesheet" href="https://kes.github.io/css/footer.min.eb8dfc2c6a7eafa36cd3ba92d63e69e849e2200e0002a228d137f236b09ecd75.css">
+
+  
+  <link rel="stylesheet" href="https://kes.github.io/css/gist.min.a751e8b0abe1ba8bc53ced52a38b19d8950fe78ca29454ea8c2595cf26aad5c0.css">
+
+  
+  <link rel="stylesheet" href="https://kes.github.io/css/header.min.75c7eb0e2872d95ff48109c6647d0223a38db52e2561dd87966eb5fc7c6bdac6.css">
+
+  
+  <link rel="stylesheet" href="https://kes.github.io/css/main.min.36833afd348409fc6c3d09d0897c5833d9d5bf1ff31f5e60ea3ee42ce2b1268c.css">
+
+  
+  <link rel="stylesheet" href="https://kes.github.io/css/menu.min.3c17467ebeb3d38663dce68f71f519901124fa5cbb4519b2fb0667a21e9aca39.css">
+
+  
+  <link rel="stylesheet" href="https://kes.github.io/css/pagination.min.bbb986dbce00a5ce5aca0504b7925fc1c581992a4bf57f163e5d69cc1db7d836.css">
+
+  
+  <link rel="stylesheet" href="https://kes.github.io/css/post.min.e6dddd258e64c83e05cec0cd49c05216742d42fc8ecbfbe6b67083412b609bd3.css">
+
+  
+  <link rel="stylesheet" href="https://kes.github.io/css/syntax.min.a0773cce9310cb6d8ed23e50f005448facf29a53001b57e038828daa466b25c0.css">
+
+  
+  <link rel="stylesheet" href="https://kes.github.io/css/terminal.min.e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css">
+
+  
+  <link rel="stylesheet" href="https://kes.github.io/css/terms.min.b81791663c3790e738e571cdbf802312390d30e4b1d8dc9d814a5b5454d0ac11.css">
+
+
+
+
+<link rel="stylesheet" href="https://kes.github.io/style.css">
+
+
+<link rel="shortcut icon" href="https://kes.github.io/favicon.png">
+<link rel="apple-touch-icon" href="https://kes.github.io/apple-touch-icon.png">
+
+
+<meta name="twitter:card" content="summary" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Sorting in Emacs with Elisp">
+<meta property="og:description" content="How would you sort lines in a text file by length?
+I came across a post on X with about thirty full names, mostly well-known authors. The OP asked which one was everyone’s favorite. The interesting part: the names weren’t sorted alphabetically, but by length. When asked how they did it, the OP said it was done by hand.
+Manual is fine for short lists. It becomes tedious very quickly." />
+<meta property="og:url" content="https://kes.github.io/posts/writing-an-elisp-sort/" />
+<meta property="og:site_name" content="" />
+
+  <meta property="og:image" content="https://kes.github.io/og-image.png">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2025-11-08 00:00:00 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="https://kes.github.io/js/mathjax-config.js"></script>
+
+  
+  <script
+    id="MathJax-script"
+    async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+  </script>
+
+
+
+
+</head>
+<body>
+
+
+<div class="container center">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    Karl Stump
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/about/about/">About</a></li>
+        
+      
+        
+          <li><a href="/leetcode/">Leet Code</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        
+          <li><a href="/about/about/" >About</a></li>
+        
+      
+        
+          <li><a href="/leetcode/" >Leet Code</a></li>
+        
+      
+      
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="https://kes.github.io/posts/writing-an-elisp-sort/">Sorting in Emacs with Elisp</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2025-11-08</time><span class="post-author">[Karl Stump]</span></div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="https://kes.github.io/tags/lisp/">lisp</a>&nbsp;
+      
+      #<a href="https://kes.github.io/tags/emacs/">emacs</a>&nbsp;
+      
+    </span>
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <p>How would you sort lines in a text file by length?</p>
+<p>I came across a post on X with about thirty full names, mostly well-known authors. The OP asked which one was everyone’s favorite. The interesting part: the names weren’t sorted alphabetically, but by length. When asked how they did it, the OP said it was done by hand.</p>
+<p>Manual is fine for short lists. It becomes tedious very quickly.</p>
+<p>So: how do we sort a list of names by length?</p>
+<style>
+.table-0 table th {
+    text-align: left;
+    padding: 15px;
+    text-transform: capitalize;
+}
+.table-0 table td {
+    text-align: left;
+    padding: 15px;
+    text-transform: capitalize;
+}
+.table-number {
+  display: none;
+}
+.table-caption{
+    font-style: italic;
+    font-weight: lighter;
+    text-align: center;
+}
+</style>
+<style>.table-0 table { text-align: center;  width: 25%;  margin: 0 auto;  }</style>
+<div class="ox-hugo-table table-0">
+<a id="table--short-table"></a>
+<div class="table-caption">
+  <span class="table-number"><a href="#table--short-table">Table 1</a>:</span>
+  How to sort these names by length?
+</div>
+<table>
+<thead>
+<tr>
+<th>Amelia Clarkson</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nicola Gill</td>
+</tr>
+<tr>
+<td>Heather Anderson</td>
+</tr>
+<tr>
+<td>Amy Burgess</td>
+</tr>
+<tr>
+<td>Trevor Hughes</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="the-classic-problem-which-tool">The Classic Problem: which tool?<a href="#the-classic-problem-which-tool" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>When you first learn to program, there’s a real sense of magic: you move from “I have no idea how to do this” to “I can bend the machine to my will.”</p>
+<p>With editors and the shell, the progression often looks like this:</p>
+<dl>
+<dt>Stage 1</dt>
+<dd>&ldquo;How do I do this?&rdquo;</dd>
+<dt>Stage 2</dt>
+<dd>“Oh wow, I can do this in awk/sed/paste/sort.”</dd>
+<dt>Stage 3</dt>
+<dd>“Oh wow, I can do this in Vim.”</dd>
+<dt>Stage 4</dt>
+<dd>“Oh wow, I can do this in Emacs.”</dd>
+<dt>Stage 5</dt>
+<dd>“Wait… now <strong>which</strong> one should I use?”</dd>
+</dl>
+<p>Stage 5 is where the unease begins. There must be one <strong>correct</strong> way, right?</p>
+<p>As an Emacs user I’m probably supposed to say, “Of course the right way is in Emacs!”</p>
+<style>
+figure.my-figure{
+    margin: 0 auto;  /* Centers the figure */
+    text-align: center;  /* Centers the caption */
+    width: 65%;  /* Set a width for the figure */
+}
+.my-figure figcaption{
+    font-style: italic;
+    font-weight: lighter;
+}
+.figure-number{
+    display: none;
+}
+</style>
+<figure class="my-figure"><img src="https://imgs.xkcd.com/comics/real_programmers.png"
+         alt="Figure 1: Real programmers use Emacs"/><figcaption>
+            <p><span class="figure-number">Figure 1: </span>Real programmers use Emacs</p>
+        </figcaption>
+</figure>
+
+<p>But in practice there isn’t one right way for everything, even when you live inside Emacs.</p>
+<p>Sometimes I reach for Elisp. Sometimes for the shell and Unix tools. The question is: how do you decide?</p>
+<p>Here are the loose guidelines I use:</p>
+<ol>
+<li>Don’t re-invent the wheel → use existing Elisp functions if they exist.</li>
+<li>If the transformation is purely textual → use Unix tools via <code>M-x shell-command-on-region</code>.</li>
+<li>If the transformation is just repeatable keystrokes → use Emacs keyboard macros.</li>
+<li>If the operation is complex and will be repeated or shared → write Emacs Lisp.</li>
+<li>When in doubt → prototype with a shell pipeline first.</li>
+</ol>
+<p>These aren’t laws; they’re more like habits that keep me from over-engineering.</p>
+<p>One more point that I think is important: <code>M-x shell-command-on-region</code> plus the Unix toolchain should <strong>not</strong> be viewed with disdain.</p>
+<p>Yes, Emacs is:</p>
+<ul>
+<li>a powerful Lisp environment</li>
+<li>easy to extend, explore, and debug</li>
+</ul>
+<p>All true.</p>
+<p>But Unix tools are also excellent and battle-tested. They’re highly optimized for text manipulation. Taking advantage of them from inside Emacs is a <strong>good</strong> thing, not a betrayal of Emacs purity.</p>
+<p>So, back to our example: we have a list of names, and we want to sort by line length.</p>
+<p>Emacs doesn’t ship (as far as I can tell) with a built-in “sort lines by length” command. So: can we let the shell do the heavy lifting?</p>
+<p>Yes. With some basic Unix tools, the job is trivial:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>awk <span style="color:#e6db74">&#39;{print length($0), $0}&#39;</span> | sort -n | cut -d <span style="color:#e6db74">&#39; &#39;</span> -f2-
+</span></span></code></pre></div><ul>
+<li><code>awk</code> prints the line length followed by the line itself.</li>
+<li><code>sort -n</code> sorts numerically by that length.</li>
+<li><code>cut -d ' ' -f2-</code> strips the length prefix off again.</li>
+</ul>
+<style>
+.table-1 table th {
+    text-align: left;
+    padding: 15px;
+    text-transform: capitalize;
+}
+.table-1 table td {
+    text-align: left;
+    padding: 15px;
+    text-transform: capitalize;
+}
+.table-number {
+  display: none;
+}
+.table-caption{
+    font-style: italic;
+    font-weight: lighter;
+    text-align: center;
+}
+</style>
+<style>.table-1 table { text-align: center;  width: 25%;  margin: 0 auto;  }</style>
+<div class="ox-hugo-table table-1">
+<a id="table--sorted-short-table"></a>
+<div class="table-caption">
+  <span class="table-number"><a href="#table--sorted-short-table">Table 2</a>:</span>
+  A list sorted by length
+</div>
+<table>
+<thead>
+<tr>
+<th>Amy Burgess</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nicola Gill</td>
+</tr>
+<tr>
+<td>Trevor Hughes</td>
+</tr>
+<tr>
+<td>Amelia Clarkson</td>
+</tr>
+<tr>
+<td>Heather Anderson</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><code>M-x shell-command-on-region</code> is a clean, efficient way to get this behavior. If you need it frequently, you can always wrap the pipeline in a small Elisp function — but the <strong>core</strong> remains a Unix one-liner.</p>
+<p>So far, so good.</p>
+<p>Now let’s make the problem more interesting.</p>
+<h2 id="sorting-names-in-a-table">Sorting names in a table<a href="#sorting-names-in-a-table" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>Consider this table:</p>
+<style>
+.table-2 table th {
+    text-align: left;
+    padding: 10px;
+    text-transform: capitalize;
+}
+.table-2 table td {
+    text-align: left;
+    padding: 10px;
+    text-transform: capitalize;
+}
+.table-number {
+  display: none;
+}
+.table-caption{
+    font-style: italic;
+    font-weight: lighter;
+    text-align: center;
+}
+</style>
+<style>.table-2 table { text-align: center;  width: 100%;  margin: 0 auto;  }</style>
+<div class="ox-hugo-table table-2">
+<div class="table-caption">
+  <span class="table-number">Table 3:</span>
+  How to sort these names by length?
+</div>
+<table>
+<thead>
+<tr>
+<th>Patty O’Furniture</th>
+<th>P. Ann O’Recital</th>
+<th>Maureen Biologist</th>
+<th>Anne Teak</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ann Chovey</td>
+<td>Ray O’Sun</td>
+<td>Teri Dactyl</td>
+<td>U.R. Nice</td>
+</tr>
+<tr>
+<td>Hazel Nutt</td>
+<td>Ray Sin</td>
+<td>Peg Legge</td>
+<td>Anita Bath</td>
+</tr>
+<tr>
+<td>Chris P. Bacon</td>
+<td>Isabelle Ringing</td>
+<td>Allie Grater</td>
+<td>Harriet Upp</td>
+</tr>
+<tr>
+<td>Marsha Mellow</td>
+<td>Eileen Sideways</td>
+<td>Liz Erd</td>
+<td>I.M. Tired</td>
+</tr>
+<tr>
+<td>Olive Yew</td>
+<td>Rita Book</td>
+<td>A. Mused</td>
+<td>I. Missy Ewe</td>
+</tr>
+<tr>
+<td>Barb Akew</td>
+<td>Paige Turner</td>
+<td>Constance Noring</td>
+<td>Ivana B. Withew</td>
+</tr>
+<tr>
+<td>Aida Bugg</td>
+<td>Rhoda Report</td>
+<td>Lois Di Nominator</td>
+<td>Anita Letterback</td>
+</tr>
+<tr>
+<td>Chris Anthemum</td>
+<td>Augusta Wind</td>
+<td>Minnie Van Ryder</td>
+<td>Lynn O’Leeum</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The goal: sort these <strong>cells</strong> by name length, left-to-right, top-to-bottom.</p>
+<p>That’s quite different from a simple vertical list. Now we’re dealing with:</p>
+<ul>
+<li>an Org table</li>
+<li>multiple cells per line</li>
+<li>a desired <strong>reading order</strong> (by rows) that we want to preserve</li>
+</ul>
+<p>There’s no obvious Unix one-liner for “flatten the table, sort cells by length, and write them back into the grid shape.” It’s possible, but it’s not simple — and it’s certainly not “just one more =sort | awk=”.</p>
+<p>At this point, the problem edges into “worth writing some Elisp.”</p>
+<p>Fortunately, Emacs does ship with a general text-sorting workhorse that fits perfectly here: <code>sort-subr</code>.</p>
+<p>Let’s read the docstring:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>sort-subr is an autoloaded native-comp-function in ‘sort.el’.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(sort-subr REVERSE NEXTRECFUN ENDRECFUN &amp;optional STARTKEYFUN
+</span></span><span style="display:flex;"><span>ENDKEYFUN PREDICATE)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>General text sorting routine to divide buffer into records and sort them.
+</span></span></code></pre></div><p>That opening is already promising: “divide buffer into records and sort them.”</p>
+<p>Clicking through to the source (in my case, <code>~/.local/share/emacs/31.0.50/lisp/sort.el</code>) reveals how it works, but the docstring alone gives a decent mental model.</p>
+<p>We define:</p>
+<ul>
+<li>what counts as a <strong>record</strong> (a line, a cell, etc.)</li>
+<li>what part of that record is the <strong>key</strong></li>
+<li>how keys are compared</li>
+</ul>
+<p><code>sort-subr</code> does the rearranging.</p>
+<p>From the docstring:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>We divide the accessible portion of the buffer into disjoint pieces
+</span></span><span style="display:flex;"><span>called sort records.  A portion of each sort record (perhaps all of
+</span></span><span style="display:flex;"><span>it) is designated as the sort key.  The records are rearranged in the
+</span></span><span style="display:flex;"><span>buffer in order by their sort keys.  The records may or may not be
+</span></span><span style="display:flex;"><span>contiguous.
+</span></span></code></pre></div><p>“Disjoint pieces” just means records don’t overlap. The “accessible portion” is whatever region is visible after narrowing.</p>
+<p>Now the arguments:</p>
+<dl>
+<dt>REVERSE</dt>
+<dd>non-nil means sort in reverse order</dd>
+<dt>NEXTRECFUN, ENDRECFUN</dt>
+<dd>functions that describe where each record starts and ends</dd>
+<dt>STARTKEYFUN, ENDKEYFUN</dt>
+<dd>functions that mark or compute the key within a record</dd>
+<dt>PREDICATE</dt>
+<dd>an optional comparison function</dd>
+</dl>
+<p>Next, from the docstring:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>NEXTRECFUN is called with point at the end of the previous record.
+</span></span><span style="display:flex;"><span>It moves point to the start of the next record.
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>The first record is assumed to start at the position of point when
+</span></span><span style="display:flex;"><span>‘sort-subr’ is called.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ENDRECFUN is called with point within the record.
+</span></span><span style="display:flex;"><span>It should move point to the end of the record.
+</span></span></code></pre></div><p>Behind the scenes, <code>sort-subr</code> calls these functions to walk the buffer, capturing record boundaries.</p>
+<p>Then key selection:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>STARTKEYFUN moves from the start of the record to the start of the key.
+</span></span><span style="display:flex;"><span>It may return either a non-nil value to be used as the key, or
+</span></span><span style="display:flex;"><span>else the key is the substring between the values of point after
+</span></span><span style="display:flex;"><span>STARTKEYFUN and ENDKEYFUN are called.  If STARTKEYFUN is nil, the key
+</span></span><span style="display:flex;"><span>starts at the beginning of the record.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ENDKEYFUN moves from the start of the sort key to the end of the sort key.
+</span></span><span style="display:flex;"><span>ENDKEYFUN may be nil if STARTKEYFUN returns a value or if it would be the
+</span></span><span style="display:flex;"><span>same as ENDRECFUN.
+</span></span></code></pre></div><p>This is subtle, but powerful. There are two main modes:</p>
+<ol>
+<li>
+<p><strong><strong>Key by value</strong></strong></p>
+<ul>
+<li>STARTKEYFUN <strong>returns</strong> a value → that value <strong>is</strong> the key.</li>
+<li>In this case, ENDKEYFUN is unnecessary.</li>
+</ul>
+</li>
+<li>
+<p><strong><strong>Key by position</strong></strong></p>
+<ul>
+<li>STARTKEYFUN moves point, returns nil.</li>
+<li>ENDKEYFUN moves point again.</li>
+<li><code>sort-subr</code> treats the region between those two positions as the key.</li>
+</ul>
+</li>
+</ol>
+<p>Finally, the predicate:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>PREDICATE, if non-nil, is the predicate function for comparing
+</span></span><span style="display:flex;"><span>keys; it is called with two arguments, the keys to compare, and
+</span></span><span style="display:flex;"><span>should return non-nil if the first key should sort before the
+</span></span><span style="display:flex;"><span>second key.  If PREDICATE is nil, comparison is done with ‘&lt;’ if
+</span></span><span style="display:flex;"><span>the keys are numbers, with ‘compare-buffer-substrings’ if the
+</span></span><span style="display:flex;"><span>keys are cons cells (the car and cdr of each cons cell are taken
+</span></span><span style="display:flex;"><span>as start and end positions), and with ‘string&lt;’ otherwise.
+</span></span></code></pre></div><p>So PREDICATE receives two keys — either values or cons cells locating substrings — and decides their order.</p>
+<p>Let’s put this to use.</p>
+<h2 id="first-pass-sorting-lines-by-length">First pass: sorting lines by length<a href="#first-pass-sorting-lines-by-length" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>We’ll start with the simple case: a plain list of lines (names) and we want to sort them by length.</p>
+<p>Here’s a first pass at an interactive function:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span style="display:flex;"><span>  (defun kes/sort-lines-by-length (<span style="color:#a6e22e">reverse</span> beg end)
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Sort lines by length in region from BEG to END.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">With prefix argument REVERSE, sort longest first.&#34;</span>
+</span></span><span style="display:flex;"><span>    (interactive <span style="color:#e6db74">&#34;P\nr&#34;</span>)
+</span></span><span style="display:flex;"><span>    (save-excursion
+</span></span><span style="display:flex;"><span>      (save-restriction
+</span></span><span style="display:flex;"><span>        (<span style="color:#a6e22e">narrow-to-region</span> beg end)
+</span></span><span style="display:flex;"><span>        (<span style="color:#a6e22e">goto-char</span> (<span style="color:#a6e22e">point-min</span>))
+</span></span><span style="display:flex;"><span>        (sort-subr
+</span></span><span style="display:flex;"><span>         <span style="color:#a6e22e">reverse</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#a6e22e">#&#39;forward-line</span>       <span style="color:#75715e">; NEXTRECFUN: move to next line start</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#a6e22e">#&#39;end-of-line</span>        <span style="color:#75715e">; ENDRECFUN: move to end of line</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#66d9ef">nil</span>                  <span style="color:#75715e">; STARTKEYFUN: whole line is key</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#66d9ef">nil</span>                  <span style="color:#75715e">; ENDKEYFUN: not needed</span>
+</span></span><span style="display:flex;"><span>         (lambda (k1 k2)      <span style="color:#75715e">; PREDICATE: compare line lengths</span>
+</span></span><span style="display:flex;"><span>           (<span style="color:#a6e22e">&lt;</span> (<span style="color:#a6e22e">-</span> (<span style="color:#a6e22e">cdr</span> k1) (<span style="color:#a6e22e">car</span> k1))
+</span></span><span style="display:flex;"><span>              (<span style="color:#a6e22e">-</span> (<span style="color:#a6e22e">cdr</span> k2) (<span style="color:#a6e22e">car</span> k2)))))))
+</span></span></code></pre></div><p>A few details worth noting:</p>
+<ul>
+<li><code>forward-line</code> is our NEXTRECFUN: it moves to the start of the next line.</li>
+<li><code>end-of-line</code> is ENDRECFUN: it moves to the end of the current line.</li>
+<li>STARTKEYFUN and ENDKEYFUN are nil → the <strong>entire line</strong> is the key.</li>
+<li>In that case, <code>sort-subr</code> passes each key to the predicate as a cons cell: <code>(BEG . END)</code>.</li>
+<li>Our PREDICATE just computes the length <code>END - BEG</code> and compares lengths.</li>
+</ul>
+<p>This works nicely for a list of names. But our original goal was to sort <strong>cells</strong> in an Org table, left-to-right, top-to-bottom.</p>
+<p>Time to get a bit fancier.</p>
+<h2 id="second-pass-sorting-an-org-table-by-cell-length">Second pass: sorting an Org table by cell length<a href="#second-pass-sorting-an-org-table-by-cell-length" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>We’ll now assume the table is an <a href="https://orgmode.org/manual/Tables.html">Org table</a>. That lets us use a couple of handy Org functions to find table boundaries.</p>
+<p>Here’s what the table looks like in the buffer:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>| Patty O’Furniture | P. Ann O’Recital | Maureen Biologist | Anne Teak        |
+</span></span><span style="display:flex;"><span>| Ann Chovey        | Ray O’Sun        | Teri Dactyl       | U.R. Nice        |
+</span></span><span style="display:flex;"><span>| Hazel Nutt        | Ray Sin          | Peg Legge         | Anita Bath       |
+</span></span><span style="display:flex;"><span>...
+</span></span></code></pre></div><p>We want to treat each <strong>cell</strong> as a record, and the length of that cell as the key.</p>
+<p>Let’s start with the outer function:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span style="display:flex;"><span>  (defun kes/sort-org-table-by-field-length (<span style="color:#a6e22e">reverse</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Sort current Org table by cell length.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Invoke anywhere inside the table (no active region needed).
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">With prefix argument REVERSE, sort longest cells first.&#34;</span>
+</span></span><span style="display:flex;"><span>    (interactive <span style="color:#e6db74">&#34;P&#34;</span>)
+</span></span><span style="display:flex;"><span>    (save-excursion
+</span></span><span style="display:flex;"><span>      (save-restriction
+</span></span><span style="display:flex;"><span>        (let ((beg (org-table-begin))
+</span></span><span style="display:flex;"><span>              (end (org-table-end)))
+</span></span><span style="display:flex;"><span>          (<span style="color:#a6e22e">narrow-to-region</span> beg end)
+</span></span><span style="display:flex;"><span>          (<span style="color:#a6e22e">goto-char</span> (<span style="color:#a6e22e">point-min</span>))
+</span></span><span style="display:flex;"><span>          (kes/record-start)
+</span></span><span style="display:flex;"><span>          (sort-subr
+</span></span><span style="display:flex;"><span>           <span style="color:#a6e22e">reverse</span>
+</span></span><span style="display:flex;"><span>           <span style="color:#a6e22e">#&#39;</span>kes/record-start
+</span></span><span style="display:flex;"><span>           <span style="color:#a6e22e">#&#39;</span>kes/record-end
+</span></span><span style="display:flex;"><span>           (lambda ()
+</span></span><span style="display:flex;"><span>             <span style="color:#75715e">;; STARTKEYFUN: compute width of current cell as key value.</span>
+</span></span><span style="display:flex;"><span>             (save-excursion
+</span></span><span style="display:flex;"><span>               (let ((start (<span style="color:#a6e22e">point</span>)))
+</span></span><span style="display:flex;"><span>                 (kes/record-end)
+</span></span><span style="display:flex;"><span>                 (<span style="color:#a6e22e">-</span> (<span style="color:#a6e22e">point</span>) start))))))))
+</span></span></code></pre></div><p>Key points:</p>
+<ul>
+<li>We don’t pass BEG/END as arguments. Instead we ask Org:
+<ul>
+<li><code>org-table-begin</code></li>
+<li><code>org-table-end</code></li>
+</ul>
+</li>
+<li>We narrow to the table and move to the beginning.</li>
+<li>Before calling <code>sort-subr</code> we <strong>must</strong> position point at the start of the first record, so we call <code>kes/record-start</code> once.</li>
+<li>We pass:
+<ul>
+<li>NEXTRECFUN  → <code>kes/record-start</code></li>
+<li>ENDRECFUN   → <code>kes/record-end</code></li>
+<li>STARTKEYFUN → a lambda that <strong>returns</strong> the cell length as a value</li>
+<li>ENDKEYFUN   → omitted (because STARTKEYFUN returns the key value directly)</li>
+<li>PREDICATE   → omitted (default numeric comparison is fine for lengths)</li>
+</ul>
+</li>
+</ul>
+<p>All that remains is to define what a “record” is in this context — one cell — and how to jump to its start and end.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span style="display:flex;"><span>  (defun kes/record-start ()
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Move point to the start of the next cell’s content.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">If no further cell is found, move to </span><span style="color:#e6db74">`point-max&#39;</span><span style="color:#e6db74">.&#34;</span>
+</span></span><span style="display:flex;"><span>    (if (<span style="color:#a6e22e">re-search-forward</span> <span style="color:#e6db74">&#34;| \\([a-zA-Z.&#39;]\\)&#34;</span> <span style="color:#66d9ef">nil</span> <span style="color:#66d9ef">t</span>)
+</span></span><span style="display:flex;"><span>        (<span style="color:#a6e22e">goto-char</span> (<span style="color:#a6e22e">match-beginning</span> <span style="color:#ae81ff">1</span>))
+</span></span><span style="display:flex;"><span>      (<span style="color:#a6e22e">goto-char</span> (<span style="color:#a6e22e">point-max</span>)))
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">nil</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  (defun kes/record-end ()
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Move point to the end of the current cell’s content.&#34;</span>
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">re-search-forward</span> <span style="color:#e6db74">&#34;[a-zA-Z.&#39;]+\\( \\) *|&#34;</span> <span style="color:#66d9ef">nil</span> <span style="color:#66d9ef">t</span>)
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">goto-char</span> (<span style="color:#a6e22e">match-beginning</span> <span style="color:#ae81ff">1</span>))
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">nil</span>)
+</span></span></code></pre></div><p>These are straight regex walkers:</p>
+<ul>
+<li>
+<p><code>kes/record-start</code>:</p>
+<ul>
+<li>Searches forward for a vertical bar, a space, then the first character of the cell.</li>
+<li>On success, moves point to the first character of the cell content.</li>
+<li>On failure, moves to <code>point-max</code> (as required by <code>sort-subr</code>).</li>
+</ul>
+</li>
+<li>
+<p><code>kes/record-end</code>:</p>
+<ul>
+<li>Searches for the end of the cell content, just before the trailing space and <code>|</code>.</li>
+<li>Moves point to that final space (the end of the content).</li>
+</ul>
+</li>
+</ul>
+<p>Since STARTKEYFUN returns a numeric key (the length), <code>sort-subr</code> uses the default number comparison and we don&rsquo;t need a custom predicate.</p>
+<p>Here is the result of calling <code>kes/sort-org-table-by-field-length</code> on the table:</p>
+<style>
+.table-3 table th {
+    text-align: left;
+    padding: 15px;
+    text-transform: capitalize;
+}
+.table-3 table td {
+    text-align: left;
+    padding: 15px;
+    text-transform: capitalize;
+}
+.table-number {
+  display: none;
+}
+.table-caption{
+    font-style: italic;
+    font-weight: lighter;
+    text-align: center;
+}
+</style>
+<style>.table-3 table { text-align: center;  width: 100%;  margin: 0 auto;  }</style>
+<div class="ox-hugo-table table-3">
+<div class="table-caption">
+  <span class="table-number">Table 4:</span>
+  Sorted by length, left to right, top to bottom
+</div>
+<table>
+<thead>
+<tr>
+<th>Ray Sin</th>
+<th>Liz Erd</th>
+<th>A. Mused</th>
+<th>Anne Teak</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ray O’Sun</td>
+<td>U.R. Nice</td>
+<td>Peg Legge</td>
+<td>Olive Yew</td>
+</tr>
+<tr>
+<td>Rita Book</td>
+<td>Barb Akew</td>
+<td>Aida Bugg</td>
+<td>Ann Chovey</td>
+</tr>
+<tr>
+<td>Hazel Nutt</td>
+<td>Anita Bath</td>
+<td>I.M. Tired</td>
+<td>Teri Dactyl</td>
+</tr>
+<tr>
+<td>Harriet Upp</td>
+<td>Allie Grater</td>
+<td>I. Missy Ewe</td>
+<td>Paige Turner</td>
+</tr>
+<tr>
+<td>Rhoda Report</td>
+<td>Augusta Wind</td>
+<td>Lynn O’Leeum</td>
+<td>Marsha Mellow</td>
+</tr>
+<tr>
+<td>Chris P. Bacon</td>
+<td>Chris Anthemum</td>
+<td>Eileen Sideways</td>
+<td>Ivana B. Withew</td>
+</tr>
+<tr>
+<td>P. Ann O’Recital</td>
+<td>Isabelle Ringing</td>
+<td>Constance Noring</td>
+<td>Anita Letterback</td>
+</tr>
+<tr>
+<td>Minnie Van Ryder</td>
+<td>Patty O’Furniture</td>
+<td>Maureen Biologist</td>
+<td>Lois Di Nominator</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="conclusion">Conclusion<a href="#conclusion" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>We started with a common little problem: sorting a list of names by length.</p>
+<p>For a simple vertical list, Unix tools plus <code>M-x shell-command-on-region</code> gave us an elegant one-liner. That solved the first problem without touching Elisp.</p>
+<p>Then we changed the shape of the data. Sorting names by length <strong>inside an Org table</strong>, left-to-right and top-to-bottom, was no longer a straightforward shell pipeline. At that point, Emacs Lisp — and specifically <code>sort-subr</code> — became the right tool.</p>
+<p>Along the way, we:</p>
+<ul>
+<li>used Unix tools where they shine (simple line transformations)</li>
+<li>dropped into Elisp where structure and context mattered (Org tables, cell boundaries)</li>
+<li>relied on Emacs’s own sorting primitive rather than re-implementing a sort from scratch</li>
+</ul>
+<p>The pattern is useful beyond this example:</p>
+<ul>
+<li>Let Unix do what Unix is good at.</li>
+<li>Let Emacs do what Emacs is good at.</li>
+<li>And when the problem sits at the intersection — like sorting structured text inside your editor — it’s nice to know what tools Emacs has waiting under the hood.</li>
+</ul>
+
+      </div></div>
+
+  
+    
+<div class="pagination">
+  <div class="pagination__title">
+    <span class="pagination__title-h">Read other posts</span>
+    <hr />
+  </div>
+  <div class="pagination__buttons">
+    
+      <a href="https://kes.github.io/posts/programming-with-chatgpt/" class="button inline prev">
+        &lt; [<span class="button__text">C Programming with ChatGPT</span>]
+      </a>
+    
+    
+      ::
+    
+    
+      <a href="https://kes.github.io/posts/whatisalambda/" class="button inline next">
+         [<span class="button__text">What&#39;s a Lambda? A Brief Walk from Lisp → Closures → Java</span>] &gt;
+      </a>
+    
+  </div>
+</div>
+
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2025 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

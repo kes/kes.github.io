@@ -37,6 +37,13 @@
       <description>I wanted to experiment with ChatGPT and programming. So, I thought I would just start with an exercise from Kernighan and Ritchie&amp;rsquo;s The C Programming Language.&#xA;I prompted ChatGPT with the following:&#xA;In C write a program called detab that replaces tabs in the input with the proper number of spaces to reach the next tabstop. Assume tab stops every eight columns. This is exercise 1.20 from The C Programming Language by Kernighan and Ritchie.</description>
     </item>
     <item>
+      <title>Sorting in Emacs with Elisp</title>
+      <link>https://kes.github.io/posts/writing-an-elisp-sort/</link>
+      <pubDate>Sat, 08 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://kes.github.io/posts/writing-an-elisp-sort/</guid>
+      <description>How would you sort lines in a text file by length?&#xA;I came across a post on X with about thirty full names, mostly well-known authors. The OP asked which one was everyone’s favorite. The interesting part: the names weren’t sorted alphabetically, but by length. When asked how they did it, the OP said it was done by hand.&#xA;Manual is fine for short lists. It becomes tedious very quickly.</description>
+    </item>
+    <item>
       <title>What&#39;s a Lambda? A Brief Walk from Lisp → Closures → Java</title>
       <link>https://kes.github.io/posts/whatisalambda/</link>
       <pubDate>Sat, 08 Nov 2025 00:00:00 +0000</pubDate>

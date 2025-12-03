@@ -50,7 +50,13 @@
     <loc>https://kes.github.io/tags/chatgpt/</loc>
     <lastmod>2025-11-08T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://kes.github.io/tags/emacs/</loc>
+    <lastmod>2025-11-08T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://kes.github.io/tags/lambda/</loc>
+    <lastmod>2025-11-08T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://kes.github.io/posts/writing-an-elisp-sort/</loc>
     <lastmod>2025-11-08T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://kes.github.io/posts/whatisalambda/</loc>
@@ -115,9 +121,6 @@
   </url><url>
     <loc>https://kes.github.io/tags/ham/</loc>
     <lastmod>2024-11-19T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://kes.github.io/tags/emacs/</loc>
-    <lastmod>2024-11-18T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://kes.github.io/posts/emacs-modules/</loc>
     <lastmod>2024-11-18T00:00:00+00:00</lastmod>
