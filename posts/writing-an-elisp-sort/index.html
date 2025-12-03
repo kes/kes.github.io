@@ -752,8 +752,8 @@ figure.my-figure{
 <p>This really good. But let&rsquo;s change the requirements.</p>
 <h2 id="third-pass-a-new-sort-order">Third pass: a new sort order<a href="#third-pass-a-new-sort-order" class="hanchor" ariaLabel="Anchor">#</a> </h2>
 <p>Suppose now we want the ability to sort top-to-bottom and then right-to-left.</p>
-<p>This could exposes a bit of a problem. It all gets down to how the table is represented. The regex-walker naturally searches left-to-right column first, then moves down a row, and continues searching. This is fine, since that was the given requirement.</p>
-<p>Moving top-to-bottom (row first) and left-to-right is more of a challenge. However, there is a function <code>org-table-transpose-table-at-point</code>.</p>
+<p>This exposes a bit of a problem. The regex-walker naturally searches from left-to-right (column first), then moves down a row, and continues searching. This is fine, since that was the given requirement.</p>
+<p>Moving top-to-bottom (row first) and then left-to-right is more of a challenge. However, there is a function <code>org-table-transpose-table-at-point</code>.</p>
 <p>Applying this transposition function to this table:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>| 1 | 2 | 4 | 5 |
 </span></span><span style="display:flex;"><span>| a | b | c | d |
@@ -763,7 +763,7 @@ figure.my-figure{
 </span></span><span style="display:flex;"><span>| 2 | b | f |
 </span></span><span style="display:flex;"><span>| 4 | c | g |
 </span></span><span style="display:flex;"><span>| 5 | d | h |
-</span></span></code></pre></div><p>We can use this function to transpose the table of names, then sort, then transpose back. Here&rsquo;s the updated code.</p>
+</span></span></code></pre></div><p>That&rsquo;s exactly what we want. We can use this function to transpose the table of names, then sort, then transpose back. Here&rsquo;s the updated code.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span style="display:flex;"><span>  (defun kes/sort-org-table-by-field-length (arg)
 </span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;Sort current Org table by cell length.
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Invoke anywhere inside the table (no active region needed). With prefix
