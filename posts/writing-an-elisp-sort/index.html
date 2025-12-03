@@ -749,6 +749,167 @@ figure.my-figure{
 </tbody>
 </table>
 </div>
+<p>This really good. But let&rsquo;s change the requirements.</p>
+<h2 id="third-pass-a-new-sort-order">Third pass: a new sort order<a href="#third-pass-a-new-sort-order" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>Suppose now we want the ability to sort top-to-bottom and then right-to-left.</p>
+<p>This could exposes a bit of a problem. It all gets down to how the table is represented. The regex-walker naturally searches left-to-right column first, then moves down a row, and continues searching. This is fine, since that was the given requirement.</p>
+<p>Moving top-to-bottom (row first) and left-to-right is more of a challenge. However, there is a function <code>org-table-transpose-table-at-point</code>.</p>
+<p>Applying this transposition function to this table:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>| 1 | 2 | 4 | 5 |
+</span></span><span style="display:flex;"><span>| a | b | c | d |
+</span></span><span style="display:flex;"><span>| e | f | g | h |
+</span></span></code></pre></div><p>Results in this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>| 1 | a | e |
+</span></span><span style="display:flex;"><span>| 2 | b | f |
+</span></span><span style="display:flex;"><span>| 4 | c | g |
+</span></span><span style="display:flex;"><span>| 5 | d | h |
+</span></span></code></pre></div><p>We can use this function to transpose the table of names, then sort, then transpose back. Here&rsquo;s the updated code.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span style="display:flex;"><span>  (defun kes/sort-org-table-by-field-length (arg)
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;Sort current Org table by cell length.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Invoke anywhere inside the table (no active region needed). With prefix
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">argument, sort longest cells first. With prefix argument pressed
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">twice, sort transposed.&#34;</span>
+</span></span><span style="display:flex;"><span>    (interactive <span style="color:#e6db74">&#34;P&#34;</span>)
+</span></span><span style="display:flex;"><span>    (save-excursion
+</span></span><span style="display:flex;"><span>      (save-restriction
+</span></span><span style="display:flex;"><span>        (let ((<span style="color:#a6e22e">reverse</span> <span style="color:#66d9ef">nil</span>)
+</span></span><span style="display:flex;"><span>              (transpose <span style="color:#66d9ef">nil</span>)
+</span></span><span style="display:flex;"><span>              (beg (org-table-begin))
+</span></span><span style="display:flex;"><span>              (end (org-table-end)))
+</span></span><span style="display:flex;"><span>          (<span style="color:#a6e22e">narrow-to-region</span> beg end)
+</span></span><span style="display:flex;"><span>          (<span style="color:#a6e22e">goto-char</span> (<span style="color:#a6e22e">point-min</span>))
+</span></span><span style="display:flex;"><span>          (when arg
+</span></span><span style="display:flex;"><span>            (if (<span style="color:#a6e22e">=</span> (<span style="color:#a6e22e">car</span> arg) <span style="color:#ae81ff">16</span>)  <span style="color:#75715e">; c-u c-u is 16</span>
+</span></span><span style="display:flex;"><span>                (setq transpose <span style="color:#66d9ef">t</span>)
+</span></span><span style="display:flex;"><span>              (setq <span style="color:#a6e22e">reverse</span> <span style="color:#66d9ef">t</span>)))
+</span></span><span style="display:flex;"><span>          (when transpose
+</span></span><span style="display:flex;"><span>            (org-table-transpose-table-at-point)
+</span></span><span style="display:flex;"><span>            (setq arg <span style="color:#66d9ef">nil</span>))
+</span></span><span style="display:flex;"><span>          (kes/record-start)
+</span></span><span style="display:flex;"><span>          (sort-subr
+</span></span><span style="display:flex;"><span>           <span style="color:#a6e22e">reverse</span>
+</span></span><span style="display:flex;"><span>           <span style="color:#a6e22e">#&#39;</span>kes/record-start
+</span></span><span style="display:flex;"><span>           <span style="color:#a6e22e">#&#39;</span>kes/record-end
+</span></span><span style="display:flex;"><span>           (lambda ()
+</span></span><span style="display:flex;"><span>             <span style="color:#75715e">;; STARTKEYFUN: compute width of current cell as key value.</span>
+</span></span><span style="display:flex;"><span>             (save-excursion
+</span></span><span style="display:flex;"><span>               (let ((start (<span style="color:#a6e22e">point</span>)))
+</span></span><span style="display:flex;"><span>                 (kes/record-end)
+</span></span><span style="display:flex;"><span>                 (<span style="color:#a6e22e">-</span> (<span style="color:#a6e22e">point</span>) start)))))
+</span></span><span style="display:flex;"><span>          <span style="color:#75715e">;; clean up and perhaps transpose back</span>
+</span></span><span style="display:flex;"><span>          (org-table-align)
+</span></span><span style="display:flex;"><span>          (when transpose
+</span></span><span style="display:flex;"><span>            (<span style="color:#a6e22e">goto-char</span> (<span style="color:#a6e22e">point-min</span>))
+</span></span><span style="display:flex;"><span>            (org-table-transpose-table-at-point))))))
+</span></span></code></pre></div><p>Key points:</p>
+<ul>
+<li>We change <code>reverse</code> to <code>arg</code> in the parameter list
+<ul>
+<li>it could indicate reversing the sort order</li>
+<li>it could indicate transposing the sort order</li>
+</ul>
+</li>
+<li>We distinguish how many times <code>C-u</code> is pressed
+<ul>
+<li><code>C-u</code> is known as the &ldquo;universal argument&rdquo;</li>
+<li>press once and its value is 4</li>
+<li>press twice and its value is 16 (we check only for 16)</li>
+</ul>
+</li>
+<li>We clean up
+<ul>
+<li>if we are transpose sorting, we must transpose back</li>
+</ul>
+</li>
+</ul>
+<p>Transpose sorting gives us top-to-bottom, left-to-right as in the following.</p>
+<style>
+.table-4 table th {
+    text-align: left;
+    padding: 15px;
+    text-transform: capitalize;
+}
+.table-4 table td {
+    text-align: left;
+    padding: 15px;
+    text-transform: capitalize;
+}
+.table-number {
+  display: none;
+}
+.table-caption{
+    font-style: italic;
+    font-weight: lighter;
+    text-align: center;
+}
+</style>
+<style>.table-4 table { text-align: center;  width: 100%;  margin: 0 auto;  }</style>
+<div class="ox-hugo-table table-4">
+<div class="table-caption">
+  <span class="table-number">Table 5:</span>
+  Sorted by length, top-to-bottom, left-to-right
+</div>
+<table>
+<thead>
+<tr>
+<th>Ray Sin</th>
+<th>Anne Teak</th>
+<th>Allie Grater</th>
+<th>Ivana B. Withew</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Liz Erd</td>
+<td>Ray O’Sun</td>
+<td>I. Missy Ewe</td>
+<td>P. Ann O’Recital</td>
+</tr>
+<tr>
+<td>A. Mused</td>
+<td>I.M. Tired</td>
+<td>Paige Turner</td>
+<td>Constance Noring</td>
+</tr>
+<tr>
+<td>U.R. Nice</td>
+<td>Ann Chovey</td>
+<td>Lynn O’Leeum</td>
+<td>Anita Letterback</td>
+</tr>
+<tr>
+<td>Peg Legge</td>
+<td>Hazel Nutt</td>
+<td>Augusta Wind</td>
+<td>Minnie Van Ryder</td>
+</tr>
+<tr>
+<td>Olive Yew</td>
+<td>Anita Bath</td>
+<td>Marsha Mellow</td>
+<td>Isabelle Ringing</td>
+</tr>
+<tr>
+<td>Rita Book</td>
+<td>Harriet Upp</td>
+<td>Chris P. Bacon</td>
+<td>Patty O’Furniture</td>
+</tr>
+<tr>
+<td>Barb Akew</td>
+<td>Teri Dactyl</td>
+<td>Chris Anthemum</td>
+<td>Maureen Biologist</td>
+</tr>
+<tr>
+<td>Aida Bugg</td>
+<td>Rhoda Report</td>
+<td>Eileen Sideways</td>
+<td>Lois Di Nominator</td>
+</tr>
+</tbody>
+</table>
+</div>
 <h2 id="conclusion">Conclusion<a href="#conclusion" class="hanchor" ariaLabel="Anchor">#</a> </h2>
 <p>We started with a common little problem: sorting a list of names by length.</p>
 <p>For a simple vertical list, Unix tools plus <code>M-x shell-command-on-region</code> gave us an elegant one-liner. That solved the first problem without touching Elisp.</p>
