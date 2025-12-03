@@ -473,7 +473,7 @@ figure.my-figure{
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>General text sorting routine to divide buffer into records and sort them.
 </span></span></code></pre></div><p>That opening is already promising: “divide buffer into records and sort them.”</p>
-<p>Clicking through to the source (in my case, <code>~/.local/share/emacs/31.0.50/lisp/sort.el</code>) reveals how it works, but the docstring alone gives a decent mental model<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>.</p>
+<p>Clicking through to the source (in my case, <code>~/.local/share/emacs/31.0.50/lisp/sort.el</code>) reveals how it works, but the docstring alone gives a decent mental model.<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
 <p>We define:</p>
 <ul>
 <li>what counts as a <strong>record</strong> (a line, a cell, etc.)</li>
@@ -575,7 +575,7 @@ figure.my-figure{
 <li>In that case, <code>sort-subr</code> passes each key to the predicate as a cons cell: <code>(BEG . END)</code>.</li>
 <li>Our PREDICATE just computes the length <code>END - BEG</code> and compares lengths.</li>
 </ul>
-<p>This works nicely for a list of names. But our original goal was to sort <strong>cells</strong> in an Org table, left-to-right, top-to-bottom.</p>
+<p>This works nicely for a list of names.<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup> But our original goal was to sort <strong>cells</strong> in an Org table, left-to-right, top-to-bottom.</p>
 <p>Time to get a bit fancier.</p>
 <h2 id="second-pass-sorting-an-org-table-by-cell-length">Second pass: sorting an Org table by cell length<a href="#second-pass-sorting-an-org-table-by-cell-length" class="hanchor" ariaLabel="Anchor">#</a> </h2>
 <p>We’ll now assume the table is an <a href="https://orgmode.org/manual/Tables.html">Org table</a>. That lets us use a couple of handy Org functions to find table boundaries.</p>
@@ -770,6 +770,9 @@ figure.my-figure{
 <ol>
 <li id="fn:1">
 <p>In sort.el is found the function sort-lines which sorts alphabetically. Instrumenting and stepping through it with the debugger is another excellent path forward.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>An improvement would be to have STARTKEFUN simply compute the length and return it. In that case, ENDKEYFUN and PREDICATE can be nil. We will see this in the next version, along with other changes.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
 </div>
