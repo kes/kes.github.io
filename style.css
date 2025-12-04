@@ -117,4 +117,15 @@ blockquote .marginnote {
     min-width: 59%;
     text-align: left;
 }
-
+h2 {
+	color: #eec35e;
+	margin-top: 2em;
+  margin-bottom: 1.5em;	
+  border-bottom: 3px solid #3b3f4a;  /* 3px rule below */
+  padding-bottom: 0.3em;
+}
+.table-caption {
+	margin-top:2em;
+	margin-bottom: 1.5em;
+	color:#a19f99;
+}
