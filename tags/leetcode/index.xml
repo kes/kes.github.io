@@ -6,8 +6,15 @@
     <description>Recent content in Leetcode on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 29 Nov 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 07 Dec 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://kes.github.io/tags/leetcode/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cyclical Thinking and the Zigzag Conversion Problem</title>
+      <link>https://kes.github.io/posts/cyclical-coding-fun/</link>
+      <pubDate>Sun, 07 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://kes.github.io/posts/cyclical-coding-fun/</guid>
+      <description>LeetCode has a well-known challenge, Zigzag Conversion (rated medium), introduced like this:&#xA;Leetcode has a coding challenge zigzag Conversion (rated at medium), that is presented like this:&#xA;The string &amp;#34;PAYPALISHIRING&amp;#34; is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility) P A H N A P L S I I G Y I R And then read line by line: &amp;#34;PAHNAPLSIIGYIR&amp;#34; Interesting!</description>
+    </item>
     <item>
       <title>Leetcode Algorithms 15</title>
       <link>https://kes.github.io/leetcode/leetcode-algorithms-15/</link>

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  
+    <title>The Intersection of Orberg and SICP :: </title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="I have an interest in the art and science of pedagogy. &amp;ldquo;Pedagogy&amp;rdquo; is the theory of teaching. What makes for good strategies in teaching, and what make for poor strategies. Simply, what works, and what doesn&amp;rsquo;t.
+I am particularly interested in the areas of math, computer science, and languages, like Latin. How should they be taught.
+Here&amp;rsquo;s the truth. I was never a particularly good student in my childhood and teenage years." />
+<meta name="keywords" content="" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="http://localhost:1313/posts/orberg-and-sicp/" />
+
+
+
+
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/buttons.min.86f6b4c106b6c6eb690ae5203d36b442c1f66f718ff4e8164fa86cf6c61ad641.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/code.min.d529ea4b2fb8d34328d7d31afc5466d5f7bc2f0bc9abdd98b69385335d7baee4.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/fonts.min.5bb7ed13e1d00d8ff39ea84af26737007eb5051b157b86fc24487c94f3dc8bbe.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/footer.min.eb8dfc2c6a7eafa36cd3ba92d63e69e849e2200e0002a228d137f236b09ecd75.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/gist.min.a751e8b0abe1ba8bc53ced52a38b19d8950fe78ca29454ea8c2595cf26aad5c0.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/header.min.75c7eb0e2872d95ff48109c6647d0223a38db52e2561dd87966eb5fc7c6bdac6.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/main.min.36833afd348409fc6c3d09d0897c5833d9d5bf1ff31f5e60ea3ee42ce2b1268c.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/menu.min.3c17467ebeb3d38663dce68f71f519901124fa5cbb4519b2fb0667a21e9aca39.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/pagination.min.bbb986dbce00a5ce5aca0504b7925fc1c581992a4bf57f163e5d69cc1db7d836.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/post.min.e6dddd258e64c83e05cec0cd49c05216742d42fc8ecbfbe6b67083412b609bd3.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/syntax.min.a0773cce9310cb6d8ed23e50f005448facf29a53001b57e038828daa466b25c0.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/terminal.min.e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/terms.min.b81791663c3790e738e571cdbf802312390d30e4b1d8dc9d814a5b5454d0ac11.css">
+
+
+
+
+<link rel="stylesheet" href="http://localhost:1313/style.css">
+
+
+<link rel="shortcut icon" href="http://localhost:1313/favicon.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+
+
+<meta name="twitter:card" content="summary" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="The Intersection of Orberg and SICP">
+<meta property="og:description" content="I have an interest in the art and science of pedagogy. &amp;ldquo;Pedagogy&amp;rdquo; is the theory of teaching. What makes for good strategies in teaching, and what make for poor strategies. Simply, what works, and what doesn&amp;rsquo;t.
+I am particularly interested in the areas of math, computer science, and languages, like Latin. How should they be taught.
+Here&amp;rsquo;s the truth. I was never a particularly good student in my childhood and teenage years." />
+<meta property="og:url" content="http://localhost:1313/posts/orberg-and-sicp/" />
+<meta property="og:site_name" content="" />
+
+  <meta property="og:image" content="http://localhost:1313/og-image.png">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2025-12-04 00:00:00 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="http://localhost:1313/js/mathjax-config.js"></script>
+
+  
+  <script
+    id="MathJax-script"
+    async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+  </script>
+
+
+
+
+</head>
+<body>
+
+
+<div class="container center">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    Karl Stump
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/about/about/">About</a></li>
+        
+      
+        
+          <li><a href="/leetcode/">Leet Code</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        
+          <li><a href="/about/about/" >About</a></li>
+        
+      
+        
+          <li><a href="/leetcode/" >Leet Code</a></li>
+        
+      
+      
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="http://localhost:1313/posts/orberg-and-sicp/">The Intersection of Orberg and SICP</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2025-12-04</time><span class="post-author">[Karl Stump]</span></div>
+
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <p>I have an interest in the art and science of pedagogy. &ldquo;Pedagogy&rdquo; is the theory of teaching. What makes for good strategies in teaching, and what make for poor strategies. Simply, what works, and what doesn&rsquo;t.</p>
+<p>I am particularly interested in the areas of math, computer science, and languages, like Latin. How should they be taught.</p>
+<p>Here&rsquo;s the truth. I was never a particularly good student in my childhood and teenage years. While my older sisters were attaining academic success in high school, and going on to college, I struggled academically. The fact that I eventually achieved a BFA, and three masters degrees (one in Computer Science, and two in theology) is something I still find rather surprising. My initial academic results would not have predicted that. In fact, I cannot tell you precisely why, but changed from a non-student to a student. It seems as if I awoke one day and discovered that I had a brain, and I might want to use it.</p>
+<p>I think I know what happened. My affective filter began to lower. No longer oppressed by anxiety a natural curiosity began to emerge.</p>
+<p>I was born anxious. Back in the day a premature birth was death sentence, and I was six weeks premature.My father, a medical doctor in a small rural hospital didn&rsquo;t think I would make it. He couldn&rsquo;t get my temperature to stabilize. He set up a make-shift incubator using a light bulb for heat. It seemed to work. A nurse came by and, not understanding, turned the light off, again destabilizing my temperature. Again Dad set to work. And, I survived. After about two months, they let me come home.</p>
+<p>I sometimes wonder about that time. What does a baby know? Did I know anything? Does I experience fear? Anxiety? All living organisms threatened by death try to escape it. Fight or flight, whatever works, to live another day.</p>
+<p>One of my earliest memories was my older sister bouncing me on her lap. She loved me like only an older sister can. I looked at a package of cookies. A yellow kite on a blue background. Figures that looked like a mom and dad to me, a kite flying in the air. I turned to my sister and started to cry. &ldquo;Why, why are you crying?&rdquo; she asked. &ldquo;We are all going to die,&rdquo; was my cry. Children coming to the awareness of death is not unusual. But I wonder if my encounter with death as a premature birth gave my insight additional emotional punch.</p>
+<p>One of my earliest memories is laying back on the couch, my head on Dad&rsquo;s lap. I was four. We were both waiting for dinner. The TV was on, the nightly news. I looked at him and began to say something. &ldquo;D-d-d-d-d,&rdquo; I stuttered. Dad patted me on the head and in calm voice urged me to &ldquo;slow down, slow down.&rdquo; Anxiety? Pathology? I don&rsquo;t know.</p>
+<p>About the age of five I remember playing on the back stairs. My older brother who was about 12, punched me in the stomach. I howled in pain trying to catch my breath, trying not to die. Later my brother would become a fierce football player, a wit, and a ladies man. Handsome and athletic. He was also a drug addict and an alcoholic. He would say to me later that on his first taste of alcohol, about the age of thirteen or so, that he knew he was an alcoholic. Years later my mother in the throes of dementia recognized, in tears, only his picture. I liked him. I still do.</p>
+<p>I think it was about fourth grade we all had an eye test. The nurse told me to cover my right eye and read the chart. I couldn&rsquo;t. She moved the pointer up. &ldquo;Read the chart.&rdquo; I couldn&rsquo;t. She moved the pointer up. &ldquo;Read the chart.&rdquo; I couldn&rsquo;t. &ldquo;Oh, c&rsquo;mon now!!&rdquo; I was diagnosed with &ldquo;lazy eye,&rdquo; and wore patch and filters on glasses.</p>
+<p>I remember grammar school. And I hated it. I hated going school. I know why, now, primarily. It was because I was always tired. I never went to bed, never went to sleep before midnight. A tired child is not a happy child. What I did like was playing football. The Packers were my team. In the classroom, I never understood what the teacher was saying, what the teacher wanted, what the exercises required. The &ldquo;avoid homework&rdquo; modality was a premium artifact of my life. At home, on my own I tried to assemble Heathkit Electronics kits and dreamed of making contacts around the world. The kits, they worked. Sort of.</p>
+<p>But there was a huge feeling of stress when talking. When approaching someone. Except for family.</p>
+<p>Hence, it is quite natural, I feel, for me to have an interest in how math and computer science are taught. After all, I went from being an actor, to attaining an MS in computer science. Yes, I have a unique perspective on what works and what doesn&rsquo;t. And the same can be said for classical languages like Latin, Koine Gree, and Hebrew, requirements for my theology degrees.</p>
+<p>You wouldn&rsquo;t think that the pedagogy of these two areas, classical languages, and computer languages would overlap. After all, these disciplines could not be more different. But my mind was changed, as I was reading a classical text in computer science, and suddenly struck by the notion that Latin and programming language pedagogy might not be all that different.</p>
+<h2 id="structure-and-interpretation">Structure and Interpretation<a href="#structure-and-interpretation" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>I was reading in the famous computer science text <em>Structure and Interpretation of Computer Programs</em><sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> (SCIP).</p>
+<style>
+  .quote-1 {
+    width: 40%;
+    /* border: 1px solid; */
+    float: right;          /* or left */
+    margin: 2em;           /* space around the quote */
+    font-size: 12px;
+    line-height:1.5;
+  }
+
+  blockquote {
+    margin: 0;
+  }
+</style>
+<div class="quote-1">
+<blockquote>
+<p>This book should be read by every self-respecting computuer scientist. Because of its clarity, simplicity, and wit, this work is highly recommended to anyone seeking an understanding of the emerging paradigms of computer science. &ndash; Mitchell Wand, <em>American Scientist</em></p>
+</blockquote>
+</div>
+<p>This text has influenced generations of computer scientists and programmers, both inside and outside of MIT. For years, it was the foundational text for MIT&rsquo;s <a href="https://ocw.mit.edu/courses/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011/">6.01</a> Introduction to Electrical Engineering and Computer Science. The course has since adopted other approaches, but the original course from 1986 is <a href="https://www.youtube.com/watch?v=2Op3QLzMgSY">available</a>.</p>
+<p>and came across the following code:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span>(define (a-plus-abs-b a b)
+</span></span><span style="display:flex;"><span>  ((<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">&gt;</span> b <span style="color:#ae81ff">0</span>) <span style="color:#a6e22e">+</span> <span style="color:#a6e22e">-</span>) a b))
+</span></span></code></pre></div><p>This is exercise 1.4. And honestly, I sat dumbfounded.</p>
+<p>The student is asked to describe the behavior of this function, <code>a-plus-abs-b</code></p>
+<p>Do I understand this? Yes, of course.  But how, I asked myself, is it possible that the authors of SICP expect beginning computer science students to cope with this function definition.  It is very deep, it is very technical. There is simply no way that a beginning reader knows what is going on here. It would take weeks of instruction.</p>
+<p>And yet, here it is on page 21, and the student is asked to describe it. What were the authors thinking?</p>
+<p>And then it dawned on me. The authors are teaching the programming language like a \(\dots \) language. No, not a &ldquo;computer language,&rdquo; but a human language, a language of human thought.</p>
+<h2 id="latin-and-second-language-acquisition">Latin and Second Language Acquisition<a href="#latin-and-second-language-acquisition" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>For those interested in teaching classical Latin as a modern language, Hans H. Orberg&rsquo;s <em>Lingua Latina per se Illustrata</em> is the standard textbook, first published in 1955. The book is meant to teach Latin according to the &ldquo;natural method&rdquo; (<em>sucudum naturae</em>). In it you will find not one word of English. The student simply begins reading Latin from page one, <em>&ldquo;Roma in Italia est.&rdquo;</em></p>
+<style>
+  .example-1 {
+    width: 25%;
+    /*border: 1px solid; */
+    float: left;          /* or left */
+    margin: 1em;           /* space around the quote */
+    /*font-size: 12px;*/
+    line-height:1.5;
+  }
+
+  blockquote {
+    margin: 0;
+  }
+</style>
+<div class="highlight example-1"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Roma in Italia est.
+</span></span></code></pre></div><p>The student is thinking Latin-ly from the very beginning. When grammar is discussed (and it is), it is entirely in Latin.</p>
+<p>By contrast, I studied Hebrew and Koine Greek in seminary, and all of it was completely grammar-translation. We never thought in Greek, we never thought in Hebrew.  We analyzed languages grammatically in English.  These days, I call it grammar abuse! I came away with a total inability to read either language normally. Instead, my mind was filled with anxiety over grammar rules and forms. Reading meant analyzing, and honestly, it was not fun.</p>
+<p>When I first stumbled upon Orberg&rsquo;s <em>Lingua Latina</em> I was shocked. And when I read the first sentence: <em>Roma in Italia est</em>? My brain froze: &ldquo;Where&rsquo;s the verb!&rdquo;</p>
+<p>With Orberg the student is</p>
+<ul>
+<li>Not parsing nouns</li>
+<li>Not looking for the verb</li>
+<li>not chanting paradigms</li>
+</ul>
+<p>Instead the student is reading and comprehending.</p>
+<h2 id="krashen-and-second-language-acquisition">Krashen and Second Language Acquisition<a href="#krashen-and-second-language-acquisition" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>The theory of second language acquisition has been greatly influenced by Stephen Krashen and his <a href="https://en.wikipedia.org/wiki/Input_hypothesis">monitor model</a> hypothesis. For our purposes it can be summed up with two ideas: comprehensible input, and the &ldquo;affective filter.&rdquo; Comprehensible input is just what it sounds like. It&rsquo;s input that&rsquo;s comprehensible. Krashen hypothesized that language is not acquired by studying grammar, but by hearing and reading a lot of comprehensible input. Grammar actually hinders language acquisition, because it raises an &ldquo;affective filter,&rdquo; or emotional barriers brought on by anxiety over grammar.<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
+<p>But Krashen&rsquo;s &ldquo;affective filter&rdquo; does not occur only in second language acquisition. It occurs in all <em>knowledge acquisition</em>. Quite simply, if you&rsquo;re uptight, tense, feeling anxious, overwhelmed you simply will not, cannot learn as well as somebody who is none of those things.</p>
+<p>Math is another area where an &ldquo;affective filter&rdquo; is clearly evident. Math anxiety is a real.</p>
+<p>Orberg follows this approach. And it is amazing how, as the chapters pass, he introduces new grammatical facets. He never talks about them grammatically. He just simply uses them.</p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>Harold Abelson and Gerald Jay Sussman, <i>Structure and Interpretation of Computer Programs</i> (The MIT Press, 1996).&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>Krashen theorized that the focus on grammar raises an &ldquo;affective filter&rdquo; that prevents language acquisition. This filter is an emotional barrier. This idea makes total sense to me now, but there was a time when it didn&rsquo;t. My former wife was a native English speaker, and fluent in Spanish. When I would ask her about Spanish grammar she would say very little. I wanted to become fluent in Latin, and thought grammar was the way to go. Once, I showed her a Latin sentence and described all the grammatical elements. Without a pause she commented: &ldquo;You&rsquo;ll never become fluent if you&rsquo;re thinking about all that!&rdquo; At the time I was rather taken aback. But she was correct and intuitively understood Krashen&rsquo;s affective filter.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+      </div></div>
+
+  
+    
+<div class="pagination">
+  <div class="pagination__title">
+    <span class="pagination__title-h">Read other posts</span>
+    <hr />
+  </div>
+  <div class="pagination__buttons">
+    
+    
+    
+      <a href="http://localhost:1313/posts/project-euler-num-308/" class="button inline next">
+         [<span class="button__text">FRACTRAN: John Conway’s Ridiculous Little Programming Language</span>] &gt;
+      </a>
+    
+  </div>
+</div>
+
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2025 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

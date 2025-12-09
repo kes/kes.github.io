@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Cyclical Thinking and the Zigzag Conversion Problem :: </title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="LeetCode has a well-known challenge, Zigzag Conversion (rated medium), introduced like this:
+Leetcode has a coding challenge zigzag Conversion (rated at medium), that is presented like this:
+The string &amp;#34;PAYPALISHIRING&amp;#34; is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility) P A H N A P L S I I G Y I R And then read line by line: &amp;#34;PAHNAPLSIIGYIR&amp;#34; Interesting!" />
+<meta name="keywords" content="" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="https://kes.github.io/posts/cyclical-coding-fun/" />
+
+
+
+
+
+  
+  <link rel="stylesheet" href="https://kes.github.io/css/buttons.min.86f6b4c106b6c6eb690ae5203d36b442c1f66f718ff4e8164fa86cf6c61ad641.css">
+
+  
+  <link rel="stylesheet" href="https://kes.github.io/css/code.min.d529ea4b2fb8d34328d7d31afc5466d5f7bc2f0bc9abdd98b69385335d7baee4.css">
+
+  
+  <link rel="stylesheet" href="https://kes.github.io/css/fonts.min.5bb7ed13e1d00d8ff39ea84af26737007eb5051b157b86fc24487c94f3dc8bbe.css">
+
+  
+  <link rel="stylesheet" href="https://kes.github.io/css/footer.min.eb8dfc2c6a7eafa36cd3ba92d63e69e849e2200e0002a228d137f236b09ecd75.css">
+
+  
+  <link rel="stylesheet" href="https://kes.github.io/css/gist.min.a751e8b0abe1ba8bc53ced52a38b19d8950fe78ca29454ea8c2595cf26aad5c0.css">
+
+  
+  <link rel="stylesheet" href="https://kes.github.io/css/header.min.75c7eb0e2872d95ff48109c6647d0223a38db52e2561dd87966eb5fc7c6bdac6.css">
+
+  
+  <link rel="stylesheet" href="https://kes.github.io/css/main.min.36833afd348409fc6c3d09d0897c5833d9d5bf1ff31f5e60ea3ee42ce2b1268c.css">
+
+  
+  <link rel="stylesheet" href="https://kes.github.io/css/menu.min.3c17467ebeb3d38663dce68f71f519901124fa5cbb4519b2fb0667a21e9aca39.css">
+
+  
+  <link rel="stylesheet" href="https://kes.github.io/css/pagination.min.bbb986dbce00a5ce5aca0504b7925fc1c581992a4bf57f163e5d69cc1db7d836.css">
+
+  
+  <link rel="stylesheet" href="https://kes.github.io/css/post.min.e6dddd258e64c83e05cec0cd49c05216742d42fc8ecbfbe6b67083412b609bd3.css">
+
+  
+  <link rel="stylesheet" href="https://kes.github.io/css/syntax.min.a0773cce9310cb6d8ed23e50f005448facf29a53001b57e038828daa466b25c0.css">
+
+  
+  <link rel="stylesheet" href="https://kes.github.io/css/terminal.min.e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css">
+
+  
+  <link rel="stylesheet" href="https://kes.github.io/css/terms.min.b81791663c3790e738e571cdbf802312390d30e4b1d8dc9d814a5b5454d0ac11.css">
+
+
+
+
+<link rel="stylesheet" href="https://kes.github.io/style.css">
+
+
+<link rel="shortcut icon" href="https://kes.github.io/favicon.png">
+<link rel="apple-touch-icon" href="https://kes.github.io/apple-touch-icon.png">
+
+
+<meta name="twitter:card" content="summary" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Cyclical Thinking and the Zigzag Conversion Problem">
+<meta property="og:description" content="LeetCode has a well-known challenge, Zigzag Conversion (rated medium), introduced like this:
+Leetcode has a coding challenge zigzag Conversion (rated at medium), that is presented like this:
+The string &amp;#34;PAYPALISHIRING&amp;#34; is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility) P A H N A P L S I I G Y I R And then read line by line: &amp;#34;PAHNAPLSIIGYIR&amp;#34; Interesting!" />
+<meta property="og:url" content="https://kes.github.io/posts/cyclical-coding-fun/" />
+<meta property="og:site_name" content="" />
+
+  <meta property="og:image" content="https://kes.github.io/og-image.png">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2025-12-07 00:00:00 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="https://kes.github.io/js/mathjax-config.js"></script>
+
+  
+  <script
+    id="MathJax-script"
+    async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+  </script>
+
+
+
+
+</head>
+<body>
+
+
+<div class="container center">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    Karl Stump
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/about/about/">About</a></li>
+        
+      
+        
+          <li><a href="/leetcode/">Leet Code</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        
+          <li><a href="/about/about/" >About</a></li>
+        
+      
+        
+          <li><a href="/leetcode/" >Leet Code</a></li>
+        
+      
+      
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="https://kes.github.io/posts/cyclical-coding-fun/">Cyclical Thinking and the Zigzag Conversion Problem</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2025-12-07</time><span class="post-author">[Karl Stump]</span></div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="https://kes.github.io/tags/programming/">programming</a>&nbsp;
+      
+      #<a href="https://kes.github.io/tags/lisp/">lisp</a>&nbsp;
+      
+      #<a href="https://kes.github.io/tags/leetcode/">leetcode</a>&nbsp;
+      
+    </span>
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <p>LeetCode has a well-known challenge, Zigzag Conversion (rated medium), introduced like this:</p>
+<p>Leetcode has a coding challenge <a href="https://leetcode.com/problems/zigzag-conversion/description/">zigzag Conversion</a> (rated at medium), that is presented like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>The string &#34;PAYPALISHIRING&#34; is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>P   A   H   N
+</span></span><span style="display:flex;"><span>A P L S I I G
+</span></span><span style="display:flex;"><span>Y   I   R
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>And then read line by line: &#34;PAHNAPLSIIGYIR&#34;
+</span></span></code></pre></div><p>Interesting! How to solve it?</p>
+<h2 id="tl-dr">TL;DR<a href="#tl-dr" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>I assumed I needed a 2D array, diagonal coordinates, sparse matrix handling, etc.</p>
+<p>That assumption sent me straight into a conceptual ditch.</p>
+<p>Eventually I stepped back and realized: This problem isn’t geometric at all.</p>
+<p>The entire behavior is governed by a simple cyclic pattern.</p>
+<h2 id="insight-1-the-zigzag-is-cyclical-not-geometric">Insight 1 — The Zigzag Is Cyclical, Not Geometric<a href="#insight-1-the-zigzag-is-cyclical-not-geometric" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>Zigzag is not a 2D grid problem.</p>
+<p>Consider the row movement for rows equal to 3:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>0, 1, 2, 1, 0, 1, 2, 1, ...
+</span></span></code></pre></div><p>That&rsquo;s a cycle.</p>
+<p>For row equal to 4:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>0, 1, 2, 3, 2, 1, 0, 1, ...
+</span></span></code></pre></div><p>Again a cycle.</p>
+<p>So, what&rsquo;s the period (or what&rsquo;s the length)?</p>
+<p>For n rows, the pattern is:</p>
+<ul>
+<li>Go down n rows</li>
+<li>Go up n-2 rows (skipping the top and bottom)</li>
+</ul>
+<p>Like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>down:   n rows
+</span></span><span style="display:flex;"><span>up:     n-2 rows  (skipping top and bottom)
+</span></span><span style="display:flex;"><span>total:  n + (n-2) = 2n - 2 = 2*(n-1)
+</span></span></code></pre></div><p>Total cycle length (or, period): \[ 2(n-1)\]</p>
+<p>So, this is a periodic function problem.</p>
+<p>Now that we know the length of the cycle, we can calculate where we are in the cycle for any \( i \) using modulo. Like this:</p>
+<style>.my-table-1 table { text-align: center;  width: 30%;  margin: 0 auto;  }</style>
+<div class="ox-hugo-table my-table-1">
+<table>
+<thead>
+<tr>
+<th>i</th>
+<th>k = (modulo i p=4)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>3</td>
+<td>3</td>
+</tr>
+<tr>
+<td>4</td>
+<td>0</td>
+</tr>
+<tr>
+<td>5</td>
+<td>1</td>
+</tr>
+<tr>
+<td>6</td>
+<td>2</td>
+</tr>
+<tr>
+<td>7</td>
+<td>3</td>
+</tr>
+<tr>
+<td>8</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>So the idea then would be something like the following where we assume that rows = 3 and the old string is &ldquo;PAYPALISHIRING&rdquo;</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>period = 2 * (3 - 1)
+</span></span><span style="display:flex;"><span>loop for i = 0 to size(old_string)
+</span></span><span style="display:flex;"><span>    push(new_rows[(modulo i, period)], old_string[i])
+</span></span></code></pre></div><p>But there&rsquo;s a problem:</p>
+<p>You can see it easily in this table:</p>
+<style>.my-table-3 table { text-align: center;  width: 70%;  margin: 0 auto;  }</style>
+<div class="ox-hugo-table my-table-3">
+<table>
+<thead>
+<tr>
+<th>i</th>
+<th>k = (modulo i 4)</th>
+<th>The Row We Want</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>3</td>
+<td>1</td>
+<td>\( \bbox[5px, border:2px solid green]{\unicode{x274c}} \)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>0</td>
+<td>0</td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>1</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>6</td>
+<td>2</td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td>7</td>
+<td>3</td>
+<td>1</td>
+<td>\( \quad \bbox[5px, border:2px solid green]{\unicode{x274c}} \)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>So, we must normalize our results. Like this</p>
+<style>.my-table-4 table { text-align: center;  width: 90%;  margin: 0 auto;  }</style>
+<div class="ox-hugo-table my-table-4">
+<table>
+<thead>
+<tr>
+<th>i</th>
+<th>k = (modulo i 4)</th>
+<th>The Row We Want</th>
+<th>row = k&lt;3 ? k : 4-k</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>3</td>
+<td>1</td>
+<td>1</td>
+<td>\( \bbox[5px, border:2px solid green;color:green]{\unicode{x2714}} \)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>6</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td>7</td>
+<td>3</td>
+<td>1</td>
+<td>1</td>
+<td>\( \bbox[5px, border:2px solid green;color:green]{\unicode{x2714}} \)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Modulo gives us the full cycle; normalization maps it to actual rows.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>period = 2 * (n-1)
+</span></span><span style="display:flex;"><span>k = mod i period
+</span></span><span style="display:flex;"><span>row = k &lt; n ? k : period - k
+</span></span></code></pre></div><p>This analysis greatly clarifies matters.</p>
+<h2 id="second-insight-columns-don-t-matter">Second Insight: Columns Don&rsquo;t Matter<a href="#second-insight-columns-don-t-matter" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>The problem statement encourages you to picture:</p>
+<ul>
+<li>a 2D grid</li>
+<li>diagonal movement</li>
+<li>sparse character placement</li>
+<li>column-by-column mapping</li>
+</ul>
+<p>This mental model is deeply misleading.</p>
+<p><strong>Columns play no role in the final output.</strong></p>
+<p>The zigzag is only about row order.</p>
+<p>Once you know the row for each character, the solution becomes trivially simple:</p>
+<ol>
+<li>Initialize rows, a list/vector of empty strings (one per row).</li>
+<li>For each character at index i, compute its row using the formula above.</li>
+<li>Append the character to that row.</li>
+<li>Concatenate all rows.</li>
+</ol>
+<p>Done.</p>
+<h2 id="coding-zigzag-first-pass">Coding Zigzag: First Pass<a href="#coding-zigzag-first-pass" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>First we need some way to convert a position in the string (i)  to a row based on the number of rows. This will do. This mapping is just easy math.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span><span style="color:#75715e">;; map index i to a row number based on cyclic pattern</span>
+</span></span><span style="display:flex;"><span>(define (index-&gt;row i num-rows)
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">let*</span> ((cycle (<span style="color:#a6e22e">*</span> <span style="color:#ae81ff">2</span> (<span style="color:#a6e22e">-</span> num-rows <span style="color:#ae81ff">1</span>)))
+</span></span><span style="display:flex;"><span>           (k (modulo i cycle)))
+</span></span><span style="display:flex;"><span>      (<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">&lt;</span> k num-rows)
+</span></span><span style="display:flex;"><span>          k
+</span></span><span style="display:flex;"><span>          (<span style="color:#a6e22e">-</span> cycle k))))
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Now, we need some way put the rows together. Each string in the ordered <code>los</code> represents a row. So, just loop over them and <code>string-append</code>.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span>  <span style="color:#75715e">;; join-strings: list-of-strings -&gt; string</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;; concatenate all the strings in LOS</span>
+</span></span><span style="display:flex;"><span>(define (join-strings los)
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">let</span> loop ((ls los) (acc <span style="color:#e6db74">&#34;&#34;</span>))
+</span></span><span style="display:flex;"><span>      (<span style="color:#66d9ef">if</span> (null? ls)
+</span></span><span style="display:flex;"><span>          acc
+</span></span><span style="display:flex;"><span>          (loop (<span style="color:#a6e22e">cdr</span> ls) (string-append acc (<span style="color:#a6e22e">car</span> ls))))))
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Given a string and the number of rows, we build strings. The vector is just a list of strings, each string represents a row.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span>(define (zigzag-convert-numeric s num-rows)
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">let</span> ((n (string-length s)))
+</span></span><span style="display:flex;"><span>      (<span style="color:#66d9ef">if</span> (or (<span style="color:#a6e22e">&lt;=</span> num-rows <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>              (<span style="color:#a6e22e">&lt;=</span> n num-rows))          <span style="color:#75715e">; trivial: no zigzag needed</span>
+</span></span><span style="display:flex;"><span>          s
+</span></span><span style="display:flex;"><span>          (<span style="color:#66d9ef">let</span> ((rows (make-vector num-rows <span style="color:#e6db74">&#34;&#34;</span>))) <span style="color:#75715e">; vector of row-strings</span>
+</span></span><span style="display:flex;"><span>            (<span style="color:#66d9ef">let</span> loop ((i <span style="color:#ae81ff">0</span>))            <span style="color:#75715e">; index in s</span>
+</span></span><span style="display:flex;"><span>              (<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">=</span> i n)
+</span></span><span style="display:flex;"><span>                  <span style="color:#75715e">;; done: glue all row strings together</span>
+</span></span><span style="display:flex;"><span>                  (join-strings (vector-&gt;list rows))
+</span></span><span style="display:flex;"><span>                  (<span style="color:#66d9ef">let*</span> ((ch       (string-ref s i))
+</span></span><span style="display:flex;"><span>                         (k (index-&gt;row i num-rows))
+</span></span><span style="display:flex;"><span>                         (old-row  (vector-ref rows k))
+</span></span><span style="display:flex;"><span>                         (new-row  (string-append old-row (<span style="color:#a6e22e">make-string</span> <span style="color:#ae81ff">1</span> ch))))
+</span></span><span style="display:flex;"><span>                    (vector-set! rows k new-row)
+</span></span><span style="display:flex;"><span>                    (loop (<span style="color:#a6e22e">+</span> i <span style="color:#ae81ff">1</span>)))))))))
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>This solution works well.</p>
+<style>
+figure.my-figure{
+    margin: 0 auto;  /* Centers the figure */
+    text-align: center;  /* Centers the caption */
+    width: 65%;  /* Set a width for the figure */
+}
+.my-figure figcaption{
+    font-style: italic;
+    font-weight: lighter;
+}
+.figure-number{
+    display: none;
+    }
+</style>
+<figure class="my-figure"><img src="/ox-hugo/zig-zag-first-pass.png"
+         alt="Figure 1: &amp;hellip;pretty good&amp;hellip;"/><figcaption>
+            <p><span class="figure-number">Figure 1: </span>&hellip;pretty good&hellip;</p>
+        </figcaption>
+</figure>
+
+<p>There is room to optimize.</p>
+<h2 id="coding-zigzag-pass-2-i-feel-the-need-for-speed">Coding Zigzag: Pass 2 &ldquo;I feel the need for speed&rdquo;<a href="#coding-zigzag-pass-2-i-feel-the-need-for-speed" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>In the first pass, every append creates a new string.
+This is expensive.</p>
+<p>A faster strategy:</p>
+<ul>
+<li>Accumulate <em>characters</em> in lists</li>
+<li>Reverse them <em>once</em> per row</li>
+<li>Write them into a <em>preallocated</em> result string</li>
+</ul>
+<p>Will these changes make any difference?</p>
+<style>
+.my-code-1{
+/* margin-right:-100px;
+margin-left: -100px; */
+}
+</style>
+<div class="highlight my-code-1"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span><span style="color:#75715e">;; zigzag-convert-numeric-fast: string x integer -&gt; string</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;; More efficient version using lists of chars + one big final string.</span>
+</span></span><span style="display:flex;"><span>(define (zigzag-convert-numeric-fast s num-rows)
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">let</span> ((n (string-length s)))
+</span></span><span style="display:flex;"><span>      (<span style="color:#66d9ef">if</span> (or (<span style="color:#a6e22e">&lt;=</span> num-rows <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>              (<span style="color:#a6e22e">&lt;=</span> n num-rows))
+</span></span><span style="display:flex;"><span>          s
+</span></span><span style="display:flex;"><span>          (<span style="color:#66d9ef">let</span> ((rows (make-vector num-rows <span style="color:#f92672">&#39;</span>())))
+</span></span><span style="display:flex;"><span>            (<span style="color:#66d9ef">let</span> build ((i <span style="color:#ae81ff">0</span>))
+</span></span><span style="display:flex;"><span>              (<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">=</span> i n)
+</span></span><span style="display:flex;"><span>                  (<span style="color:#66d9ef">let</span> ((result (<span style="color:#a6e22e">make-string</span> n)))
+</span></span><span style="display:flex;"><span>                    (<span style="color:#66d9ef">let</span> fill-rows ((r <span style="color:#ae81ff">0</span>) (pos <span style="color:#ae81ff">0</span>))
+</span></span><span style="display:flex;"><span>                      (<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">=</span> r num-rows)
+</span></span><span style="display:flex;"><span>                          result
+</span></span><span style="display:flex;"><span>                          (<span style="color:#66d9ef">let</span> ((row-list (<span style="color:#a6e22e">reverse</span> (vector-ref rows r))))
+</span></span><span style="display:flex;"><span>                            (<span style="color:#66d9ef">let</span> fill-row ((lst row-list) (p pos))
+</span></span><span style="display:flex;"><span>                              (<span style="color:#66d9ef">if</span> (null? lst)
+</span></span><span style="display:flex;"><span>                                  (fill-rows (<span style="color:#a6e22e">+</span> r <span style="color:#ae81ff">1</span>) p)
+</span></span><span style="display:flex;"><span>                                  (begin
+</span></span><span style="display:flex;"><span>                                   (string-set! result p (<span style="color:#a6e22e">car</span> lst))
+</span></span><span style="display:flex;"><span>                                   (fill-row (<span style="color:#a6e22e">cdr</span> lst) (<span style="color:#a6e22e">+</span> p <span style="color:#ae81ff">1</span>)))))))))
+</span></span><span style="display:flex;"><span>                  (<span style="color:#66d9ef">let*</span> ((ch       (string-ref s i))
+</span></span><span style="display:flex;"><span>                         (k        (index-&gt;row i num-rows))
+</span></span><span style="display:flex;"><span>                         (old-row  (vector-ref rows k)))
+</span></span><span style="display:flex;"><span>                    (vector-set! rows k (<span style="color:#a6e22e">cons</span> ch old-row))
+</span></span><span style="display:flex;"><span>                    (build (<span style="color:#a6e22e">+</span> i <span style="color:#ae81ff">1</span>)))))))))
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>And the results are:</p>
+<style>
+figure.my-figure-2{
+    margin: 0 auto;  /* Centers the figure */
+    text-align: center;  /* Centers the caption */
+    width: 65%;  /* Set a width for the figure */
+}
+.my-figure-2 figcaption{
+    font-style: italic;
+    font-weight: lighter;
+}
+.figure-number{
+    display: none;
+    }
+</style>
+<figure class="my-figure-2"><img src="/ox-hugo/zig-zag-speed.png"
+         alt="Figure 2: That&amp;rsquo;s fast!"/><figcaption>
+            <p><span class="figure-number">Figure 2: </span>That&rsquo;s fast!</p>
+        </figcaption>
+</figure>
+
+<p>Down from 66ms to 4ms &ndash; that&rsquo;s fast! It&rsquo;s a huge improvement over the previous version. Excellent!</p>
+<h2 id="conclusion">Conclusion<a href="#conclusion" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>The Zigzag Conversion problem looks geometric, but it is purely cyclic.</p>
+<p>From this exercise we learn:</p>
+<h3 id="technical">Technical<a href="#technical" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<ol>
+<li>Problem descriptions may intentionally (or unintentionally) mislead. And this can be true in coding interviews too!</li>
+<li>Cycles and modulo arithmetic are powerful tools for pattern analysis.</li>
+<li>The simplest correct solution becomes obvious once the cycle is understood.</li>
+<li>Performance often comes from reducing allocations, not changing algorithms.</li>
+</ol>
+<h3 id="language-specific--scheme">Language-specific (Scheme)<a href="#language-specific--scheme" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<ol>
+<li>Named let, tail recursion, along with vector/list hybrids led to an elegant solution. Of those the most important is probably tail call.</li>
+<li>Functional accumulation \(\rightarrow\) and final flattening is a common in Scheme.</li>
+<li>The reference and optimized versions demonstrate a striking differential in speed, but a small-looking difference in code.</li>
+</ol>
+<p>In the end, Zigzag Conversion was much less about coding and much more about analyzing and seeing the real shape of the problem.</p>
+<p>And it was an excellent problem for me to learn more about Scheme!</p>
+
+      </div></div>
+
+  
+    
+<div class="pagination">
+  <div class="pagination__title">
+    <span class="pagination__title-h">Read other posts</span>
+    <hr />
+  </div>
+  <div class="pagination__buttons">
+    
+    
+    
+      <a href="https://kes.github.io/posts/project-euler-num-308/" class="button inline next">
+         [<span class="button__text">FRACTRAN: John Conway’s Ridiculous Little Programming Language</span>] &gt;
+      </a>
+    
+  </div>
+</div>
+
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2025 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>
