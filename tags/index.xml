@@ -6,8 +6,22 @@
     <description>Recent content in Tags on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 07 Dec 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 04 Jan 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://kes.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Programming</title>
+      <link>https://kes.github.io/tags/programming/</link>
+      <pubDate>Sun, 04 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://kes.github.io/tags/programming/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Scheme</title>
+      <link>https://kes.github.io/tags/scheme/</link>
+      <pubDate>Sun, 04 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://kes.github.io/tags/scheme/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Leetcode</title>
       <link>https://kes.github.io/tags/leetcode/</link>
@@ -20,13 +34,6 @@
       <link>https://kes.github.io/tags/lisp/</link>
       <pubDate>Sun, 07 Dec 2025 00:00:00 +0000</pubDate>
       <guid>https://kes.github.io/tags/lisp/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Programming</title>
-      <link>https://kes.github.io/tags/programming/</link>
-      <pubDate>Sun, 07 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>https://kes.github.io/tags/programming/</guid>
       <description></description>
     </item>
     <item>

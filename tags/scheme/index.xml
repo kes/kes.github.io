@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Scheme on </title>
+    <link>https://kes.github.io/tags/scheme/</link>
+    <description>Recent content in Scheme on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 04 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://kes.github.io/tags/scheme/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Stock Market Problems</title>
+      <link>https://kes.github.io/posts/stock-market-problems/</link>
+      <pubDate>Sun, 04 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://kes.github.io/posts/stock-market-problems/</guid>
+      <description>Coding challenges themed around the &amp;ldquo;stock market&amp;rdquo; are extremely common. They appear frequently in interview settings and on sites like LeetCode, and they range from trivial to genuinely subtle.&#xA;In this post, I’ll focus on the first and easiest variant in this family of problems.&#xA;The solution is trivial — but only once you understand what the problem is actually asking.&#xA;Problem Description You are given an integer array prices where prices[i] is the price of a given stock on the ith day.</description>
+    </item>
+  </channel>
+</rss>
