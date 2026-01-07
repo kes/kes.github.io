@@ -6,8 +6,15 @@
     <description>Recent content on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 04 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 06 Jan 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://kes.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Stock Market Problems (Category 2: At Most One Transaction)</title>
+      <link>https://kes.github.io/posts/stock-market-problems-category-2/</link>
+      <pubDate>Tue, 06 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://kes.github.io/posts/stock-market-problems-category-2/</guid>
+      <description>In the previous post, I covered the simplest member of the so-called “stock market” interview problems: the version that allows unlimited transactions. Once you strip away the narrative, the solution reduces to summing all positive price deltas.&#xA;This post moves to the second category. The problem is slightly more interesting, while the algorithm is still easy.&#xA;Problem Description You are given an integer array prices where prices[i] is the price of a given stock on the ith day.</description>
+    </item>
     <item>
       <title>Stock Market Problems</title>
       <link>https://kes.github.io/posts/stock-market-problems/</link>
