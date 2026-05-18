@@ -1,19 +1,40 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Make on </title>
-    <link>https://kes.github.io/tags/make/</link>
-    <description>Recent content in Make on </description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <lastBuildDate>Sat, 31 Aug 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://kes.github.io/tags/make/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>CMake</title>
-      <link>https://kes.github.io/posts/cmake-tutorial/</link>
-      <pubDate>Sat, 31 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>https://kes.github.io/posts/cmake-tutorial/</guid>
-      <description>Working through the CMake tutorial: https://cmake.org/cmake/help/latest/guide/tutorial/index.html&#xA;Step 1 Exercise 1 The first step (Step1) and this is the directory stucture:&#xA;Step1 ├── CMakeLists.txt ├── CMakeLists.txt~ ├── TutorialConfig.h.in └── tutorial.cxx A minumum requirement for CMake, in CMakeLists.txt is the following.&#xA;Required version cmake_minimum_required(VERSION 3.23) Project name and version project(Tutorial VERSION 1.0) Executable add_executable(Tutorial tutorial.cxx) So, for this tutorial this becomes:&#xA;# TODO 1: Set the minimum required version of CMake to be 3.</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Make on</title><link>https://kes.github.io/tags/make/</link><description>Recent content in Make on</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Sat, 31 Aug 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://kes.github.io/tags/make/index.xml" rel="self" type="application/rss+xml"/><item><title>CMake</title><link>https://kes.github.io/posts/cmake-tutorial/</link><pubDate>Sat, 31 Aug 2024 00:00:00 +0000</pubDate><guid>https://kes.github.io/posts/cmake-tutorial/</guid><description>&lt;p&gt;Working through the CMake tutorial: &lt;a href="https://cmake.org/cmake/help/latest/guide/tutorial/index.html"&gt;https://cmake.org/cmake/help/latest/guide/tutorial/index.html&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id="step-1-exercise-1"&gt;Step 1 Exercise 1&lt;/h2&gt;
+&lt;p&gt;The first step (Step1) and this is the directory
+stucture:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Step1
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;├── CMakeLists.txt
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;├── CMakeLists.txt~
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;├── TutorialConfig.h.in
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;└── tutorial.cxx&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;A minumum requirement for CMake, in CMakeLists.txt is the following.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Required version
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;cmake_minimum_required(VERSION 3.23)&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;Project name and version
+&lt;ol&gt;
+&lt;li&gt;project(Tutorial VERSION 1.0)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;Executable
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;add_executable(Tutorial tutorial.cxx)&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;So, for this tutorial this becomes:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;# TODO 1: Set the minimum required version of CMake to be 3.10
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cmake_minimum_required(VERSION 3.23)# TODO
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;# TODO 2: Create a project named Tutorial
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;project(Tutorial VERSION 1.0)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;# TODO 3: Add an executable called Tutorial to the project
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;# Hint: Be sure to specify the source file as tutorial.cxx
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;add_executable(Tutorial tutorial.cxx)&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Once that&amp;rsquo;s done, you&amp;rsquo;re instructed to create a build directory
+mkdir &lt;code&gt;Step1_build&lt;/code&gt;&lt;/p&gt;</description></item></channel></rss>

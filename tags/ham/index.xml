@@ -1,19 +1,6 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Ham on </title>
-    <link>https://kes.github.io/tags/ham/</link>
-    <description>Recent content in Ham on </description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <lastBuildDate>Tue, 19 Nov 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://kes.github.io/tags/ham/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Amateur Extra Class</title>
-      <link>https://kes.github.io/posts/amateur-extra-class/</link>
-      <pubDate>Tue, 19 Nov 2024 00:00:00 +0000</pubDate>
-      <guid>https://kes.github.io/posts/amateur-extra-class/</guid>
-      <description>Recently (11/16/2024) I upgraded my amateur radio (ham) license from General to Amateur Extra.&#xA;Over the years, the FCC Amateur Radio Service has had a number of license classes, each providing different privileges. Currently there are three classes: Technician, General, and the Amateur Extra. (And for those who are old enough to remember such things, there is no longer a Morse code requirement – though this mode is still popular on the amateur radio bands where Morse code enthusiasts will find a warm reception.</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Ham on</title><link>https://kes.github.io/tags/ham/</link><description>Recent content in Ham on</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Tue, 19 Nov 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://kes.github.io/tags/ham/index.xml" rel="self" type="application/rss+xml"/><item><title>Amateur Extra Class</title><link>https://kes.github.io/posts/amateur-extra-class/</link><pubDate>Tue, 19 Nov 2024 00:00:00 +0000</pubDate><guid>https://kes.github.io/posts/amateur-extra-class/</guid><description>&lt;figure&gt;&lt;img src="https://kes.github.io/ox-hugo/band-plan.png" width="1000px"&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Recently (11/16/2024) I upgraded my amateur radio (ham) license from General to
+Amateur Extra.&lt;/p&gt;
+&lt;p&gt;Over the years, the &lt;a href="https://www.fcc.gov/wireless/bureau-divisions/mobility-division/amateur-radio-service"&gt;FCC Amateur Radio Service&lt;/a&gt; has had a number of license classes, each providing different privileges. Currently there are three classes: Technician, General, and the Amateur Extra. (And for those who are old enough to remember such things, there is no longer a Morse code requirement – though this mode is still popular on the amateur radio bands where Morse code enthusiasts will find a warm reception.)&lt;/p&gt;</description></item></channel></rss>

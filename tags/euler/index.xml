@@ -1,40 +1,116 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Euler on </title>
-    <link>https://kes.github.io/tags/euler/</link>
-    <description>Recent content in Euler on </description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <lastBuildDate>Sun, 16 Nov 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://kes.github.io/tags/euler/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>FRACTRAN: John Conway’s Ridiculous Little Programming Language</title>
-      <link>https://kes.github.io/posts/project-euler-num-308/</link>
-      <pubDate>Sun, 16 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>https://kes.github.io/posts/project-euler-num-308/</guid>
-      <description>Some months back I learned about an esoteric programming language created by mathematician John Conway. Conway also created the well-known Game of Life.&#xA;The language is called FRACTRAN (there’s a wonderful introductory lecture by Conway himself here).&#xA;Very simply, a FRACTRAN program is an ordered list of positive fractions&#xA;\[ f_1, f_2, \ldots, f_k \]&#xA;and an initial integer \( n \).&#xA;The program runs like this:&#xA;Find the first fraction \( f_i \) in the list such that \( n \cdot f_i \) is an integer, and replace \( n \) with that new integer.</description>
-    </item>
-    <item>
-      <title>Project Euler - Number 6</title>
-      <link>https://kes.github.io/posts/project-euler-num-6/</link>
-      <pubDate>Thu, 22 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>https://kes.github.io/posts/project-euler-num-6/</guid>
-      <description>The problem can be found here: https://projecteuler.net/problem=6&#xA;Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.&#xA;Once the formula for both is known, the sum of the squares, [n(n+1)(2n+1)]/6 and the sun of the first n numbers, (2n(n+1))/2 the solution is trival:&#xA;(defun formula/sum-of-squares (n) (/ (* n (+ n 1) (+ (* 2 n) 1)) 6)) (defun formula/square-of-the-sum (n) (expt (/ (* n (+ n 1)) 2) 2)) (defun formula/diff (n) (- (formula/square-of-the-sum n) (formula/sum-of-squares n))) (formula/diff 100)</description>
-    </item>
-    <item>
-      <title>Project Euler - Number 7</title>
-      <link>https://kes.github.io/posts/project-euler-num-7/</link>
-      <pubDate>Thu, 22 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>https://kes.github.io/posts/project-euler-num-7/</guid>
-      <description>You can find the problem here: https://projecteuler.net/problem=7&#xA;The problem statement:&#xA;By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13 we can see that the 6th prime is 13.&#xA;What is the 10001st prime number?&#xA;Consider an array like this:&#xA;n a[n] 0 0 1 1 2 1 3 1 4 0 5 1 6 0 7 1 8 0 9 0 10 0 11 1 12 0 13 1 where n (the index of the array) is the number of interest &amp;ndash; So, is the number prime?</description>
-    </item>
-    <item>
-      <title>Project Euler - Number 5</title>
-      <link>https://kes.github.io/posts/project-euler-num-5/</link>
-      <pubDate>Tue, 20 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>https://kes.github.io/posts/project-euler-num-5/</guid>
-      <description>Problem number five can be found here: https://projecteuler.net/problem=5&#xA;Problem statement:&#xA;2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.&#xA;What is the smallest positive number that is evenly divisible by all the numbers 1 to 20?&#xA;What&amp;rsquo;s wanted is the least common multiple of all numbers 2-20.&#xA;If you would like see a number of different ways the LCM can be calculated, go to: Calculator Soup</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Euler on</title><link>https://kes.github.io/tags/euler/</link><description>Recent content in Euler on</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Sun, 16 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://kes.github.io/tags/euler/index.xml" rel="self" type="application/rss+xml"/><item><title>FRACTRAN: John Conway’s Ridiculous Little Programming Language</title><link>https://kes.github.io/posts/project-euler-num-308/</link><pubDate>Sun, 16 Nov 2025 00:00:00 +0000</pubDate><guid>https://kes.github.io/posts/project-euler-num-308/</guid><description>&lt;p&gt;Some months back I learned about an esoteric programming language created by mathematician &lt;a href="https://en.wikipedia.org/wiki/John_Horton_Conway"&gt;John Conway&lt;/a&gt;. Conway also created the well-known &lt;a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life"&gt;Game of Life&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The language is called &lt;a href="https://en.wikipedia.org/wiki/FRACTRAN"&gt;FRACTRAN&lt;/a&gt; (there’s a wonderful introductory lecture by Conway himself &lt;a href="https://www.uctv.tv/shows/Fractran-A-Ridiculous-Logical-Language-with-John-Conway-23320"&gt;here&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;Very simply, a &lt;code&gt;FRACTRAN&lt;/code&gt; program is an ordered list of positive fractions&lt;/p&gt;
+&lt;p&gt;\[ f_1, f_2, \ldots, f_k \]&lt;/p&gt;
+&lt;p&gt;and an initial integer \( n \).&lt;/p&gt;
+&lt;p&gt;The program runs like this:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Find the first fraction \( f_i \) in the list such that \( n \cdot f_i \) is an integer, and replace \( n \) with that new integer.&lt;/li&gt;
+&lt;li&gt;Repeat step (1) until no fraction in the list produces an integer when multiplied by \( n \); then halt.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Using only this mechanism, Conway wrote a FRACTRAN program that generates a sequence of numbers in which certain terms are powers of two whose exponents are prime. For example, starting from 2, the program eventually produces values like&lt;/p&gt;</description></item><item><title>Project Euler - Number 6</title><link>https://kes.github.io/posts/project-euler-num-6/</link><pubDate>Thu, 22 Aug 2024 00:00:00 +0000</pubDate><guid>https://kes.github.io/posts/project-euler-num-6/</guid><description>&lt;p&gt;The problem can be found here: &lt;a href="https://projecteuler.net/problem=6"&gt;https://projecteuler.net/problem=6&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Find the difference between the sum of the squares of the first one hundred natural numbers and the
+square of the sum.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Once the formula for both is known, the sum of the squares, [n(n+1)(2n+1)]/6 and the sun of the
+first n numbers, (2n(n+1))/2 the solution is trival:&lt;/p&gt;
+&lt;p&gt;&lt;a id="code-snippet--formula-diff"&gt;&lt;/a&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-lisp" data-lang="lisp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;(defun formula/sum-of-squares (n)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; (&lt;span style="color:#a6e22e"&gt;/&lt;/span&gt; (&lt;span style="color:#a6e22e"&gt;*&lt;/span&gt; n (&lt;span style="color:#a6e22e"&gt;+&lt;/span&gt; n &lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;) (&lt;span style="color:#a6e22e"&gt;+&lt;/span&gt; (&lt;span style="color:#a6e22e"&gt;*&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;2&lt;/span&gt; n) &lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;)) &lt;span style="color:#ae81ff"&gt;6&lt;/span&gt;))
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;(defun formula/square-of-the-sum (n)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; (&lt;span style="color:#a6e22e"&gt;expt&lt;/span&gt; (&lt;span style="color:#a6e22e"&gt;/&lt;/span&gt; (&lt;span style="color:#a6e22e"&gt;*&lt;/span&gt; n (&lt;span style="color:#a6e22e"&gt;+&lt;/span&gt; n &lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;)) &lt;span style="color:#ae81ff"&gt;2&lt;/span&gt;) &lt;span style="color:#ae81ff"&gt;2&lt;/span&gt;))
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;(defun formula/diff (n)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; (&lt;span style="color:#a6e22e"&gt;-&lt;/span&gt; (formula/square-of-the-sum n) (formula/sum-of-squares n)))
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;(formula/diff &lt;span style="color:#ae81ff"&gt;100&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;</description></item><item><title>Project Euler - Number 7</title><link>https://kes.github.io/posts/project-euler-num-7/</link><pubDate>Thu, 22 Aug 2024 00:00:00 +0000</pubDate><guid>https://kes.github.io/posts/project-euler-num-7/</guid><description>&lt;p&gt;You can find the problem here: &lt;a href="https://projecteuler.net/problem=7"&gt;https://projecteuler.net/problem=7&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The problem statement:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13 we can see that the 6th prime is 13.&lt;/p&gt;
+&lt;p&gt;What is the 10001st prime number?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Consider an array like this:&lt;/p&gt;
+&lt;style&gt;.table-1 table { text-align: center; width: 30%; margin: 0 auto; }&lt;/style&gt;
+&lt;div class="ox-hugo-table table-1"&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;n&lt;/th&gt;
+ &lt;th&gt;a[n]&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;0&lt;/td&gt;
+ &lt;td&gt;0&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;1&lt;/td&gt;
+ &lt;td&gt;1&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;2&lt;/td&gt;
+ &lt;td&gt;1&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;3&lt;/td&gt;
+ &lt;td&gt;1&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;4&lt;/td&gt;
+ &lt;td&gt;0&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;5&lt;/td&gt;
+ &lt;td&gt;1&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;6&lt;/td&gt;
+ &lt;td&gt;0&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;7&lt;/td&gt;
+ &lt;td&gt;1&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;8&lt;/td&gt;
+ &lt;td&gt;0&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;9&lt;/td&gt;
+ &lt;td&gt;0&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;10&lt;/td&gt;
+ &lt;td&gt;0&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;11&lt;/td&gt;
+ &lt;td&gt;1&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;12&lt;/td&gt;
+ &lt;td&gt;0&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;13&lt;/td&gt;
+ &lt;td&gt;1&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;/td&gt;
+ &lt;td&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;p&gt;where n (the index of the array) is the number of interest &amp;ndash; So, is the number prime? If
+a[n] is 1 the number is prime, and if 0 it is not prime.&lt;/p&gt;</description></item><item><title>Project Euler - Number 5</title><link>https://kes.github.io/posts/project-euler-num-5/</link><pubDate>Tue, 20 Aug 2024 00:00:00 +0000</pubDate><guid>https://kes.github.io/posts/project-euler-num-5/</guid><description>&lt;p&gt;Problem number five can be found here: &lt;a href="https://projecteuler.net/problem=5"&gt;https://projecteuler.net/problem=5&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Problem statement:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.&lt;/p&gt;
+&lt;p&gt;What is the smallest positive number that is evenly divisible by all the numbers 1 to 20?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;What&amp;rsquo;s wanted is the least common multiple of all numbers 2-20.&lt;/p&gt;
+&lt;p&gt;If you would like see a number of different ways the LCM can be calculated, go to: &lt;a href="https://www.calculatorsoup.com/calculators/math/lcm.php"&gt;Calculator Soup&lt;/a&gt;&lt;/p&gt;</description></item></channel></rss>

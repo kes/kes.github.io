@@ -1,635 +1,189 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  
-    <title>CMake :: </title>
-  
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Working through the CMake tutorial: https://cmake.org/cmake/help/latest/guide/tutorial/index.html
+<!doctype html><html lang=en><head><title>CMake ::</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Working through the CMake tutorial: https://cmake.org/cmake/help/latest/guide/tutorial/index.html
 Step 1 Exercise 1 The first step (Step1) and this is the directory stucture:
 Step1 ├── CMakeLists.txt ├── CMakeLists.txt~ ├── TutorialConfig.h.in └── tutorial.cxx A minumum requirement for CMake, in CMakeLists.txt is the following.
 Required version cmake_minimum_required(VERSION 3.23) Project name and version project(Tutorial VERSION 1.0) Executable add_executable(Tutorial tutorial.cxx) So, for this tutorial this becomes:
-# TODO 1: Set the minimum required version of CMake to be 3." />
-<meta name="keywords" content="" />
-
-  <meta name="robots" content="noodp" />
-
-<link rel="canonical" href="https://kes.github.io/posts/cmake-tutorial/" />
-
-
-
-
-
-  
-  <link rel="stylesheet" href="https://kes.github.io/css/buttons.min.86f6b4c106b6c6eb690ae5203d36b442c1f66f718ff4e8164fa86cf6c61ad641.css">
-
-  
-  <link rel="stylesheet" href="https://kes.github.io/css/code.min.d529ea4b2fb8d34328d7d31afc5466d5f7bc2f0bc9abdd98b69385335d7baee4.css">
-
-  
-  <link rel="stylesheet" href="https://kes.github.io/css/fonts.min.5bb7ed13e1d00d8ff39ea84af26737007eb5051b157b86fc24487c94f3dc8bbe.css">
-
-  
-  <link rel="stylesheet" href="https://kes.github.io/css/footer.min.eb8dfc2c6a7eafa36cd3ba92d63e69e849e2200e0002a228d137f236b09ecd75.css">
-
-  
-  <link rel="stylesheet" href="https://kes.github.io/css/gist.min.a751e8b0abe1ba8bc53ced52a38b19d8950fe78ca29454ea8c2595cf26aad5c0.css">
-
-  
-  <link rel="stylesheet" href="https://kes.github.io/css/header.min.75c7eb0e2872d95ff48109c6647d0223a38db52e2561dd87966eb5fc7c6bdac6.css">
-
-  
-  <link rel="stylesheet" href="https://kes.github.io/css/main.min.36833afd348409fc6c3d09d0897c5833d9d5bf1ff31f5e60ea3ee42ce2b1268c.css">
-
-  
-  <link rel="stylesheet" href="https://kes.github.io/css/menu.min.3c17467ebeb3d38663dce68f71f519901124fa5cbb4519b2fb0667a21e9aca39.css">
-
-  
-  <link rel="stylesheet" href="https://kes.github.io/css/pagination.min.bbb986dbce00a5ce5aca0504b7925fc1c581992a4bf57f163e5d69cc1db7d836.css">
-
-  
-  <link rel="stylesheet" href="https://kes.github.io/css/post.min.e6dddd258e64c83e05cec0cd49c05216742d42fc8ecbfbe6b67083412b609bd3.css">
-
-  
-  <link rel="stylesheet" href="https://kes.github.io/css/syntax.min.a0773cce9310cb6d8ed23e50f005448facf29a53001b57e038828daa466b25c0.css">
-
-  
-  <link rel="stylesheet" href="https://kes.github.io/css/terminal.min.e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css">
-
-  
-  <link rel="stylesheet" href="https://kes.github.io/css/terms.min.b81791663c3790e738e571cdbf802312390d30e4b1d8dc9d814a5b5454d0ac11.css">
-
-
-
-
-<link rel="stylesheet" href="https://kes.github.io/style.css">
-
-
-<link rel="shortcut icon" href="https://kes.github.io/favicon.png">
-<link rel="apple-touch-icon" href="https://kes.github.io/apple-touch-icon.png">
-
-
-<meta name="twitter:card" content="summary" />
-
-
-
-<meta property="og:locale" content="en" />
-<meta property="og:type" content="article" />
-<meta property="og:title" content="CMake">
-<meta property="og:description" content="Working through the CMake tutorial: https://cmake.org/cmake/help/latest/guide/tutorial/index.html
+# TODO 1: Set the minimum required version of CMake to be 3.10 cmake_minimum_required(VERSION 3.23)# TODO # TODO 2: Create a project named Tutorial project(Tutorial VERSION 1.0) # TODO 3: Add an executable called Tutorial to the project # Hint: Be sure to specify the source file as tutorial.cxx add_executable(Tutorial tutorial.cxx) Once that&rsquo;s done, you&rsquo;re instructed to create a build directory mkdir Step1_build
+"><meta name=keywords content><meta name=robots content="noodp"><link rel=canonical href=https://kes.github.io/posts/cmake-tutorial/><link rel=stylesheet href=https://kes.github.io/css/buttons.min.86f6b4c106b6c6eb690ae5203d36b442c1f66f718ff4e8164fa86cf6c61ad641.css><link rel=stylesheet href=https://kes.github.io/css/code.min.d529ea4b2fb8d34328d7d31afc5466d5f7bc2f0bc9abdd98b69385335d7baee4.css><link rel=stylesheet href=https://kes.github.io/css/fonts.min.5bb7ed13e1d00d8ff39ea84af26737007eb5051b157b86fc24487c94f3dc8bbe.css><link rel=stylesheet href=https://kes.github.io/css/footer.min.eb8dfc2c6a7eafa36cd3ba92d63e69e849e2200e0002a228d137f236b09ecd75.css><link rel=stylesheet href=https://kes.github.io/css/gist.min.a751e8b0abe1ba8bc53ced52a38b19d8950fe78ca29454ea8c2595cf26aad5c0.css><link rel=stylesheet href=https://kes.github.io/css/header.min.75c7eb0e2872d95ff48109c6647d0223a38db52e2561dd87966eb5fc7c6bdac6.css><link rel=stylesheet href=https://kes.github.io/css/main.min.36833afd348409fc6c3d09d0897c5833d9d5bf1ff31f5e60ea3ee42ce2b1268c.css><link rel=stylesheet href=https://kes.github.io/css/menu.min.3c17467ebeb3d38663dce68f71f519901124fa5cbb4519b2fb0667a21e9aca39.css><link rel=stylesheet href=https://kes.github.io/css/pagination.min.bbb986dbce00a5ce5aca0504b7925fc1c581992a4bf57f163e5d69cc1db7d836.css><link rel=stylesheet href=https://kes.github.io/css/post.min.e6dddd258e64c83e05cec0cd49c05216742d42fc8ecbfbe6b67083412b609bd3.css><link rel=stylesheet href=https://kes.github.io/css/syntax.min.a0773cce9310cb6d8ed23e50f005448facf29a53001b57e038828daa466b25c0.css><link rel=stylesheet href=https://kes.github.io/css/terminal.min.e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css><link rel=stylesheet href=https://kes.github.io/css/terms.min.b81791663c3790e738e571cdbf802312390d30e4b1d8dc9d814a5b5454d0ac11.css><link rel=stylesheet href=https://kes.github.io/style.css><link rel="shortcut icon" href=https://kes.github.io/favicon.png><link rel=apple-touch-icon href=https://kes.github.io/apple-touch-icon.png><meta name=twitter:card content="summary"><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="og:title" content="CMake"><meta property="og:description" content="Working through the CMake tutorial: https://cmake.org/cmake/help/latest/guide/tutorial/index.html
 Step 1 Exercise 1 The first step (Step1) and this is the directory stucture:
 Step1 ├── CMakeLists.txt ├── CMakeLists.txt~ ├── TutorialConfig.h.in └── tutorial.cxx A minumum requirement for CMake, in CMakeLists.txt is the following.
 Required version cmake_minimum_required(VERSION 3.23) Project name and version project(Tutorial VERSION 1.0) Executable add_executable(Tutorial tutorial.cxx) So, for this tutorial this becomes:
-# TODO 1: Set the minimum required version of CMake to be 3." />
-<meta property="og:url" content="https://kes.github.io/posts/cmake-tutorial/" />
-<meta property="og:site_name" content="" />
-
-  <meta property="og:image" content="https://kes.github.io/og-image.png">
-
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="627">
-
-
-  <meta property="article:published_time" content="2024-08-31 00:00:00 &#43;0000 UTC" />
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script src="https://kes.github.io/js/mathjax-config.js"></script>
-
-  
-  <script
-    id="MathJax-script"
-    async
-    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
-  </script>
-
-
-
-
-</head>
-<body>
-
-
-<div class="container center">
-
-  <header class="header">
-  <div class="header__inner">
-    <div class="header__logo">
-      <a href="/">
-  <div class="logo">
-    Karl Stump
-  </div>
-</a>
-
-    </div>
-    
-      <ul class="menu menu--mobile">
-  <li class="menu__trigger">Menu&nbsp;▾</li>
-  <li>
-    <ul class="menu__dropdown">
-      
-        
-          <li><a href="/about/about/">About</a></li>
-        
-      
-        
-          <li><a href="/leetcode/">Leet Code</a></li>
-        
-      
-      
-    </ul>
-  </li>
-</ul>
-
-    
-    
-  </div>
-  
-    <nav class="navigation-menu">
-  <ul class="navigation-menu__inner menu--desktop">
-    
-      
-        
-          <li><a href="/about/about/" >About</a></li>
-        
-      
-        
-          <li><a href="/leetcode/" >Leet Code</a></li>
-        
-      
-      
-    
-  </ul>
-</nav>
-
-  
-</header>
-
-
-  <div class="content">
-    
-<article class="post">
-  <h1 class="post-title">
-    <a href="https://kes.github.io/posts/cmake-tutorial/">CMake</a>
-  </h1>
-  <div class="post-meta"><time class="post-date">2024-08-31</time><span class="post-author">[Karl Stump]</span></div>
-
-  
-    <span class="post-tags">
-      
-      #<a href="https://kes.github.io/tags/make/">make</a>&nbsp;
-      
-    </span>
-  
-  
-
-
-  
-
-  <div class="post-content"><div>
-        <p>Working through the CMake tutorial: <a href="https://cmake.org/cmake/help/latest/guide/tutorial/index.html">https://cmake.org/cmake/help/latest/guide/tutorial/index.html</a></p>
-<h2 id="step-1-exercise-1">Step 1 Exercise 1<a href="#step-1-exercise-1" class="hanchor" ariaLabel="Anchor">#</a> </h2>
-<p>The first step (Step1) and this is the directory
-stucture:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Step1
-</span></span><span style="display:flex;"><span>├── CMakeLists.txt
-</span></span><span style="display:flex;"><span>├── CMakeLists.txt~
-</span></span><span style="display:flex;"><span>├── TutorialConfig.h.in
-</span></span><span style="display:flex;"><span>└── tutorial.cxx</span></span></code></pre></div>
-<p>A minumum requirement for CMake, in CMakeLists.txt is the following.</p>
-<ol>
-<li>Required version
-<ol>
-<li><code>cmake_minimum_required(VERSION 3.23)</code></li>
-</ol>
-</li>
-<li>Project name and version
-<ol>
-<li>project(Tutorial VERSION 1.0)</li>
-</ol>
-</li>
-<li>Executable
-<ol>
-<li><code>add_executable(Tutorial tutorial.cxx)</code></li>
-</ol>
-</li>
-</ol>
-<p>So, for this tutorial this becomes:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span># TODO 1: Set the minimum required version of CMake to be 3.10
-</span></span><span style="display:flex;"><span>cmake_minimum_required(VERSION 3.23)# TODO
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span># TODO 2: Create a project named Tutorial
-</span></span><span style="display:flex;"><span>project(Tutorial VERSION 1.0)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span># TODO 3: Add an executable called Tutorial to the project
-</span></span><span style="display:flex;"><span># Hint: Be sure to specify the source file as tutorial.cxx
-</span></span><span style="display:flex;"><span>add_executable(Tutorial tutorial.cxx)</span></span></code></pre></div>
-<p>Once that&rsquo;s done, you&rsquo;re instructed to create a build directory
-mkdir <code>Step1_build</code></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkdir Step1_build
-</span></span><span style="display:flex;"><span>cd Step1_build
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># configure the project and generate a native build system</span>
-</span></span><span style="display:flex;"><span>cmake ../Step1
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># now, do the build</span>
-</span></span><span style="display:flex;"><span>cmake --build .</span></span></code></pre></div>
-<p>Here&rsquo;s the output from <code>cmake ../Step1</code></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cmake ../Step1</span></span></code></pre></div>
-<p>Now, let&rsquo;s do the build</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cmake --build .</span></span></code></pre></div>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ls</span></span></code></pre></div>
-<p>So for a very simple project, this is very easy to set up. To review you need three things
-in the <code>CMakeLists.txt</code> file:</p>
-<ol>
-<li>The version of CMake
-<ul>
-<li>Example: <code>cmake_minimum_required(VERSION 3.23)</code></li>
-</ul>
-</li>
-<li>The name of the project
-<ul>
-<li>Example: project(Tutorial VERSION 1.0)</li>
-</ul>
-</li>
-<li>The executable
-<ul>
-<li>Example: <code>add_executable(Tutorial tutorial.cxx)</code></li>
-</ul>
-</li>
-</ol>
-<p>Then creating a build directory somewhere, you need to do two things:</p>
-<ol>
-<li>run cmake on your source directory
-<ul>
-<li>Example: cmake ../Step1
-<ul>
-<li>This will generate the files needed for actually building</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Do the build
-<ul>
-<li>Example: cmake –build .</li>
-</ul>
-</li>
-</ol>
-<p>What the CMakeLists.txt file looks like:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>cmake_minimum_required(VERSION 3.23)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>project(Tutorial VERSION 1.0)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>add_executable(Tutorial tutorial.cxx)</span></span></code></pre></div>
-<p>Bare bones, but it works, and it&rsquo;s perfect for getting things going!</p>
-<h2 id="step-1-exercise-2">Step 1 Exercise 2<a href="#step-1-exercise-2" class="hanchor" ariaLabel="Anchor">#</a> </h2>
-<p>In this exercise the goal was to add features that required C++11.</p>
-<p>And this meant that CMakeLists.txt had to be modified:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>set(CMAKE_CXX_STANDARD 11)
-</span></span><span style="display:flex;"><span>set(CMAKE_CXX_STANDARD_REQUIRED True)</span></span></code></pre></div>
-<p>Easy peasy.</p>
-<h2 id="step-1-exercise-3">Step 1 Exercise 3<a href="#step-1-exercise-3" class="hanchor" ariaLabel="Anchor">#</a> </h2>
-<p>Next comes adding a version number and configured header file.</p>
-<p>How can you put  a version number in your CMakeLists.txt file and get that number
-into your source code. CMake provides a mechanism for doing that using a configured header file.</p>
-<p>First add the version number to CMakeLists.txt like this:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>project(Tutorial VERSION 1.0)
-</span></span><span style="display:flex;"><span>set(Tutorial_VERSION_MAJOR 23)
-</span></span><span style="display:flex;"><span>set(Tutorial_VERSION_MINOR 42)</span></span></code></pre></div>
-<p>Notice that <code>project(Tutorial VERSION 1.0)</code> was added at the very beginning of theses exercises.  It
+# TODO 1: Set the minimum required version of CMake to be 3.10 cmake_minimum_required(VERSION 3.23)# TODO # TODO 2: Create a project named Tutorial project(Tutorial VERSION 1.0) # TODO 3: Add an executable called Tutorial to the project # Hint: Be sure to specify the source file as tutorial.cxx add_executable(Tutorial tutorial.cxx) Once that&rsquo;s done, you&rsquo;re instructed to create a build directory mkdir Step1_build
+"><meta property="og:url" content="https://kes.github.io/posts/cmake-tutorial/"><meta property="og:site_name" content><meta property="og:image" content="https://kes.github.io/og-image.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="627"><meta property="article:published_time" content="2024-08-31 00:00:00 +0000 UTC"><script src=https://kes.github.io/js/mathjax-config.js></script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js></script></head><body><div class="container center"><header class=header><div class=header__inner><div class=header__logo><a href=/><div class=logo>Karl Stump</div></a></div><ul class="menu menu--mobile"><li class=menu__trigger>Menu&nbsp;▾</li><li><ul class=menu__dropdown><li><a href=/about/about/>About</a></li><li><a href=/leetcode/>Leet Code</a></li></ul></li></ul></div><nav class=navigation-menu><ul class="navigation-menu__inner menu--desktop"><li><a href=/about/about/>About</a></li><li><a href=/leetcode/>Leet Code</a></li></ul></nav></header><div class=content><article class=post><h1 class=post-title><a href=https://kes.github.io/posts/cmake-tutorial/>CMake</a></h1><div class=post-meta><time class=post-date>2024-08-31</time><span class=post-author>[Karl Stump]</span></div><span class=post-tags>#<a href=https://kes.github.io/tags/make/>make</a>&nbsp;</span><div class=post-content><div><p>Working through the CMake tutorial: <a href=https://cmake.org/cmake/help/latest/guide/tutorial/index.html>https://cmake.org/cmake/help/latest/guide/tutorial/index.html</a></p><h2 id=step-1-exercise-1>Step 1 Exercise 1<a href=#step-1-exercise-1 class=hanchor arialabel=Anchor>#</a></h2><p>The first step (Step1) and this is the directory
+stucture:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>Step1
+</span></span><span style=display:flex><span>├── CMakeLists.txt
+</span></span><span style=display:flex><span>├── CMakeLists.txt~
+</span></span><span style=display:flex><span>├── TutorialConfig.h.in
+</span></span><span style=display:flex><span>└── tutorial.cxx</span></span></code></pre></div><p>A minumum requirement for CMake, in CMakeLists.txt is the following.</p><ol><li>Required version<ol><li><code>cmake_minimum_required(VERSION 3.23)</code></li></ol></li><li>Project name and version<ol><li>project(Tutorial VERSION 1.0)</li></ol></li><li>Executable<ol><li><code>add_executable(Tutorial tutorial.cxx)</code></li></ol></li></ol><p>So, for this tutorial this becomes:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span># TODO 1: Set the minimum required version of CMake to be 3.10
+</span></span><span style=display:flex><span>cmake_minimum_required(VERSION 3.23)# TODO
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># TODO 2: Create a project named Tutorial
+</span></span><span style=display:flex><span>project(Tutorial VERSION 1.0)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># TODO 3: Add an executable called Tutorial to the project
+</span></span><span style=display:flex><span># Hint: Be sure to specify the source file as tutorial.cxx
+</span></span><span style=display:flex><span>add_executable(Tutorial tutorial.cxx)</span></span></code></pre></div><p>Once that&rsquo;s done, you&rsquo;re instructed to create a build directory
+mkdir <code>Step1_build</code></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>mkdir Step1_build
+</span></span><span style=display:flex><span>cd Step1_build
+</span></span><span style=display:flex><span><span style=color:#75715e># configure the project and generate a native build system</span>
+</span></span><span style=display:flex><span>cmake ../Step1
+</span></span><span style=display:flex><span><span style=color:#75715e># now, do the build</span>
+</span></span><span style=display:flex><span>cmake --build .</span></span></code></pre></div><p>Here&rsquo;s the output from <code>cmake ../Step1</code></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>cmake ../Step1</span></span></code></pre></div><p>Now, let&rsquo;s do the build</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>cmake --build .</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>ls</span></span></code></pre></div><p>So for a very simple project, this is very easy to set up. To review you need three things
+in the <code>CMakeLists.txt</code> file:</p><ol><li>The version of CMake<ul><li>Example: <code>cmake_minimum_required(VERSION 3.23)</code></li></ul></li><li>The name of the project<ul><li>Example: project(Tutorial VERSION 1.0)</li></ul></li><li>The executable<ul><li>Example: <code>add_executable(Tutorial tutorial.cxx)</code></li></ul></li></ol><p>Then creating a build directory somewhere, you need to do two things:</p><ol><li>run cmake on your source directory<ul><li>Example: cmake ../Step1<ul><li>This will generate the files needed for actually building</li></ul></li></ul></li><li>Do the build<ul><li>Example: cmake –build .</li></ul></li></ol><p>What the CMakeLists.txt file looks like:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>cmake_minimum_required(VERSION 3.23)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>project(Tutorial VERSION 1.0)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>add_executable(Tutorial tutorial.cxx)</span></span></code></pre></div><p>Bare bones, but it works, and it&rsquo;s perfect for getting things going!</p><h2 id=step-1-exercise-2>Step 1 Exercise 2<a href=#step-1-exercise-2 class=hanchor arialabel=Anchor>#</a></h2><p>In this exercise the goal was to add features that required C++11.</p><p>And this meant that CMakeLists.txt had to be modified:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>set(CMAKE_CXX_STANDARD 11)
+</span></span><span style=display:flex><span>set(CMAKE_CXX_STANDARD_REQUIRED True)</span></span></code></pre></div><p>Easy peasy.</p><h2 id=step-1-exercise-3>Step 1 Exercise 3<a href=#step-1-exercise-3 class=hanchor arialabel=Anchor>#</a></h2><p>Next comes adding a version number and configured header file.</p><p>How can you put a version number in your CMakeLists.txt file and get that number
+into your source code. CMake provides a mechanism for doing that using a configured header file.</p><p>First add the version number to CMakeLists.txt like this:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>project(Tutorial VERSION 1.0)
+</span></span><span style=display:flex><span>set(Tutorial_VERSION_MAJOR 23)
+</span></span><span style=display:flex><span>set(Tutorial_VERSION_MINOR 42)</span></span></code></pre></div><p>Notice that <code>project(Tutorial VERSION 1.0)</code> was added at the very beginning of theses exercises. It
 is one of the &ldquo;must have&rdquo; in your CMakeLists.txt file. Now, you can see part of the importance of
 naming the project. CMake creates variables with that name, like <code>Tutorial_VERSION_MAJOR</code> and
 <code>Tutorial_VERSION_MINOR</code>. So, you can set those. But there still has to be a way to get these numbers
-into your program.</p>
-<p>This is where the configured header file comes in. You can tell CMake to use some file (call
+into your program.</p><p>This is where the configured header file comes in. You can tell CMake to use some file (call
 it an &ldquo;input template&rdquo; file) and make substitutions based on that file, and then to output
 the results somewhere – like into an <code>.h</code> file. This file can then be included by your program
-and these definitions used. So, start with CMake&rsquo;s &ldquo;configure file&rdquo; in CMakeLists.txt</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>configure_file(TutorialConfig.h.in TutorialConfig.h)</span></span></code></pre></div>
-<p>The first file, TutorialConfig.h.in is the file that CMake is going to use like a template to
-create TutorialConfig.h which will be included by your program. Let&rsquo;s look at TutorialConfig.h.in</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>// the configured options and settings for Tutorial
-</span></span><span style="display:flex;"><span>// TODO 10: Define Tutorial_VERSION_MAJOR and Tutorial_VERSION_MINOR
-</span></span><span style="display:flex;"><span>#define Tutorial_VERSION_MAJOR @Tutorial_VERSION_MAJOR@
-</span></span><span style="display:flex;"><span>#define Tutorial_VERSION_MINOR @Tutorial_VERSION_MINOR@</span></span></code></pre></div>
-<p>You can see that the definitions defined in CMakeLists.txt can be used between the <code>@'s</code></p>
-<p>Now, this creates <code>TutorialConfig.h</code> which, by the way, lives in the build directory.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>// the configured options and settings for Tutorial
-</span></span><span style="display:flex;"><span>// TODO 10: Define Tutorial_VERSION_MAJOR and Tutorial_VERSION_MINOR
-</span></span><span style="display:flex;"><span>#define Tutorial_VERSION_MAJOR 23
-</span></span><span style="display:flex;"><span>#define Tutorial_VERSION_MINOR 42</span></span></code></pre></div>
-<p>So, this is an include file that your source code will include. Therefore you must tell CMake about this include
-so the compiler can find it.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>target_include_directories(Tutorial PUBLIC &#34;${PROJECT_BINARY_DIR}&#34;)</span></span></code></pre></div>
-<p>This from the documents:</p>
-<blockquote>
-<p>The INTERFACE, PUBLIC and PRIVATE keywords are required to specify the scope of the following
+and these definitions used. So, start with CMake&rsquo;s &ldquo;configure file&rdquo; in CMakeLists.txt</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>configure_file(TutorialConfig.h.in TutorialConfig.h)</span></span></code></pre></div><p>The first file, TutorialConfig.h.in is the file that CMake is going to use like a template to
+create TutorialConfig.h which will be included by your program. Let&rsquo;s look at TutorialConfig.h.in</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>// the configured options and settings for Tutorial
+</span></span><span style=display:flex><span>// TODO 10: Define Tutorial_VERSION_MAJOR and Tutorial_VERSION_MINOR
+</span></span><span style=display:flex><span>#define Tutorial_VERSION_MAJOR @Tutorial_VERSION_MAJOR@
+</span></span><span style=display:flex><span>#define Tutorial_VERSION_MINOR @Tutorial_VERSION_MINOR@</span></span></code></pre></div><p>You can see that the definitions defined in CMakeLists.txt can be used between the <code>@'s</code></p><p>Now, this creates <code>TutorialConfig.h</code> which, by the way, lives in the build directory.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>// the configured options and settings for Tutorial
+</span></span><span style=display:flex><span>// TODO 10: Define Tutorial_VERSION_MAJOR and Tutorial_VERSION_MINOR
+</span></span><span style=display:flex><span>#define Tutorial_VERSION_MAJOR 23
+</span></span><span style=display:flex><span>#define Tutorial_VERSION_MINOR 42</span></span></code></pre></div><p>So, this is an include file that your source code will include. Therefore you must tell CMake about this include
+so the compiler can find it.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>target_include_directories(Tutorial PUBLIC &#34;${PROJECT_BINARY_DIR}&#34;)</span></span></code></pre></div><p>This from the documents:</p><blockquote><p>The INTERFACE, PUBLIC and PRIVATE keywords are required to specify the scope of the following
 arguments. PRIVATE and PUBLIC items will populate the INCLUDE<sub>DIRECTORIES</sub> property of
-&lt;target&gt;. PUBLIC and INTERFACE items will populate the INTERFACE<sub>INCLUDE</sub><sub>DIRECTORIES</sub> property of
-&lt;target&gt;.</p>
-</blockquote>
-<p>We haven&rsquo;t covered INTERFACE, PUBLIC, PRIVATE, but there they are.</p>
-<p>This also from the documents explains &ldquo;project binary directory.&rdquo;</p>
-<blockquote>
-<p>Since the configured file will be written into the project binary directory, we must add that
-directory to the list of paths to search for include files.</p>
-<p>Note: Throughout this tutorial, we will refer to the project build and the project binary directory
-interchangeably. These are the same and are not meant to refer to a bin/ directory</p>
-</blockquote>
-<p>Now, in the source code we include the TutorialConfig.h and use it.</p>
-<p>So, here is what our CMakeLists.txt looks like after all the exercises in Step 1:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>cmake_minimum_required(VERSION 3.23)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>project(Tutorial VERSION 1.0)
-</span></span><span style="display:flex;"><span>set(Tutorial_VERSION_MAJOR 23)
-</span></span><span style="display:flex;"><span>set(Tutorial_VERSION_MINOR 42)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>set(CMAKE_CXX_STANDARD 11)
-</span></span><span style="display:flex;"><span>set(CMAKE_CXX_STANDARD_REQUIRED True)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>configure_file(TutorialConfig.h.in TutorialConfig.h)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>add_executable(Tutorial tutorial.cxx)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>target_include_directories(Tutorial PUBLIC &#34;${PROJECT_BINARY_DIR}&#34;)</span></span></code></pre></div>
-<h2 id="step-2-exercise-1">Step 2 Exercise 1<a href="#step-2-exercise-1" class="hanchor" ariaLabel="Anchor">#</a> </h2>
-<p>Adding a library. This is great — In step 1 we&rsquo;ve learned how to get things going. Now, by
-adding libraries we will get into great organization ability.</p>
-<p>As the tutorial says we can organize our project into one or more subdirectories.</p>
-<p>Now, for myself, I can really neglect organization in my projects. So this is great.</p>
-<p>The tutorial tells you that you&rsquo;ll use <code>add_library()</code> and <code>add_subdirectory()</code> commands, as well as
+&lt;target>. PUBLIC and INTERFACE items will populate the INTERFACE<sub>INCLUDE</sub><sub>DIRECTORIES</sub> property of
+&lt;target>.</p></blockquote><p>We haven&rsquo;t covered INTERFACE, PUBLIC, PRIVATE, but there they are.</p><p>This also from the documents explains &ldquo;project binary directory.&rdquo;</p><blockquote><p>Since the configured file will be written into the project binary directory, we must add that
+directory to the list of paths to search for include files.</p><p>Note: Throughout this tutorial, we will refer to the project build and the project binary directory
+interchangeably. These are the same and are not meant to refer to a bin/ directory</p></blockquote><p>Now, in the source code we include the TutorialConfig.h and use it.</p><p>So, here is what our CMakeLists.txt looks like after all the exercises in Step 1:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>cmake_minimum_required(VERSION 3.23)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>project(Tutorial VERSION 1.0)
+</span></span><span style=display:flex><span>set(Tutorial_VERSION_MAJOR 23)
+</span></span><span style=display:flex><span>set(Tutorial_VERSION_MINOR 42)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>set(CMAKE_CXX_STANDARD 11)
+</span></span><span style=display:flex><span>set(CMAKE_CXX_STANDARD_REQUIRED True)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>configure_file(TutorialConfig.h.in TutorialConfig.h)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>add_executable(Tutorial tutorial.cxx)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>target_include_directories(Tutorial PUBLIC &#34;${PROJECT_BINARY_DIR}&#34;)</span></span></code></pre></div><h2 id=step-2-exercise-1>Step 2 Exercise 1<a href=#step-2-exercise-1 class=hanchor arialabel=Anchor>#</a></h2><p>Adding a library. This is great — In step 1 we&rsquo;ve learned how to get things going. Now, by
+adding libraries we will get into great organization ability.</p><p>As the tutorial says we can organize our project into one or more subdirectories.</p><p>Now, for myself, I can really neglect organization in my projects. So this is great.</p><p>The tutorial tells you that you&rsquo;ll use <code>add_library()</code> and <code>add_subdirectory()</code> commands, as well as
 <code>target_include_directories()</code> and <code>target_link_libraries()</code>. All of these make sense right off the
-bat.</p>
-<p>What&rsquo;s interesting is that in the subdirectory for our libary and we&rsquo;ll put an additional CMakeLists.txt
-file in there. Super!</p>
-<p>Here&rsquo;s what Step2 looks like:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Step2
-</span></span><span style="display:flex;"><span>├── CMakeLists.txt
-</span></span><span style="display:flex;"><span>├── MathFunctions
-</span></span><span style="display:flex;"><span>│   ├── CMakeLists.txt
-</span></span><span style="display:flex;"><span>│   ├── MathFunctions.cxx
-</span></span><span style="display:flex;"><span>│   ├── MathFunctions.h
-</span></span><span style="display:flex;"><span>│   ├── mysqrt.cxx
-</span></span><span style="display:flex;"><span>│   └── mysqrt.h
-</span></span><span style="display:flex;"><span>├── TutorialConfig.h.in
-</span></span><span style="display:flex;"><span>└── tutorial.cxx</span></span></code></pre></div>
-<p>The first thing we have to do is create a build directory, and then in that directory
-<code>configure</code> and then <code>build</code> the project. Three steps.</p>
-<p>This will undoubtedly be the first thing we have to do in every tutorial step. And
-we&rsquo;ve already done it in step one.</p>
-<p>So, <code>mkdir Step2_build</code> is the tutorial&rsquo;s preferred build directory. Then from that
+bat.</p><p>What&rsquo;s interesting is that in the subdirectory for our libary and we&rsquo;ll put an additional CMakeLists.txt
+file in there. Super!</p><p>Here&rsquo;s what Step2 looks like:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>Step2
+</span></span><span style=display:flex><span>├── CMakeLists.txt
+</span></span><span style=display:flex><span>├── MathFunctions
+</span></span><span style=display:flex><span>│   ├── CMakeLists.txt
+</span></span><span style=display:flex><span>│   ├── MathFunctions.cxx
+</span></span><span style=display:flex><span>│   ├── MathFunctions.h
+</span></span><span style=display:flex><span>│   ├── mysqrt.cxx
+</span></span><span style=display:flex><span>│   └── mysqrt.h
+</span></span><span style=display:flex><span>├── TutorialConfig.h.in
+</span></span><span style=display:flex><span>└── tutorial.cxx</span></span></code></pre></div><p>The first thing we have to do is create a build directory, and then in that directory
+<code>configure</code> and then <code>build</code> the project. Three steps.</p><p>This will undoubtedly be the first thing we have to do in every tutorial step. And
+we&rsquo;ve already done it in step one.</p><p>So, <code>mkdir Step2_build</code> is the tutorial&rsquo;s preferred build directory. Then from that
 directory, <code>cmake ../Step2</code> and then <code>cmake --build .</code> Don&rsquo;t forget, that the first
 command <code>cmake ../Step2</code> is the configuration. And the results of that generation
 are put into the build directory. Once that&rsquo;s done, you <code>build</code> in the build
-directory.</p>
-<p>By the way. CMake has a GUI. I haven&rsquo;t used it. But eventually I will. Is the command a better
+directory.</p><p>By the way. CMake has a GUI. I haven&rsquo;t used it. But eventually I will. Is the command a better
 approach to learning? I think so. It&rsquo;s great to know the details of what&rsquo;s happening (and go through
 the <strong>interminable</strong> steps). Sometimes a gui can hide too much. At least for learning. So, command line
-it is!</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>mkdir Step2_build
-</span></span><span style="display:flex;"><span>cd Step2_build
-</span></span><span style="display:flex;"><span>cmake ../Step2
-</span></span><span style="display:flex;"><span>cmake --build .</span></span></code></pre></div>
-<p>And the output as usual:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>kes@Zork:$ cmake ../Step2
-</span></span><span style="display:flex;"><span>-- The C compiler identification is GNU 13.2.0
-</span></span><span style="display:flex;"><span>-- The CXX compiler identification is GNU 13.2.0
-</span></span><span style="display:flex;"><span>-- Detecting C compiler ABI info
-</span></span><span style="display:flex;"><span>-- Detecting C compiler ABI info - done
-</span></span><span style="display:flex;"><span>-- Check for working C compiler: /usr/bin/cc - skipped
-</span></span><span style="display:flex;"><span>-- Detecting C compile features
-</span></span><span style="display:flex;"><span>-- Detecting C compile features - done
-</span></span><span style="display:flex;"><span>-- Detecting CXX compiler ABI info
-</span></span><span style="display:flex;"><span>-- Detecting CXX compiler ABI info - done
-</span></span><span style="display:flex;"><span>-- Check for working CXX compiler: /usr/bin/c++ - skipped
-</span></span><span style="display:flex;"><span>-- Detecting CXX compile features
-</span></span><span style="display:flex;"><span>-- Detecting CXX compile features - done
-</span></span><span style="display:flex;"><span>-- Configuring done
-</span></span><span style="display:flex;"><span>-- Generating done
-</span></span><span style="display:flex;"><span>-- Build files have been written to: /home/kes/Downloads/cmake/tutorial/Step2_build
-</span></span><span style="display:flex;"><span>kes@Zork:$cmake --build .
-</span></span><span style="display:flex;"><span>[ 50%] Building CXX object CMakeFiles/Tutorial.dir/tutorial.cxx.o
-</span></span><span style="display:flex;"><span>[100%] Linking CXX executable Tutorial
-</span></span><span style="display:flex;"><span>[100%] Built target Tutorial
-</span></span><span style="display:flex;"><span>kes@Zork:~/Downloads/cmake/tutorial/Step2_build$</span></span></code></pre></div>
-<p>Tastes great! Lasts a long time!</p>
-<h3 id="add-library">Add Library<a href="#add-library" class="hanchor" ariaLabel="Anchor">#</a> </h3>
-<p>So the first thing we have to do is add the library in the <code>Mathfunctions/CMakeLists.txt</code></p>
-<p>The documents say:</p>
-<blockquote>
-<p><code>add_library(&lt;name&gt; [&lt;type&gt;] [EXCLUDE_FROM_ALL] &lt;sources&gt;...)</code></p>
-</blockquote>
-<p>First off, notice that <code>sources</code> is plural. So, we can add all the source file that make up this
+it is!</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>mkdir Step2_build
+</span></span><span style=display:flex><span>cd Step2_build
+</span></span><span style=display:flex><span>cmake ../Step2
+</span></span><span style=display:flex><span>cmake --build .</span></span></code></pre></div><p>And the output as usual:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>kes@Zork:$ cmake ../Step2
+</span></span><span style=display:flex><span>-- The C compiler identification is GNU 13.2.0
+</span></span><span style=display:flex><span>-- The CXX compiler identification is GNU 13.2.0
+</span></span><span style=display:flex><span>-- Detecting C compiler ABI info
+</span></span><span style=display:flex><span>-- Detecting C compiler ABI info - done
+</span></span><span style=display:flex><span>-- Check for working C compiler: /usr/bin/cc - skipped
+</span></span><span style=display:flex><span>-- Detecting C compile features
+</span></span><span style=display:flex><span>-- Detecting C compile features - done
+</span></span><span style=display:flex><span>-- Detecting CXX compiler ABI info
+</span></span><span style=display:flex><span>-- Detecting CXX compiler ABI info - done
+</span></span><span style=display:flex><span>-- Check for working CXX compiler: /usr/bin/c++ - skipped
+</span></span><span style=display:flex><span>-- Detecting CXX compile features
+</span></span><span style=display:flex><span>-- Detecting CXX compile features - done
+</span></span><span style=display:flex><span>-- Configuring done
+</span></span><span style=display:flex><span>-- Generating done
+</span></span><span style=display:flex><span>-- Build files have been written to: /home/kes/Downloads/cmake/tutorial/Step2_build
+</span></span><span style=display:flex><span>kes@Zork:$cmake --build .
+</span></span><span style=display:flex><span>[ 50%] Building CXX object CMakeFiles/Tutorial.dir/tutorial.cxx.o
+</span></span><span style=display:flex><span>[100%] Linking CXX executable Tutorial
+</span></span><span style=display:flex><span>[100%] Built target Tutorial
+</span></span><span style=display:flex><span>kes@Zork:~/Downloads/cmake/tutorial/Step2_build$</span></span></code></pre></div><p>Tastes great! Lasts a long time!</p><h3 id=add-library>Add Library<a href=#add-library class=hanchor arialabel=Anchor>#</a></h3><p>So the first thing we have to do is add the library in the <code>Mathfunctions/CMakeLists.txt</code></p><p>The documents say:</p><blockquote><p><code>add_library(&lt;name> [&lt;type>] [EXCLUDE_FROM_ALL] &lt;sources>...)</code></p></blockquote><p>First off, notice that <code>sources</code> is plural. So, we can add all the source file that make up this
 library. At the moment we have two files that will go into this library. Nothing difficult there,
-at least so far. Perhaps a little later this might be changed. (Hint, we will change it.)</p>
-<p>Of course, nothing is totally easy. What should the <code>name</code> be after all? The documents are helpful:</p>
-<blockquote>
-<p>The &lt;name&gt; corresponds to the logical target name and must be globally unique within a project. The
+at least so far. Perhaps a little later this might be changed. (Hint, we will change it.)</p><p>Of course, nothing is totally easy. What should the <code>name</code> be after all? The documents are helpful:</p><blockquote><p>The &lt;name> corresponds to the logical target name and must be globally unique within a project. The
 actual file name of the library built is constructed based on conventions of the native platform
-(such as lib&lt;name&gt;.a or &lt;name&gt;.lib)</p>
-</blockquote>
-<p>Based on the name of the subdirectory, and the capitalization of the files, the name wanted is
-either MathFunctions or mathfunctions.</p>
-<p>For &lt;type&gt; there are three options, but three options, <code>STATIC</code>, <code>SHARED</code>, and <code>MODULE</code>. Of course,
+(such as lib&lt;name>.a or &lt;name>.lib)</p></blockquote><p>Based on the name of the subdirectory, and the capitalization of the files, the name wanted is
+either MathFunctions or mathfunctions.</p><p>For &lt;type> there are three options, but three options, <code>STATIC</code>, <code>SHARED</code>, and <code>MODULE</code>. Of course,
 <code>TYPE</code> is between brackets, so it&rsquo;s optional. And the documentation
-tells us:</p>
-<blockquote>
-<p>If no &lt;type&gt; is given the default is STATIC or SHARED based on the value of the <code>BUILD_SHARED_LIBS</code>
-variable.</p>
-</blockquote>
-<p>The tutorial hasn&rsquo;t covered <code>BUILD_SHARED_LIBS</code>, and it&rsquo;s probably safe to skip type. And
-<code>EXCLUDE_FROM_ALL</code> has not been covered either. So, skip it too.</p>
-<p>So, this leaves the library logical name and the source files:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>add_library(MathFunctions MathFunctions.cxx mysqrt.cxx)</span></span></code></pre></div>
-<p>Now, we have to edit the top level CMakeLists.txt file. We&rsquo;ll need to add the subdirectory, and the
-<code>target_link_libraries</code>. The documents helpfull define the <code>target_link_libraries</code> command like this:</p>
-<blockquote>
-<p><code>target_link_libraries(&lt;target&gt; &lt;PRIVATE|PUBLIC|INTERFACE&gt; &lt;item&gt;... [&lt;PRIVATE|PUBLIC|INTERFACE&gt; &lt;item&gt;...]...)</code></p>
-</blockquote>
-<p>So, in the top-level CMakeLists.txt file we add:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>add_subdirectory(MathFunctions)
-</span></span><span style="display:flex;"><span>target_link_libraries(Tutorial PUBLIC MathFunctions)</span></span></code></pre></div>
-<p>And we need to specifiy where the header files live for this library using <code>target_include_directories</code> –
+tells us:</p><blockquote><p>If no &lt;type> is given the default is STATIC or SHARED based on the value of the <code>BUILD_SHARED_LIBS</code>
+variable.</p></blockquote><p>The tutorial hasn&rsquo;t covered <code>BUILD_SHARED_LIBS</code>, and it&rsquo;s probably safe to skip type. And
+<code>EXCLUDE_FROM_ALL</code> has not been covered either. So, skip it too.</p><p>So, this leaves the library logical name and the source files:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>add_library(MathFunctions MathFunctions.cxx mysqrt.cxx)</span></span></code></pre></div><p>Now, we have to edit the top level CMakeLists.txt file. We&rsquo;ll need to add the subdirectory, and the
+<code>target_link_libraries</code>. The documents helpfull define the <code>target_link_libraries</code> command like this:</p><blockquote><p><code>target_link_libraries(&lt;target> &lt;PRIVATE|PUBLIC|INTERFACE> &lt;item>... [&lt;PRIVATE|PUBLIC|INTERFACE> &lt;item>...]...)</code></p></blockquote><p>So, in the top-level CMakeLists.txt file we add:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>add_subdirectory(MathFunctions)
+</span></span><span style=display:flex><span>target_link_libraries(Tutorial PUBLIC MathFunctions)</span></span></code></pre></div><p>And we need to specifiy where the header files live for this library using <code>target_include_directories</code> –
 we did that in Step1, too, for the configured header. Now, we&rsquo;re adding to it, note the difference
-between <code>${PROJECT_BINARY_DIR}&quot;</code> and <code>${PROJECT_SOURCE_DIR}/MathFunctions&quot;</code></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>target_include_directories(Tutorial PUBLIC
-</span></span><span style="display:flex;"><span>                           &#34;${PROJECT_BINARY_DIR}&#34;
-</span></span><span style="display:flex;"><span>			   &#34;${PROJECT_SOURCE_DIR}/MathFunctions&#34;
-</span></span><span style="display:flex;"><span>                           )</span></span></code></pre></div>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>kes@Zork:~/Downloads/cmake/tutorial/Step2_build$ cmake --build .
-</span></span><span style="display:flex;"><span>-- Configuring done
-</span></span><span style="display:flex;"><span>-- Generating done
-</span></span><span style="display:flex;"><span>-- Build files have been written to: /home/kes/Downloads/cmake/tutorial/Step2_build
-</span></span><span style="display:flex;"><span>Consolidate compiler generated dependencies of target MathFunctions
-</span></span><span style="display:flex;"><span>[ 60%] Built target MathFunctions
-</span></span><span style="display:flex;"><span>Consolidate compiler generated dependencies of target Tutorial
-</span></span><span style="display:flex;"><span>[ 80%] Building CXX object CMakeFiles/Tutorial.dir/tutorial.cxx.o
-</span></span><span style="display:flex;"><span>[100%] Linking CXX executable Tutorial
-</span></span><span style="display:flex;"><span>[100%] Built target Tutorial
-</span></span><span style="display:flex;"><span>kes@Zork:~/Downloads/cmake/tutorial/Step2_build$</span></span></code></pre></div>
-<p>Okay, so let&rsquo;s summarize.</p>
-<ol>
-<li>We started off Step2 in the same way Step1
-<ul>
-<li>Make the build directory</li>
-<li>enter the build directory and configure the project (<code>cmake ../Step2</code>)</li>
-<li>Then build the project (<code>cmake --build .</code>)</li>
-</ul>
-</li>
-<li>Then, for the first exercise we added a library. So, what&rsquo;s required?
-<ul>
-<li>The library directory was already there: <code>MathFunctions</code></li>
-<li>In the library directory there was already a CMakeLists.txt file. But we must specify the
-library name and the source files with the <code>add_library</code> command.</li>
-<li>Next we must modify the top-level CMakeLists.txt file
-<ul>
-<li>We have to tell CMake that there&rsquo;s a subdirectory. This we did with the conveiniently named
-<code>add_subdirectory</code> command.</li>
-<li>Now we have to tell it about the target link libraries <code>target_link_libraries</code></li>
-<li>And we have to tell it about the target include directories with <code>target_include_directories</code>
-command — and we note the difference between, <code>&quot;${PROJECT_BINARY_DIR}&quot;</code> and <code>&quot;${PROJECT_SOURCE_DIR}</code></li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<p>And that&rsquo;s it!</p>
-<p>Very cool!</p>
-<h3 id="adding-an-option">Adding an Option<a href="#adding-an-option" class="hanchor" ariaLabel="Anchor">#</a> </h3>
-<p>Now, we want to add an option to allow developers to choose to use a custom implementation, or the
+between <code>${PROJECT_BINARY_DIR}"</code> and <code>${PROJECT_SOURCE_DIR}/MathFunctions"</code></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>target_include_directories(Tutorial PUBLIC
+</span></span><span style=display:flex><span>                           &#34;${PROJECT_BINARY_DIR}&#34;
+</span></span><span style=display:flex><span>			   &#34;${PROJECT_SOURCE_DIR}/MathFunctions&#34;
+</span></span><span style=display:flex><span>                           )</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>kes@Zork:~/Downloads/cmake/tutorial/Step2_build$ cmake --build .
+</span></span><span style=display:flex><span>-- Configuring done
+</span></span><span style=display:flex><span>-- Generating done
+</span></span><span style=display:flex><span>-- Build files have been written to: /home/kes/Downloads/cmake/tutorial/Step2_build
+</span></span><span style=display:flex><span>Consolidate compiler generated dependencies of target MathFunctions
+</span></span><span style=display:flex><span>[ 60%] Built target MathFunctions
+</span></span><span style=display:flex><span>Consolidate compiler generated dependencies of target Tutorial
+</span></span><span style=display:flex><span>[ 80%] Building CXX object CMakeFiles/Tutorial.dir/tutorial.cxx.o
+</span></span><span style=display:flex><span>[100%] Linking CXX executable Tutorial
+</span></span><span style=display:flex><span>[100%] Built target Tutorial
+</span></span><span style=display:flex><span>kes@Zork:~/Downloads/cmake/tutorial/Step2_build$</span></span></code></pre></div><p>Okay, so let&rsquo;s summarize.</p><ol><li>We started off Step2 in the same way Step1<ul><li>Make the build directory</li><li>enter the build directory and configure the project (<code>cmake ../Step2</code>)</li><li>Then build the project (<code>cmake --build .</code>)</li></ul></li><li>Then, for the first exercise we added a library. So, what&rsquo;s required?<ul><li>The library directory was already there: <code>MathFunctions</code></li><li>In the library directory there was already a CMakeLists.txt file. But we must specify the
+library name and the source files with the <code>add_library</code> command.</li><li>Next we must modify the top-level CMakeLists.txt file<ul><li>We have to tell CMake that there&rsquo;s a subdirectory. This we did with the conveiniently named
+<code>add_subdirectory</code> command.</li><li>Now we have to tell it about the target link libraries <code>target_link_libraries</code></li><li>And we have to tell it about the target include directories with <code>target_include_directories</code>
+command — and we note the difference between, <code>"${PROJECT_BINARY_DIR}"</code> and <code>"${PROJECT_SOURCE_DIR}</code></li></ul></li></ul></li></ol><p>And that&rsquo;s it!</p><p>Very cool!</p><h3 id=adding-an-option>Adding an Option<a href=#adding-an-option class=hanchor arialabel=Anchor>#</a></h3><p>Now, we want to add an option to allow developers to choose to use a custom implementation, or the
 standard one. Remember that I said we might want to change the sources in the <code>add_library</code> line? It&rsquo;s
-coming up. But first we need to attend to other matters.</p>
-<p>Now, In the tutorial, the difference we have is between the cusotm square root and the standar
+coming up. But first we need to attend to other matters.</p><p>Now, In the tutorial, the difference we have is between the cusotm square root and the standar
 one. The tutorial comments: &ldquo;While for the tutorial there really isn&rsquo;t any need to do so, for larger
-projects this is a common occurrence.&rdquo; Yes, and CMake provides a handy way to make this happen.</p>
-<p>I&rsquo;m going to run through this pretty quickly, since there&rsquo;s always the tutorial itself that
-can be referenced.</p>
-<p>The idea is that in the library, or that is, in the CMakeLists.txt for the library, we want to
+projects this is a common occurrence.&rdquo; Yes, and CMake provides a handy way to make this happen.</p><p>I&rsquo;m going to run through this pretty quickly, since there&rsquo;s always the tutorial itself that
+can be referenced.</p><p>The idea is that in the library, or that is, in the CMakeLists.txt for the library, we want to
 define an <code>option</code> that we can turn on or turn off. Then in the source code, a developer can
 check for that option and the compiler will include whichever code branch. Pretty slick, and
-easy to do with CMake.</p>
-<p>So, to Step2/MathFunctions/CMakeLists.txt add an option command:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>option(USE_MYMATH &#34;Use tutorial provided math implementation&#34; ON)</span></span></code></pre></div>
-<p>That&rsquo;s pretty self explanatory. But, of course, that&rsquo;s just the option itself. We have to get
+easy to do with CMake.</p><p>So, to Step2/MathFunctions/CMakeLists.txt add an option command:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>option(USE_MYMATH &#34;Use tutorial provided math implementation&#34; ON)</span></span></code></pre></div><p>That&rsquo;s pretty self explanatory. But, of course, that&rsquo;s just the option itself. We have to get
 it onto the compile command line. Here&rsquo;s how, with a <code>target_compile_definitions</code> command with
-a =USE<sub>MYMATH</sub> block:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>if (USE_MYMATH)
-</span></span><span style="display:flex;"><span>  target_compile_definitions(MathFunctions PRIVATE &#34;USE_MYMATH&#34;)
-</span></span><span style="display:flex;"><span>endif()</span></span></code></pre></div>
-<p>What may not be understood is that when we compile, we can set the <code>-D</code> flag, which creates a symbol
+a =USE<sub>MYMATH</sub> block:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>if (USE_MYMATH)
+</span></span><span style=display:flex><span>  target_compile_definitions(MathFunctions PRIVATE &#34;USE_MYMATH&#34;)
+</span></span><span style=display:flex><span>endif()</span></span></code></pre></div><p>What may not be understood is that when we compile, we can set the <code>-D</code> flag, which creates a symbol
 that can be used by the developer and the preprocessor. <code>-D name=definition</code> is how it&rsquo;s given in the
-GNU manual. See: <a href="https://gcc.gnu.org/onlinedocs/gcc/Preprocessor-Options.html">https://gcc.gnu.org/onlinedocs/gcc/Preprocessor-Options.html</a></p>
-<p>Now, this is available to the preprocessor, and in source you can write stuff like this:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cmath&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#ifdef USE_MYMATH
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#  include &#34;mysqrt.h&#34;
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#endif
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># code ... code ... code
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#ifdef USE_MYMATH
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">return</span> detail<span style="color:#f92672">::</span><span style="color:#a6e22e">mysqrt</span>(x);
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#else
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">return</span> std<span style="color:#f92672">::</span><span style="color:#a6e22e">sqrt</span>(x);
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#endif
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># code ... code ... code</span></span></span></code></pre></div>
-<p>It&rsquo;s as useful a technique as any for deveopment and debugging. For example, there might be a feature
+GNU manual. See: <a href=https://gcc.gnu.org/onlinedocs/gcc/Preprocessor-Options.html>https://gcc.gnu.org/onlinedocs/gcc/Preprocessor-Options.html</a></p><p>Now, this is available to the preprocessor, and in source you can write stuff like this:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C data-lang=C><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;cmath&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#ifdef USE_MYMATH
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#  include &#34;mysqrt.h&#34;
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#endif
+</span></span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># code ... code ... code
+</span></span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#ifdef USE_MYMATH
+</span></span></span><span style=display:flex><span><span style=color:#66d9ef>return</span> detail<span style=color:#f92672>::</span><span style=color:#a6e22e>mysqrt</span>(x);
+</span></span><span style=display:flex><span><span style=color:#75715e>#else
+</span></span></span><span style=display:flex><span><span style=color:#66d9ef>return</span> std<span style=color:#f92672>::</span><span style=color:#a6e22e>sqrt</span>(x);
+</span></span><span style=display:flex><span><span style=color:#75715e>#endif
+</span></span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># code ... code ... code</span></span></span></code></pre></div><p>It&rsquo;s as useful a technique as any for deveopment and debugging. For example, there might be a feature
 that you want to start getting into the production code base but you don&rsquo;t want to be available generally.
-This is one way to navigate that process.</p>
-<p>And yet, there&rsquo;s a bit of a problem. Suppose you&rsquo;re not using <code>MYMATH</code> for some build. In the current
+This is one way to navigate that process.</p><p>And yet, there&rsquo;s a bit of a problem. Suppose you&rsquo;re not using <code>MYMATH</code> for some build. In the current
 situation while the code will not be executed, it will still be compiled in. Why? Because it&rsquo;s in
-this line:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>add_library(MathFunctions MathFunctions.cxx mysqrt.cxx)</span></span></code></pre></div>
-<p>Yup, it seems like we just added it there and now we want to remove it at least under certain
-conditions. But how to handle this?</p>
-<p>We&rsquo;re going to create an additional library to control the compilation and inclusion of mysqrt.cxx,
-and add it as a link library. So, within the MYMATH block:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>add_library(SqrtLibrary STATIC
-</span></span><span style="display:flex;"><span>             mysqrt.cxx
-</span></span><span style="display:flex;"><span>             )
-</span></span><span style="display:flex;"><span> target_link_libraries(MathFunctions PRIVATE SqrtLibrary)</span></span></code></pre></div>
-<p>And we remove mysqrt.cxx from the add libraries command:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>add_library(MathFunctions MathFunctions.cxx)</span></span></code></pre></div>
-<p>Be clear about the difference between <code>add library</code> which defines a library and its contents, versus
-<code>target_link_libraries</code> which specifies linkage of already existing libraries.</p>
-<p>So, with these changes, who is building can have whatever verson is wanted.</p>
-<p>But I have found that changing the option in the CMakeListings.txt file doesn&rsquo;t change
+this line:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>add_library(MathFunctions MathFunctions.cxx mysqrt.cxx)</span></span></code></pre></div><p>Yup, it seems like we just added it there and now we want to remove it at least under certain
+conditions. But how to handle this?</p><p>We&rsquo;re going to create an additional library to control the compilation and inclusion of mysqrt.cxx,
+and add it as a link library. So, within the MYMATH block:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>add_library(SqrtLibrary STATIC
+</span></span><span style=display:flex><span>             mysqrt.cxx
+</span></span><span style=display:flex><span>             )
+</span></span><span style=display:flex><span> target_link_libraries(MathFunctions PRIVATE SqrtLibrary)</span></span></code></pre></div><p>And we remove mysqrt.cxx from the add libraries command:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>add_library(MathFunctions MathFunctions.cxx)</span></span></code></pre></div><p>Be clear about the difference between <code>add library</code> which defines a library and its contents, versus
+<code>target_link_libraries</code> which specifies linkage of already existing libraries.</p><p>So, with these changes, who is building can have whatever verson is wanted.</p><p>But I have found that changing the option in the CMakeListings.txt file doesn&rsquo;t change
 things. Not sure why. But I can delete the cache, <code>build/CmakeFiles/cmake.check_cache</code>
-and then build, and it works as advertised.</p>
-
-      </div></div>
-
-  
-    
-<div class="pagination">
-  <div class="pagination__title">
-    <span class="pagination__title-h">Read other posts</span>
-    <hr />
-  </div>
-  <div class="pagination__buttons">
-    
-      <a href="https://kes.github.io/posts/compiler-project/" class="button inline prev">
-        &lt; [<span class="button__text">Compiler Project</span>]
-      </a>
-    
-    
-      ::
-    
-    
-      <a href="https://kes.github.io/posts/understanding-loop/" class="button inline next">
-         [<span class="button__text">Understanding Loop</span>] &gt;
-      </a>
-    
-  </div>
-</div>
-
-
-  
-
-  
-    
-
-  
-</article>
-
-  </div>
-
-  
-    <footer class="footer">
-  <div class="footer__inner">
-    
-      <div class="copyright">
-        <span>© 2026 Powered by <a href="https://gohugo.io">Hugo</a></span>
-    
-      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
-      </div>
-  </div>
-</footer>
-
-
-
-
-
-
-<script type="text/javascript" src="/bundle.min.js"></script>
-
-
-
-
-
-  
-</div>
-
-</body>
-</html>
+and then build, and it works as advertised.</p></div></div><div class=pagination><div class=pagination__title><span class=pagination__title-h>Read other posts</span><hr></div><div class=pagination__buttons><a href=https://kes.github.io/posts/compiler-project/ class="button inline prev">&lt; [<span class=button__text>Compiler Project</span>]
+</a>::
+<a href=https://kes.github.io/posts/understanding-loop/ class="button inline next">[<span class=button__text>Understanding Loop</span>] ></a></div></div></article></div><footer class=footer><div class=footer__inner><div class=copyright><span>© 2026 Powered by <a href=https://gohugo.io>Hugo</a></span>
+<span>:: <a href=https://github.com/panr/hugo-theme-terminal target=_blank>Theme</a> made by <a href=https://github.com/panr target=_blank>panr</a></span></div></div></footer><script type=text/javascript src=/bundle.min.js></script></div></body></html>

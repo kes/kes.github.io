@@ -1,458 +1,196 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  
-    <title>Leetcode Algorithms 2 :: </title>
-  
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Okay, this is the second question from the &amp;ldquo;Top Interview 150.&amp;rdquo;
-If you&amp;rsquo;re new here:
-Working on leetcode.com there&amp;rsquo;s a &amp;ldquo;Top Interview 150&amp;rdquo; list of problems. I&amp;rsquo;m not sure where the list comes from, but no matter. Doing a quick count it looks like there are around 20 hard problems,about 40 easy, and about 90 medium.
-So that&amp;rsquo;s the goal. Do all 150 problems.
+<!doctype html><html lang=en><head><title>Leetcode Algorithms 2 ::</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Okay, this is the second question from the &ldquo;Top Interview 150.&rdquo;
+If you&rsquo;re new here:
+Working on leetcode.com there&rsquo;s a &ldquo;Top Interview 150&rdquo; list of problems. I&rsquo;m not sure where the list comes from, but no matter. Doing a quick count it looks like there are around 20 hard problems,about 40 easy, and about 90 medium.
+So that&rsquo;s the goal. Do all 150 problems.
 Remove Element Level: easy
-Read the problem description." />
-<meta name="keywords" content="" />
-
-  <meta name="robots" content="noodp" />
-
-<link rel="canonical" href="https://kes.github.io/leetcode/leetcode-algorithms-2/" />
-
-
-
-
-
-  
-  <link rel="stylesheet" href="https://kes.github.io/css/buttons.min.86f6b4c106b6c6eb690ae5203d36b442c1f66f718ff4e8164fa86cf6c61ad641.css">
-
-  
-  <link rel="stylesheet" href="https://kes.github.io/css/code.min.d529ea4b2fb8d34328d7d31afc5466d5f7bc2f0bc9abdd98b69385335d7baee4.css">
-
-  
-  <link rel="stylesheet" href="https://kes.github.io/css/fonts.min.5bb7ed13e1d00d8ff39ea84af26737007eb5051b157b86fc24487c94f3dc8bbe.css">
-
-  
-  <link rel="stylesheet" href="https://kes.github.io/css/footer.min.eb8dfc2c6a7eafa36cd3ba92d63e69e849e2200e0002a228d137f236b09ecd75.css">
-
-  
-  <link rel="stylesheet" href="https://kes.github.io/css/gist.min.a751e8b0abe1ba8bc53ced52a38b19d8950fe78ca29454ea8c2595cf26aad5c0.css">
-
-  
-  <link rel="stylesheet" href="https://kes.github.io/css/header.min.75c7eb0e2872d95ff48109c6647d0223a38db52e2561dd87966eb5fc7c6bdac6.css">
-
-  
-  <link rel="stylesheet" href="https://kes.github.io/css/main.min.36833afd348409fc6c3d09d0897c5833d9d5bf1ff31f5e60ea3ee42ce2b1268c.css">
-
-  
-  <link rel="stylesheet" href="https://kes.github.io/css/menu.min.3c17467ebeb3d38663dce68f71f519901124fa5cbb4519b2fb0667a21e9aca39.css">
-
-  
-  <link rel="stylesheet" href="https://kes.github.io/css/pagination.min.bbb986dbce00a5ce5aca0504b7925fc1c581992a4bf57f163e5d69cc1db7d836.css">
-
-  
-  <link rel="stylesheet" href="https://kes.github.io/css/post.min.e6dddd258e64c83e05cec0cd49c05216742d42fc8ecbfbe6b67083412b609bd3.css">
-
-  
-  <link rel="stylesheet" href="https://kes.github.io/css/syntax.min.a0773cce9310cb6d8ed23e50f005448facf29a53001b57e038828daa466b25c0.css">
-
-  
-  <link rel="stylesheet" href="https://kes.github.io/css/terminal.min.e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css">
-
-  
-  <link rel="stylesheet" href="https://kes.github.io/css/terms.min.b81791663c3790e738e571cdbf802312390d30e4b1d8dc9d814a5b5454d0ac11.css">
-
-
-
-
-<link rel="stylesheet" href="https://kes.github.io/style.css">
-
-
-<link rel="shortcut icon" href="https://kes.github.io/favicon.png">
-<link rel="apple-touch-icon" href="https://kes.github.io/apple-touch-icon.png">
-
-
-<meta name="twitter:card" content="summary" />
-
-
-
-<meta property="og:locale" content="en" />
-<meta property="og:type" content="article" />
-<meta property="og:title" content="Leetcode Algorithms 2">
-<meta property="og:description" content="Okay, this is the second question from the &amp;ldquo;Top Interview 150.&amp;rdquo;
-If you&amp;rsquo;re new here:
-Working on leetcode.com there&amp;rsquo;s a &amp;ldquo;Top Interview 150&amp;rdquo; list of problems. I&amp;rsquo;m not sure where the list comes from, but no matter. Doing a quick count it looks like there are around 20 hard problems,about 40 easy, and about 90 medium.
-So that&amp;rsquo;s the goal. Do all 150 problems.
+Read the problem description.
+"><meta name=keywords content><meta name=robots content="noodp"><link rel=canonical href=https://kes.github.io/leetcode/leetcode-algorithms-2/><link rel=stylesheet href=https://kes.github.io/css/buttons.min.86f6b4c106b6c6eb690ae5203d36b442c1f66f718ff4e8164fa86cf6c61ad641.css><link rel=stylesheet href=https://kes.github.io/css/code.min.d529ea4b2fb8d34328d7d31afc5466d5f7bc2f0bc9abdd98b69385335d7baee4.css><link rel=stylesheet href=https://kes.github.io/css/fonts.min.5bb7ed13e1d00d8ff39ea84af26737007eb5051b157b86fc24487c94f3dc8bbe.css><link rel=stylesheet href=https://kes.github.io/css/footer.min.eb8dfc2c6a7eafa36cd3ba92d63e69e849e2200e0002a228d137f236b09ecd75.css><link rel=stylesheet href=https://kes.github.io/css/gist.min.a751e8b0abe1ba8bc53ced52a38b19d8950fe78ca29454ea8c2595cf26aad5c0.css><link rel=stylesheet href=https://kes.github.io/css/header.min.75c7eb0e2872d95ff48109c6647d0223a38db52e2561dd87966eb5fc7c6bdac6.css><link rel=stylesheet href=https://kes.github.io/css/main.min.36833afd348409fc6c3d09d0897c5833d9d5bf1ff31f5e60ea3ee42ce2b1268c.css><link rel=stylesheet href=https://kes.github.io/css/menu.min.3c17467ebeb3d38663dce68f71f519901124fa5cbb4519b2fb0667a21e9aca39.css><link rel=stylesheet href=https://kes.github.io/css/pagination.min.bbb986dbce00a5ce5aca0504b7925fc1c581992a4bf57f163e5d69cc1db7d836.css><link rel=stylesheet href=https://kes.github.io/css/post.min.e6dddd258e64c83e05cec0cd49c05216742d42fc8ecbfbe6b67083412b609bd3.css><link rel=stylesheet href=https://kes.github.io/css/syntax.min.a0773cce9310cb6d8ed23e50f005448facf29a53001b57e038828daa466b25c0.css><link rel=stylesheet href=https://kes.github.io/css/terminal.min.e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css><link rel=stylesheet href=https://kes.github.io/css/terms.min.b81791663c3790e738e571cdbf802312390d30e4b1d8dc9d814a5b5454d0ac11.css><link rel=stylesheet href=https://kes.github.io/style.css><link rel="shortcut icon" href=https://kes.github.io/favicon.png><link rel=apple-touch-icon href=https://kes.github.io/apple-touch-icon.png><meta name=twitter:card content="summary"><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="og:title" content="Leetcode Algorithms 2"><meta property="og:description" content="Okay, this is the second question from the &ldquo;Top Interview 150.&rdquo;
+If you&rsquo;re new here:
+Working on leetcode.com there&rsquo;s a &ldquo;Top Interview 150&rdquo; list of problems. I&rsquo;m not sure where the list comes from, but no matter. Doing a quick count it looks like there are around 20 hard problems,about 40 easy, and about 90 medium.
+So that&rsquo;s the goal. Do all 150 problems.
 Remove Element Level: easy
-Read the problem description." />
-<meta property="og:url" content="https://kes.github.io/leetcode/leetcode-algorithms-2/" />
-<meta property="og:site_name" content="" />
-
-  <meta property="og:image" content="https://kes.github.io/og-image.png">
-
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="627">
-
-
-  <meta property="article:published_time" content="2024-11-23 00:00:00 &#43;0000 UTC" />
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script src="https://kes.github.io/js/mathjax-config.js"></script>
-
-  
-  <script
-    id="MathJax-script"
-    async
-    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
-  </script>
-
-
-
-
-</head>
-<body>
-
-
-<div class="container center">
-
-  <header class="header">
-  <div class="header__inner">
-    <div class="header__logo">
-      <a href="/">
-  <div class="logo">
-    Karl Stump
-  </div>
-</a>
-
-    </div>
-    
-      <ul class="menu menu--mobile">
-  <li class="menu__trigger">Menu&nbsp;▾</li>
-  <li>
-    <ul class="menu__dropdown">
-      
-        
-          <li><a href="/about/about/">About</a></li>
-        
-      
-        
-          <li><a href="/leetcode/">Leet Code</a></li>
-        
-      
-      
-    </ul>
-  </li>
-</ul>
-
-    
-    
-  </div>
-  
-    <nav class="navigation-menu">
-  <ul class="navigation-menu__inner menu--desktop">
-    
-      
-        
-          <li><a href="/about/about/" >About</a></li>
-        
-      
-        
-          <li><a href="/leetcode/" >Leet Code</a></li>
-        
-      
-      
-    
-  </ul>
-</nav>
-
-  
-</header>
-
-
-  <div class="content">
-    
-<article class="post">
-  <h1 class="post-title">
-    <a href="https://kes.github.io/leetcode/leetcode-algorithms-2/">Leetcode Algorithms 2</a>
-  </h1>
-  <div class="post-meta"><time class="post-date">2024-11-23</time><span class="post-author">[Karl Stump]</span></div>
-
-  
-    <span class="post-tags">
-      
-      #<a href="https://kes.github.io/tags/cpp/">CPP</a>&nbsp;
-      
-      #<a href="https://kes.github.io/tags/leetcode/">Leetcode</a>&nbsp;
-      
-    </span>
-  
-  
-
-
-  
-
-  <div class="post-content"><div>
-        <p>Okay, this is the second question from the &ldquo;Top Interview 150.&rdquo;</p>
-<p>If you&rsquo;re new here:</p>
-<p>Working on <a href="https:leetcode.com">leetcode.com</a> there&rsquo;s a &ldquo;Top Interview 150&rdquo; list of problems. I&rsquo;m not sure where the list comes from, but no matter. Doing a quick count it looks like there are around 20 hard problems,about 40 easy, and about 90 medium.</p>
-<p>So that&rsquo;s the goal. Do all 150 problems.</p>
-<h2 id="remove-element">Remove Element<a href="#remove-element" class="hanchor" ariaLabel="Anchor">#</a> </h2>
-<p>Level: easy</p>
-<p>Read the <a href="https://leetcode.com/problems/remove-element/?envType=study-plan-v2&envId=top-interview-150">problem description</a>.</p>
-<h2 id="starting">Starting<a href="#starting" class="hanchor" ariaLabel="Anchor">#</a> </h2>
-<p>Here&rsquo;s how I start:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;gtest/gtest.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span>class Solution {
-</span></span><span style="display:flex;"><span>public:
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">removeElement</span>(std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&amp;</span> nums, <span style="color:#66d9ef">int</span> val) {
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>};
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">TEST</span>(Remove, test_1) {
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Arrange
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> nums <span style="color:#f92672">=</span> {<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>};
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> val <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> results;
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> expected <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Act
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  results <span style="color:#f92672">=</span> Solution<span style="color:#f92672">::</span><span style="color:#a6e22e">removeElement</span>(nums, val);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Assert
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">EXPECT_TRUE</span>(expected <span style="color:#f92672">==</span> results);
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">**</span>argv) {
-</span></span><span style="display:flex;"><span>  testing<span style="color:#f92672">::</span><span style="color:#a6e22e">InitGoogleTest</span>(<span style="color:#f92672">&amp;</span>argc, argv);
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">RUN_ALL_TESTS</span>();
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
-<p>And, I have a simple Makefile:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-makefile" data-lang="makefile"><span style="display:flex;"><span>OBJS <span style="color:#f92672">=</span> remove-element.o
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">remove-element</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">$(</span>OBJS<span style="color:#66d9ef">)</span>
-</span></span><span style="display:flex;"><span>        g++ -o remove-element <span style="color:#66d9ef">$(</span>OBJS<span style="color:#66d9ef">)</span> -lgtest -lgtest_main
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">remove-element.o</span><span style="color:#f92672">:</span> remove-element.cpp
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">clean</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span>        rm remove-element <span style="color:#66d9ef">$(</span>OBJS<span style="color:#66d9ef">)</span>
-</span></span></code></pre></div>
-<p>Now, I can add tests (that is, the examples that are given in the description), and code to the
-tests. TDD.</p>
-<p>The first of which is:</p>
-<blockquote>
-<p>Input: nums = [3,2,2,3], val = 3
+Read the problem description.
+"><meta property="og:url" content="https://kes.github.io/leetcode/leetcode-algorithms-2/"><meta property="og:site_name" content><meta property="og:image" content="https://kes.github.io/og-image.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="627"><meta property="article:published_time" content="2024-11-23 00:00:00 +0000 UTC"><script src=https://kes.github.io/js/mathjax-config.js></script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js></script></head><body><div class="container center"><header class=header><div class=header__inner><div class=header__logo><a href=/><div class=logo>Karl Stump</div></a></div><ul class="menu menu--mobile"><li class=menu__trigger>Menu&nbsp;▾</li><li><ul class=menu__dropdown><li><a href=/about/about/>About</a></li><li><a href=/leetcode/>Leet Code</a></li></ul></li></ul></div><nav class=navigation-menu><ul class="navigation-menu__inner menu--desktop"><li><a href=/about/about/>About</a></li><li><a href=/leetcode/>Leet Code</a></li></ul></nav></header><div class=content><article class=post><h1 class=post-title><a href=https://kes.github.io/leetcode/leetcode-algorithms-2/>Leetcode Algorithms 2</a></h1><div class=post-meta><time class=post-date>2024-11-23</time><span class=post-author>[Karl Stump]</span></div><span class=post-tags>#<a href=https://kes.github.io/tags/cpp/>CPP</a>&nbsp;
+#<a href=https://kes.github.io/tags/leetcode/>Leetcode</a>&nbsp;</span><div class=post-content><div><p>Okay, this is the second question from the &ldquo;Top Interview 150.&rdquo;</p><p>If you&rsquo;re new here:</p><p>Working on <a href=https:leetcode.com>leetcode.com</a> there&rsquo;s a &ldquo;Top Interview 150&rdquo; list of problems. I&rsquo;m not sure where the list comes from, but no matter. Doing a quick count it looks like there are around 20 hard problems,about 40 easy, and about 90 medium.</p><p>So that&rsquo;s the goal. Do all 150 problems.</p><h2 id=remove-element>Remove Element<a href=#remove-element class=hanchor arialabel=Anchor>#</a></h2><p>Level: easy</p><p>Read the <a href="https://leetcode.com/problems/remove-element/?envType=study-plan-v2&amp;envId=top-interview-150">problem description</a>.</p><h2 id=starting>Starting<a href=#starting class=hanchor arialabel=Anchor>#</a></h2><p>Here&rsquo;s how I start:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C data-lang=C><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;vector&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;gtest/gtest.h&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>class Solution {
+</span></span><span style=display:flex><span>public:
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>int</span> <span style=color:#a6e22e>removeElement</span>(std<span style=color:#f92672>::</span>vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;&amp;</span> nums, <span style=color:#66d9ef>int</span> val) {
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>};
+</span></span><span style=display:flex><span><span style=color:#a6e22e>TEST</span>(Remove, test_1) {
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Arrange
+</span></span></span><span style=display:flex><span>  std<span style=color:#f92672>::</span>vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> nums <span style=color:#f92672>=</span> {<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>4</span>};
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>int</span> val <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>int</span> results;
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>int</span> expected <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Act
+</span></span></span><span style=display:flex><span>  results <span style=color:#f92672>=</span> Solution<span style=color:#f92672>::</span><span style=color:#a6e22e>removeElement</span>(nums, val);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Assert
+</span></span></span><span style=display:flex><span>  <span style=color:#a6e22e>EXPECT_TRUE</span>(expected <span style=color:#f92672>==</span> results);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(<span style=color:#66d9ef>int</span> argc, <span style=color:#66d9ef>char</span> <span style=color:#f92672>**</span>argv) {
+</span></span><span style=display:flex><span>  testing<span style=color:#f92672>::</span><span style=color:#a6e22e>InitGoogleTest</span>(<span style=color:#f92672>&amp;</span>argc, argv);
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>RUN_ALL_TESTS</span>();
+</span></span><span style=display:flex><span>}</span></span></code></pre></div><p>And, I have a simple Makefile:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-makefile data-lang=makefile><span style=display:flex><span>OBJS <span style=color:#f92672>=</span> remove-element.o
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>remove-element</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>$(</span>OBJS<span style=color:#66d9ef>)</span>
+</span></span><span style=display:flex><span>        g++ -o remove-element <span style=color:#66d9ef>$(</span>OBJS<span style=color:#66d9ef>)</span> -lgtest -lgtest_main
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>remove-element.o</span><span style=color:#f92672>:</span> remove-element.cpp
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>clean</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>        rm remove-element <span style=color:#66d9ef>$(</span>OBJS<span style=color:#66d9ef>)</span>
+</span></span></code></pre></div><p>Now, I can add tests (that is, the examples that are given in the description), and code to the
+tests. TDD.</p><p>The first of which is:</p><blockquote><p>Input: nums = [3,2,2,3], val = 3
 Output: 2, nums = [2,2,<em>,</em>]
 Explanation: Your function should return k = 2, with the first two elements of nums being 2.
-It does not matter what you leave beyond the returned k (hence they are underscores).</p>
-</blockquote>
-<p>So, the first test case becomes:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#a6e22e">TEST</span>(Remove, test_1) {
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Arrange
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> nums <span style="color:#f92672">=</span> {<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>};
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> val <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> returns;
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> expectedReturns <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
-</span></span><span style="display:flex;"><span>  std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> expectedNums <span style="color:#f92672">=</span> {<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>};
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Act
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  returns <span style="color:#f92672">=</span> Solution<span style="color:#f92672">::</span><span style="color:#a6e22e">removeElement</span>(nums, val);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Assert
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">EXPECT_TRUE</span>(expectedReturns <span style="color:#f92672">==</span> returns);
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">EXPECT_TRUE</span>(expectedNums <span style="color:#f92672">==</span> nums);
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
-<p>Now, when I run, I get the expected failures:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">[==========]</span> Running <span style="color:#ae81ff">1</span> test from <span style="color:#ae81ff">1</span> test suite.
-</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>----------<span style="color:#f92672">]</span> Global test environment set-up.
-</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>----------<span style="color:#f92672">]</span> <span style="color:#ae81ff">1</span> test from Remove
-</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span> RUN      <span style="color:#f92672">]</span> Remove.test_1
-</span></span><span style="display:flex;"><span>remove-element.cpp:24: Failure
-</span></span><span style="display:flex;"><span>Value of: expectedReturns <span style="color:#f92672">==</span> returns
-</span></span><span style="display:flex;"><span>  Actual: false
-</span></span><span style="display:flex;"><span>Expected: true
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>remove-element.cpp:25: Failure
-</span></span><span style="display:flex;"><span>Value of: expectedNums <span style="color:#f92672">==</span> nums
-</span></span><span style="display:flex;"><span>  Actual: false
-</span></span><span style="display:flex;"><span>Expected: true
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>  FAILED  <span style="color:#f92672">]</span> Remove.test_1 <span style="color:#f92672">(</span><span style="color:#ae81ff">0</span> ms<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>----------<span style="color:#f92672">]</span> <span style="color:#ae81ff">1</span> test from Remove <span style="color:#f92672">(</span><span style="color:#ae81ff">0</span> ms total<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>----------<span style="color:#f92672">]</span> Global test environment tear-down
-</span></span><span style="display:flex;"><span><span style="color:#f92672">[==========]</span> <span style="color:#ae81ff">1</span> test from <span style="color:#ae81ff">1</span> test suite ran. <span style="color:#f92672">(</span><span style="color:#ae81ff">0</span> ms total<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>  PASSED  <span style="color:#f92672">]</span> <span style="color:#ae81ff">0</span> tests.
-</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>  FAILED  <span style="color:#f92672">]</span> <span style="color:#ae81ff">1</span> test, listed below:
-</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>  FAILED  <span style="color:#f92672">]</span> Remove.test_1
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">1</span> FAILED TEST</span></span></code></pre></div>
-<h2 id="final">Final<a href="#final" class="hanchor" ariaLabel="Anchor">#</a> </h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;gtest/gtest.h&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span>class Solution {
-</span></span><span style="display:flex;"><span>public:
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">removeElement</span>(std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">&amp;</span>nums, <span style="color:#66d9ef">int</span> val) {
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/* Scan the array nums for the value val beginning at i = 0.  Let
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     k be the location of the last element in the array. When the
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     value val is found at the ith location, move the kth value into
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     the ith, and then replace the kth value with -1 and decrement k */</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> k <span style="color:#f92672">=</span> nums.<span style="color:#a6e22e">size</span>() <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;=</span> k <span style="color:#f92672">&amp;&amp;</span> i <span style="color:#f92672">&lt;</span> nums.<span style="color:#a6e22e">size</span>(); <span style="color:#f92672">++</span>i) {
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (nums[i] <span style="color:#f92672">==</span> val) {
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (k <span style="color:#f92672">&gt;</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> nums[k] <span style="color:#f92672">==</span> val) {
-</span></span><span style="display:flex;"><span>          nums[k<span style="color:#f92672">--</span>] <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (k <span style="color:#f92672">&gt;=</span> i){
-</span></span><span style="display:flex;"><span>          nums[i] <span style="color:#f92672">=</span> nums[k];
-</span></span><span style="display:flex;"><span>          nums[k<span style="color:#f92672">--</span>] <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>      }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> k <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>};
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">TEST</span>(Remove, test_1) {
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Arrange
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> nums <span style="color:#f92672">=</span> {<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>};
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> val <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> returns;
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> expectedReturns <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
-</span></span><span style="display:flex;"><span>  std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> expectedNums <span style="color:#f92672">=</span> {<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>};
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Act
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  returns <span style="color:#f92672">=</span> Solution<span style="color:#f92672">::</span><span style="color:#a6e22e">removeElement</span>(nums, val);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Assert
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">EXPECT_TRUE</span>(expectedReturns <span style="color:#f92672">==</span> returns);
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">EXPECT_TRUE</span>(expectedNums <span style="color:#f92672">==</span> nums);
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">TEST</span>(Remove, test_2) {
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Arrange
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> nums <span style="color:#f92672">=</span> {<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">2</span>};
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> val <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> returns;
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> expectedReturns <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>;
-</span></span><span style="display:flex;"><span>  std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> expectedNums <span style="color:#f92672">=</span> {<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">3</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>};
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Act
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  returns <span style="color:#f92672">=</span> Solution<span style="color:#f92672">::</span><span style="color:#a6e22e">removeElement</span>(nums, val);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Assert
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">EXPECT_TRUE</span>(expectedReturns <span style="color:#f92672">==</span> returns);
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">EXPECT_TRUE</span>(expectedNums <span style="color:#f92672">==</span> nums);
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">TEST</span>(Remove, test_3) {
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Arrange
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> nums <span style="color:#f92672">=</span> {<span style="color:#ae81ff">1</span>};
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> val <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> returns;
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> expectedReturns <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>  std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> expectedNums <span style="color:#f92672">=</span> {<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>};
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Act
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  returns <span style="color:#f92672">=</span> Solution<span style="color:#f92672">::</span><span style="color:#a6e22e">removeElement</span>(nums, val);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Assert
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">EXPECT_TRUE</span>(expectedReturns <span style="color:#f92672">==</span> returns);
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">EXPECT_TRUE</span>(expectedNums <span style="color:#f92672">==</span> nums);
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">**</span>argv) {
-</span></span><span style="display:flex;"><span>  testing<span style="color:#f92672">::</span><span style="color:#a6e22e">InitGoogleTest</span>(<span style="color:#f92672">&amp;</span>argc, argv);
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">RUN_ALL_TESTS</span>();
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">[==========]</span> Running <span style="color:#ae81ff">3</span> tests from <span style="color:#ae81ff">1</span> test suite.
-</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>----------<span style="color:#f92672">]</span> Global test environment set-up.
-</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>----------<span style="color:#f92672">]</span> <span style="color:#ae81ff">3</span> tests from Remove
-</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span> RUN      <span style="color:#f92672">]</span> Remove.test_1
-</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>       OK <span style="color:#f92672">]</span> Remove.test_1 <span style="color:#f92672">(</span><span style="color:#ae81ff">0</span> ms<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span> RUN      <span style="color:#f92672">]</span> Remove.test_2
-</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>       OK <span style="color:#f92672">]</span> Remove.test_2 <span style="color:#f92672">(</span><span style="color:#ae81ff">0</span> ms<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span> RUN      <span style="color:#f92672">]</span> Remove.test_3
-</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>       OK <span style="color:#f92672">]</span> Remove.test_3 <span style="color:#f92672">(</span><span style="color:#ae81ff">0</span> ms<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>----------<span style="color:#f92672">]</span> <span style="color:#ae81ff">3</span> tests from Remove <span style="color:#f92672">(</span><span style="color:#ae81ff">0</span> ms total<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>----------<span style="color:#f92672">]</span> Global test environment tear-down
-</span></span><span style="display:flex;"><span><span style="color:#f92672">[==========]</span> <span style="color:#ae81ff">3</span> tests from <span style="color:#ae81ff">1</span> test suite ran. <span style="color:#f92672">(</span><span style="color:#ae81ff">0</span> ms total<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>  PASSED  <span style="color:#f92672">]</span> <span style="color:#ae81ff">3</span> tests.</span></span></code></pre></div>
-<h2 id="use-gdb">Use GDB<a href="#use-gdb" class="hanchor" ariaLabel="Anchor">#</a> </h2>
-<p>Now&rsquo;s a good time to practice with GDB.</p>
-<p>Update the makefile to include debugging information (<code>-g</code>). I&rsquo;ve also added in <code>-Wall</code> – not required
-but probably a good idea.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-makefile" data-lang="makefile"><span style="display:flex;"><span>OBJS <span style="color:#f92672">=</span> remove-element.o
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">remove-element</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">$(</span>OBJS<span style="color:#66d9ef">)</span>
-</span></span><span style="display:flex;"><span>        g++ -Wall -g -o remove-element <span style="color:#66d9ef">$(</span>OBJS<span style="color:#66d9ef">)</span> -lgtest -lgtest_main
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">remove-element.o</span><span style="color:#f92672">:</span> remove-element.cpp
-</span></span><span style="display:flex;"><span>        g++ -Wall -g -c remove-element.cpp
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">clean</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span>        rm remove-element <span style="color:#66d9ef">$(</span>OBJS<span style="color:#66d9ef">)</span>
-</span></span></code></pre></div>
-<p>And here&rsquo;s GDB in emacs:</p>
-<figure><img src="/ox-hugo/use-gdb.png"/>
-</figure>
-
-
-      </div></div>
-
-  
-
-  
-    
-
-  
-</article>
-
-  </div>
-
-  
-    <footer class="footer">
-  <div class="footer__inner">
-    
-      <div class="copyright">
-        <span>© 2026 Powered by <a href="https://gohugo.io">Hugo</a></span>
-    
-      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
-      </div>
-  </div>
-</footer>
-
-
-
-
-
-
-<script type="text/javascript" src="/bundle.min.js"></script>
-
-
-
-
-
-  
-</div>
-
-</body>
-</html>
+It does not matter what you leave beyond the returned k (hence they are underscores).</p></blockquote><p>So, the first test case becomes:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C data-lang=C><span style=display:flex><span><span style=color:#a6e22e>TEST</span>(Remove, test_1) {
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Arrange
+</span></span></span><span style=display:flex><span>  std<span style=color:#f92672>::</span>vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> nums <span style=color:#f92672>=</span> {<span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>};
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>int</span> val <span style=color:#f92672>=</span> <span style=color:#ae81ff>3</span>;
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>int</span> returns;
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>int</span> expectedReturns <span style=color:#f92672>=</span> <span style=color:#ae81ff>2</span>;
+</span></span><span style=display:flex><span>  std<span style=color:#f92672>::</span>vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> expectedNums <span style=color:#f92672>=</span> {<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>2</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>};
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Act
+</span></span></span><span style=display:flex><span>  returns <span style=color:#f92672>=</span> Solution<span style=color:#f92672>::</span><span style=color:#a6e22e>removeElement</span>(nums, val);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Assert
+</span></span></span><span style=display:flex><span>  <span style=color:#a6e22e>EXPECT_TRUE</span>(expectedReturns <span style=color:#f92672>==</span> returns);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>EXPECT_TRUE</span>(expectedNums <span style=color:#f92672>==</span> nums);
+</span></span><span style=display:flex><span>}</span></span></code></pre></div><p>Now, when I run, I get the expected failures:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#f92672>[==========]</span> Running <span style=color:#ae81ff>1</span> test from <span style=color:#ae81ff>1</span> test suite.
+</span></span><span style=display:flex><span><span style=color:#f92672>[</span>----------<span style=color:#f92672>]</span> Global test environment set-up.
+</span></span><span style=display:flex><span><span style=color:#f92672>[</span>----------<span style=color:#f92672>]</span> <span style=color:#ae81ff>1</span> test from Remove
+</span></span><span style=display:flex><span><span style=color:#f92672>[</span> RUN      <span style=color:#f92672>]</span> Remove.test_1
+</span></span><span style=display:flex><span>remove-element.cpp:24: Failure
+</span></span><span style=display:flex><span>Value of: expectedReturns <span style=color:#f92672>==</span> returns
+</span></span><span style=display:flex><span>  Actual: false
+</span></span><span style=display:flex><span>Expected: true
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>remove-element.cpp:25: Failure
+</span></span><span style=display:flex><span>Value of: expectedNums <span style=color:#f92672>==</span> nums
+</span></span><span style=display:flex><span>  Actual: false
+</span></span><span style=display:flex><span>Expected: true
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>[</span>  FAILED  <span style=color:#f92672>]</span> Remove.test_1 <span style=color:#f92672>(</span><span style=color:#ae81ff>0</span> ms<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>[</span>----------<span style=color:#f92672>]</span> <span style=color:#ae81ff>1</span> test from Remove <span style=color:#f92672>(</span><span style=color:#ae81ff>0</span> ms total<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>[</span>----------<span style=color:#f92672>]</span> Global test environment tear-down
+</span></span><span style=display:flex><span><span style=color:#f92672>[==========]</span> <span style=color:#ae81ff>1</span> test from <span style=color:#ae81ff>1</span> test suite ran. <span style=color:#f92672>(</span><span style=color:#ae81ff>0</span> ms total<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>[</span>  PASSED  <span style=color:#f92672>]</span> <span style=color:#ae81ff>0</span> tests.
+</span></span><span style=display:flex><span><span style=color:#f92672>[</span>  FAILED  <span style=color:#f92672>]</span> <span style=color:#ae81ff>1</span> test, listed below:
+</span></span><span style=display:flex><span><span style=color:#f92672>[</span>  FAILED  <span style=color:#f92672>]</span> Remove.test_1
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span> <span style=color:#ae81ff>1</span> FAILED TEST</span></span></code></pre></div><h2 id=final>Final<a href=#final class=hanchor arialabel=Anchor>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C data-lang=C><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;vector&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;gtest/gtest.h&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>class Solution {
+</span></span><span style=display:flex><span>public:
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>int</span> <span style=color:#a6e22e>removeElement</span>(std<span style=color:#f92672>::</span>vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> <span style=color:#f92672>&amp;</span>nums, <span style=color:#66d9ef>int</span> val) {
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/* Scan the array nums for the value val beginning at i = 0.  Let
+</span></span></span><span style=display:flex><span><span style=color:#75715e>     k be the location of the last element in the array. When the
+</span></span></span><span style=display:flex><span><span style=color:#75715e>     value val is found at the ith location, move the kth value into
+</span></span></span><span style=display:flex><span><span style=color:#75715e>     the ith, and then replace the kth value with -1 and decrement k */</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>int</span> k <span style=color:#f92672>=</span> nums.<span style=color:#a6e22e>size</span>() <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> (i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;=</span> k <span style=color:#f92672>&amp;&amp;</span> i <span style=color:#f92672>&lt;</span> nums.<span style=color:#a6e22e>size</span>(); <span style=color:#f92672>++</span>i) {
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>if</span> (nums[i] <span style=color:#f92672>==</span> val) {
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>while</span> (k <span style=color:#f92672>&gt;</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span> <span style=color:#f92672>&amp;&amp;</span> nums[k] <span style=color:#f92672>==</span> val) {
+</span></span><span style=display:flex><span>          nums[k<span style=color:#f92672>--</span>] <span style=color:#f92672>=</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>;
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> (k <span style=color:#f92672>&gt;=</span> i){
+</span></span><span style=display:flex><span>          nums[i] <span style=color:#f92672>=</span> nums[k];
+</span></span><span style=display:flex><span>          nums[k<span style=color:#f92672>--</span>] <span style=color:#f92672>=</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>;
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>      }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> k <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>;
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>};
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>TEST</span>(Remove, test_1) {
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Arrange
+</span></span></span><span style=display:flex><span>  std<span style=color:#f92672>::</span>vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> nums <span style=color:#f92672>=</span> {<span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>};
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>int</span> val <span style=color:#f92672>=</span> <span style=color:#ae81ff>3</span>;
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>int</span> returns;
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>int</span> expectedReturns <span style=color:#f92672>=</span> <span style=color:#ae81ff>2</span>;
+</span></span><span style=display:flex><span>  std<span style=color:#f92672>::</span>vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> expectedNums <span style=color:#f92672>=</span> {<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>2</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>};
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Act
+</span></span></span><span style=display:flex><span>  returns <span style=color:#f92672>=</span> Solution<span style=color:#f92672>::</span><span style=color:#a6e22e>removeElement</span>(nums, val);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Assert
+</span></span></span><span style=display:flex><span>  <span style=color:#a6e22e>EXPECT_TRUE</span>(expectedReturns <span style=color:#f92672>==</span> returns);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>EXPECT_TRUE</span>(expectedNums <span style=color:#f92672>==</span> nums);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>TEST</span>(Remove, test_2) {
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Arrange
+</span></span></span><span style=display:flex><span>  std<span style=color:#f92672>::</span>vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> nums <span style=color:#f92672>=</span> {<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>,<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>4</span>,<span style=color:#ae81ff>2</span>};
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>int</span> val <span style=color:#f92672>=</span> <span style=color:#ae81ff>2</span>;
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>int</span> returns;
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>int</span> expectedReturns <span style=color:#f92672>=</span> <span style=color:#ae81ff>5</span>;
+</span></span><span style=display:flex><span>  std<span style=color:#f92672>::</span>vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> expectedNums <span style=color:#f92672>=</span> {<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>3</span>,<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>,<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>,<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>};
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Act
+</span></span></span><span style=display:flex><span>  returns <span style=color:#f92672>=</span> Solution<span style=color:#f92672>::</span><span style=color:#a6e22e>removeElement</span>(nums, val);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Assert
+</span></span></span><span style=display:flex><span>  <span style=color:#a6e22e>EXPECT_TRUE</span>(expectedReturns <span style=color:#f92672>==</span> returns);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>EXPECT_TRUE</span>(expectedNums <span style=color:#f92672>==</span> nums);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=color:#a6e22e>TEST</span>(Remove, test_3) {
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Arrange
+</span></span></span><span style=display:flex><span>  std<span style=color:#f92672>::</span>vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> nums <span style=color:#f92672>=</span> {<span style=color:#ae81ff>1</span>};
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>int</span> val <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>int</span> returns;
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>int</span> expectedReturns <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>  std<span style=color:#f92672>::</span>vector<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> expectedNums <span style=color:#f92672>=</span> {<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>};
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Act
+</span></span></span><span style=display:flex><span>  returns <span style=color:#f92672>=</span> Solution<span style=color:#f92672>::</span><span style=color:#a6e22e>removeElement</span>(nums, val);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Assert
+</span></span></span><span style=display:flex><span>  <span style=color:#a6e22e>EXPECT_TRUE</span>(expectedReturns <span style=color:#f92672>==</span> returns);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>EXPECT_TRUE</span>(expectedNums <span style=color:#f92672>==</span> nums);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(<span style=color:#66d9ef>int</span> argc, <span style=color:#66d9ef>char</span> <span style=color:#f92672>**</span>argv) {
+</span></span><span style=display:flex><span>  testing<span style=color:#f92672>::</span><span style=color:#a6e22e>InitGoogleTest</span>(<span style=color:#f92672>&amp;</span>argc, argv);
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>RUN_ALL_TESTS</span>();
+</span></span><span style=display:flex><span>}</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#f92672>[==========]</span> Running <span style=color:#ae81ff>3</span> tests from <span style=color:#ae81ff>1</span> test suite.
+</span></span><span style=display:flex><span><span style=color:#f92672>[</span>----------<span style=color:#f92672>]</span> Global test environment set-up.
+</span></span><span style=display:flex><span><span style=color:#f92672>[</span>----------<span style=color:#f92672>]</span> <span style=color:#ae81ff>3</span> tests from Remove
+</span></span><span style=display:flex><span><span style=color:#f92672>[</span> RUN      <span style=color:#f92672>]</span> Remove.test_1
+</span></span><span style=display:flex><span><span style=color:#f92672>[</span>       OK <span style=color:#f92672>]</span> Remove.test_1 <span style=color:#f92672>(</span><span style=color:#ae81ff>0</span> ms<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>[</span> RUN      <span style=color:#f92672>]</span> Remove.test_2
+</span></span><span style=display:flex><span><span style=color:#f92672>[</span>       OK <span style=color:#f92672>]</span> Remove.test_2 <span style=color:#f92672>(</span><span style=color:#ae81ff>0</span> ms<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>[</span> RUN      <span style=color:#f92672>]</span> Remove.test_3
+</span></span><span style=display:flex><span><span style=color:#f92672>[</span>       OK <span style=color:#f92672>]</span> Remove.test_3 <span style=color:#f92672>(</span><span style=color:#ae81ff>0</span> ms<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>[</span>----------<span style=color:#f92672>]</span> <span style=color:#ae81ff>3</span> tests from Remove <span style=color:#f92672>(</span><span style=color:#ae81ff>0</span> ms total<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>[</span>----------<span style=color:#f92672>]</span> Global test environment tear-down
+</span></span><span style=display:flex><span><span style=color:#f92672>[==========]</span> <span style=color:#ae81ff>3</span> tests from <span style=color:#ae81ff>1</span> test suite ran. <span style=color:#f92672>(</span><span style=color:#ae81ff>0</span> ms total<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>[</span>  PASSED  <span style=color:#f92672>]</span> <span style=color:#ae81ff>3</span> tests.</span></span></code></pre></div><h2 id=use-gdb>Use GDB<a href=#use-gdb class=hanchor arialabel=Anchor>#</a></h2><p>Now&rsquo;s a good time to practice with GDB.</p><p>Update the makefile to include debugging information (<code>-g</code>). I&rsquo;ve also added in <code>-Wall</code> – not required
+but probably a good idea.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-makefile data-lang=makefile><span style=display:flex><span>OBJS <span style=color:#f92672>=</span> remove-element.o
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>remove-element</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>$(</span>OBJS<span style=color:#66d9ef>)</span>
+</span></span><span style=display:flex><span>        g++ -Wall -g -o remove-element <span style=color:#66d9ef>$(</span>OBJS<span style=color:#66d9ef>)</span> -lgtest -lgtest_main
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>remove-element.o</span><span style=color:#f92672>:</span> remove-element.cpp
+</span></span><span style=display:flex><span>        g++ -Wall -g -c remove-element.cpp
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>clean</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>        rm remove-element <span style=color:#66d9ef>$(</span>OBJS<span style=color:#66d9ef>)</span>
+</span></span></code></pre></div><p>And here&rsquo;s GDB in emacs:</p><figure><img src=/ox-hugo/use-gdb.png></figure></div></div></article></div><footer class=footer><div class=footer__inner><div class=copyright><span>© 2026 Powered by <a href=https://gohugo.io>Hugo</a></span>
+<span>:: <a href=https://github.com/panr/hugo-theme-terminal target=_blank>Theme</a> made by <a href=https://github.com/panr target=_blank>panr</a></span></div></div></footer><script type=text/javascript src=/bundle.min.js></script></div></body></html>

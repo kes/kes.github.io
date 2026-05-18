@@ -1,19 +1,14 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Scheme on </title>
-    <link>https://kes.github.io/tags/scheme/</link>
-    <description>Recent content in Scheme on </description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <lastBuildDate>Sun, 04 Jan 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://kes.github.io/tags/scheme/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Stock Market Problems</title>
-      <link>https://kes.github.io/posts/stock-market-problems/</link>
-      <pubDate>Sun, 04 Jan 2026 00:00:00 +0000</pubDate>
-      <guid>https://kes.github.io/posts/stock-market-problems/</guid>
-      <description>Coding challenges themed around the &amp;ldquo;stock market&amp;rdquo; are extremely common. They appear frequently in interview settings and on sites like LeetCode, and they range from trivial to genuinely subtle.&#xA;In this post, I’ll focus on the first and easiest variant in this family of problems.&#xA;The solution is trivial — but only once you understand what the problem is actually asking.&#xA;Problem Description You are given an integer array prices where prices[i] is the price of a given stock on the ith day.</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Scheme on</title><link>https://kes.github.io/tags/scheme/</link><description>Recent content in Scheme on</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Sun, 04 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://kes.github.io/tags/scheme/index.xml" rel="self" type="application/rss+xml"/><item><title>Stock Market Problems</title><link>https://kes.github.io/posts/stock-market-problems/</link><pubDate>Sun, 04 Jan 2026 00:00:00 +0000</pubDate><guid>https://kes.github.io/posts/stock-market-problems/</guid><description>&lt;p&gt;Coding challenges themed around the &amp;ldquo;stock market&amp;rdquo; are extremely common. They appear frequently in interview settings and on sites like LeetCode, and they range from trivial to genuinely subtle.&lt;/p&gt;
+&lt;p&gt;In this post, I’ll focus on the &lt;strong&gt;first&lt;/strong&gt; and &lt;strong&gt;easiest&lt;/strong&gt; variant in this family of problems.&lt;/p&gt;
+&lt;p&gt;The solution is trivial — but only once you understand what the problem is &lt;strong&gt;actually&lt;/strong&gt; asking.&lt;/p&gt;
+&lt;h2 id="problem-description"&gt;Problem Description&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;You are given an integer array prices where prices[i] is the price of a given stock on the ith day. On each day, you may decide to buy and/or sell the stock. You can only hold at most one share of the stock at any time. However, you can sell and buy the stock multiple times on the same day, ensuring you never hold more than one share of the stock.
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Find and return the maximum profit you can achieve.
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;You’re allowed to:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;- buy and sell as many times as you want
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;- never hold more than 1 share
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;- even sell and buy again on the same day
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="the-narrative-is-the-problem"&gt;The Narrative Is the Problem&lt;/h2&gt;
+&lt;p&gt;The problem description is distracting — and arguably deceptive.&lt;/p&gt;</description></item></channel></rss>
