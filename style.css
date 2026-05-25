@@ -129,3 +129,18 @@ h2 {
 	margin-bottom: 1.5em;
 	color:#a19f99;
 }
+
+.pro-tip {
+    border-left: 4px solid #eec35e;
+    background: #3b3f4a;
+    padding: 1rem;
+    margin: 2.5rem auto;
+    max-width: 42rem;
+    border-radius: 1.5rem;
+}
+
+.pro-tip strong {
+  display: inline-block;
+  margin-right: 0.25rem;
+}
+
