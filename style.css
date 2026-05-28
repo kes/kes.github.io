@@ -144,3 +144,78 @@ h2 {
   margin-right: 0.25rem;
 }
 
+
+/* Style the outer wrapper */
+.my-code-wrapper {
+  background: #000000; 
+  margin: 20px 0;
+  border: 3px solid #333;
+  border-radius: 36px;
+
+  padding-top: 10px;
+  padding-bottom: 15px;
+  padding-left: 8px;
+  padding-right: 5px;
+
+  overflow: hidden;
+}
+.my-code-wrapper > div:first-child {
+	border-radius: 30px;
+}
+/* Style the actual C source code block */
+.my-code-wrapper pre code {
+  /*background-color: #1e1e1e !important;*/
+	background-color: red;
+}
+
+/* Style the results block specifically */
+.my-code-wrapper pre.example {
+  background-color: #000000 !important;
+  color: #00ff00 !important; /* Terminal green text */
+  font-family: monospace;
+  padding: 10px;
+  border-top: 1px dashed #333;
+}
+
+.my-code-results-wrapper  {
+  background: #000000; 
+  margin: 20px 0;
+  border: 3px solid #333;
+  border-radius: 36px;
+
+  padding-top: 0px;
+  padding-bottom: 1px;
+  padding-left: 8px;
+  padding-right: 5px;
+
+  overflow: hidden;
+}
+
+div.highlight:nth-child(1) {
+  margin-top: 9px;
+  margin-bottom: 7px;
+}
+
+.my-code-results-wrapper > div:first-child {
+  border-radius: 30px;
+  background-color: #272822;	
+  font-family: monospace;
+}
+/*div.highlight:nth-child(1) > pre:nth-child(1) > code:nth-child(1)*/
+.my-code-results-wrapper > div.highlight > pre > code{
+  color: #00ff00 !important; /* Terminal green text */
+  font-family: monospace;
+}
+
+
+
+
+
+
+/* Change the background and text color */
+body {
+  background-color: #1a1a1a; /* Darker grey */
+}
+
+
+
