@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title/><link>https://kes.github.io/</link><description>Recent content on</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Tue, 26 May 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://kes.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Reading a Small C Patch: confstr, Buffers, and a Very-Unlikely Leak</title><link>https://kes.github.io/posts/reading-a-small-c-patch/</link><pubDate>Tue, 26 May 2026 00:00:00 +0000</pubDate><guid>https://kes.github.io/posts/reading-a-small-c-patch/</guid><description>&lt;p&gt;I was using &lt;a href="https://magit.vc/"&gt;Magit&lt;/a&gt; to browse the Emacs git repository.&lt;/p&gt;
 &lt;p&gt;I came across this interesting commit entitled: &amp;ldquo;Plug default_PATH memory leak&amp;rdquo;&lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
-&lt;figure&gt;&lt;img src="https://kes.github.io/ox-hugo/git-emacs-master-log.png" width="700px"&gt;
+&lt;figure class="my-screenshot"&gt;&lt;img src="https://kes.github.io/ox-hugo/git-emacs-master-log.png"&gt;
 &lt;/figure&gt;
 
 &lt;p&gt;Memory leaks are a huge problem, so I was interested.&lt;/p&gt;
-&lt;p&gt;Looking at coding changes can be a wall of symbols. Even for small changes, and this one was small. Only one file was changed with 12 insertions and 9 deletions. And the Magit interface was helpfully color coding each.&lt;/p&gt;</description></item><item><title>Org Mode Table Formulas</title><link>https://kes.github.io/posts/org-table-formulas/</link><pubDate>Sat, 23 May 2026 00:00:00 +0000</pubDate><guid>https://kes.github.io/posts/org-table-formulas/</guid><description>&lt;p&gt;I have used Org tables for various reasons, but not as spreadsheets and not specifying calculations.&lt;/p&gt;
+&lt;p&gt;Looking at coding changes can be a wall of symbols. Even for small changes, and this one was small. Only one file was changed with 12 insertions and 9 deletions. And the Magit interface was helpfully color coding each.&lt;/p&gt;
+&lt;figure class="my-screenshot"&gt;&lt;img src="https://kes.github.io/ox-hugo/git-emacs-revision.png"&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;On first impression the obvious change was from a &lt;code&gt;while&lt;/code&gt; loop to a &lt;code&gt;for&lt;/code&gt; &amp;mdash; that feels stylistic &amp;mdash; but clearly there&amp;rsquo;s more going on.&lt;/p&gt;</description></item><item><title>Org Mode Table Formulas</title><link>https://kes.github.io/posts/org-table-formulas/</link><pubDate>Sat, 23 May 2026 00:00:00 +0000</pubDate><guid>https://kes.github.io/posts/org-table-formulas/</guid><description>&lt;p&gt;I have used Org tables for various reasons, but not as spreadsheets and not specifying calculations.&lt;/p&gt;
 &lt;p&gt;In this post I want to examine table formulas for calculations. In other words, using Org tables as spreadsheets.&lt;/p&gt;
 &lt;p&gt;The topics covered will be references, cell, column, and row, both absolute and relative. From there ranges will be introduced.&lt;/p&gt;
 &lt;p&gt;That doesn&amp;rsquo;t sound like much. But it&amp;rsquo;s a lot to cover in one post.&lt;/p&gt;

@@ -145,77 +145,114 @@ h2 {
 }
 
 
-/* Style the outer wrapper */
-.my-code-wrapper {
-  background: #000000; 
+/* experiment with google */
+
+/* LAYER 1: The Outer Tray */
+/* This targets the main div wrapping everything */
+/* note: .name1.name2 is called chaining and only applies to elements
+   that have both names at the exact same time.*/
+.highlight.my-code,
+.my-code .highlight,
+div.my-screenshot,
+figure.my-screenshot {
+  background-color: #1a1a1a;        /* Outer background color */
+  border: 2px solid #333333;        /* Outer boundary frame */
+  border-radius: 26px;               
+  padding: 16px;                    /* Air space creates the visible tray */
+  box-shadow: 2px 2px 2px #a98b43;  /* 3D shadow depth */
   margin: 20px 0;
-  border: 3px solid #333;
-  border-radius: 36px;
-
-  padding-top: 10px;
-  padding-bottom: 15px;
-  padding-left: 8px;
-  padding-right: 5px;
-
-  overflow: hidden;
 }
-.my-code-wrapper > div:first-child {
-	border-radius: 30px;
+figure.my-screenshot {
+    
+    padding: 10px;
 }
-/* Style the actual C source code block */
-.my-code-wrapper pre code {
-  /*background-color: #1e1e1e !important;*/
-	background-color: red;
+/* LAYER 2: The Inner Screen */
+/* This targets the <pre> block that lives inside the main div */
+.highlight.my-code pre,
+.my-code .highlight pre {
+  background-color: #282a36 !important; /* Distinct inner code background */
+  border: 1px solid #44475a;            /* Inner crisp borders */
+  padding: 14px;                        /* Spacing for code text */
+  margin: 0;                            /* Forces it to stay inside Layer 1 */
+  overflow-x: auto;                     /* Handles horizontal code scrolling */
 }
 
-/* Style the results block specifically */
-.my-code-wrapper pre.example {
-  background-color: #000000 !important;
-  color: #00ff00 !important; /* Terminal green text */
-  font-family: monospace;
-  padding: 10px;
-  border-top: 1px dashed #333;
+/* ==========================================
+   LAYER 2: The Inner Screenshot Image
+   ========================================== */
+
+
+
+.my-screenshot img {
+  display: block;                   /* Prevents baseline alignment text gaps */
+  max-width: 100%;                  /* Prevents the image from breaking your layout */
+  height: auto;
+  border: 3px solid #44475a;        /* Inner crisp border around the picture */
+  border-radius: 6px;               /* Soft corners matching the code design */
+  padding:0;
+  margin: 5px;
 }
 
-.my-code-results-wrapper  {
-  background: #000000; 
+
+/* colorize output text -- this is for results and example */
+.my-code .highlight code,
+.highlight.my-example code {
+    color: #66FF66;
+}
+
+/*****************************************************************/
+/* the following is necessary to remove a space caused by a font */
+/* 1. Target the main table container */
+.highlight.my-code table{
+  border-collapse: collapse !important;
+  border-spacing: 0 !important;
+  display: flex !important;           /* Replaces default table display layout */
+  flex-direction: column !important;
+}
+
+/* 2. Target the table rows holding your line numbers and code */
+.highlight.my-code tr {
+  display: flex !important;           /* Snaps cells into a tight side-by-side row */
+  width: 100% !important;
+}
+
+/* 3. Target the left (numbers) and right (code) table cells */
+.highlight.my-code .lntd,
+.highlight.my-code .clntd {
+  display: block !important;
+  flex: 1 !important;                 /* Allows the code block to expand evenly */
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* 4. Flatten the internal pre blocks to stop font height bleed */
+.highlight.my-code pre {
+  display: block !important;
+  margin: 0 !important;
+  padding: 12px !important;           /* Control your internal air space explicitly here */
+ line-break: 1.5 !important;
+  box-sizing: border-box !important;
+}
+
+/* 5. Clean up the actual code snippet string */
+.highlight.my-code pre code {
+  font-family: 'Fira Code', Monaco, monospace !important;
+  display: inline-block !important;   /* Prevents inline descender layout shifts */
+  vertical-align: top !important;     /* Locks layout to the top edge */
+}
+/* end of font fix */
+/*****************************************************************/
+
+/* LAYER 1: The Outer Tray */
+/* This targets the main div wrapping everything */
+/* note: .name1.name2 is called chaining and only applies to elements
+   that have both names at the exact same time.*/
+.highlight.my-example
+{
+  background-color: #1a1a1a;        /* Outer background color */
+  border: 2px solid #333333;        /* Outer boundary frame */
+  border-radius: 26px;               
+  padding: 16px;                    /* Air space creates the visible tray */
+  box-shadow: 2px 2px 2px #a98b43;  /* 3D shadow depth */
   margin: 20px 0;
-  border: 3px solid #333;
-  border-radius: 36px;
-
-  padding-top: 0px;
-  padding-bottom: 1px;
-  padding-left: 8px;
-  padding-right: 5px;
-
-  overflow: hidden;
 }
-
-div.highlight:nth-child(1) {
-  margin-top: 9px;
-  margin-bottom: 7px;
-}
-
-.my-code-results-wrapper > div:first-child {
-  border-radius: 30px;
-  background-color: #272822;	
-  font-family: monospace;
-}
-/*div.highlight:nth-child(1) > pre:nth-child(1) > code:nth-child(1)*/
-.my-code-results-wrapper > div.highlight > pre > code{
-  color: #00ff00 !important; /* Terminal green text */
-  font-family: monospace;
-}
-
-
-
-
-
-
-/* Change the background and text color */
-body {
-  background-color: #1a1a1a; /* Darker grey */
-}
-
-
-

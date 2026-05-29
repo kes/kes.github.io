@@ -1,0 +1,158 @@
+/*side note experiment */
+body {
+  counter-reset: sidenote-counter;
+}
+
+.sidenote,
+.marginnote {
+    float: right;
+    clear: right;
+    margin-right: -55%;
+    width: 50%;
+    /* margin-top: 0.3rem; */
+    margin-bottom: 0;
+    /*font-size: 1.1rem;*/
+    font-size: 0.8rem;
+    line-height: 1.3; 
+    vertical-align: baseline;
+    position: relative;
+	padding-left: 24px;
+	border-left: 1px solid white;
+	padding-top: 0px;
+	/* background-color: red; */
+}
+.sidenote p {
+	margin: 0px;
+}
+
+.sidenote-number {
+    counter-increment: sidenote-counter;
+}
+
+.sidenote-number::after,
+.sidenote::before {
+    font-family: et-book-roman-old-style;
+    position: relative;
+    vertical-align: baseline;
+}
+
+.sidenote-number::after {
+    content: counter(sidenote-counter);
+    font-size: 1rem;
+    top: -0.5rem;
+    left: 0.1rem;
+}
+.sidenote::before {
+    content: counter(sidenote-counter) " "; 
+    font-size: 1rem;
+    /* top: -0.5rem; */
+}
+
+blockquote .sidenote,
+blockquote .marginnote {
+    margin-right: -82%;
+    min-width: 59%;
+    text-align: left;
+}
+h2 {
+	color: #eec35e;
+	margin-top: 2em;
+  margin-bottom: 1.5em;	
+  border-bottom: 3px solid #3b3f4a;  /* 3px rule below */
+  padding-bottom: 0.3em;
+}
+.table-caption {
+	margin-top:2em;
+	margin-bottom: 1.5em;
+	color:#a19f99;
+}
+
+.pro-tip {
+    border-left: 4px solid #eec35e;
+    background: #3b3f4a;
+    padding: 1rem;
+    margin: 2.5rem auto;
+    max-width: 42rem;
+    border-radius: 1.5rem;
+}
+
+.pro-tip strong {
+  display: inline-block;
+  margin-right: 0.25rem;
+}
+
+
+/* Style the outer wrapper */
+.my-code-wrapper {
+  background: #000000; 
+  margin: 20px 0;
+  border: 3px solid #333;
+  border-radius: 36px;
+
+  padding-top: 10px;
+  padding-bottom: 15px;
+  padding-left: 8px;
+  padding-right: 5px;
+
+  overflow: hidden;
+}
+.my-code-wrapper > div:first-child {
+	border-radius: 30px;
+}
+/* Style the actual C source code block */
+.my-code-wrapper pre code {
+  /*background-color: #1e1e1e !important;*/
+	background-color: red;
+}
+
+/* Style the results block specifically */
+.my-code-wrapper pre.example {
+  background-color: #000000 !important;
+  color: #00ff00 !important; /* Terminal green text */
+  font-family: monospace;
+  padding: 10px;
+  border-top: 1px dashed #333;
+}
+
+.my-code-results-wrapper  {
+  background: #000000; 
+  margin: 20px 0;
+  border: 3px solid #333;
+  border-radius: 36px;
+
+  padding-top: 0px;
+  padding-bottom: 1px;
+  padding-left: 8px;
+  padding-right: 5px;
+
+  overflow: hidden;
+}
+
+div.highlight:nth-child(1) {
+  margin-top: 9px;
+  margin-bottom: 7px;
+}
+
+.my-code-results-wrapper > div:first-child {
+  border-radius: 30px;
+  background-color: #272822;	
+  font-family: monospace;
+}
+/*div.highlight:nth-child(1) > pre:nth-child(1) > code:nth-child(1)*/
+.my-code-results-wrapper > div.highlight > pre > code{
+  color: #00ff00 !important; /* Terminal green text */
+  font-family: monospace;
+}
+
+
+
+
+
+
+/* Change the background and text color */
+body {
+  background-color: #1a1a1a; /* Darker grey */
+}
+
+
+
