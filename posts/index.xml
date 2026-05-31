@@ -14,7 +14,7 @@
 &lt;p&gt;That doesn&amp;rsquo;t sound like much. But it&amp;rsquo;s a lot to cover in one post.&lt;/p&gt;
 &lt;p&gt;So let&amp;rsquo;s get going.&lt;/p&gt;</description></item><item><title>Making TOML Obvious by Turning It Into JSON</title><link>https://kes.github.io/posts/making-toml-obvious-by-turning-it-into-json/</link><pubDate>Fri, 01 May 2026 00:00:00 +0000</pubDate><guid>https://kes.github.io/posts/making-toml-obvious-by-turning-it-into-json/</guid><description>&lt;h2 id="the-obvious"&gt;The Obvious&lt;/h2&gt;
 &lt;p&gt;I was looking at some &lt;code&gt;TOML&lt;/code&gt; &amp;mdash; &lt;a href="https://toml.io/en/"&gt;Tom&amp;rsquo;s Obvious Minimum Language&lt;/a&gt; &amp;mdash; in a &lt;a href="https://gohugo.io/"&gt;Hugo&lt;/a&gt; config file, pondering the configuration of a static site.&lt;/p&gt;
-&lt;figure&gt;&lt;img src="https://kes.github.io/ox-hugo/toml-config.png" height="500px"&gt;
+&lt;figure class="my-screenshot"&gt;&lt;img src="https://kes.github.io/ox-hugo/toml-config.png"&gt;
 &lt;/figure&gt;
 
 &lt;p&gt;In Hugo, you have the choice between &lt;code&gt;YAML&lt;/code&gt; &amp;mdash; &lt;a href="https://yaml.org/"&gt;YAML Ain&amp;rsquo;t Markup Language&lt;/a&gt; &amp;mdash; and TOML.&lt;/p&gt;
