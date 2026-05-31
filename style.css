@@ -181,7 +181,9 @@ figure.my-screenshot {
    LAYER 2: The Inner Screenshot Image
    ========================================== */
 
-
+figure.my-screenshot {
+	margin: 50px auto;
+}
 
 .my-screenshot img {
   display: block;                   /* Prevents baseline alignment text gaps */
@@ -196,8 +198,13 @@ figure.my-screenshot {
 
 /* colorize output text -- this is for results and example */
 .my-code .highlight code,
-.highlight.my-example code {
-    color: #66FF66;
+.highlight.my-example code, 
+.highlight.my-example-10 code,
+.highlight.my-example-20 code,
+.highlight.my-example-30 code,
+.highlight.my-example-40 code
+{
+    color: #eec35e;
 }
 
 /*****************************************************************/
@@ -252,7 +259,48 @@ figure.my-screenshot {
   background-color: #1a1a1a;        /* Outer background color */
   border: 2px solid #333333;        /* Outer boundary frame */
   border-radius: 26px;               
-  padding: 16px;                    /* Air space creates the visible tray */
+  padding: 0;                    /* Air space creates the visible tray */
   box-shadow: 2px 2px 2px #a98b43;  /* 3D shadow depth */
-  margin: 20px 0;
+  margin: 50px 0;
 }
+
+.highlight.my-example-10
+{
+  background-color: #1a1a1a;        /* Outer background color */
+  border: 2px solid #333333;        /* Outer boundary frame */
+  border-radius: 26px;               
+  padding: 0;                    /* Air space creates the visible tray */
+  box-shadow: 2px 2px 2px #a98b43;  /* 3D shadow depth */
+  margin: 50px 10%;
+}
+
+
+.highlight.my-example-20
+{
+  background-color: #1a1a1a;        /* Outer background color */
+  border: 2px solid #333333;        /* Outer boundary frame */
+  border-radius: 26px;               
+  padding: 0;                    /* Air space creates the visible tray */
+  box-shadow: 2px 2px 2px #a98b43;  /* 3D shadow depth */
+  margin: 50px 20%;
+}
+
+.highlight.my-example-30
+{
+  background-color: #1a1a1a;        /* Outer background color */
+  border: 2px solid #333333;        /* Outer boundary frame */
+  border-radius: 26px;               
+  padding: 0;                    /* Air space creates the visible tray */
+  box-shadow: 2px 2px 2px #a98b43;  /* 3D shadow depth */
+  margin: 50px 30%;
+}
+
+.highlight.my-example-40
+{
+  background-color: #1a1a1a;        /* Outer background color */
+  border: 2px solid #333333;        /* Outer boundary frame */
+  border-radius: 26px;               
+  padding: 0;                    /* Air space creates the visible tray */
+  box-shadow: 2px 2px 2px #a98b43;  /* 3D shadow depth */
+  margin: 50px 40%;
+  }

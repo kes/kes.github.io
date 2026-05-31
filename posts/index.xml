@@ -22,7 +22,7 @@
 &lt;p&gt;I say &amp;ldquo;claimed,&amp;rdquo; but nothing about it seemed obvious to me. I really wanted to see some equivalent &lt;code&gt;JSON&lt;/code&gt; &amp;mdash; &lt;a href="https://www.json.org/json-en.html"&gt;JSON&lt;/a&gt;, now, that I understand, because as they say:&lt;/p&gt;</description></item><item><title>Stock Market Problems (Category 2: At Most One Transaction)</title><link>https://kes.github.io/posts/stock-market-problems-category-2/</link><pubDate>Tue, 06 Jan 2026 00:00:00 +0000</pubDate><guid>https://kes.github.io/posts/stock-market-problems-category-2/</guid><description>&lt;p&gt;In the previous post, I covered the simplest member of the so-called “stock market” interview problems: the version that allows unlimited transactions. Once you strip away the narrative, the solution reduces to summing all positive price deltas.&lt;/p&gt;
 &lt;p&gt;This post moves to the &lt;strong&gt;second&lt;/strong&gt; category. The problem is slightly more interesting, while the algorithm is still easy.&lt;/p&gt;
 &lt;h2 id="problem-description"&gt;Problem Description&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;You are given an integer array prices where prices[i] is the price of a given stock on the ith day.
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;You are given an integer array prices where prices[i] is the price of a given stock on the ith day.
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;You may complete at most one transaction.
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;You must buy before you sell.
@@ -32,7 +32,7 @@
 &lt;p&gt;In this post, I’ll focus on the &lt;strong&gt;first&lt;/strong&gt; and &lt;strong&gt;easiest&lt;/strong&gt; variant in this family of problems.&lt;/p&gt;
 &lt;p&gt;The solution is trivial — but only once you understand what the problem is &lt;strong&gt;actually&lt;/strong&gt; asking.&lt;/p&gt;
 &lt;h2 id="problem-description"&gt;Problem Description&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;You are given an integer array prices where prices[i] is the price of a given stock on the ith day. On each day, you may decide to buy and/or sell the stock. You can only hold at most one share of the stock at any time. However, you can sell and buy the stock multiple times on the same day, ensuring you never hold more than one share of the stock.
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;You are given an integer array prices where prices[i] is the price of a given stock on the ith day. On each day, you may decide to buy and/or sell the stock. You can only hold at most one share of the stock at any time. However, you can sell and buy the stock multiple times on the same day, ensuring you never hold more than one share of the stock.
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Find and return the maximum profit you can achieve.
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
@@ -43,7 +43,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="the-narrative-is-the-problem"&gt;The Narrative Is the Problem&lt;/h2&gt;
 &lt;p&gt;The problem description is distracting — and arguably deceptive.&lt;/p&gt;</description></item><item><title>Cyclical Thinking and the Zigzag Conversion Problem</title><link>https://kes.github.io/posts/cyclical-coding-fun/</link><pubDate>Sun, 07 Dec 2025 00:00:00 +0000</pubDate><guid>https://kes.github.io/posts/cyclical-coding-fun/</guid><description>&lt;p&gt;LeetCode has a well-known challenge, Zigzag Conversion (rated medium), introduced like this:&lt;/p&gt;
 &lt;p&gt;Leetcode has a coding challenge &lt;a href="https://leetcode.com/problems/zigzag-conversion/description/"&gt;zigzag Conversion&lt;/a&gt; (rated at medium), that is presented like this:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;The string &amp;#34;PAYPALISHIRING&amp;#34; is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;The string &amp;#34;PAYPALISHIRING&amp;#34; is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;P A H N
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;A P L S I I G
@@ -66,7 +66,7 @@
 &lt;p&gt;Which, by the way, in Latin is &lt;em&gt;disco ergo sum&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;The other day, I was reading part of the SBCL manual.&lt;/p&gt;
 &lt;p&gt;I was struck by how difficult it was to understand—not because the manual is poorly written, but because manuals, like textbooks, assume a certain level of knowledge. That’s what they’re for.&lt;/p&gt;</description></item><item><title>Common Lisp Lambdas and Macros</title><link>https://kes.github.io/posts/common-lisp-lambda-macros/</link><pubDate>Wed, 12 Nov 2025 00:00:00 +0000</pubDate><guid>https://kes.github.io/posts/common-lisp-lambda-macros/</guid><description>&lt;p&gt;I was thinking about lambdas and closures the other day (&amp;lsquo;cause after all, why not?), and I was looking at Paul Graham&amp;rsquo;s excellent &lt;a href="https://www.google.com/search?q=ansi%20common%20lisp%20book&amp;amp;sclient=gws-wiz"&gt;ANSI Common Lisp&lt;/a&gt; &amp;ndash; in chapter one he begins by asking, &amp;ldquo;why learn Lisp?&amp;rdquo; And he shows some &lt;code&gt;C&lt;/code&gt; and &lt;code&gt;Lisp&lt;/code&gt; code for summing the integers less than &lt;code&gt;n&lt;/code&gt;, like so:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-c" data-lang="c"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;int&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;sum&lt;/span&gt; (&lt;span style="color:#66d9ef"&gt;int&lt;/span&gt; n){
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-c" data-lang="c"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;int&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;sum&lt;/span&gt; (&lt;span style="color:#66d9ef"&gt;int&lt;/span&gt; n){
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;int&lt;/span&gt; i, s &lt;span style="color:#f92672"&gt;=&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;0&lt;/span&gt;;
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;for&lt;/span&gt; (i&lt;span style="color:#f92672"&gt;=&lt;/span&gt;&lt;span style="color:#ae81ff"&gt;0&lt;/span&gt;; i&lt;span style="color:#f92672"&gt;&amp;lt;&lt;/span&gt; n; i&lt;span style="color:#f92672"&gt;++&lt;/span&gt;)
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; s &lt;span style="color:#f92672"&gt;+=&lt;/span&gt; i;
@@ -98,7 +98,7 @@ in elisp. (However, some of emacs is written in C.),&lt;/p&gt;
 &lt;p&gt;Let&amp;rsquo;s look at a simple example using the notes from &lt;a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/Module-Initialization.html"&gt;https://www.gnu.org/software/emacs/manual/html_node/elisp/Module-Initialization.html&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id="start-the-module"&gt;Start the Module&lt;/h2&gt;
 &lt;p&gt;A module &lt;strong&gt;must&lt;/strong&gt; start with the following:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-C" data-lang="C"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;#include&lt;/span&gt; &lt;span style="color:#75715e"&gt;&amp;lt;emacs-module.h&amp;gt;&lt;/span&gt;&lt;span style="color:#75715e"&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-C" data-lang="C"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;#include&lt;/span&gt; &lt;span style="color:#75715e"&gt;&amp;lt;emacs-module.h&amp;gt;&lt;/span&gt;&lt;span style="color:#75715e"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;int&lt;/span&gt; plugin_is_GPL_compatible;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;After that, it&amp;rsquo;s pretty easy to create a test function. The steps are as follows:&lt;/p&gt;</description></item><item><title>Java: Counting non-Duplicate Items</title><link>https://kes.github.io/posts/java-counting-non-duplicate-items/</link><pubDate>Thu, 12 Sep 2024 00:00:00 +0000</pubDate><guid>https://kes.github.io/posts/java-counting-non-duplicate-items/</guid><description>&lt;p&gt;This problem came up at &lt;a href="https://www.codewars.com/kata/635fc0497dadea0030cb7936"&gt;codewars.com&lt;/a&gt;.&lt;/p&gt;
@@ -122,7 +122,7 @@ Compiler.&lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" class="footnote-ref" role="d
 &lt;h2 id="step-1-exercise-1"&gt;Step 1 Exercise 1&lt;/h2&gt;
 &lt;p&gt;The first step (Step1) and this is the directory
 stucture:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Step1
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Step1
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;├── CMakeLists.txt
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;├── CMakeLists.txt~
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;├── TutorialConfig.h.in
@@ -146,7 +146,7 @@ stucture:&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;So, for this tutorial this becomes:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;# TODO 1: Set the minimum required version of CMake to be 3.10
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;# TODO 1: Set the minimum required version of CMake to be 3.10
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cmake_minimum_required(VERSION 3.23)# TODO
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;# TODO 2: Create a project named Tutorial
@@ -174,7 +174,7 @@ square of the sum.&lt;/p&gt;
 &lt;p&gt;Once the formula for both is known, the sum of the squares, [n(n+1)(2n+1)]/6 and the sun of the
 first n numbers, (2n(n+1))/2 the solution is trival:&lt;/p&gt;
 &lt;p&gt;&lt;a id="code-snippet--formula-diff"&gt;&lt;/a&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-lisp" data-lang="lisp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;(defun formula/sum-of-squares (n)
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-lisp" data-lang="lisp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;(defun formula/sum-of-squares (n)
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; (&lt;span style="color:#a6e22e"&gt;/&lt;/span&gt; (&lt;span style="color:#a6e22e"&gt;*&lt;/span&gt; n (&lt;span style="color:#a6e22e"&gt;+&lt;/span&gt; n &lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;) (&lt;span style="color:#a6e22e"&gt;+&lt;/span&gt; (&lt;span style="color:#a6e22e"&gt;*&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;2&lt;/span&gt; n) &lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;)) &lt;span style="color:#ae81ff"&gt;6&lt;/span&gt;))
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;(defun formula/square-of-the-sum (n)
@@ -193,74 +193,74 @@ first n numbers, (2n(n+1))/2 the solution is trival:&lt;/p&gt;
 &lt;style&gt;.table-1 table { text-align: center; width: 30%; margin: 0 auto; }&lt;/style&gt;
 &lt;div class="ox-hugo-table table-1"&gt;
 &lt;table&gt;
- &lt;thead&gt;
- &lt;tr&gt;
- &lt;th&gt;n&lt;/th&gt;
- &lt;th&gt;a[n]&lt;/th&gt;
- &lt;/tr&gt;
- &lt;/thead&gt;
- &lt;tbody&gt;
- &lt;tr&gt;
- &lt;td&gt;0&lt;/td&gt;
- &lt;td&gt;0&lt;/td&gt;
- &lt;/tr&gt;
- &lt;tr&gt;
- &lt;td&gt;1&lt;/td&gt;
- &lt;td&gt;1&lt;/td&gt;
- &lt;/tr&gt;
- &lt;tr&gt;
- &lt;td&gt;2&lt;/td&gt;
- &lt;td&gt;1&lt;/td&gt;
- &lt;/tr&gt;
- &lt;tr&gt;
- &lt;td&gt;3&lt;/td&gt;
- &lt;td&gt;1&lt;/td&gt;
- &lt;/tr&gt;
- &lt;tr&gt;
- &lt;td&gt;4&lt;/td&gt;
- &lt;td&gt;0&lt;/td&gt;
- &lt;/tr&gt;
- &lt;tr&gt;
- &lt;td&gt;5&lt;/td&gt;
- &lt;td&gt;1&lt;/td&gt;
- &lt;/tr&gt;
- &lt;tr&gt;
- &lt;td&gt;6&lt;/td&gt;
- &lt;td&gt;0&lt;/td&gt;
- &lt;/tr&gt;
- &lt;tr&gt;
- &lt;td&gt;7&lt;/td&gt;
- &lt;td&gt;1&lt;/td&gt;
- &lt;/tr&gt;
- &lt;tr&gt;
- &lt;td&gt;8&lt;/td&gt;
- &lt;td&gt;0&lt;/td&gt;
- &lt;/tr&gt;
- &lt;tr&gt;
- &lt;td&gt;9&lt;/td&gt;
- &lt;td&gt;0&lt;/td&gt;
- &lt;/tr&gt;
- &lt;tr&gt;
- &lt;td&gt;10&lt;/td&gt;
- &lt;td&gt;0&lt;/td&gt;
- &lt;/tr&gt;
- &lt;tr&gt;
- &lt;td&gt;11&lt;/td&gt;
- &lt;td&gt;1&lt;/td&gt;
- &lt;/tr&gt;
- &lt;tr&gt;
- &lt;td&gt;12&lt;/td&gt;
- &lt;td&gt;0&lt;/td&gt;
- &lt;/tr&gt;
- &lt;tr&gt;
- &lt;td&gt;13&lt;/td&gt;
- &lt;td&gt;1&lt;/td&gt;
- &lt;/tr&gt;
- &lt;tr&gt;
- &lt;td&gt;&lt;/td&gt;
- &lt;td&gt;&lt;/td&gt;
- &lt;/tr&gt;
- &lt;/tbody&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;n&lt;/th&gt;
+					&lt;th&gt;a[n]&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;0&lt;/td&gt;
+					&lt;td&gt;0&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;1&lt;/td&gt;
+					&lt;td&gt;1&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;2&lt;/td&gt;
+					&lt;td&gt;1&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;3&lt;/td&gt;
+					&lt;td&gt;1&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;4&lt;/td&gt;
+					&lt;td&gt;0&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;5&lt;/td&gt;
+					&lt;td&gt;1&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;6&lt;/td&gt;
+					&lt;td&gt;0&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;7&lt;/td&gt;
+					&lt;td&gt;1&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;8&lt;/td&gt;
+					&lt;td&gt;0&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;9&lt;/td&gt;
+					&lt;td&gt;0&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;10&lt;/td&gt;
+					&lt;td&gt;0&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;11&lt;/td&gt;
+					&lt;td&gt;1&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;12&lt;/td&gt;
+					&lt;td&gt;0&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;13&lt;/td&gt;
+					&lt;td&gt;1&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
 &lt;/table&gt;
 &lt;/div&gt;
 &lt;p&gt;where n (the index of the array) is the number of interest &amp;ndash; So, is the number prime? If
